@@ -14,11 +14,11 @@
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-19T13:51:25-04:00</updated>
+    <updated>2014-06-19T16:46:42-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
-    <content type="html">&lt;p&gt;&lt;img src="../../images/rubyMMsass.png" /&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img src="images/rubyMMsass.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Recently I&amp;rsquo;ve spent a few evenings removing WordPress and rebuilding this site on top of &lt;a href="http://www.middlemanapp.com"&gt;Middleman&lt;/a&gt;. The new site is still a work in progress and I have more features to add, but all of the previous content has been brought over. It should be safe to launch this.&lt;/p&gt;
 
@@ -41,8 +41,8 @@
 
 &lt;ul&gt;
 &lt;li&gt;Middleman is a roll-your-own beast. This site now does exactly what I want it to, no more, no less. No plugins to fuss with or break.&lt;/li&gt;
-&lt;li&gt;Middleman uses the &lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt; preprocessor and &lt;a href="http://compass-style.org/"&gt;Compass&lt;/a&gt; framework. If you&amp;rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.&lt;/li&gt;
-&lt;li&gt;Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github. A few lines of bash and I can deploy my site to my web server while storing the latest version on github in a matter of seconds. This is one step away from Github&lt;/li&gt;
+&lt;li&gt;Middleman uses the &lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt; CSS preprocessor and &lt;a href="http://compass-style.org/"&gt;Compass&lt;/a&gt; framework. If you&amp;rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.&lt;/li&gt;
+&lt;li&gt;Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on Github and served via &lt;a href="https://pages.github.com/"&gt;Github Pages&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;I&amp;rsquo;ve wanted to do this before, but have been a bit hesitant. As silly as it sounds, my post on &lt;a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"&gt;mapping sasquatch sightings&lt;/a&gt; generated a ton of discussion. I didn&amp;rsquo;t want to lose all of those comments. But I was happy to learn I could import them all to &lt;a href="https://disqus.com/"&gt;Disqus&lt;/a&gt;.&lt;/p&gt;
@@ -55,7 +55,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-18T12:12:07-04:00</updated>
+    <updated>2014-06-19T16:44:58-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -69,7 +69,7 @@
 
 &lt;h1&gt;Sourced claims of Memorial Day’s birthplace&lt;/h1&gt;
 
-&lt;iframe width="780" height="420" frameborder="0" seamless="true," src="http://www.joshuastevens.net/memorialDay/index.html"&gt;&lt;/iframe&gt;
+&lt;iframe width="780" height="420" frameborder="0" seamless="true," src="/memorialDay/index.html"&gt;&lt;/iframe&gt;
 
 &lt;p&gt;Most of the data comes from the &lt;a href="http://www.civilwarcenter.olemiss.edu/"&gt;Center for Civil War Research&lt;/a&gt;. Other sources include the &lt;a href="http://www.va.gov/opa/speceven/memday/"&gt;US Department of Veterans’ Affairs&lt;/a&gt;. Where possible, I linked to the actual township’s claim (via local website or newspaper).&lt;/p&gt;
 
@@ -99,7 +99,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/The-Map-of-GDELT-Predictions-in-Afghanistan-as-You-Should-Have-Seen-It/"/>
     <id>http://www.joshuastevens.net/visualization/The-Map-of-GDELT-Predictions-in-Afghanistan-as-You-Should-Have-Seen-It/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-06-19T13:50:10-04:00</updated>
+    <updated>2014-06-19T16:25:18-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -111,7 +111,7 @@
 
 &lt;p&gt;And then I saw my map. Well, it was sort of my map. It had my name on it… but it was not at all how I had originally designed it. Here is the map as it is currently published:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="../../images/wired_afg_map-300x300.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/wired_afg_map-300x300.jpg" /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Here’s my quibble:&lt;/strong&gt; Not only was my work altered without acknowledging the changes from the original, the change resulted in a red-green color scheme – a classic map mishap that no professional cartographer would ever make.&lt;/p&gt;
 
@@ -125,7 +125,7 @@
 
 &lt;p&gt;This is what I wanted you to see:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="../../images/afgEventsSmall.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/afgEventsSmall.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;This view shows much more about the material conflicts that have occurred in Afghanistan over the past 34 years. From more than a million geocoded conflicts (check out the activity at the border between Afghanistan and Pakistan) to temporal trends, readers instantly get a better sense of the situation and how the data have changed over time. As a professional cartographer, I also made sure &lt;strong&gt;it is red/green colorblind-safe&lt;/strong&gt; (&lt;a href="/images/afgEvents_cbSafe.png"&gt;preview&lt;/a&gt;). Naturally, I would have liked to see this version published for the article’s readers.&lt;/p&gt;
 
@@ -137,7 +137,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"/>
     <id>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</id>
     <published>2013-09-17T01:00:00-04:00</published>
-    <updated>2014-06-19T09:44:28-04:00</updated>
+    <updated>2014-06-19T16:25:18-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -176,7 +176,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"/>
     <id>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</id>
     <published>2013-06-28T01:00:00-04:00</published>
-    <updated>2014-06-19T13:50:58-04:00</updated>
+    <updated>2014-06-19T16:25:18-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -188,7 +188,7 @@
 
 &lt;p&gt;Examples of conventional traffic maps are shown below. Each is from a different source and represents the same location and time of day:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="../../images/trafficMaps.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/trafficMaps.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Although there are many cartographic differences between these maps, they all employ the same overall design strategy: variable length road segments in a red, yellow, and green color scheme. This design is typical of almost all traffic maps. This isn’t really surprising. For designers of traffic maps, it makes a lot of sense to base traffic map designs on a metaphor familiar to all drivers – in this case, traffic lights. A common design strategy is also something that makes a lot of sense for users. Consistency across designs makes the maps familiar, regardless of their source. Users shouldn’t have to relearn how to read maps from one vendor to the next, especially when the underlying data are the same.&lt;/p&gt;
 
@@ -242,7 +242,7 @@
 
 &lt;p&gt;Conventional traffic maps, which rely on red and green, are utterly useless to people with red-green colorblindness.&lt;a href="http://uxblog.idvsolutions.com/"&gt; John Nelson&lt;/a&gt; provides the following example of the conventional traffic maps, simulating their appearance to those with red-green colorblindness:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="../../images/colorsim.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/colorsim.jpg" /&gt;&lt;/p&gt;
 
 &lt;p&gt;This is one of the easier problems to correct. Simply adding a slight tint of blue to the green can help colorblind users distinguish it from red, without breaking the traffic light metaphor for other users. Cartographer Andy Woodruff applied this technique to his &lt;a href="http://bostonography.com/2013/live-mbta-bus-speeds/"&gt;recent map of bus speeds in Boston&lt;/a&gt;.&lt;/p&gt;
 
@@ -279,7 +279,7 @@
 
 &lt;p&gt;Wondering what a traffic map, using actual traffic sensors, looks like in the fixed-minute design?&lt;/p&gt;
 
-&lt;p&gt;&lt;img src="../../images/fixedminute.png" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="images/fixedminute.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Under the traffic conditions at the time the map was created, getting from Compton to Los Angeles (via the 710 and 5) would take about 13 minutes. Such precision is not possible with the popular red-yellow-green traffic maps.&lt;/p&gt;
 
@@ -293,7 +293,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/big-data-social-science-video-demo-senseplace2/"/>
     <id>http://www.joshuastevens.net/visualization/big-data-social-science-video-demo-senseplace2/</id>
     <published>2013-05-27T01:00:00-04:00</published>
-    <updated>2014-06-18T14:34:02-04:00</updated>
+    <updated>2014-06-18T18:21:50-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
