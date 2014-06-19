@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-19T17:36:36-04:00</updated>
+    <updated>2014-06-19T17:53:11-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -43,7 +43,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;Middleman is a roll-your-own beast. This site now does exactly what I want it to, no more, no less. No plugins to fuss with or break.&lt;/li&gt;
-&lt;li&gt;Middleman uses the &lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt; preprocessor and &lt;a href="http://compass-style.org/"&gt;Compass&lt;/a&gt; framework. If you&amp;rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.&lt;/li&gt;
+&lt;li&gt;Middleman uses the &lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt; CSS preprocessor and &lt;a href="http://compass-style.org/"&gt;Compass&lt;/a&gt; framework. If you&amp;rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.&lt;/li&gt;
 &lt;li&gt;Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github. A few lines of bash and I can deploy my site to my web server while storing the latest version on github in a matter of seconds. This is one step away from Github&lt;/li&gt;
 &lt;/ul&gt;
 
