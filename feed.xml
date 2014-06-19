@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-19T17:53:11-04:00</updated>
+    <updated>2014-06-19T17:56:02-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -44,12 +44,12 @@
 &lt;ul&gt;
 &lt;li&gt;Middleman is a roll-your-own beast. This site now does exactly what I want it to, no more, no less. No plugins to fuss with or break.&lt;/li&gt;
 &lt;li&gt;Middleman uses the &lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt; CSS preprocessor and &lt;a href="http://compass-style.org/"&gt;Compass&lt;/a&gt; framework. If you&amp;rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.&lt;/li&gt;
-&lt;li&gt;Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github. A few lines of bash and I can deploy my site to my web server while storing the latest version on github in a matter of seconds. This is one step away from Github&lt;/li&gt;
+&lt;li&gt;Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github and served via &lt;a href="https://pages.github.com"&gt;Github Pages&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;I&amp;rsquo;ve wanted to do this before, but have been a bit hesitant. As silly as it sounds, my post on &lt;a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"&gt;mapping sasquatch sightings&lt;/a&gt; generated a ton of discussion. I didn&amp;rsquo;t want to lose all of those comments. But I was happy to learn I could import them all to &lt;a href="https://disqus.com/"&gt;Disqus&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;With that all done, the new site is up and chugging along. Stay tuned for more content, and if you notice anything going awry please let me know!&lt;/p&gt;
+&lt;p&gt;With that all done, the new site is up and chugging along. Stay tuned for more content, and if you notice anything wonky please let me know!&lt;/p&gt;
 </content>
   </entry>
   <entry>
