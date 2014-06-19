@@ -1,0 +1,171 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
+    <title>Joshua Stevens - Moving from WordPress to Middleman</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="../../stylesheets/main.css" rel="stylesheet" type="text/css" />
+    <link href="../../stylesheets/github.css" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/jquery.mmenu.all.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.mmenu.min.js"></script>
+    <meta name="description" content="Joshua Stevens is a cartographer and GIScientist focusing on UI/UX design, human-computer interaction, and the visualization of spatial data."/>
+    <link rel="canonical" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/" />
+  </head>
+  <body class="site site_moving-from-wordpress-to-middleman site_moving-from-wordpress-to-middleman_index">
+  <script type="text/javascript">
+  $(document).ready(function(){
+      $("#my-menu").mmenu({
+        header:false,
+        position:"right"
+      });
+      $("#mobileNav").on("click", function(){
+        $("#my-menu")
+           .mmenu()
+           .trigger( "open.mm" )
+      });
+  });
+  </script>
+  <div id="master">
+  <div id="header">
+	<div id="logo"><a href="/"><img id="top" src="/images/jsLogoMed.png" /></a></div>
+	<div id="nav">
+		<ul>
+  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
+  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
+  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
+      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
+		</ul>
+	</div>
+  <div id="mobileNav">
+    <ul>
+      <li class="homenav"><i class="fa fa-bars"></i> Menu</li>
+    </ul>
+  </div>
+	<nav id="my-menu">
+		<ul>
+  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
+  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
+  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
+      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
+		</ul>
+	</nav>
+</div>
+
+  <div id="wrapper">
+    <div id="content">
+    <div id="main" role="main">
+    <div class="post_content">
+        <article>
+ 	<div id="title">
+ 		<h1>Moving from WordPress to Middleman</h1>
+ 		<span class="author"><i class="fa fa-calendar"></i>&nbsp; June 18, 2014</span>
+ 	</div>
+    	<p><img src="images/rubyMMsass.png" /></p>
+
+<p>Recently I&rsquo;ve spent a few evenings removing WordPress and rebuilding this site on top of <a href="http://www.middlemanapp.com">Middleman</a>. The new site is still a work in progress and I have more features to add, but all of the previous content has been brought over. It should be safe to launch this.</p>
+
+<p>So why did I do it? Over the past two years I&rsquo;ve become increasingly frustrated with WordPress. Despite serving compressed pages, caching data, and reducing unnecessary scripts, page load times seemed to increase with each new version. Some of my more popular pages were averaging 5 seconds to load. That&rsquo;s ridiculous.</p>
+
+<p>Even when WordPress itself performed well, it required additional plugins just to have reasonable features (e.g., caching, contact forms, spam protection, SEO optimization, etc.). Each of these requires constant updates, and one can never be sure if updating one plugin is going to break other plugins, or worse, the entire site. Compatibility reports from other users are helpful, but are often incomplete. Logging in just to write a simple post became a chore: update this, double check that, fix this other thing that the previous update broke, and so on. Long story short, it got old. </p>
+
+<div class="fullImage">
+<img src="/images/wpUpdates.png" alt="WordPress plugins are a chore to upkeep" />
+<p>A familiar sight to WordPress users.</p>
+</div>
+
+<p>On top of that, this site (and most blogs in general) really don&rsquo;t need to be dynamic. Once published, the page content rarely changes. Involving a database and PHP scripts to deliver static content only adds unnecessary overhead. Under heavy load (thanks, <a href="http://newsfeed.time.com/2013/09/23/want-to-find-bigfoot-now-theres-a-map-for-that/">Time</a>!) I found WordPress achingly slow. During my largest traffic spike page performance suffered so much that my email exploded with inquiries about it (on the bright side, it did not go down). Nonetheless, WordPress was no longer a pest that lived only on my web server: its shortcomings were now invading my inbox.</p>
+
+<p>The decision to switch to something else was a long time coming. Now that I had a few evenings to spare, I was able to do something about it.</p>
+
+<p>So I set up Ruby, installed and configured Middleman, and re-developed everything from scratch.</p>
+
+<h3>The benefits have been immediate:</h3>
+
+<ul>
+<li>Middleman is a roll-your-own beast. This site now does exactly what I want it to, no more, no less. No plugins to fuss with or break.</li>
+<li>Middleman uses the <a href="http://sass-lang.com/">Sass</a> preprocessor and <a href="http://compass-style.org/">Compass</a> framework. If you&rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.</li>
+<li>Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github. A few lines of bash and I can deploy my site to my web server while storing the latest version on github in a matter of seconds. This is one step away from Github</li>
+</ul>
+
+<p>I&rsquo;ve wanted to do this before, but have been a bit hesitant. As silly as it sounds, my post on <a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">mapping sasquatch sightings</a> generated a ton of discussion. I didn&rsquo;t want to lose all of those comments. But I was happy to learn I could import them all to <a href="https://disqus.com/">Disqus</a>.</p>
+
+<p>With that all done, the new site is up and chugging along. Stay tuned for more content, and if you notice anything going awry please let me know!</p>
+
+    	    <a href="/thoughts/contentious-claims-memorial-days-origins/"><span class="secondaryNav prevLink"><i class="fa fa-arrow-left"></i> The Many Birthplaces of Memorial Day</span></a>
+    
+    
+<div id="article_bottom">
+	<div id="blog_bottom_right">
+		<div id="about_author">
+		<p>Josh is a PhD candidate at Penn State researching UI/UX design for interactive
+		maps, data visualization, and geovisual analytics.</p>
+ 	
+		<p><a href="/about/">Learn more</a> or follow <a href="http://www.twitter.com/jscarto">@jscarto</a> on Twitter.</p>
+		</div>
+		<div id="author_small"><img src="/images/joshSmall.png" /></div>
+	</div>
+	<div id="article_share">Share This
+		<ul>
+		<li><div class="g-plusone" data-size="tall" data-annotation="none"></div></li>
+		<li><a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red" data-pin-height="28"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a></li>
+		<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="jscarto" data-size="large"></a></li>
+		</ul>
+	</div>
+</div>
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'joshuastevens'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+<!-- Scripts for share buttons -->
+<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+  </article>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div id="handle"><a href="#top" title="Back to the top!"><img src="/stylesheets/wrapperBottom.png" /></a></div>
+</div>
+<div id="footer">
+	<div id="footer_bottom">
+	<div id="footer_copyright">
+		<div class="footer_inner">Copyright &copy; Joshua Stevens 2014</div>
+	</div>	
+		<div id="footerContent">
+		<div id="contactArea">
+			<h2>Get in touch or follow me to see what I'm up to!</h2>
+			<li><a id="email" href="mailto:josh@joshuastevens.net"><img src="/images/emailBtn.png" /></a></li>
+			<li><a href="http://www.twitter.com/jscarto" title="Follow @jscarto on Twitter!"><img src="/images/twitterBtn.png" /></a></li>
+			<li><a href="/feed.xml" title="Grab my RSS feed!"><img src="/images/rssBtn.png" /></a></li>
+		</div>
+	</div>
+</div>
+</body>
+</html>

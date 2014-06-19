@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Joshua Stevens</title>
+  <subtitle>Cartography and Visualization</subtitle>
+  <id>http://www.joshuastevens.net/</id>
+  <link href="http://www.joshuastevens.net/"/>
+  <link href="http://www.joshuastevens.net/feed.xml" rel="self"/>
+  <updated>2014-06-18T01:00:00-04:00</updated>
+  <author>
+    <name>Blog Author</name>
+  </author>
+  <entry>
+    <title>Moving from WordPress to Middleman</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
+    <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
+    <published>2014-06-18T01:00:00-04:00</published>
+    <updated>2014-06-19T13:21:12-04:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;img src="images/rubyMMsass.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Recently I&amp;rsquo;ve spent a few evenings removing WordPress and rebuilding this site on top of &lt;a href="http://www.middlemanapp.com"&gt;Middleman&lt;/a&gt;. The new site is still a work in progress and I have more features to add, but all of the previous content has been brought over. It should be safe to launch this.&lt;/p&gt;
+
+&lt;p&gt;So why did I do it? Over the past two years I&amp;rsquo;ve become increasingly frustrated with WordPress. Despite serving compressed pages, caching data, and reducing unnecessary scripts, page load times seemed to increase with each new version. Some of my more popular pages were averaging 5 seconds to load. That&amp;rsquo;s ridiculous.&lt;/p&gt;
+
+&lt;p&gt;Even when WordPress itself performed well, it required additional plugins just to have reasonable features (e.g., caching, contact forms, spam protection, SEO optimization, etc.). Each of these requires constant updates, and one can never be sure if updating one plugin is going to break other plugins, or worse, the entire site. Compatibility reports from other users are helpful, but are often incomplete. Logging in just to write a simple post became a chore: update this, double check that, fix this other thing that the previous update broke, and so on. Long story short, it got old. &lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/wpUpdates.png" alt="WordPress plugins are a chore to upkeep" /&gt;
+&lt;p&gt;A familiar sight to WordPress users.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;On top of that, this site (and most blogs in general) really don&amp;rsquo;t need to be dynamic. Once published, the page content rarely changes. Involving a database and PHP scripts to deliver static content only adds unnecessary overhead. Under heavy load (thanks, &lt;a href="http://newsfeed.time.com/2013/09/23/want-to-find-bigfoot-now-theres-a-map-for-that/"&gt;Time&lt;/a&gt;!) I found WordPress achingly slow. During my largest traffic spike page performance suffered so much that my email exploded with inquiries about it (on the bright side, it did not go down). Nonetheless, WordPress was no longer a pest that lived only on my web server: its shortcomings were now invading my inbox.&lt;/p&gt;
+
+&lt;p&gt;The decision to switch to something else was a long time coming. Now that I had a few evenings to spare, I was able to do something about it.&lt;/p&gt;
+
+&lt;p&gt;So I set up Ruby, installed and configured Middleman, and re-developed everything from scratch.&lt;/p&gt;
+
+&lt;h3&gt;The benefits have been immediate:&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Middleman is a roll-your-own beast. This site now does exactly what I want it to, no more, no less. No plugins to fuss with or break.&lt;/li&gt;
+&lt;li&gt;Middleman uses the &lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt; preprocessor and &lt;a href="http://compass-style.org/"&gt;Compass&lt;/a&gt; framework. If you&amp;rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.&lt;/li&gt;
+&lt;li&gt;Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github. A few lines of bash and I can deploy my site to my web server while storing the latest version on github in a matter of seconds. This is one step away from Github&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I&amp;rsquo;ve wanted to do this before, but have been a bit hesitant. As silly as it sounds, my post on &lt;a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"&gt;mapping sasquatch sightings&lt;/a&gt; generated a ton of discussion. I didn&amp;rsquo;t want to lose all of those comments. But I was happy to learn I could import them all to &lt;a href="https://disqus.com/"&gt;Disqus&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;With that all done, the new site is up and chugging along. Stay tuned for more content, and if you notice anything going awry please let me know!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>The Many Birthplaces of Memorial Day</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
+    <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
+    <published>2014-05-27T01:00:00-04:00</published>
+    <updated>2014-06-18T12:12:07-04:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;p&gt;Yesterday was Memorial Day. Like many other Americans, my family and I spent this day of national remembrance at a local park. We made the short trip to historic Boalsburg. Those in the know will recognize that Memorial Day in Boalsburg, PA is no ordinary affair. It is a massive celebration. This was especially true this year, which marks the 150th Memorial Day celebrated in Boalsburg. Thousands of people from all over gathered to honor our veterans who gave the ultimate sacrifice. What started as a time to decorate graves with flowers has now grown into a large festival, with celebratory events found at every corner of the township.&lt;/p&gt;
+
+&lt;p&gt;It was also a learning opportunity. Almost everyone knows about Pennsylvania’s vital role in the Civil War and the importance of Memorial Day in the region. As a Michigan native, what I didn’t know was that Boalsburg itself was the very birthplace of Memorial Day.&lt;/p&gt;
+
+&lt;p&gt;Or at least it claims to be.  After doing some reading, it turns out nearly two dozen towns – both North and South – claim to be the source of Memorial Day. Some of these claims are more legitimate than others. Some areas, like Savannah, GA, cite actual newspaper articles with specific dates. Others, like Knoxville, TN, rely on reports written long after the original event. Some locations do not provide any source at all – just secondhand mentions that such a claim was made.&lt;/p&gt;
+
+&lt;p&gt;I’ve gathered up a list of the locations that do have verifiable sources for their claims. Due to the nature of historic evidence (which might include everything from journal entires to Presidential Proclamations), this list is surely incomplete. But even still, the large number of towns that believe this special day started on their doorstep is, to me, quite interesting.&lt;/p&gt;
+
+&lt;h1&gt;Sourced claims of Memorial Day’s birthplace&lt;/h1&gt;
+
+&lt;iframe width="780" height="420" frameborder="0" seamless="true," src="http://www.joshuastevens.net/memorialDay/index.html"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;Most of the data comes from the &lt;a href="http://www.civilwarcenter.olemiss.edu/"&gt;Center for Civil War Research&lt;/a&gt;. Other sources include the &lt;a href="http://www.va.gov/opa/speceven/memday/"&gt;US Department of Veterans’ Affairs&lt;/a&gt;. Where possible, I linked to the actual township’s claim (via local website or newspaper).&lt;/p&gt;
+
+&lt;h1&gt;Memorial Day vs Decoration Day&lt;/h1&gt;
+
+&lt;p&gt;Memorial Day wasn’t always known by that name. Its original name, Decoration Day, was given by &lt;a href="http://en.wikipedia.org/wiki/John_A._Logan"&gt;General John Logan&lt;/a&gt; of Illinois.  Nearly all stories about the birth of either holiday are based on one or more individuals placing flowers upon soldiers’ graves. Despite its northern namesake, a North-South distinction appears in the maintenance of Decoration Day. In the North (and now nationally) the day is most often recognized as Memorial Day. But in the South, many locations still celebrate Decoration Day in some capacity (this is also true of some Northern states). Regardless of the name, both the North and the South claim to have started this tradition around the end of the Civil War.&lt;/p&gt;
+
+&lt;p&gt;However, many historians believe graves were being decorated &lt;em&gt;during&lt;/em&gt; the war. Nella Sweet’s hymn &lt;a href="http://library.duke.edu/rubenstein/scriptorium/sheetmusic/b/b08/b0802/"&gt;&lt;em&gt;Kneel Where our Loves Are Sleeping&lt;/em&gt;&lt;/a&gt; from 1867 is addressed to “The Ladies of the South who are decorating the graves of the Confederate dead.” Given that the hymn was written barely two years after the end of the Civil War, it is likely that Sweet was referring to an already established tradition. If you go back even further, you find that others had been doing this for centuries – and not just in America: there is evidence &lt;a href="http://en.wikipedia.org/wiki/Roman_funerals_and_burial"&gt;the practice first began in the Roman Empire&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1&gt;Does it matter who started it?&lt;/h1&gt;
+
+&lt;p&gt;In my view, absolutely not. This is being presented as a fun look at disputed history and bold claims. The true origins of Memorial Day may be forever disputed. I’m interested only in the geography of that dispute. The reason for the day is more important than the place of its origins. Because of this, I particularly like the disclaimer provided by the Center for Civil War Research, which states:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;While the issue for many has been to determine, as definitively as may be, the true origin of the tradition, we feel it is more important to observe the power of the impulse to commemorate manifest among so many. We present here, hopefully without prejudice or favor, a survey of some of the early instances of the commemorative impulse — along with select references — that much later became the national holiday.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;History’s Heroes&lt;/h1&gt;
+
+&lt;p&gt;This isn’t just a story of dispute. The real story exists in highlighting those honored by this day, and those who made it their goal to remember them. &lt;a href="http://en.wikipedia.org/wiki/United_States_military_casualties_of_war"&gt;More than 1.3 million Americans have died in wars&lt;/a&gt;, and the number of deceased veterans is higher still. But death is not the only theme of Memorial Day. While reading through the various sources and claims, a clear trend emerges: regardless of location, this national day of remembrance and recognition was largely started by women and minorities. In the case of Charleston, SC, former slaves were responsible for commemorating (and honorably reburying) fallen Union soldiers.&lt;/p&gt;
+
+&lt;p&gt;Whether as a means to remember lost loved ones or to pay respects to those who gave their lives to defend ours, Memorial Day has a special place in American history. More importantly, it was a day born out of honor and commemoration – and no town can claim ownership of that.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>The Map of GDELT Predictions in Afghanistan as You Should Have Seen It</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/visualization/The-Map-of-GDELT-Predictions-in-Afghanistan-as-You-Should-Have-Seen-It/"/>
+    <id>http://www.joshuastevens.net/visualization/The-Map-of-GDELT-Predictions-in-Afghanistan-as-You-Should-Have-Seen-It/</id>
+    <published>2013-10-21T01:00:00-04:00</published>
+    <updated>2014-06-18T14:04:03-04:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;p&gt;For the last several weeks, I’ve been creating a visualization of past and predicted conflicts in Afghanistan. The data, which come from a statistical model developed by &lt;a href="http://jayyonamine.com/"&gt;Jay Yonamine&lt;/a&gt; with help from &lt;a href="http://johnbeieler.org/"&gt;John Beieler&lt;/a&gt;, show us what might happen based on a long history of what has happened.  The database behind this model is known as &lt;a href="http://gdelt.utdallas.edu/"&gt;GDELT&lt;/a&gt;, or the Global Database of Events, Language, and Tone. GDELT has received &lt;a href="http://ideas.foreignpolicy.com/posts/2013/04/10/what_can_we_learn_from_the_last_200_million_things_that_happened_in_the_world"&gt;a lot of attention&lt;/a&gt; lately and I’ve participated in two hackathons that have emerged around it. After Wired showed interest in publishing this story along with the visualization, I was thrilled.&lt;/p&gt;
+
+&lt;h1&gt;What You Saw&lt;/h1&gt;
+
+&lt;p&gt;When I heard that &lt;a href="http://www.wired.com/dangerroom/2013/10/afghanwarmaps/"&gt;Wired had published the work&lt;/a&gt; this morning, I was excited to check it out and see how the visualization tied the story together.&lt;/p&gt;
+
+&lt;p&gt;And then I saw my map. Well, it was sort of my map. It had my name on it… but it was not at all how I had originally designed it. Here is the map as it is currently published:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="images/wired_afg_map-300x300.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Here’s my quibble:&lt;/strong&gt; Not only was my work altered without acknowledging the changes from the original, the change resulted in a red-green color scheme – a classic map mishap that no professional cartographer would ever make.&lt;/p&gt;
+
+&lt;p&gt;I’ve &lt;a href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"&gt;written about red/green colorblindness in the past&lt;/a&gt;. [Others have too])http://blog.visual.ly/subtleties-of-color-addendum/). In fact, advice on not using red/green color schemes on maps and other visualizations are practically &lt;a href="http://vis4.net/blog/posts/goodbye-redgreen-scales/"&gt;all&lt;/a&gt;[1] &lt;a href="http://www.sciencedaily.com/releases/2000/04/000428082212.htm"&gt;over&lt;/a&gt;[2] &lt;a href="http://www.gislounge.com/making-color-blind-friendly-maps/"&gt;the&lt;/a&gt;[3] &lt;a href="http://misguidedmaps.com/2010/05/03/maps-for-the-colorblind/"&gt;web&lt;/a&gt;[4]. It’s not a new problem either: red/green color blindness has been written about by scientists for at least &lt;a href="http://archive.org/details/colourblindness00edrigoog"&gt;120 years&lt;/a&gt;. We even have tools, such as &lt;a href="http://colorbrewer2.org/"&gt;ColorBrewer&lt;/a&gt;, to help designers avoid common pitfalls with their color choices.&lt;/p&gt;
+
+&lt;p&gt;By being in red and green, this map is impossible to interpret by anyone affected by red/green colorblindness (almost 10% of  males, about 5% of the total population). Instead, readers with red/green colorblindness will see something like the image on the right (&lt;a href="http://www.color-blindness.com/2006/11/16/protanopia-red-green-color-blindness/"&gt;simulated protanopia&lt;/a&gt;).&lt;/p&gt;
+
+&lt;h1&gt;What You Should Have Seen&lt;/h1&gt;
+
+&lt;p&gt;The second problem is that I intended to show readers &lt;strong&gt;a lot more about the data&lt;/strong&gt; – temporal trends, the propensity of conflicts near district and country borders, and the role of &lt;a href="http://en.wikipedia.org/wiki/Operation_Enduring_Freedom"&gt;Operation Enduring Freedom&lt;/a&gt; in the high number of material conflicts over the past decade.&lt;/p&gt;
+
+&lt;p&gt;This is what I wanted you to see:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="images/afgEventsSmall.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This view shows much more about the material conflicts that have occurred in Afghanistan over the past 34 years. From more than a million geocoded conflicts (check out the activity at the border between Afghanistan and Pakistan) to temporal trends, readers instantly get a better sense of the situation and how the data have changed over time. As a professional cartographer, I also made sure &lt;strong&gt;it is red/green colorblind-safe&lt;/strong&gt; (&lt;a href="/images/afgEvents_cbSafe.png"&gt;preview&lt;/a&gt;). Naturally, I would have liked to see this version published for the article’s readers.&lt;/p&gt;
+
+&lt;p&gt;In the end, I really can’t change the article. But I can share the original, and I hope it provides the utility and clarity that was intended – for all readers, colorblind or not.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>'Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"/>
+    <id>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</id>
+    <published>2013-09-17T01:00:00-04:00</published>
+    <updated>2014-06-19T09:44:28-04:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;p&gt;Every now and then a dataset comes along that just has to be mapped. This is one of those times.&lt;/p&gt;
+
+&lt;p&gt;Bigfoot. Sasquatch. Skookum. Yahoo. Whatever you call it, the towering man-like ape is a folklore staple. From stories of Yeti in the Himalayas to Wildmen in the Pacific Northwest, people have been talking about and trying to find the creature for ages. Occasionally, some form of evidence – like &lt;a href="http://en.wikipedia.org/wiki/Patterson-Gimlin_film"&gt;Patterson’s famous 1967 film&lt;/a&gt; – emerges and either feeds our fascination or gets dismissed as a hoax. In either case, it’s easy to see why believers search for proof and skeptics remain doubtful.&lt;/p&gt;
+
+&lt;p&gt;Through archival work and reports submitted directly to their website, the &lt;a href="http://www.bfro.net"&gt;Bigfoot Field Researchers Organization&lt;/a&gt; has amassed a database of thousands of sasquatch sightings. Each report is geocoded and timestamped. Occasionally, even photos and videos of the alleged evidence are included. I’m not quite sure how I stumbled across this, but I’m glad I did.&lt;/p&gt;
+
+&lt;p&gt;After crawling the data and converting it to a more convenient format, I mapped and graphed all 3,313 sightings that were reported from 1921 to 2013:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/SasquatchSightings_Small1.png" /&gt;
+
+&lt;p&gt;Want a larger version? &lt;a href="http://thumbnails.visually.netdna-cdn.com/SquatchWatch92YearsofBigfootSightingsintheUSandCanada_523b7482cc497.png"&gt;You got it&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div class="rightImage"&gt;
+&lt;img src="/images/bf_bivariate.png" /&gt;
+&lt;p&gt;A nation divided: Sasquatch Sightings vs Population Density&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Right away you can see that sightings are not evenly distributed. At first glance, it looks a lot like a map of population distribution. After all, you would expect sightings to be the most frequent in areas where there are a lot of people. But a bivariate view of the data (right) shows a very different story. There are distinct regions where sightings are incredibly common, despite a very sparse population. On the other hand, in some of the most densely populated areas sasquatch sightings are exceedingly rare.&lt;/p&gt;
+
+&lt;p&gt;I don’t have a really good explanation for this. These are sasquatch sightings we’re talking about and I’m way out of my area of expertise (do bigfoot experts exist?). But it’s clear that if the legendary biped is real, it’s thriving out west.&lt;/p&gt;
+
+&lt;p&gt;The terrain and habitat likely play a major role in the distribution of reports (note: reports, not sasquatch themselves!). Even if bigfoot wasn’t lurking nearby, it might be hard to tell when surrounded by rugged terrain and dense forest. Was that a stick cracking naturally or is a giant primate creeping around? The desire to find, or think you saw, bigfoot might be especially high if you’ve heard tales of giant, ape-like creatures calling the place you’re in home. A combination of environment and legend likely combine to at least put wary outdoorsmen on the lookout. These environmental factors could be explored with a &lt;a href="http://en.wikipedia.org/wiki/Dasymetric_map"&gt;dasymetric map&lt;/a&gt; that accounts for the habitat and separates the wilderness from suburbia. Furthermore, the population data are based on the US Census, which is based on where people live. The places we live, and the places we spend the other 50% of our time (at work, traveling, camping, vacationing, etc) are very different. We don’t have data for that, unfortunately.&lt;/p&gt;
+
+&lt;p&gt;There’s also inherently some bias in the report data. Being a US-based website, it is dominated by US reports, and the reporting mechanism is not precise: if coordinates are not known (would you really log a GPS reading while staring ‘squatch in the eye?!), the BFRO site only allows reporters to enter the nearest city. This could be many miles away.&lt;/p&gt;
+
+&lt;p&gt;Ultimately, I’m not convinced there’s a descendant of &lt;a href="http://en.wikipedia.org/wiki/Gigantopithecus"&gt;&lt;em&gt;Gigantopithecus&lt;/em&gt;&lt;/a&gt; playing hide and seek in the Pacific Northwest. But if respectable folks like &lt;a href="http://www.youtube.com/watch?v=sEIcHvz3vzw"&gt;Survivorman Les Stroud&lt;/a&gt; and primatologist &lt;a href="http://www.nydailynews.com/news/world/jane-goodall-fascinated-bigfoot-article-1.1172959"&gt;Jane Goodall&lt;/a&gt; believe there’s something more to the myth, I think it’s at least worth putting on the map&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Your Favorite Traffic Map is Lying to You</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"/>
+    <id>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</id>
+    <published>2013-06-28T01:00:00-04:00</published>
+    <updated>2014-06-18T14:33:12-04:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;p&gt;Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.&lt;/p&gt;
+
+&lt;p&gt;Or so many think. As it turns out, conventional traffic maps don’t actually tell you how long it will take to get from point A to point B. Not only do traffic maps fail to communicate the information you’re after, the information they do communicate can be very misleading.&lt;/p&gt;
+
+&lt;h1&gt;Most Traffic Maps are Similar&lt;/h1&gt;
+
+&lt;p&gt;Examples of conventional traffic maps are shown below. Each is from a different source and represents the same location and time of day:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="images/trafficMaps.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Although there are many cartographic differences between these maps, they all employ the same overall design strategy: variable length road segments in a red, yellow, and green color scheme. This design is typical of almost all traffic maps. This isn’t really surprising. For designers of traffic maps, it makes a lot of sense to base traffic map designs on a metaphor familiar to all drivers – in this case, traffic lights. A common design strategy is also something that makes a lot of sense for users. Consistency across designs makes the maps familiar, regardless of their source. Users shouldn’t have to relearn how to read maps from one vendor to the next, especially when the underlying data are the same.&lt;/p&gt;
+
+&lt;p&gt;Often, the designs that are ubiquitous are also those that are effective. After all, why mimic something that doesn’t work? The geographically distorted &lt;a href="http://en.wikipedia.org/wiki/Harry_Beck#London_Underground_map"&gt;tube maps popularized by Harry Beck&lt;/a&gt; are a great example of an effective design mimicked the world over. The &lt;a href="http://www.arrowsandicons.com/articles/typeface-series-frutiger/"&gt;Frutiger typeface&lt;/a&gt; used in many airports and rail stations is another example of successful design mimicry. Sometimes though, even ineffective designs get copied and become widespread.&lt;/p&gt;
+
+&lt;p&gt;This is the case with traffic maps. In short, traffic maps are lying to you: their design suggests a use that cannot effectively be carried out by the user. Here’s a breakdown of the half-truths told by traffic maps and why their shared design is problematic.&lt;/p&gt;
+
+&lt;h1&gt;Lie #1: The colors identify the fastest routes&lt;/h1&gt;
+
+&lt;div class="leftImage"&gt;
+&lt;img src="/images/googleTraffic.png" alt="Google's traffic map legend." /&gt;
+&lt;p&gt;A map-based mystery: How fast is green?&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When looking at a traffic map, like the one on the left, users want to see which routes are the fastest. Fortunately this is a simple task because the map makes it pretty clear: green is faster than yellow. It says so right in the legend. Right?&lt;/p&gt;
+
+&lt;p&gt;Here’s the problem: Which speeds are within the yellow category? How about the red category? Unless you’ve worked with the raw data, or dug deep into the chasm of documentation behind it, you won’t be able to answer that question correctly.&lt;/p&gt;
+
+&lt;p&gt;Some might argue that actual speeds don’t matter and yellow is obviously slower than green, so the green routes will be fastest. Unfortunately this scenario is complicated by the fact that a wide range of velocities (roughly 1 to 90mph) are broken into just three classes and spread across multiple individual segments of varying lengths. Google uses 1-24, 25-50, 50+ mph as class breaks. With these ranges, it is possible for a yellow segment to require less time to traverse than a green segment of a slightly greater length. Identifying the fastest route, which will consist of multiple segments, requires assessing every segment and the speeds they represent. But (1) the actual speed is hidden, and (2) we don’t know the lengths of the segments. Suddenly, selecting the fastest route isn’t as simple as the map suggests.&lt;/p&gt;
+
+&lt;h1&gt;Lie #2: The colors depict routes that require less time.&lt;/h1&gt;
+
+&lt;p&gt;This is where things get really interesting. Imagine you want to know how long a particular route will take. In order to do this, you need to know how fast you can travel and the total distance of the route. With this information, you can do the math to figure out the total time required, using the formula:&lt;/p&gt;
+
+&lt;p class="formula"&gt;t = d/v&lt;/p&gt;
+
+&lt;p&gt;So far, so good. As it turns out, this math can be carried out reasonably well by users when both speed and distance are provided to them.&lt;/p&gt;
+
+&lt;p&gt;Things get tricky when users need to estimate distances. Consider again the maps above. How long are the particular segments represented by each little chunk of color? You’d need to be able to estimate this in order to determine the total travel time. Unfortunately, you can’t. At least not very accurately. This is because (1) each segment is a different length, (2) each length is unknown, and (3) the linear scale bar included with most maps is not adequate for non-linear route distance estimation.&lt;/p&gt;
+
+&lt;p&gt;The graph below shows the results of a very simple distance estimation task. We wanted to know if users can actually estimate distances along curved roads, using a standard (linear) scale bar. The exercise was repeated, with new routes, using a road map with a new, non-linear scale bar embedded into the actual transportation network.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/estimationGraph.png" alt="Graphs of distance estimationt tasks" /&gt;
+&lt;p&gt;Results from a forthcoming paper. Errors in distance estimation with the conventional map compared to a map with a non-linear scale bar embedded directly into the road network.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now consider that a given route between any two points will contain multiple segments, each representing a different distance and velocity. It’s no less than the &lt;a href="http://en.wikipedia.org/wiki/Modifiable_areal_unit_problem"&gt;modifiable areal unit problem&lt;/a&gt; run amuck. For every segment, users must try to estimate the distance, guess a velocity, and then mentally compute the travel time.&lt;/p&gt;
+
+&lt;p&gt;Such a scenario is not the result of good cartographic design. It leaves too much information hidden behind impossible estimations and guesswork. &lt;strong&gt;The map is posing questions when the user is looking for answers.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h1&gt;Lie #3: The red-yellow-green color scheme is best suited for a quick glance.&lt;/h1&gt;
+
+&lt;p&gt;In order to be effective at a simple glance, the conventional traffic map design would have to depict overall delays without under- or over-exaggerating traffic conditions. If the map systematically exaggerated conditions in a particular direction (positive or negative), that suggests a design that is disjoint from the actual data. In a sense, it’s the difference between a design that is visually screaming when the data represent whispers (or vice versa), and one that is tuned appropriately to the data.&lt;/p&gt;
+
+&lt;p&gt;Results from our paper show that users consistently underestimate travel times when using the conventional traffic map (average underestimation of 11 minutes, which is more than 20% of the time required for most routes in the exercise). Clearly there is something about interpreting the conventional design (likely at the precognitive level) that masks the true severity of traffic conditions.&lt;/p&gt;
+
+&lt;h1&gt;Lie #4: Red-yellow-green color schemes work for everyone.&lt;/h1&gt;
+
+&lt;p&gt;Almost 5% of the general population has some form of colorblindness. &lt;a href="http://medical-dictionary.thefreedictionary.com/protanopia"&gt;Protanopia&lt;/a&gt; and &lt;a href="http://medical-dictionary.thefreedictionary.com/deuteranopia"&gt;deuteranopia&lt;/a&gt;, two common types of colorblindness, affect the way individuals see red and green due to a lack of the photo receptors necessary to interpret either hue. These conditions are collectively referred to as red-green colorblindness.&lt;/p&gt;
+
+&lt;p&gt;Conventional traffic maps, which rely on red and green, are utterly useless to people with red-green colorblindness.&lt;a href="http://uxblog.idvsolutions.com/"&gt; John Nelson&lt;/a&gt; provides the following example of the conventional traffic maps, simulating their appearance to those with red-green colorblindness:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="images/colorsim.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is one of the easier problems to correct. Simply adding a slight tint of blue to the green can help colorblind users distinguish it from red, without breaking the traffic light metaphor for other users. Cartographer Andy Woodruff applied this technique to his &lt;a href="http://bostonography.com/2013/live-mbta-bus-speeds/"&gt;recent map of bus speeds in Boston&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h1&gt;Lie #5: We can solve these problems by only showing congested traffic (i.e., the yellows and reds).&lt;/h1&gt;
+
+&lt;div class="rightImage"&gt;
+&lt;img src="/images/apple_traffic-200x300.jpg" alt="Apple's attempt at traffic mapping." /&gt;
+&lt;p&gt;To Apple, “green” means parks, not free-flow traffic.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;When Apple Maps bursted into the cartography scene, they received a lot of attention (both positive and negative). Like the other companies, Apple was also quick to offer a traffic layer. But unlike the other companies – and typical of Apple – their design followed a unique path and did not simply mimic what others were doing. In an attempt to simplify the map, Apple leaves the green category out, reasoning that users are interested in where congestion &lt;em&gt;is&lt;/em&gt;, not where it &lt;em&gt;isn’t&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Simplicity is great, and simpler maps should be the goal of any cartographer. But there is a fine line between simplicity and confusion. For all the reasons stated so far, it makes sense to focus solely on the reds and yellows. There is a major benefit to including green, though: &lt;strong&gt;it shows users where data exist and which street levels are considered&lt;/strong&gt;. Leaving out green makes the map very ambiguous. Does the absence of green represent free-flow traffic, streets not included in the traffic layer, or simply a lack of available data? That’s exactly what the lack of green means in every other traffic map. Without green, the separation of the traffic layer and the base map is less defined and it is no longer clear for which roads traffic information should be expected.&lt;/p&gt;
+
+&lt;h1&gt;So how do we solve these problems and design better traffic maps?&lt;/h1&gt;
+
+&lt;p&gt;There are many possible solutions, and I’m hesitant to claim that an optimal traffic map exists. Different users have different needs, techniques, and map reading skills. However, some of these problems can be solved, at least in part, by better aligning map design with the tasks users wish to carry out. I’m interested in travel time, as I believe that is the most important information traffic maps can communicate. As a result, I suggest two simplifications.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution 1: Fix segment lengths to a standard unit of distance.&lt;/strong&gt; When using the red-yellow-green color scheme, you forfeit accurate velocity estimation. The least you can do, then, is to make it easy for users to estimate distances. By fixing the colored segments to a fixed length (e.g., 5 miles, depending on map scale), you enable users to estimate distances very quickly and accurately. This is the &lt;em&gt;equal-interval approach&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Solution 2: Show temporal, not geographic, segments.&lt;/strong&gt; Instead of showing travel times indirectly, through velocity and color, travel times can be embedded directly into the road network. This is the &lt;em&gt;fixed-minute method&lt;/em&gt;, because each cartographic symbol (or segment) represents some number of minutes of travel time.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/prototypes.png" alt="My prototypes for improved traffic map design." /&gt;
+&lt;p&gt;Two improvements (middle and right) to the conventional traffic map (left).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The fixed-minute approach is particularly interesting because not only does it depict travel times directly, it does so without any of the problems introduced by previous traffic map designs. Determining travel times becomes as simple as counting segments. In the example above, each purple ‘chevron’ symbol represents 1 minute of travel time. The darker, bolder symbols represent 5 minutes. &lt;strong&gt;With the fixed-minute design, users can estimate travel times far more accurately, and in much less time, than is allowed by the other designs.&lt;/strong&gt; For this reason, it’s not surprising to see that users in our study liked it much more than the other traffic map designs:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/mapPreference.png" alt="Results show users greatly prefer the fixed-minute design." /&gt;
+&lt;p&gt;Not a single participant prefered the conventional design.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Wondering what a traffic map, using actual traffic sensors, looks like in the fixed-minute design?&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="images/fixedminute.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Under the traffic conditions at the time the map was created, getting from Compton to Los Angeles (via the 710 and 5) would take about 13 minutes. Such precision is not possible with the popular red-yellow-green traffic maps.&lt;/p&gt;
+
+&lt;p&gt;While the fixed-minute design addresses many of the existing problems with traffic maps and greatly simplifies travel time estimation, it is not without its own shortcomings. Counting segments is incredibly easy and quick to do, but it’s not an ideal task for drivers. Accordingly, finding ways to optimize both en route and pre-trip consumption of traffic data, for all users, will be a key challenge for designers of traffic maps in the future.&lt;/p&gt;
+
+&lt;p&gt;So let’s rethink traffic map design, recognize the failures of existing solutions, and make some changes. Given the high demand for traffic maps and the rapid growth in open source mapping tools, cartographers are better poised than ever to make their mark.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Big Data Social Science Video Demo: SensePlace2</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/visualization/big-data-social-science-video-demo-senseplace2/"/>
+    <id>http://www.joshuastevens.net/visualization/big-data-social-science-video-demo-senseplace2/</id>
+    <published>2013-05-27T01:00:00-04:00</published>
+    <updated>2014-06-18T14:34:02-04:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;p&gt;This year I was selected to represent the 2013 &lt;a href="http://bdss.psu.edu"&gt;Big Data Social Science IGERT&lt;/a&gt; in the annual poster and video competition hosted by the National Science Foundation. The news came as both an honor and a challenge.  While visualization, cartography, and graphic design are within my bag of tricks, video production isn’t something I’ve done a whole lot of.&lt;/p&gt;
+
+&lt;p&gt;With only a few short weeks to prepare, I spent a lot of time browsing tutorials for Adobe After Effects, Premiere, and Audition. If you have to brush up on a technical skill, I highly recommend the &lt;a href="https://tutsplus.com/"&gt;TutsPlus&lt;/a&gt; community.&lt;/p&gt;
+
+&lt;p&gt;After getting the hang of a few techniques I had in mind for the video, I started brainstorming, laying out various designs and color schemes, and painstakingly practicing the verbal script. Many long nights later, it was completed (select 720p for best quality):&lt;/p&gt;
+
+&lt;iframe src="http://www.youtube.com/embed/YW7shbEUrXU" width="100%" height="480" frameborder="0" wmode="transparent"&gt;&lt;/iframe&gt;
+
+&lt;p&gt;In the end, learning After Effects has been a great experience. As a scriptable platform (AE supports JavaScript), there is a lot of potential for great visualizations and applications to cartography that I’m looking forward to exploring.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
