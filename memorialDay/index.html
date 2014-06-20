@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>map</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
+<style>
+  body {
+    margin: 0;
+    padding:0;
+  }
+  #map {
+    width: 780px;
+    height: 420px;
+  }
+  .custom-popup .leaflet-popup-content-wrapper {
+    background: #2d5682 url(imgs/popupBG.png) top right no-repeat;
+    color:#fff;
+    font-size: 12px;
+    line-height:14px;
+    max-width: 190px;
+    min-width: 190px;
+    padding: 0px;
+    margin: 0px;
+  }
+
+ .placeTitle {
+    color:#fff;
+    font-size: 18px;
+    line-height:14px;
+    font-weight: bold;
+ }
+ .first {
+    font-weight: normal;
+    color: #a7b0c3;
+    font-size: 12px;
+ }
+ .date {
+    font-weight: bold;
+    color: #ccd1db;
+    font-size: 12px;
+ }
+ .claimText {
+    font-weight: normal;
+    color: #ccd1db;
+    font-size: 12px;
+ }
+ .claimLink {
+    background: #093967;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: #a5afbd;
+    margin: 0;
+    padding: 4px;
+    width: 190px;
+    height: 22px;
+    position: relative;
+    bottom: -13px;
+    left: -10px;
+ }
+ .claimLink a, .claimLink a:visited {
+    color: #a5afbd;
+    font-weight: normal;
+ }
+  .claimLink a:hover {
+    text-decoration: underline;
+ }
+  .custom-popup .leaflet-popup-content-wrapper a {
+    color:rgba(255,255,255,0.5);
+ }
+.custom-popup .leaflet-popup-tip-container {
+  width:30px;
+  height:15px;
+  }
+.custom-popup .leaflet-popup-tip {
+  border-left:15px solid transparent;
+  border-right:15px solid transparent;
+  border-top:15px solid #093967;
+  }
+ .leaflet-popup-close-button {
+ 	background: transparent url(imgs/closeButton.png) no-repeat;
+ }
+ .leaflet-popup-close-button:hover {
+ 	background: transparent url(imgs/closeButtonHover.png) no-repeat;
+ }
+</style>
+</head>
+<body>
+<div class='custom-popup' id='map'></div>
+<script>
+var map = L.mapbox.map('map', 'jscarto.ibh6h4jk')
+    .setView([4.7828, -7.7869], 9);
+map.scrollWheelZoom.disable();
+
+
+var points = {"type": 'FeatureCollection',
+        "features": [
+            {"type": 'Feature',
+            "properties": {
+                'place': 'Boalsburg, PA',
+                'date': '1864',
+                'claim': 'Locals Emma Hunter, Sophie Keller, and Elizabeth Meyers picked flowers to decorate the graves of Emma\'s father and Elizabeth\'s son, who died serving the US Army. The three agreed to continue decorating the graves each year on July 4. Eventually the tradition was moved to May 26.',
+                'link': 'http://memorialdayinboalsburg.org/story.php',
+                "icon": {
+                  "iconUrl": "imgs/memorialIcon.png",
+                  "iconSize": [30, 30], 
+                  "iconAnchor": [15, 30],
+                  "popupAnchor": [0, -38],
+                  "className": "dot"
+                }
+            },
+            "geometry": {
+                "type": 'Point',
+                "coordinates": [-77.7869, 40.7828]
+            }
+          },
+          {"type": 'Feature',
+          "properties": {
+              'place': 'Waterloo, NY',
+              'date': '1865',
+              'claim': 'The village held a parade on May 5 honoring the veterans of the Civil War. Flags were held at half mast and the graves of soldiers were decorated with flowers. President Lyndon B. Johnson signed a Presidential Proclamation recognizing Waterloo as the birthplace of Memorial Day on May 26, 1966. ',
+              'link': 'http://www.waterloony.com/memday.html',
+              "icon": {
+                "iconUrl": "imgs/memorialIcon.png",
+                "iconSize": [30, 30], 
+                "iconAnchor": [15, 30],
+                "popupAnchor": [0, -38],
+                "className": "dot"
+              }
+          },
+          "geometry": {
+              "type": 'Point',
+              "coordinates": [-76.8594, 42.9036]
+          }
+          },
+          {"type": 'Feature',
+          "properties": {
+              'place': 'Columbus, MS',
+              'date': '1866',
+              'claim': 'Several women gathered at Twelve Gables, a Columbus home, and decided to honor deceased Confederate solders by placing flowers on their graves each year in April. After one of the women began decorating the graves of Union soldiers, the tradition expanded to all who sacrificed their lives in service of the US military.',
+              'link': 'http://www.thecityofcolumbusms.org/primary.asp?t=9&p=62',
+              "icon": {
+                "iconUrl": "imgs/memorialIcon.png",
+                "iconSize": [30, 30], 
+                "iconAnchor": [15, 30],
+                "popupAnchor": [0, -38],
+                "className": "dot"
+              }
+          },
+          "geometry": {
+              "type": 'Point',
+              "coordinates": [-88.4150, 33.5017]
+          }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Columbus, GA',
+            'date': '1866',
+            'claim': 'The widow of Colonel Charles Williams (1862) and her daughter frequently decorated the grave of Col. Williams with flowers. Mrs. Williams proposed that the entire South honor deceased soldiers by adorning their graves with flowers in a similar fashion. She chose April 26 as the day for this tradition. ',
+            'link': 'http://www.civilwarcenter.olemiss.edu/memorial_day.shtml#0426_1866',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-84.9403, 32.4922]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Richmond, VA',
+            'date': '1866',
+            'claim': 'Inspired by hearing of All Saint\'s Day, Richmond local Mrs. (Charles) Barney and others formed the Ladie\'s Hollywood Memorial Association. The goal of the association was to care for and memorialize the graves of Confederate soldiers each May 21.',
+            'link': 'http://www.civilwarcenter.olemiss.edu/memorial_day.shtml#0531_1866',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-77.4667, 37.5333]
+        }
+      },
+       {"type": 'Feature',
+        "properties": {
+            'place': 'Carbondale, IL',
+            'date': '1866',
+            'claim': 'After witnessing a family placing flowers on the unmarked grave of a fallen soldier on April 26, a group of Civil War veterans collected wild flowers and did the same for the graves of other fallen soldiers in the area. These men then organized a larger Memorial Day observance for the whole community thirteen days later.',
+            'link': 'http://www.loganmuseum.org/memorial-day',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-89.2200, 37.7260]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Arlington, VA',
+            'date': '1868',
+            'claim': 'Major General John A. Logan of the Grand Army of the Republic established May 30 as \'Decoration Day.\' On this day, the graves of deceased soldiers were decorated with flowers. The first observance of Decoration Day was held at Arlington National Cemetery.',
+            'link': 'http://www.arlingtoncemetery.mil/News/PressReleaseItem.aspx?ID=dd99a8be-37a0-41fd-ad04-7572ae35bf8f',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-77.0700, 38.8800]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Warrenton, VA',
+            'date': '1861',
+            'claim': 'On June 3, the grave of a Civil War soldier was decorated with flowers. This has been claimed to be the first time a soldier\'s grave was decorated (in America). As a result, some claim this was the original start of Memorial Day.',
+            'link': 'http://multiple-exposures-media.smugmug.com/GoingPlaces-3/Memorial-Day-in-Washington/',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-77.7972, 38.7183]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Knoxville, TN',
+            'date': '1865',
+            'claim': 'On his way from Tennessee to Alabama, Surgeon Fred W. Breyers of the 96th Illinois volunteer infantry reports seeing flowers placed on the graves of soldiers by local women. After inquiring about this practice, Breyers learned that the women were doing it to honor the graves of unknown soldiers, in hopes that others might do the same for their loved ones.',
+            'link': 'http://www.civilwarcenter.olemiss.edu/memorial_day.shtml#spring_1865',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-83.9422, 35.9728]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Jackson, MS',
+            'date': '1865',
+            'claim': 'Sue Landon Vaughan (née Adams) wrote a letter to the <em>Daughters of the Southland</em> and requested a meeting to decorate the graves of fallen soldiers on April 26, an act they would do before the Jackson Confederates would surrender to approaching Union soldiers.',
+            'link': 'http://www.civilwarcenter.olemiss.edu/memorial_day.shtml#0426_1865',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-90.1847, 32.2989]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Kingston, GA',
+            'date': '1865',
+            'claim': 'Beginning on April 23, the Kingston Women\'s History Club encouraged the township to commemorate the graves of 250 unknown veterans in the town cemetery. This is claimed to be the oldest such ceremony in the nation.',
+            'link': 'http://www.cityofkingstonga.org/index.php/area-attractions/',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-84.9447, 34.2358]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Charleston, SC',
+            'date': '1865',
+            'claim': 'Over 10,000 people, including nearly 3,000 former slaves, gathered on May 1 to decorate the graves of fallen Union soldiers. It is also said that many of the dead who had unmarked or mass graves were reburied in individual, distinguished plots. The effort concluded with a large celebration of marching and singing.',
+            'link': 'http://www.charlestonchronicle.net/83047/2152/first-memorial-day-created-by-blacks-here-in-hampton-park',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-79.9333, 32.7833]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Memphis, TN',
+            'date': '1866',
+            'claim': 'A call to decorate the graves of soldiers in a \"Grand Floral Ceremony\" was made in an April 25 issue of the <em>Memphis Daily Argus</em>. Led by the Southern Relief Society, they chose April 26 as an annual day of remembrance and gratitude.',
+            'link': 'http://www.civilwarcenter.olemiss.edu/memorial_day.shtml#0426_1866mem',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-89.9711, 35.1174]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Petersburg, VA',
+            'date': '1864',
+            'claim': 'Two years after the decisive battle of June 9, 1864, Mrs. (William) T. Joynes, President of the Ladie\'s Memorial Association held a vote to celebrate the defense of Petersburg. By unanimous decision, the association declared this date to be Memorial Day and a time to remember those who died in their defense.',
+            'link': 'http://www.memorialdayorigin.info/lma.html',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-77.4004, 37.2130]
+        }
+      },
+      {"type": 'Feature',
+        "properties": {
+            'place': 'Savannah, GA',
+            'date': '1862',
+            'claim': 'An article in the <em>Savannah Republican</em> documents that on July 20, women in Savannah repaired and decorated the graves of soldiers who died in a battle that occurred on July 21 of the previous year.',
+            'link': 'http://www2.uttyler.edu/vbetts/savannah_republican_1862.htm',
+            "icon": {
+              "iconUrl": "imgs/memorialIcon.png",
+              "iconSize": [30, 30], 
+              "iconAnchor": [15, 30],
+              "popupAnchor": [0, -38],
+              "className": "dot"
+            }
+        },
+        "geometry": {
+            "type": 'Point',
+            "coordinates": [-81.1167, 32.0167]
+        }
+      },
+    ]
+};
+var featureLayer = L.mapbox.featureLayer(points)
+  .addTo(map);
+// Note that calling `.eachLayer` here depends on setting GeoJSON _directly_
+// above. If you're loading GeoJSON asynchronously, like from CSV or from a file,
+// you will need to do this within a `featureLayer.on('ready'` event.
+featureLayer.eachLayer(function(layer) {
+
+    // here you call `bindPopup` with a string of HTML you create - the feature
+    // properties declared above are available under `layer.feature.properties`
+    var content = '<span class="placeTitle">' + layer.feature.properties.place + '<\/span>' +'<p><span class="first">First Observation:<\/span><span class="date"> ' + layer.feature.properties.date + '</span><\/p>' +
+        '<span class="claimText">' + layer.feature.properties.claim + '<\/span><div class="claimLink"><a target="_blank" href="'+ layer.feature.properties.link + '">More Information<\/a><\/div>';
+    layer.bindPopup(content);
+    layer.setIcon(L.icon(layer.feature.properties.icon));
+});
+map.fitBounds(featureLayer.getBounds());
+
+featureLayer.on('layeradd', function(e) {
+    var marker = e.layer,
+        feature = marker.feature;
+
+    marker.setIcon(L.icon(feature.properties.icon));
+});
+</script>
+</body>
+</html>
