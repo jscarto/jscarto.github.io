@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-20T09:57:55-04:00</updated>
+    <updated>2014-06-20T16:57:41-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -57,7 +57,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-18T12:12:07-04:00</updated>
+    <updated>2014-06-20T16:57:39-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -101,7 +101,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/"/>
     <id>http://www.joshuastevens.net/visualization/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-06-20T10:01:30-04:00</updated>
+    <updated>2014-06-20T17:01:44-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -121,7 +121,12 @@
 
 &lt;p&gt;I’ve &lt;a href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"&gt;written about red/green colorblindness&lt;/a&gt; in the past. &lt;a href="http://blog.visual.ly/subtleties-of-color-addendum/"&gt;Others have too&lt;/a&gt;. In fact, advice on not using red/green color schemes on maps and other visualizations are practically &lt;a href="http://vis4.net/blog/posts/goodbye-redgreen-scales/"&gt;all&lt;/a&gt;[1] &lt;a href="http://www.sciencedaily.com/releases/2000/04/000428082212.htm"&gt;over&lt;/a&gt;[2] &lt;a href="http://www.gislounge.com/making-color-blind-friendly-maps/"&gt;the&lt;/a&gt;[3] &lt;a href="http://misguidedmaps.com/2010/05/03/maps-for-the-colorblind/"&gt;web&lt;/a&gt;[4]. It’s not a new problem either: red/green color blindness has been written about by scientists for at least &lt;a href="http://archive.org/details/colourblindness00edrigoog"&gt;120 years&lt;/a&gt;. We even have tools, such as &lt;a href="http://colorbrewer2.org/"&gt;ColorBrewer&lt;/a&gt;, to help designers avoid common pitfalls with their color choices.&lt;/p&gt;
 
-&lt;p&gt;By being in red and green, this map is impossible to interpret by anyone affected by red/green colorblindness (almost 10% of  males, about 5% of the total population). Instead, readers with red/green colorblindness will see something like the image on the right (&lt;a href="http://www.color-blindness.com/2006/11/16/protanopia-red-green-color-blindness/"&gt;simulated protanopia&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;By being in red and green, this map is impossible to interpret by anyone affected by red/green colorblindness (almost 10% of  males, about 5% of the total population). Instead, readers with red/green colorblindness will see something like the image below (&lt;a href="http://www.color-blindness.com/2006/11/16/protanopia-red-green-color-blindness/"&gt;simulated protanopia&lt;/a&gt;):&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/wired_afg_map_cb-300x300.png" alt="Wired's map, to someone with red-green colorblindness." /&gt;
+&lt;p&gt;Wire&amp;rsquo;s map as seen by someone with red/green colorblindness.&lt;/p&gt;
+&lt;/div&gt;
 
 &lt;h1&gt;What You Should Have Seen&lt;/h1&gt;
 
@@ -143,7 +148,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"/>
     <id>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</id>
     <published>2013-09-17T01:00:00-04:00</published>
-    <updated>2014-06-19T09:44:28-04:00</updated>
+    <updated>2014-06-19T16:25:18-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -182,7 +187,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"/>
     <id>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</id>
     <published>2013-06-28T01:00:00-04:00</published>
-    <updated>2014-06-20T09:57:55-04:00</updated>
+    <updated>2014-06-20T16:57:41-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -305,7 +310,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/big-data-social-science-video-demo-senseplace2/"/>
     <id>http://www.joshuastevens.net/visualization/big-data-social-science-video-demo-senseplace2/</id>
     <published>2013-05-27T01:00:00-04:00</published>
-    <updated>2014-06-18T14:34:02-04:00</updated>
+    <updated>2014-06-18T18:21:50-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
