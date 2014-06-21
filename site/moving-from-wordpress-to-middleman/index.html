@@ -7,8 +7,8 @@
     <title>Joshua Stevens - Moving from WordPress to Middleman</title>
     <link rel="icon" href="http://www.joshuastevens.net/favicon.ico" type="image/x-icon" />
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-   <link href="http://www.joshuastevens.net/stylesheets/main.css" rel="stylesheet">
-    <link href="http://www.joshuastevens.net/stylesheets/github.css" rel="stylesheet">
+    <link href="../../stylesheets/main.css" rel="stylesheet" type="text/css" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" type="text/css" />
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="/stylesheets/jquery.mmenu.all.css" />
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -98,25 +98,31 @@
 <li>Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github and served via <a href="https://pages.github.com">Github Pages</a>.</li>
 </ul>
 
-<p><strong>Tip</strong>: If you&rsquo;re thinking of using Middleman with Github Pages, there are two ways to make it really easy. The first is to use <a href="https://github.com/neo/middleman-gh-pages">middleman-gh-pages</a> extension. This adds rake tasks to deploy your site upon build.</p>
-
-<p>The second method is to simply setup your <code>config.rb</code> file to use your Github Pages repo as the build destination by adding:</p>
-<pre><code class="highlight ruby"><span class="c1"># Change build directory to Github Pages repo</span>
-<span class="n">set</span> <span class="ss">:build_dir</span><span class="p">,</span> <span class="s1">'../YOUR_GH_NAME.github.io'</span>
-</code></pre>
-
-<p>This is the approach I use. It is much cleaner - no additional rake tasks, overrides, or issues to worry about. In addition, it uses completely separate repositories for the development and deployed versions of your site. This enables you to test things out, revert changes, and ensure everything is working in a test environment before pushing the changes live, <em>even after a build</em>.</p>
-
-<p>Lastly, if you plan to use a custom 404 page, ensure your <code>404.html</code> file is left as-is during the build operation. In <code>config.rb</code> add:</p>
-<pre><code class="highlight ruby"><span class="c1"># Exlude 404.html from being placed in a directory</span>
-<span class="n">page</span> <span class="s2">"/404.html"</span><span class="p">,</span> <span class="ss">:directory_index</span> <span class="o">=&gt;</span> <span class="kp">false</span>
-</code></pre>
-
-<h1>Hope you enjoy the new site and upcoming content!</h1>
-
-<p>I&rsquo;ve wanted to do this before, but have been a bit hesitant. As silly as it sounds, my post on <a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">mapping sasquatch sightings</a> generated a ton of discussion. I didn&rsquo;t want to lose all of those comments. But I was happy to learn I could import them all to <a href="https://disqus.com/">Disqus</a>.</p>
+<p>I&rsquo;ve wanted to do this before, but have been a bit hesitant. My post on <a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">mapping sasquatch sightings</a> generated a ton of discussion that I didn&rsquo;t want to lose. Fortunately I could import all the comments to <a href="https://disqus.com/">Disqus</a>.</p>
 
 <p>With that all done, the new site is up and chugging along. Stay tuned for more content, and if you notice anything wonky please let me know!</p>
+
+<h3>Some tips on Middleman + Github Pages</h3>
+
+<p>If you&rsquo;re thinking of using Middleman with Github Pages, there are two ways to make it really easy. The first is to use the <a href="https://github.com/neo/middleman-gh-pages">middleman-gh-pages</a> extension. This adds rake tasks to deploy your site upon build.</p>
+
+<p>The second method is to simply setup your <code>config.rb</code> file to use your Github Pages repo as the build destination by adding:</p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="c1"># Change build directory to Github Pages repo</span>
+<span class="n">set</span> <span class="ss">:build_dir</span><span class="p">,</span> <span class="s1">'../YOUR_GH_NAME.github.io'</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>This is the approach I use. It is much cleaner - no additional rake tasks, overrides, or issues to worry about. In addition, it uses completely separate repositories for the development and production versions of your site. This enables you to test things out, revert changes, and ensure everything is working in a test environment before pushing the changes live, <em>even after a build</em>.</p>
+
+<p>Lastly, if you plan to use a custom 404 page, ensure your <code>404.html</code> file is left as-is during the build operation. In <code>config.rb</code> add:</p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="c1"># Exlude 404.html from being placed in a directory</span>
+<span class="n">page</span> <span class="s2">"/404.html"</span><span class="p">,</span> <span class="ss">:directory_index</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>That&rsquo;s it! Just run <code>$ bundle exec middleman build</code> and commit the changes if you&rsquo;re happy with how things work.</p>
 
     	    <a href="/thoughts/contentious-claims-memorial-days-origins/"><span class="secondaryNav prevLink"><i class="fa fa-arrow-left"></i> The Many Birthplaces of Memorial Day</span></a>
     
