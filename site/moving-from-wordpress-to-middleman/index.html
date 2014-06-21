@@ -90,13 +90,29 @@
 
 <p>So I set up Ruby, installed and configured Middleman, and re-developed everything from scratch.</p>
 
-<h3>The benefits have been immediate:</h3>
+<h2>The benefits have been immediate:</h2>
 
 <ul>
 <li>Middleman is a roll-your-own beast. This site now does exactly what I want it to, no more, no less. No plugins to fuss with or break.</li>
 <li>Middleman uses the <a href="http://sass-lang.com/">Sass</a> CSS preprocessor and <a href="http://compass-style.org/">Compass</a> framework. If you&rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.</li>
 <li>Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github and served via <a href="https://pages.github.com">Github Pages</a>.</li>
 </ul>
+
+<p><strong>Tip</strong>: If you&rsquo;re thinking of using Middleman with Github Pages, there are two ways to make it really easy. The first is to use <a href="https://github.com/neo/middleman-gh-pages">middleman-gh-pages</a> extension. This adds rake tasks to deploy your site upon build.</p>
+
+<p>The second method is to simply setup your <code>config.rb</code> file to use your Github Pages repo as the build destination by adding:</p>
+<pre><code class="highlight ruby"><span class="c1"># Change build directory to Github Pages repo</span>
+<span class="n">set</span> <span class="ss">:build_dir</span><span class="p">,</span> <span class="s1">'../YOUR_GH_NAME.github.io'</span>
+</code></pre>
+
+<p>This is the approach I use. It is much cleaner - no additional rake tasks, overrides, or issues to worry about. In addition, it uses completely separate repositories for the development and deployed versions of your site. This enables you to test things out, revert changes, and ensure everything is working in a test environment before pushing the changes live, <em>even after a build</em>.</p>
+
+<p>Lastly, if you plan to use a custom 404 page, ensure your <code>404.html</code> file is left as-is during the build operation. In <code>config.rb</code> add:</p>
+<pre><code class="highlight ruby"><span class="c1"># Exlude 404.html from being placed in a directory</span>
+<span class="n">page</span> <span class="s2">"/404.html"</span><span class="p">,</span> <span class="ss">:directory_index</span> <span class="o">=&gt;</span> <span class="kp">false</span>
+</code></pre>
+
+<h1>Hope you enjoy the new site and upcoming content!</h1>
 
 <p>I&rsquo;ve wanted to do this before, but have been a bit hesitant. As silly as it sounds, my post on <a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">mapping sasquatch sightings</a> generated a ton of discussion. I didn&rsquo;t want to lose all of those comments. But I was happy to learn I could import them all to <a href="https://disqus.com/">Disqus</a>.</p>
 
