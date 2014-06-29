@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/"/>
     <id>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</id>
     <published>2014-06-27T01:00:00-04:00</published>
-    <updated>2014-06-29T10:47:38-04:00</updated>
+    <updated>2014-06-29T17:59:52-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -137,7 +137,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
 
 &lt;h3&gt;A Different Dose&lt;/h3&gt;
 
-&lt;p&gt;Just as location affects pain, the biochemistry of the species&amp;#39; venom influences its lethality. Each species has a slightly different arrangement of enzymes in their venom, making some more lethal than others. In addition, each species injects a different amount of their venom, per sting. For example, the Honey bee injects 0.05mg of venom per sting while the fire ant can inject up to 0.1mg [&lt;a href="#refs"&gt;4&lt;/a&gt;]. Typically, insects sting other insects or smaller animals that attempt to prey on them, so their venom has not evolved for the purpose of killing humans. But with a high enough dose - delivered by the right number of stings, hymenopteran venom &lt;em&gt;can&lt;/em&gt; be lethal. Just how much does it take?&lt;/p&gt;
+&lt;p&gt;Just as location affects pain, the biochemistry of the species&amp;#39; venom influences its lethality. Each species has a slightly different arrangement of enzymes in their venom, making some more lethal than others. In addition, each species injects a different amount of their venom, per sting. For example, the Honey bee injects 0.05mg of venom per sting while the fire ant can inject up to 0.1mg [&lt;a href="#refs"&gt;3&lt;/a&gt;]. Typically, insects sting other insects or smaller animals that attempt to prey on them, so their venom has not evolved for the purpose of killing humans. But with a high enough dose - delivered by the right number of stings, hymenopteran venom &lt;em&gt;can&lt;/em&gt; be lethal. Just how much does it take?&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
 &lt;img src="/images/lethalityOfStingsFull.png" alt="Lethality of hymenopteran stings" /&gt;
@@ -183,7 +183,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-23T19:17:30-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -259,7 +259,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-20T16:57:39-04:00</updated>
+    <updated>2014-06-17T19:09:33-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -303,7 +303,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/"/>
     <id>http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-21T13:25:50-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -350,7 +350,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"/>
     <id>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</id>
     <published>2013-09-17T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-22T10:53:21-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -389,7 +389,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"/>
     <id>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</id>
     <published>2013-06-28T01:00:00-04:00</published>
-    <updated>2014-06-20T16:57:41-04:00</updated>
+    <updated>2014-06-19T17:41:48-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
