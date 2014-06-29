@@ -5,16 +5,185 @@
   <id>http://www.joshuastevens.net/</id>
   <link href="http://www.joshuastevens.net/"/>
   <link href="http://www.joshuastevens.net/feed.xml" rel="self"/>
-  <updated>2014-06-18T01:00:00-04:00</updated>
+  <updated>2014-06-27T01:00:00-04:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Visual Guide to Painful Hymenopteran Stings</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/"/>
+    <id>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</id>
+    <published>2014-06-27T01:00:00-04:00</published>
+    <updated>2014-06-29T10:33:09-04:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;style&gt;
+#viz {
+  max-width: 790px;
+}
+
+table {
+  font-size: 80%;
+  border: none;
+  border-collapse:collapse;
+  max-width: 790px;
+}
+
+th {
+  font-size: 1.1em;
+  border-bottom: 3px solid #333;
+  margin-bottom: 2px;
+  padding: 0 15px 0 0;
+}
+
+td {
+    padding: 0 15px 0 0;
+}
+
+.Minutes {
+    color: #198c83;
+    font-weight: bold;
+    padding: 0;
+}
+.Species {
+  font-style: italic;
+}
+
+.known .Species{
+    font-weight: bold;
+}
+.Description {
+  font-weight: bold;
+}
+.timeViz {
+    background: transparent;
+}
+#Minutes {
+    padding-right: 0px;
+    text-align: left;   
+}
+
+tbody tr:nth-child(odd)   { background-color:#fff; }
+tbody tr:nth-child(even)    { background-color:#f5f5f5; }
+
+tbody tr:nth-child(odd):hover   { background-color:#d9f2f0; }
+tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
+
+.tooltip {
+    font-size: 120%;
+    font-weight: bold;
+}
+&lt;/style&gt;
+
+&lt;p&gt;For most of us, insect stings are a thing to avoid. That&amp;rsquo;s not the case for entomologist Justin O. Schmidt. That&amp;rsquo;s because Dr. Schmidt has dedicated his life to studying venomous hymenopterans, the order of insects made up of ants, bees, and wasps. Through his research, he has been stung countless times. As a result, he developed the &lt;a href="http://en.wikipedia.org/wiki/Schmidt_sting_pain_index"&gt;Schmidt Sting Pain Index&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I stumbled upon Schmidt&amp;rsquo;s work after seeing &lt;a href="https://www.youtube.com/watch?v=1_K7Tp97PsE"&gt;this video of warrior wasps&lt;/a&gt;. One of the noteworthy characteristics of warrior wasps is that when threatened, they rhythmically flap their wings against their bodies in perfect synchrony, producing a sound not unlike marching soldiers. The other characteristic these wasps are known for is a sting that &lt;strong&gt;hurts!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Just how much does a sting from a warrior wasp hurt? According to the pain index developed by Schmidt, the warrior wasp tops in at a 4 - the highest level of pain in the scale. What&amp;rsquo;s more, the excruciating pain will last at least 60 minutes before subsiding even the slightest.&lt;/p&gt;
+
+&lt;p&gt;The warrior wasp is not the only painful sting recorded in Schmidt&amp;rsquo;s index. In fact, it pales in comparison to some other insect stings recorded by Schmidt. To date, he&amp;rsquo;s cataloged the painful stings of nearly 80 different hymenopteran species, from various ants to the giant Asian hornet.&lt;/p&gt;
+
+&lt;p&gt;So which venomous insect is really the king of sting? I&amp;rsquo;ve turned Schmidt&amp;rsquo;s data into this visualization to help you decide.&lt;/p&gt;
+
+&lt;h1&gt;The Most Painful Hymenopteran Stings&lt;/h1&gt;
+
+&lt;script src="/scripts/jquery.tipsy.js"&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;link href="/stylesheets/tipsy.css" rel="stylesheet" type="text/css" /&gt;
+&lt;script src="/scripts/d3.min.js"&gt;&lt;/script&gt;
+&lt;div id ="viz" align="center"&gt;
+&lt;script type='text/javascript'&gt;
+  $(function() {&lt;/p&gt;
+&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;$('#example-1').tipsy();
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;});
+&lt;/script&gt;
+  &lt;script src="/scripts/venomViz.js"&gt;&lt;/script&gt;
+&lt;/div&gt;
+  &lt;div class="fullImage"&gt;
+&lt;p&gt;Want to download this graphic as a high-res image? &lt;a href="/images/insectStingsFull.png"&gt;Go ahead&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;In addition to the data provided by Schmidt, I&amp;rsquo;ve added the common name of the insect, or the group to which it belongs, where possible (revealed when hovering the bold species names). Due to Schmidt&amp;rsquo;s expertise and rigor, many of the species listed are not commonly known. For these, I was unable to track down any common identifier.&lt;/p&gt;
+
+&lt;p&gt;Pain is subjective. It&amp;rsquo;s possible that one person might prefer a short-lived category 4 sting over a longer, weaker category 1 or 2 sting. According to these data however, &lt;strong&gt;the bullet ant&lt;/strong&gt; (&lt;em&gt;Paraponera clavata&lt;/em&gt;) is the clear winner. The immediate category 4 pain from a bullet ant lasts for &lt;em&gt;5 hours!&lt;/em&gt; It then takes 24 hours to subside, with residual pain reported up to two weeks later. No wonder it is considered the most painful sting not just among hymenopterans, but all other insects!&lt;/p&gt;
+
+&lt;p&gt;Such a powerful sting has earned the bullet ant a place among the &lt;a href="http://en.wikipedia.org/wiki/Maw%C3%A9_people"&gt;Satere-Mawe&lt;/a&gt;, a tribe in the Brazilian Amazon rain forest. During their coming-of-age initiation, young members of the Satere-Mawe wear mittens lined with bullet ants. For 10 minutes  initiates dance in the stinging mittens to prove their courage. They must do this not once, but &lt;em&gt;20 times before&lt;/em&gt; completing their ceremonial journey.&lt;/p&gt;
+
+&lt;h3&gt;Pain and Place: The Bodily Geography of Schmidt&amp;rsquo;s Index&lt;/h3&gt;
+
+&lt;p&gt;In addition to the subjective nature of pain, location matters when it comes to insect stings [&lt;a href="#refs"&gt;3&lt;/a&gt;]. Using honey bees as a baseline, Michael L. Smith &lt;a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3994616/"&gt;tested the variance of Schmidt&amp;rsquo;s Pain Index&lt;/a&gt; based on where the sting occurred. According to Smith&amp;rsquo;s research, the nostril was the worst place to be stung, followed by the upper lip.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/stingByLocationFull.png" alt="Sting Pain by Location" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The timing of the sting and number of subsequent stings were not significant factors in pain level. Smith hypothesizes the important role of location is due to naturally protected areas that are rarely stimulated (e.g. nostrils) and soft areas that enable greater penetration. Even in its must vulnerable locations, Smith notes that the human body has defenses:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Stings to the nostril were especially violent, immediately inducing sneezing, tears and a copious flow of mucus. The sting did autotomize in the nostril (self-severed when the bee was pulled away). The copious mucus flow, however, may help prevent subsequent stings to the area during a natural attack. (p. 6)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1&gt;Stings That Kill&lt;/h1&gt;
+
+&lt;p&gt;In the United States, bee and wasp stings are responsible for the deaths of about &lt;a href="http://abcnews.go.com/Health/AllergiesNews/story?id=8148229"&gt;40 people each year&lt;/a&gt;. This makes bees more deadly than dogs, spiders, and snakes [&lt;a href="#refs"&gt;3&lt;/a&gt;]. Even sharks, which are one of the most feared animals in the world, have &lt;a href="http://oceana.org/en/our-work/protect-marine-wildlife/sharks/learn-act/shark-attack-statistics"&gt;only killed 3 people in the US during the years 2006 - 2010&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Nearly all of the deaths related to bee stings are the result of &lt;a href="http://www.nlm.nih.gov/medlineplus/ency/article/000033.htm"&gt;anaphylaxis&lt;/a&gt;, which is a severe allergic reaction that can lead to difficulty in breathing, dizziness, unconsciousness, and ultimately death. Anaphylaxis is the result of compounds in the insects&amp;#39; venom that are not related to the amount of pain inflicted. As a result, the Schmidt Pain Index is not an indicator of how deadly an animal is to humans. Small bees (pain level 1-2) kill far more people than the bullet ant (level 4).&lt;/p&gt;
+
+&lt;p&gt;The deadliness of smaller, less painful insects has more to do with their behavior and the likelihood of an encounter. &lt;a href="http://en.wikipedia.org/wiki/Africanized_bees"&gt;Africanized honey bees&lt;/a&gt; - the famed &amp;ldquo;killer bees&amp;rdquo; - are particularly deadly because of their aggressive swarming characteristics. They are easier to provoke, attack in large numbers, and are known to chase their targets for long distances. Just last year, a man in Texas was killed after a swarm of nearly &lt;a href="http://www.usnews.com/news/newsgram/articles/2013/06/03/40000-killer-bees-sting-texas-man-to-death"&gt;40,000 killer bees&lt;/a&gt; descended upon him.&lt;/p&gt;
+
+&lt;h3&gt;A Different Dose&lt;/h3&gt;
+
+&lt;p&gt;Just as location affects pain, the biochemistry of the species&amp;#39; venom influences its lethality. Each species has a slightly different arrangement of enzymes in their venom, making some more lethal than others. In addition, each species injects a different amount of their venom, per sting. For example, the Honey bee injects 0.05mg of venom per sting while the fire ant can inject up to 0.1mg [&lt;a href="#refs"&gt;4&lt;/a&gt;]. Typically, insects sting other insects or smaller animals that attempt to prey on them, so their venom has not evolved for the purpose of killing humans. But with a high enough dose - delivered by the right number of stings, hymenopteran venom &lt;em&gt;can&lt;/em&gt; be lethal. Just how much does it take?&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/lethalityOfStingsFull.png" alt="Lethality of hymenopteran stings" /&gt;
+&lt;p&gt;These data show the amount of venom required for death to occur as a result of the venom alone. Secondary effects, such as anaphylaxis, are not included.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Don&amp;rsquo;t be tricked by the Giant hornet&amp;rsquo;s heavy-handed dose, however. Even though it can kill with the fewest stings, the fact that it delivers so much venom means that, relatively speaking, its venom is not the most potent. To be lethal to a 50kg human, the Giant hornet must inject a total of 229.6 mg of venom. In contrast, a honey bee needs to inject only 175 mg of its venom. The graph below shows how these venoms stack up in terms of potency.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/potencyOfVenomFull.png" alt="Potency of hymenopteran venom" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;With its high potency venom and greater likelihood to be encountered, its easy to see why the honey bee kills far more people than the giant hornet or any other hymenopteran!&lt;/p&gt;
+
+&lt;h1&gt;Closing Thoughts&lt;/h1&gt;
+
+&lt;p&gt;Aside from their interestingness, these data shattered a few of my preconceptions about insect stings. Being in the outdoors often has given me my fair share of stings and encounters with various bees, wasps, and hornets. Among all of these, I avoided hornets the most (the &lt;a href="http://en.wikipedia.org/wiki/Bald-faced_hornet"&gt;bald-faced hornet&lt;/a&gt; is common in every area I&amp;rsquo;ve lived). I&amp;rsquo;m willing to bet that many others also view hornets as nastier, more painful stingers than other wasps and bees.&lt;/p&gt;
+
+&lt;p&gt;But according to the data, that needn&amp;rsquo;t be so. These hornets are no more painful than the common yellowjackets and bumble bees that frequent backyards and gardens. In fact, the pain subsides more quickly and their venom is much weaker. &lt;/p&gt;
+
+&lt;p&gt;So what gives? Why would we fear the insects we see less frequently (such as hornets) while remaining comfortable around those most common to us (like honey bees) - despite the latter being more painful stingers and even more deadly? Personally, I think the question reveals the answer. As in many situations, it seems that fear of the unknown outweighs reality. &lt;/p&gt;
+
+&lt;p&gt;While I won&amp;rsquo;t be hunting for a pet hornet anytime soon, I&amp;rsquo;m glad I took at look at these data and hope some of the findings were as eye-opening to you as they were for me.&lt;/p&gt;
+
+&lt;h1 id="refs"&gt;References&lt;/h1&gt;
+
+&lt;div class="smaller"&gt;
+&lt;p&gt;[1] Schmidt, J. O. (1990). Hymenopteran venoms: striving toward the ultimate defense against vertebrates. &lt;em&gt;Insect defenses: adaptive mechanisms and strategies of prey and predators.&lt;/em&gt; State University of New York Press, Albany, 387-419.&lt;/p&gt;
+
+&lt;p&gt;[2] Centers for Disease Control and Prevention, National Center for Health Statistics. Compressed Mortality File 1999-2010 on CDC WONDER Online Database, released January 2013. Data are compiled from Compressed Mortality File 1999-2010 Series 20 No. 2P, 2013. Accessed at http://wonder.cdc.gov/cmf-icd10.html on Jun 28, 2014 1:00:26 PM&lt;/p&gt;
+
+&lt;p&gt;[3] Freeman, T. M. (2004). Hypersensitivity to hymenoptera stings. &lt;em&gt;New England Journal of Medicine&lt;/em&gt;, 351(19), 1978-1984.&lt;/p&gt;
+
+&lt;p&gt;[4] Smith ML. (2014) Honey bee sting pain index by body location. PeerJ 2:e338 &lt;a href="http://dx.doi.org/10.7717/peerj.338"&gt;http://dx.doi.org/10.7717/peerj.338&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;[5] Schmidt, J. O. (1983). Hymenopteran envenomation. &lt;em&gt;Urban entomology, interdisciplinary perspectives&lt;/em&gt;, 187.&lt;/p&gt;
+
+&lt;/div&gt;
+</content>
+  </entry>
   <entry>
     <title>Moving from WordPress to Middleman</title>
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-23T15:12:22-04:00</updated>
+    <updated>2014-06-27T19:21:55-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -90,7 +259,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-18T12:12:07-04:00</updated>
+    <updated>2014-06-20T16:57:39-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -134,7 +303,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/"/>
     <id>http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-06-23T11:33:07-04:00</updated>
+    <updated>2014-06-27T19:21:55-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -181,7 +350,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"/>
     <id>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</id>
     <published>2013-09-17T01:00:00-04:00</published>
-    <updated>2014-06-23T11:33:07-04:00</updated>
+    <updated>2014-06-27T19:21:55-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -220,7 +389,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"/>
     <id>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</id>
     <published>2013-06-28T01:00:00-04:00</published>
-    <updated>2014-06-20T09:57:55-04:00</updated>
+    <updated>2014-06-20T16:57:41-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -336,26 +505,6 @@
 &lt;p&gt;While the fixed-minute design addresses many of the existing problems with traffic maps and greatly simplifies travel time estimation, it is not without its own shortcomings. Counting segments is incredibly easy and quick to do, but it’s not an ideal task for drivers. Accordingly, finding ways to optimize both en route and pre-trip consumption of traffic data, for all users, will be a key challenge for designers of traffic maps in the future.&lt;/p&gt;
 
 &lt;p&gt;So let’s rethink traffic map design, recognize the failures of existing solutions, and make some changes. Given the high demand for traffic maps and the rapid growth in open source mapping tools, cartographers are better poised than ever to make their mark.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Big Data Social Science Video Demo: SensePlace2</title>
-    <link rel="alternate" href="http://www.joshuastevens.net/visualization/big-data-social-science-video-demo-senseplace2/"/>
-    <id>http://www.joshuastevens.net/visualization/big-data-social-science-video-demo-senseplace2/</id>
-    <published>2013-05-27T01:00:00-04:00</published>
-    <updated>2014-06-18T14:34:02-04:00</updated>
-    <author>
-      <name>Josh</name>
-    </author>
-    <content type="html">&lt;p&gt;This year I was selected to represent the 2013 &lt;a href="http://bdss.psu.edu"&gt;Big Data Social Science IGERT&lt;/a&gt; in the annual poster and video competition hosted by the National Science Foundation. The news came as both an honor and a challenge.  While visualization, cartography, and graphic design are within my bag of tricks, video production isn’t something I’ve done a whole lot of.&lt;/p&gt;
-
-&lt;p&gt;With only a few short weeks to prepare, I spent a lot of time browsing tutorials for Adobe After Effects, Premiere, and Audition. If you have to brush up on a technical skill, I highly recommend the &lt;a href="https://tutsplus.com/"&gt;TutsPlus&lt;/a&gt; community.&lt;/p&gt;
-
-&lt;p&gt;After getting the hang of a few techniques I had in mind for the video, I started brainstorming, laying out various designs and color schemes, and painstakingly practicing the verbal script. Many long nights later, it was completed (select 720p for best quality):&lt;/p&gt;
-
-&lt;iframe src="http://www.youtube.com/embed/YW7shbEUrXU" width="100%" height="480" frameborder="0" wmode="transparent"&gt;&lt;/iframe&gt;
-
-&lt;p&gt;In the end, learning After Effects has been a great experience. As a scriptable platform (AE supports JavaScript), there is a lot of potential for great visualizations and applications to cartography that I’m looking forward to exploring.&lt;/p&gt;
 </content>
   </entry>
 </feed>
