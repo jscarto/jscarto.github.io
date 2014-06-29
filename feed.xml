@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/"/>
     <id>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</id>
     <published>2014-06-27T01:00:00-04:00</published>
-    <updated>2014-06-29T19:53:00-04:00</updated>
+    <updated>2014-06-29T19:59:28-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -75,6 +75,10 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     font-weight: bold;
 }
 &lt;/style&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/stingFeatured.png" alt="View the other images to see which hymenopteran is the king of sting!" /&gt;
+&lt;/div&gt;
 
 &lt;p&gt;For most of us, insect stings are a thing to avoid. That&amp;rsquo;s not the case for entomologist Justin O. Schmidt. That&amp;rsquo;s because Dr. Schmidt has dedicated his life to studying venomous hymenopterans, the order of insects made up of ants, bees, and wasps. Through his research, he has been stung countless times. As a result, he developed the &lt;a href="http://en.wikipedia.org/wiki/Schmidt_sting_pain_index"&gt;Schmidt Sting Pain Index&lt;/a&gt;.&lt;/p&gt;
 
