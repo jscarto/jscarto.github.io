@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/"/>
     <id>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</id>
     <published>2014-06-27T01:00:00-04:00</published>
-    <updated>2014-06-29T22:20:05-04:00</updated>
+    <updated>2014-06-30T09:07:38-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -90,26 +90,9 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
 
 &lt;p&gt;So which venomous insect is really the king of sting? I&amp;rsquo;ve turned Schmidt&amp;rsquo;s data into this visualization to help you decide.&lt;/p&gt;
 
-&lt;h1&gt;The Most Painful Hymenopteran Stings&lt;/h1&gt;
-
-&lt;script src="/scripts/jquery.tipsy.js"&gt;&lt;/script&gt;
-
-&lt;p&gt;&lt;link href="/stylesheets/tipsy.css" rel="stylesheet" type="text/css" /&gt;
-&lt;script src="/scripts/d3.min.js"&gt;&lt;/script&gt;
-&lt;div id ="viz" align="center"&gt;
-&lt;script type='text/javascript'&gt;
-  $(function() {&lt;/p&gt;
-&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;$('#example-1').tipsy();
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/insectStingsFull.png" alt="The Schmidt Sting Pain Index, visualized" /&gt;
 &lt;/div&gt;
-
-&lt;p&gt;});
-&lt;/script&gt;
-  &lt;script src="/scripts/venomViz.js"&gt;&lt;/script&gt;
-&lt;/div&gt;
-  &lt;div class="fullImage"&gt;
-&lt;p&gt;Want to download this graphic as a high-res image? &lt;a href="/images/insectStingsFull.png"&gt;Go ahead&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;In addition to the data provided by Schmidt, I&amp;rsquo;ve added the common name of the insect, or the group to which it belongs, where possible (revealed when hovering the bold species names). Due to Schmidt&amp;rsquo;s expertise and rigor, many of the species listed are not commonly known. For these, I was unable to track down any common identifier.&lt;/p&gt;
 
@@ -187,7 +170,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-23T19:17:30-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -263,7 +246,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-20T16:57:39-04:00</updated>
+    <updated>2014-06-17T19:09:33-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -307,7 +290,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/"/>
     <id>http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-21T13:25:50-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -354,7 +337,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"/>
     <id>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</id>
     <published>2013-09-17T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-22T10:53:21-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -393,7 +376,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"/>
     <id>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</id>
     <published>2013-06-28T01:00:00-04:00</published>
-    <updated>2014-06-20T16:57:41-04:00</updated>
+    <updated>2014-06-19T17:41:48-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
