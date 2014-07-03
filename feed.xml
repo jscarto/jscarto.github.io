@@ -14,69 +14,11 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/"/>
     <id>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</id>
     <published>2014-06-27T01:00:00-04:00</published>
-    <updated>2014-07-02T12:35:44-04:00</updated>
+    <updated>2014-07-02T23:03:33-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
-    <content type="html">&lt;style&gt;
-#viz {
-  max-width: 790px;
-}
-
-table {
-  font-size: 80%;
-  border: none;
-  border-collapse:collapse;
-  max-width: 790px;
-}
-
-th {
-  font-size: 1.1em;
-  border-bottom: 3px solid #333;
-  margin-bottom: 2px;
-  padding: 0 15px 0 0;
-}
-
-td {
-    padding: 0 15px 0 0;
-}
-
-.Minutes {
-    color: #198c83;
-    font-weight: bold;
-    padding: 0;
-}
-.Species {
-  font-style: italic;
-}
-
-.known .Species{
-    font-weight: bold;
-}
-.Description {
-  font-weight: bold;
-}
-.timeViz {
-    background: transparent;
-}
-#Minutes {
-    padding-right: 0px;
-    text-align: left;   
-}
-
-tbody tr:nth-child(odd)   { background-color:#fff; }
-tbody tr:nth-child(even)    { background-color:#f5f5f5; }
-
-tbody tr:nth-child(odd):hover   { background-color:#d9f2f0; }
-tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
-
-.tooltip {
-    font-size: 120%;
-    font-weight: bold;
-}
-&lt;/style&gt;
-
-&lt;div class="fullImage"&gt;
+    <content type="html">&lt;div class="fullImage"&gt;
 &lt;img src="/images/stingFeatured.png" alt="View the other images to see which hymenopteran is the king of sting!" /&gt;
 &lt;/div&gt;
 
@@ -139,6 +81,25 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
 
 &lt;p&gt;With its high potency venom and greater likelihood to be encountered, its easy to see why the honey bee kills far more people than the giant hornet or any other hymenopteran!&lt;/p&gt;
 
+&lt;p&gt;&lt;a id="update"&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Although it is responsible for the most deaths, even the honey bee has weak venom compared to the most potent of all hymenopterans. That honor goes to the &lt;a href="http://en.wikipedia.org/wiki/Pogonomyrmex_maricopa"&gt;Maricopa harvester ant&lt;/a&gt;. This species of ant has a venom that is nearly 30x more potent than the honey bee, making its venom the most potent of all insects.&lt;/p&gt;&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/honeyBeevsMaricopa.png" alt="The most potent of all hymenopterans"/&gt;
+&lt;/div&gt;
+
+&lt;p&gt;It&amp;rsquo;s one thing to have the most potent insect venom. Having the most potent venom in the animal kingdom is another. How does the Maricopa harvester ant compare to the world&amp;rsquo;s most toxic snake and the poison dart frog? I wondered that too. As it turns out, it&amp;rsquo;s not even close.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/toxicTrioFull.png" alt="The toxic trio: Sorry, hymenopterans. The frog wins!" /&gt;
+&lt;p&gt;The poison dart frog is more potent than any snake, spider, or ant venom. It even leaves the infamous Irukandji  box jellyfish and venomous cone snails in the dust.
+&lt;/div&gt;
+
+&lt;p&gt;It&amp;rsquo;s important to note the difference between poison and venom. Both are toxins that are produced to either protect the animal in defensive situations, or to help capture prey. The key difference is that venom is &lt;em&gt;injectected&lt;/em&gt; while poison is &lt;em&gt;injested.&lt;/em&gt; In other words, if it bites you and you die - it&amp;rsquo;s venomous. If &lt;em&gt;you bite it&lt;/em&gt; and you die, it&amp;rsquo;s poisonous.&lt;/p&gt;
+
+&lt;p&gt;Fortunately for us the poison dart frog fits in the former category.&lt;/p&gt;
+
 &lt;h1&gt;Closing Thoughts&lt;/h1&gt;
 
 &lt;p&gt;Aside from their interestingness, these data shattered a few of my preconceptions about insect stings. Being in the outdoors often has given me my fair share of stings and encounters with various bees, wasps, and hornets. Among all of these, I avoided hornets the most (the &lt;a href="http://en.wikipedia.org/wiki/Bald-faced_hornet"&gt;bald-faced hornet&lt;/a&gt; is common in every area I&amp;rsquo;ve lived). I&amp;rsquo;m willing to bet that many others also view hornets as nastier, more painful stingers than other wasps and bees.&lt;/p&gt;
@@ -170,7 +131,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-23T15:12:22-04:00</updated>
+    <updated>2014-06-27T19:21:55-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -246,7 +207,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-18T12:12:07-04:00</updated>
+    <updated>2014-06-20T16:57:39-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -290,7 +251,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/"/>
     <id>http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-06-23T11:33:07-04:00</updated>
+    <updated>2014-07-02T22:01:28-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -337,7 +298,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"/>
     <id>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</id>
     <published>2013-09-17T01:00:00-04:00</published>
-    <updated>2014-06-23T11:33:07-04:00</updated>
+    <updated>2014-06-27T19:21:55-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -376,7 +337,7 @@ tbody tr:nth-child(even):hover    { background-color:#d9f2f0; }
     <link rel="alternate" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"/>
     <id>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</id>
     <published>2013-06-28T01:00:00-04:00</published>
-    <updated>2014-06-20T09:57:55-04:00</updated>
+    <updated>2014-06-20T16:57:41-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
