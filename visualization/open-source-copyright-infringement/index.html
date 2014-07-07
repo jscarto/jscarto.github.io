@@ -1,0 +1,227 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
+    <title>Joshua Stevens - Open Source Copyright Infringement: Is the Rate of DMCA Takedowns Increasing on GitHub?</title>
+    <link rel="icon" href="http://www.joshuastevens.net/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link href="../../stylesheets/main.css" rel="stylesheet" type="text/css" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/stylesheets/jquery.mmenu.all.css" />
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.mmenu.min.js"></script>
+    <meta name="description" content="Joshua Stevens is a cartographer and GIScientist focusing on UI/UX design, human-computer interaction, and the visualization of spatial data."/>
+    <link rel="canonical" href="http://www.joshuastevens.net/visualization/open-source-copyright-infringement/" />
+  </head>
+  <body class="visualization visualization_open-source-copyright-infringement visualization_open-source-copyright-infringement_index">
+  <script type="text/javascript">
+  $(document).ready(function(){
+      $("#my-menu").mmenu({
+        header:false,
+        position:"right"
+      });
+      $("#mobileNav").on("click", function(){
+        $("#my-menu")
+           .mmenu()
+           .trigger( "open.mm" )
+      });
+  });
+  </script>
+  <div id="master">
+  <div id="header">
+	<div id="logo"><a href="/"><img id="top" src="/images/jsLogoMed.png" /></a></div>
+	<div id="nav">
+		<ul>
+  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
+  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
+  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
+      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
+      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
+		</ul>
+	</div>
+  <div id="mobileNav">
+    <ul>
+      <li class="homenav"><i class="fa fa-bars"></i> Menu</li>
+    </ul>
+  </div>
+	<nav id="my-menu">
+		<ul>
+  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
+  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
+  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
+      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
+      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
+		</ul>
+	</nav>
+</div>
+
+  <div id="wrapper">
+    <div id="content">
+    <div id="main" role="main">
+    <div class="post_content">
+        <article>
+ 	<div class="title">
+ 		<h1>Open Source Copyright Infringement: Is the Rate of DMCA Takedowns Increasing on GitHub?</h1>
+ 		<div class="blogDate">
+      		<i class="fa fa-calendar"></i>&nbsp; July  7, 2014
+    	</div>
+ 	</div>
+    	<div class="fullImage">
+<img src="/images/octocatThumb.png" />
+</div>
+
+<p>While browsing <a href="http://www.reddit.com/r/linux">/r/linux</a> I saw this post: <a href="http://www.reddit.com/r/linux/comments/29vvz5/rate_of_dmca_takedown_demands_is_increasing_on/">Rate of DMCA takedown demands is increasing on GitHub</a>.</p>
+
+<p>That sounds pretty scary, for a couple of reasons. On one hand, it could mean that companies are really dropping the hammer and coming after folks more often and <a href="https://torrentfreak.com/google-further-highlights-wrongful-dmca-takedowns-130320/">potentially in error</a>. On the other, it could mean the open source community is becoming more lax or lazy, using others&#39; code without respecting licenses or copyright.</p>
+
+<p>But could there be a third alternative? Is the rate of DMCA takedowns <em>really</em> increasing in a meaningful way? </p>
+
+<p>Fortunately GitHub is open about the DMCA notices they receive. Since January 27, 2011 GitHub has <a href="https://github.com/github/dmca">posted each request received and each counter-notice issued</a>. All 317 of them.</p>
+
+<p>Here they are by month.
+<div class="fullImage">
+<img src="/images/dmca_by_month.png" alt="Are DMCAs issued to GitHub on the rise?" />
+</div></p>
+
+<p>The graph above shows the number of DMCA takedown requests issued each month, according to GitHub&rsquo;s own DMCA repo.  Another redditor made a similar <a href="http://www.reddit.com/r/linux/comments/29vvz5/rate_of_dmca_takedown_demands_is_increasing_on/cip1hk0">graph</a> (though I suspect from the R code posted that they didn&rsquo;t filter out counter-notices).</p>
+
+<p>According to this data there is clearly an upward trend in DMCA takedowns, with a peak of 41 in May 2014.</p>
+
+<h1>Who is Issuing the Takedowns?</h1>
+
+<p>Most companies or individuals who issue DMCA requests to GitHub do so only once. Such requests account for 68% of all DMCAs received by GitHub. The remaining 32% of takedowns come from just 30 sources. According to the original theory that the requests are on the rise, looking at the number of takedowns per originating party could help us identify who is cracking down on copyright the hardest.</p>
+
+<p>Alternatively, it could reveal who developers like to infringe upon the most.</p>
+
+<div class="fullImage">
+<img src="/images/dmca_by_party.png" alt="Who is issuing the most DMCA takedowns to GitHub?" />
+</div>
+
+<p>To my surprise, <a href="https://codility.com/">Codility</a> leads the pack handedly. I expected Sony, Amazon, or others in the music industry to be the frontrunners.</p>
+
+<p>The number of takedowns from Codility becomes less surprising in the context of what Codility is: a service designed to help corporate recruiters test candidates for development positions. By having developers solve programming challenges, companies can quickly identify who has the desired skills and who does not. That saves hiring managers a lot time and money.</p>
+
+<p>It also gives shady candidates an incentive to share questions, code snippets, and solutions to these challenges.</p>
+
+<p>A quick perusal through Codility&rsquo;s DMCA requests shows that&rsquo;s precisely the case.</p>
+
+<h1>&hellip;but are DMCA Takedowns Really on the Rise?</h1>
+
+<p>It&rsquo;s hard to answer the question about what is driving DMCA takedowns on GitHub. Are companies being more aggressive about their copyrighted code? Or are developers being more fast and loose with licenses or outright stealing? One thing is clear: the total number of DMCA requests to GitHub are higher than ever.</p>
+
+<h3>What do More Frequent DMCA Requests Really Mean?</h3>
+
+<p>Just as DMCA requests are going up, the total number of repositories being created on GitHub are also increasing. Thus looking at DMCA takedowns is meaningless without considering the increase in projects over the same time.</p>
+
+<p>Since its launch in 2008, GitHub has seen <a href="https://github.com/blog/1724-10-million-repositories">tremendous growth</a>. Starting with zero users and no repositories, GitHub now boasts over <strong><a href="https://github.com/features">14 million repositories</a></strong>. That number represents more than a doubling in repositories over the previous year. In the words of <a href="https://github.com/briandoll">Brian Doll</a> at GitHub:</p>
+
+<blockquote>
+<p>The first million repositories were created in just under 4 years; 3 years, 8 months and 15 days to be exact. This last million took just 48 days. In fact, over 5.5M repositories — more than half of the repositories on the site — were created this year alone.</p>
+</blockquote>
+
+<p>That&rsquo;s a lot of new projects. With so many projects being created, it stands to reason that more DMCA requests will follow. More code <i class="fa fa-arrow-right"></i> more potential for infringement. </p>
+
+<p>To truly reflect a more aggressive campaign against infringement - or developers playing fast and loose with copyright, the rate of DMCA takedowns would have to grow more quickly than the rate of projects being created. So let&rsquo;s take a look at the rate of DMCA requests per 1,000,000 repositories over the last four years.</p>
+
+<div class="fullImage">
+<img src="/images/dmca_per_million.png" alt="Well then..." />
+</div>
+
+<p>Suddenly a different picture emerges. And one that should be a bit more uplifting.</p>
+
+<p>The frequency of DMCA requests to GitHub may be on the rise, but so far it is not out-pacing the rate of new projects. In fact, the proportion of repositories being issued DMCA notices is at an all-time low. 2014 is not over yet and a lot could happen in the coming months. But it would take an unprecedented deluge of DMCAs to upset the current trend.</p>
+
+<p>In addition to encouraging readers to put away the pitchforks, I hope this also prompts a closer look at DMCA requests and the growth of GitHub. With the <a href="https://developer.github.com/v3/">GitHub API</a> it becomes possible to do tons of really interesting analyses of code (others already have done some <a href="http://www.itworld.com/big-data/410137/python-developers-are-most-giving">fantastic work with it</a>). </p>
+
+<p>Whatever you decide to do with the API, just don&rsquo;t violate copyright - especially not under the watchful eye of Codility. And don&rsquo;t rely on raw counts without taking a look at the bigger picture.</p>
+
+    	<a href="/visualization/visual-guide-to-painful-insect-stings/"><span class="secondaryNav prevLink"><i class="fa fa-arrow-left"></i> Visual Guide to Painful Hymenopteran Stings</span></a>
+    
+<div id="article_bottom">
+<hr />
+	<div id="blog_bottom_right">
+		<div id="about_author">
+		<img src="/images/joshSmall.png" />
+		<p>Josh is a PhD candidate at Penn State researching UI/UX design for interactive
+		maps, data visualization, and geovisual analytics.</p>
+ 	
+		<p><a href="/about/">Learn more</a> or follow <a href="http://www.twitter.com/jscarto">@jscarto</a> on Twitter.</p>
+		</div>
+		
+	</div>
+	<div id="article_share">Share This
+		<ul>
+		<li><div class="g-plusone" data-size="tall" data-annotation="none"></div></li>
+		<li><a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red" data-pin-height="28"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a></li>
+		<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="jscarto" data-size="large"></a></li>
+		</ul>
+	</div>
+</div>
+<!-- Disqus Comments -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'joshuastevens'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+
+<!-- Scripts for share buttons -->
+<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+  </article>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div id="handle"><a href="#top" title="Back to the top!"><img src="/stylesheets/wrapperBottom.png" /></a></div>
+</div>
+<div id="footer">
+	<div id="footer_bottom">
+	<div id="footer_copyright">
+		<div class="footer_inner">Copyright &copy; 2014 Joshua Stevens</div>
+	</div>	
+		<div id="footerContent">
+		<div id="contactArea">
+			<h2>Get in touch or follow me to see what I'm up to!</h2>
+			<li><a id="email" href="mailto:josh@joshuastevens.net"><img src="/images/emailBtn.png" /></a></li>
+			<li><a href="http://www.twitter.com/jscarto" title="Follow @jscarto on Twitter!"><img src="/images/twitterBtn.png" /></a></li>
+			<li><a href="/feed.xml" title="Grab my RSS feed!"><img src="/images/rssBtn.png" /></a></li>
+		</div>
+	</div>
+</div>
+<!-- Google Analytics Code -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-39165504-1', 'joshuastevens.net');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

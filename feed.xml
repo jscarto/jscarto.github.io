@@ -5,16 +5,95 @@
   <id>http://www.joshuastevens.net/</id>
   <link href="http://www.joshuastevens.net/"/>
   <link href="http://www.joshuastevens.net/feed.xml" rel="self"/>
-  <updated>2014-06-27T01:00:00-04:00</updated>
+  <updated>2014-07-07T01:00:00-04:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Open Source Copyright Infringement: Is the Rate of DMCA Takedowns Increasing on GitHub?</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/visualization/open-source-copyright-infringement/"/>
+    <id>http://www.joshuastevens.net/visualization/open-source-copyright-infringement/</id>
+    <published>2014-07-07T01:00:00-04:00</published>
+    <updated>2014-07-07T16:50:22-04:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;div class="fullImage"&gt;
+&lt;img src="/images/octocatThumb.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;While browsing &lt;a href="http://www.reddit.com/r/linux"&gt;/r/linux&lt;/a&gt; I saw this post: &lt;a href="http://www.reddit.com/r/linux/comments/29vvz5/rate_of_dmca_takedown_demands_is_increasing_on/"&gt;Rate of DMCA takedown demands is increasing on GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;That sounds pretty scary, for a couple of reasons. On one hand, it could mean that companies are really dropping the hammer and coming after folks more often and &lt;a href="https://torrentfreak.com/google-further-highlights-wrongful-dmca-takedowns-130320/"&gt;potentially in error&lt;/a&gt;. On the other, it could mean the open source community is becoming more lax or lazy, using others&amp;#39; code without respecting licenses or copyright.&lt;/p&gt;
+
+&lt;p&gt;But could there be a third alternative? Is the rate of DMCA takedowns &lt;em&gt;really&lt;/em&gt; increasing in a meaningful way? &lt;/p&gt;
+
+&lt;p&gt;Fortunately GitHub is open about the DMCA notices they receive. Since January 27, 2011 GitHub has &lt;a href="https://github.com/github/dmca"&gt;posted each request received and each counter-notice issued&lt;/a&gt;. All 317 of them.&lt;/p&gt;
+
+&lt;p&gt;Here they are by month.
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/dmca_by_month.png" alt="Are DMCAs issued to GitHub on the rise?" /&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;The graph above shows the number of DMCA takedown requests issued each month, according to GitHub&amp;rsquo;s own DMCA repo.  Another redditor made a similar &lt;a href="http://www.reddit.com/r/linux/comments/29vvz5/rate_of_dmca_takedown_demands_is_increasing_on/cip1hk0"&gt;graph&lt;/a&gt; (though I suspect from the R code posted that they didn&amp;rsquo;t filter out counter-notices).&lt;/p&gt;
+
+&lt;p&gt;According to this data there is clearly an upward trend in DMCA takedowns, with a peak of 41 in May 2014.&lt;/p&gt;
+
+&lt;h1&gt;Who is Issuing the Takedowns?&lt;/h1&gt;
+
+&lt;p&gt;Most companies or individuals who issue DMCA requests to GitHub do so only once. Such requests account for 68% of all DMCAs received by GitHub. The remaining 32% of takedowns come from just 30 sources. According to the original theory that the requests are on the rise, looking at the number of takedowns per originating party could help us identify who is cracking down on copyright the hardest.&lt;/p&gt;
+
+&lt;p&gt;Alternatively, it could reveal who developers like to infringe upon the most.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/dmca_by_party.png" alt="Who is issuing the most DMCA takedowns to GitHub?" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;To my surprise, &lt;a href="https://codility.com/"&gt;Codility&lt;/a&gt; leads the pack handedly. I expected Sony, Amazon, or others in the music industry to be the frontrunners.&lt;/p&gt;
+
+&lt;p&gt;The number of takedowns from Codility becomes less surprising in the context of what Codility is: a service designed to help corporate recruiters test candidates for development positions. By having developers solve programming challenges, companies can quickly identify who has the desired skills and who does not. That saves hiring managers a lot time and money.&lt;/p&gt;
+
+&lt;p&gt;It also gives shady candidates an incentive to share questions, code snippets, and solutions to these challenges.&lt;/p&gt;
+
+&lt;p&gt;A quick perusal through Codility&amp;rsquo;s DMCA requests shows that&amp;rsquo;s precisely the case.&lt;/p&gt;
+
+&lt;h1&gt;&amp;hellip;but are DMCA Takedowns Really on the Rise?&lt;/h1&gt;
+
+&lt;p&gt;It&amp;rsquo;s hard to answer the question about what is driving DMCA takedowns on GitHub. Are companies being more aggressive about their copyrighted code? Or are developers being more fast and loose with licenses or outright stealing? One thing is clear: the total number of DMCA requests to GitHub are higher than ever.&lt;/p&gt;
+
+&lt;h3&gt;What do More Frequent DMCA Requests Really Mean?&lt;/h3&gt;
+
+&lt;p&gt;Just as DMCA requests are going up, the total number of repositories being created on GitHub are also increasing. Thus looking at DMCA takedowns is meaningless without considering the increase in projects over the same time.&lt;/p&gt;
+
+&lt;p&gt;Since its launch in 2008, GitHub has seen &lt;a href="https://github.com/blog/1724-10-million-repositories"&gt;tremendous growth&lt;/a&gt;. Starting with zero users and no repositories, GitHub now boasts over &lt;strong&gt;&lt;a href="https://github.com/features"&gt;14 million repositories&lt;/a&gt;&lt;/strong&gt;. That number represents more than a doubling in repositories over the previous year. In the words of &lt;a href="https://github.com/briandoll"&gt;Brian Doll&lt;/a&gt; at GitHub:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The first million repositories were created in just under 4 years; 3 years, 8 months and 15 days to be exact. This last million took just 48 days. In fact, over 5.5M repositories — more than half of the repositories on the site — were created this year alone.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;That&amp;rsquo;s a lot of new projects. With so many projects being created, it stands to reason that more DMCA requests will follow. More code &lt;i class="fa fa-arrow-right"&gt;&lt;/i&gt; more potential for infringement. &lt;/p&gt;
+
+&lt;p&gt;To truly reflect a more aggressive campaign against infringement - or developers playing fast and loose with copyright, the rate of DMCA takedowns would have to grow more quickly than the rate of projects being created. So let&amp;rsquo;s take a look at the rate of DMCA requests per 1,000,000 repositories over the last four years.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/dmca_per_million.png" alt="Well then..." /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Suddenly a different picture emerges. And one that should be a bit more uplifting.&lt;/p&gt;
+
+&lt;p&gt;The frequency of DMCA requests to GitHub may be on the rise, but so far it is not out-pacing the rate of new projects. In fact, the proportion of repositories being issued DMCA notices is at an all-time low. 2014 is not over yet and a lot could happen in the coming months. But it would take an unprecedented deluge of DMCAs to upset the current trend.&lt;/p&gt;
+
+&lt;p&gt;In addition to encouraging readers to put away the pitchforks, I hope this also prompts a closer look at DMCA requests and the growth of GitHub. With the &lt;a href="https://developer.github.com/v3/"&gt;GitHub API&lt;/a&gt; it becomes possible to do tons of really interesting analyses of code (others already have done some &lt;a href="http://www.itworld.com/big-data/410137/python-developers-are-most-giving"&gt;fantastic work with it&lt;/a&gt;). &lt;/p&gt;
+
+&lt;p&gt;Whatever you decide to do with the API, just don&amp;rsquo;t violate copyright - especially not under the watchful eye of Codility. And don&amp;rsquo;t rely on raw counts without taking a look at the bigger picture.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Visual Guide to Painful Hymenopteran Stings</title>
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/"/>
     <id>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</id>
     <published>2014-06-27T01:00:00-04:00</published>
-    <updated>2014-07-02T23:31:30-04:00</updated>
+    <updated>2014-07-07T14:03:21-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -131,7 +210,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-23T15:12:22-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -207,7 +286,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-20T16:57:39-04:00</updated>
+    <updated>2014-06-18T12:12:07-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -251,7 +330,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/"/>
     <id>http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-07-02T22:01:28-04:00</updated>
+    <updated>2014-06-23T11:33:07-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -298,7 +377,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"/>
     <id>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</id>
     <published>2013-09-17T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-23T11:33:07-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -330,129 +409,6 @@
 &lt;p&gt;There’s also inherently some bias in the report data. Being a US-based website, it is dominated by US reports, and the reporting mechanism is not precise: if coordinates are not known (would you really log a GPS reading while staring ‘squatch in the eye?!), the BFRO site only allows reporters to enter the nearest city. This could be many miles away.&lt;/p&gt;
 
 &lt;p&gt;Ultimately, I’m not convinced there’s a descendant of &lt;a href="http://en.wikipedia.org/wiki/Gigantopithecus"&gt;&lt;em&gt;Gigantopithecus&lt;/em&gt;&lt;/a&gt; playing hide and seek in the Pacific Northwest. But if respectable folks like &lt;a href="http://www.youtube.com/watch?v=sEIcHvz3vzw"&gt;Survivorman Les Stroud&lt;/a&gt; and primatologist &lt;a href="http://www.nydailynews.com/news/world/jane-goodall-fascinated-bigfoot-article-1.1172959"&gt;Jane Goodall&lt;/a&gt; believe there’s something more to the myth, I think it’s at least worth putting on the map.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Your Favorite Traffic Map is Lying to You</title>
-    <link rel="alternate" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"/>
-    <id>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</id>
-    <published>2013-06-28T01:00:00-04:00</published>
-    <updated>2014-06-20T16:57:41-04:00</updated>
-    <author>
-      <name>Josh</name>
-    </author>
-    <content type="html">&lt;p&gt;Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.&lt;/p&gt;
-
-&lt;p&gt;Or so many think. As it turns out, conventional traffic maps don’t actually tell you how long it will take to get from point A to point B. Not only do traffic maps fail to communicate the information you’re after, the information they do communicate can be very misleading.&lt;/p&gt;
-
-&lt;h1&gt;Most Traffic Maps are Similar&lt;/h1&gt;
-
-&lt;p&gt;Examples of conventional traffic maps are shown below. Each is from a different source and represents the same location and time of day:&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/trafficMaps.png" alt="Examples of existing traffic maps." /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Although there are many cartographic differences between these maps, they all employ the same overall design strategy: variable length road segments in a red, yellow, and green color scheme. This design is typical of almost all traffic maps. This isn’t really surprising. For designers of traffic maps, it makes a lot of sense to base traffic map designs on a metaphor familiar to all drivers – in this case, traffic lights. A common design strategy is also something that makes a lot of sense for users. Consistency across designs makes the maps familiar, regardless of their source. Users shouldn’t have to relearn how to read maps from one vendor to the next, especially when the underlying data are the same.&lt;/p&gt;
-
-&lt;p&gt;Often, the designs that are ubiquitous are also those that are effective. After all, why mimic something that doesn’t work? The geographically distorted &lt;a href="http://en.wikipedia.org/wiki/Harry_Beck#London_Underground_map"&gt;tube maps popularized by Harry Beck&lt;/a&gt; are a great example of an effective design mimicked the world over. The &lt;a href="http://www.arrowsandicons.com/articles/typeface-series-frutiger/"&gt;Frutiger typeface&lt;/a&gt; used in many airports and rail stations is another example of successful design mimicry. Sometimes though, even ineffective designs get copied and become widespread.&lt;/p&gt;
-
-&lt;p&gt;This is the case with traffic maps. In short, traffic maps are lying to you: their design suggests a use that cannot effectively be carried out by the user. Here’s a breakdown of the half-truths told by traffic maps and why their shared design is problematic.&lt;/p&gt;
-
-&lt;h1&gt;Lie #1: The colors identify the fastest routes&lt;/h1&gt;
-
-&lt;div class="leftImage"&gt;
-&lt;img src="/images/googleTraffic.png" alt="Google's traffic map legend." /&gt;
-&lt;p&gt;A map-based mystery: How fast is green?&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;When looking at a traffic map, like the one on the left, users want to see which routes are the fastest. Fortunately this is a simple task because the map makes it pretty clear: green is faster than yellow. It says so right in the legend. Right?&lt;/p&gt;
-
-&lt;p&gt;Here’s the problem: Which speeds are within the yellow category? How about the red category? Unless you’ve worked with the raw data, or dug deep into the chasm of documentation behind it, you won’t be able to answer that question correctly.&lt;/p&gt;
-
-&lt;p&gt;Some might argue that actual speeds don’t matter and yellow is obviously slower than green, so the green routes will be fastest. Unfortunately this scenario is complicated by the fact that a wide range of velocities (roughly 1 to 90mph) are broken into just three classes and spread across multiple individual segments of varying lengths. Google uses 1-24, 25-50, 50+ mph as class breaks. With these ranges, it is possible for a yellow segment to require less time to traverse than a green segment of a slightly greater length. Identifying the fastest route, which will consist of multiple segments, requires assessing every segment and the speeds they represent. But (1) the actual speed is hidden, and (2) we don’t know the lengths of the segments. Suddenly, selecting the fastest route isn’t as simple as the map suggests.&lt;/p&gt;
-
-&lt;h1&gt;Lie #2: The colors depict routes that require less time.&lt;/h1&gt;
-
-&lt;p&gt;This is where things get really interesting. Imagine you want to know how long a particular route will take. In order to do this, you need to know how fast you can travel and the total distance of the route. With this information, you can do the math to figure out the total time required, using the formula:&lt;/p&gt;
-
-&lt;p class="formula"&gt;t = d/v&lt;/p&gt;
-
-&lt;p&gt;So far, so good. As it turns out, this math can be carried out reasonably well by users when both speed and distance are provided to them.&lt;/p&gt;
-
-&lt;p&gt;Things get tricky when users need to estimate distances. Consider again the maps above. How long are the particular segments represented by each little chunk of color? You’d need to be able to estimate this in order to determine the total travel time. Unfortunately, you can’t. At least not very accurately. This is because (1) each segment is a different length, (2) each length is unknown, and (3) the linear scale bar included with most maps is not adequate for non-linear route distance estimation.&lt;/p&gt;
-
-&lt;p&gt;The graph below shows the results of a very simple distance estimation task. We wanted to know if users can actually estimate distances along curved roads, using a standard (linear) scale bar. The exercise was repeated, with new routes, using a road map with a new, non-linear scale bar embedded into the actual transportation network.&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/estimationGraph.png" alt="Graphs of distance estimationt tasks" /&gt;
-&lt;p&gt;Results from a forthcoming paper. Errors in distance estimation with the conventional map compared to a map with a non-linear scale bar embedded directly into the road network.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Now consider that a given route between any two points will contain multiple segments, each representing a different distance and velocity. It’s no less than the &lt;a href="http://en.wikipedia.org/wiki/Modifiable_areal_unit_problem"&gt;modifiable areal unit problem&lt;/a&gt; run amuck. For every segment, users must try to estimate the distance, guess a velocity, and then mentally compute the travel time.&lt;/p&gt;
-
-&lt;p&gt;Such a scenario is not the result of good cartographic design. It leaves too much information hidden behind impossible estimations and guesswork. &lt;strong&gt;The map is posing questions when the user is looking for answers.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h1&gt;Lie #3: The red-yellow-green color scheme is best suited for a quick glance.&lt;/h1&gt;
-
-&lt;p&gt;In order to be effective at a simple glance, the conventional traffic map design would have to depict overall delays without under- or over-exaggerating traffic conditions. If the map systematically exaggerated conditions in a particular direction (positive or negative), that suggests a design that is disjoint from the actual data. In a sense, it’s the difference between a design that is visually screaming when the data represent whispers (or vice versa), and one that is tuned appropriately to the data.&lt;/p&gt;
-
-&lt;p&gt;Results from our paper show that users consistently underestimate travel times when using the conventional traffic map (average underestimation of 11 minutes, which is more than 20% of the time required for most routes in the exercise). Clearly there is something about interpreting the conventional design (likely at the precognitive level) that masks the true severity of traffic conditions.&lt;/p&gt;
-
-&lt;h1&gt;Lie #4: Red-yellow-green color schemes work for everyone.&lt;/h1&gt;
-
-&lt;p&gt;Almost 5% of the general population has some form of colorblindness. &lt;a href="http://medical-dictionary.thefreedictionary.com/protanopia"&gt;Protanopia&lt;/a&gt; and &lt;a href="http://medical-dictionary.thefreedictionary.com/deuteranopia"&gt;deuteranopia&lt;/a&gt;, two common types of colorblindness, affect the way individuals see red and green due to a lack of the photo receptors necessary to interpret either hue. These conditions are collectively referred to as red-green colorblindness.&lt;/p&gt;
-
-&lt;p&gt;Conventional traffic maps, which rely on red and green, are utterly useless to people with red-green colorblindness.&lt;a href="http://uxblog.idvsolutions.com/"&gt; John Nelson&lt;/a&gt; provides the following example of the conventional traffic maps, simulating their appearance to those with red-green colorblindness:&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/colorsim.jpg" "Red-green-yellow traffic maps, to those with color blindness." /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This is one of the easier problems to correct. Simply adding a slight tint of blue to the green can help colorblind users distinguish it from red, without breaking the traffic light metaphor for other users. Cartographer Andy Woodruff applied this technique to his &lt;a href="http://bostonography.com/2013/live-mbta-bus-speeds/"&gt;recent map of bus speeds in Boston&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1&gt;Lie #5: We can solve these problems by only showing congested traffic (i.e., the yellows and reds).&lt;/h1&gt;
-
-&lt;div class="rightImage"&gt;
-&lt;img src="/images/apple_traffic-200x300.jpg" alt="Apple's attempt at traffic mapping." /&gt;
-&lt;p&gt;To Apple, “green” means parks, not free-flow traffic.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;When Apple Maps bursted into the cartography scene, they received a lot of attention (both positive and negative). Like the other companies, Apple was also quick to offer a traffic layer. But unlike the other companies – and typical of Apple – their design followed a unique path and did not simply mimic what others were doing. In an attempt to simplify the map, Apple leaves the green category out, reasoning that users are interested in where congestion &lt;em&gt;is&lt;/em&gt;, not where it &lt;em&gt;isn’t&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Simplicity is great, and simpler maps should be the goal of any cartographer. But there is a fine line between simplicity and confusion. For all the reasons stated so far, it makes sense to focus solely on the reds and yellows. There is a major benefit to including green, though: &lt;strong&gt;it shows users where data exist and which street levels are considered&lt;/strong&gt;. Leaving out green makes the map very ambiguous. Does the absence of green represent free-flow traffic, streets not included in the traffic layer, or simply a lack of available data? That’s exactly what the lack of green means in every other traffic map. Without green, the separation of the traffic layer and the base map is less defined and it is no longer clear for which roads traffic information should be expected.&lt;/p&gt;
-
-&lt;h1&gt;So how do we solve these problems and design better traffic maps?&lt;/h1&gt;
-
-&lt;p&gt;There are many possible solutions, and I’m hesitant to claim that an optimal traffic map exists. Different users have different needs, techniques, and map reading skills. However, some of these problems can be solved, at least in part, by better aligning map design with the tasks users wish to carry out. I’m interested in travel time, as I believe that is the most important information traffic maps can communicate. As a result, I suggest two simplifications.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Solution 1: Fix segment lengths to a standard unit of distance.&lt;/strong&gt; When using the red-yellow-green color scheme, you forfeit accurate velocity estimation. The least you can do, then, is to make it easy for users to estimate distances. By fixing the colored segments to a fixed length (e.g., 5 miles, depending on map scale), you enable users to estimate distances very quickly and accurately. This is the &lt;em&gt;equal-interval approach&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Solution 2: Show temporal, not geographic, segments.&lt;/strong&gt; Instead of showing travel times indirectly, through velocity and color, travel times can be embedded directly into the road network. This is the &lt;em&gt;fixed-minute method&lt;/em&gt;, because each cartographic symbol (or segment) represents some number of minutes of travel time.&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/prototypes.png" alt="My prototypes for improved traffic map design." /&gt;
-&lt;p&gt;Two improvements (middle and right) to the conventional traffic map (left).&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The fixed-minute approach is particularly interesting because not only does it depict travel times directly, it does so without any of the problems introduced by previous traffic map designs. Determining travel times becomes as simple as counting segments. In the example above, each purple ‘chevron’ symbol represents 1 minute of travel time. The darker, bolder symbols represent 5 minutes. &lt;strong&gt;With the fixed-minute design, users can estimate travel times far more accurately, and in much less time, than is allowed by the other designs.&lt;/strong&gt; For this reason, it’s not surprising to see that users in our study liked it much more than the other traffic map designs:&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/mapPreference.png" alt="Results show users greatly prefer the fixed-minute design." /&gt;
-&lt;p&gt;Not a single participant prefered the conventional design.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Wondering what a traffic map, using actual traffic sensors, looks like in the fixed-minute design?&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/fixedminute.png" alt="The final fixed-minute traffic map design" /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Under the traffic conditions at the time the map was created, getting from Compton to Los Angeles (via the 710 and 5) would take about 13 minutes. Such precision is not possible with the popular red-yellow-green traffic maps.&lt;/p&gt;
-
-&lt;p&gt;While the fixed-minute design addresses many of the existing problems with traffic maps and greatly simplifies travel time estimation, it is not without its own shortcomings. Counting segments is incredibly easy and quick to do, but it’s not an ideal task for drivers. Accordingly, finding ways to optimize both en route and pre-trip consumption of traffic data, for all users, will be a key challenge for designers of traffic maps in the future.&lt;/p&gt;
-
-&lt;p&gt;So let’s rethink traffic map design, recognize the failures of existing solutions, and make some changes. Given the high demand for traffic maps and the rapid growth in open source mapping tools, cartographers are better poised than ever to make their mark.&lt;/p&gt;
 </content>
   </entry>
 </feed>
