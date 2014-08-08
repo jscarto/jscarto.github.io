@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/"/>
     <id>http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</id>
     <published>2014-08-08T01:00:00-04:00</published>
-    <updated>2014-08-08T14:30:01-04:00</updated>
+    <updated>2014-08-08T18:47:01-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -119,7 +119,7 @@
 
 &lt;div class="fullImage"&gt;
 &lt;img src="/images/rainbow_relief.png" /&gt;
-&lt;p&gt;The only purpose of rainbow maps: showing why you shouldn&amp;rsquo;t make rainbow maps.&lt;/p&gt;
+&lt;p&gt;As if the world really needed another rainbow map&amp;hellip; This one has a purpose, though :-)&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;In the relief map above, the entire scene is cast in a magenta hue. This is because HDR probes wrap in 360 degrees and when using a structured image (e.g., ordered hues) the leftmost pixels get stretched the most to complete the projection, resulting in an image that is mostly that color.&lt;/p&gt;
@@ -132,13 +132,13 @@
 
 &lt;p&gt;I have three reasons why you might want to (your mileage may vary):&lt;/p&gt;
 
-&lt;p&gt;1) Every event occurs at some location. Similarly, every event also happens at a &lt;em&gt;time&lt;/em&gt;. The combination of both space and time is often missing from most maps; this is especially true for shaded relief maps. Although there is value (and convenience) in depicting relief while ignoring time, I find there is an attraction in representing relief that hints at the passage of time. With HDR, one could generate relief maps that accurately depict the half light of dawn or an aurora passing overhead.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Every event occurs at some location. Similarly, every event also happens at a &lt;em&gt;time&lt;/em&gt;. The combination of both space and time is often missing from most maps; this is especially true for shaded relief maps. Although there is value (and convenience) in depicting relief while ignoring time, I find there is an attraction in representing relief that hints at the passage of time. With HDR, one could generate relief maps that accurately depict the half light of dawn or an aurora passing overhead.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Even the phenomenal results of using a ray traced sun lacks the realism of natural light. Atmospheric scattering, ambient reflections, and the azure tinting of the environment that happens at great distances is wholly absent. With little effort, HDR lighting could provide some of these.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Because you can.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;2) Even the phenomenal results of using a ray traced sun lacks the realism of natural light. Atmospheric scattering, ambient reflections, and the azure tinting of the environment that happens at great distances is wholly absent. With little effort, HDR lighting could provide some of these.&lt;/p&gt;
-
-&lt;p&gt;3) Because you can!&lt;/p&gt;
-
-&lt;p&gt;In the end, it was just fun to explore different lighting techniques. This project was started as an attempt to scratch the itch of curiosity, and although there are mixed results, I think HDR lighting for shaded relief shows potential - particularly for item 2 above. As I get more time, I intend to investigate that a little further.&lt;/p&gt;
+&lt;p&gt;In the end, it was just fun to explore different lighting techniques. This project began as an attempt to scratch the itch of curiosity, and although there are mixed results, I think HDR lighting for shaded relief shows potential - particularly for item 2 above. As I get more time, I intend to investigate that a little further.&lt;/p&gt;
 
 &lt;p&gt;Until then, I hope this provokes some thought and generates ideas on how we can more realistically (and even artistically) represent relief in maps with 3D software.&lt;/p&gt;
 </content>
@@ -148,7 +148,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/open-source-copyright-infringement/"/>
     <id>http://www.joshuastevens.net/visualization/open-source-copyright-infringement/</id>
     <published>2014-07-07T01:00:00-04:00</published>
-    <updated>2014-07-08T13:47:11-04:00</updated>
+    <updated>2014-07-07T21:01:08-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -227,7 +227,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/"/>
     <id>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</id>
     <published>2014-06-27T01:00:00-04:00</published>
-    <updated>2014-07-07T14:03:21-04:00</updated>
+    <updated>2014-07-02T23:31:30-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -344,7 +344,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-23T15:12:22-04:00</updated>
+    <updated>2014-06-27T19:21:55-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -420,7 +420,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-18T12:12:07-04:00</updated>
+    <updated>2014-06-20T16:57:39-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -464,7 +464,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/"/>
     <id>http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-06-23T11:33:07-04:00</updated>
+    <updated>2014-07-02T22:01:28-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
