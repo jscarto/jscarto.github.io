@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/"/>
     <id>http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</id>
     <published>2014-08-08T01:00:00-04:00</published>
-    <updated>2014-08-08T14:27:20-04:00</updated>
+    <updated>2014-08-08T14:30:01-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -67,7 +67,7 @@
 
 &lt;div class="fullImage"&gt;
 &lt;img src="/images/plainSun_detail.png" /&gt;
-&lt;p&gt;Using the sun lamp produces a much better result, with clearer indications of reflected light and completely uniform lighting.&lt;/p&gt;
+&lt;p&gt;Using the sun lamp produces a much better result, with clearer indications of reflected light from a completely uniform source.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Using a ray traced sun produces a relief map that is incredibly well lit. It has smooth gradations between light and dark while persevering highlighted peaks and deep, dark shadows where necessary. With a few minor tweaks, I would be very happy with this version.&lt;/p&gt;
