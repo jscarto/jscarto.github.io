@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/"/>
     <id>http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</id>
     <published>2014-08-08T01:00:00-04:00</published>
-    <updated>2014-08-08T18:47:01-04:00</updated>
+    <updated>2014-08-09T05:17:59-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -34,9 +34,9 @@
 
 &lt;h1&gt;Ray Tracing&lt;/h1&gt;
 
-&lt;p&gt;Accurately modeling the bouncing of light across objects, and how it reflects, refracts, and depletes is known as &lt;a href="https://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html"&gt;ray tracing&lt;/a&gt; in the 3D modeling world. In 3D modeling and rendering software, one has much more control over light sources than is provided by most GIS software. In addition to simulating light rays more accurately, most 3D modeling software can depict various textures to further refine how light behaves. For instance, you could specify your terrain to be shiny, diffuse, or even to emit its own light. As a result, 3D applications provide much more control over the simulation of light and shadows, and are therefore an attractive alternative for shaded relief mapping. &lt;/p&gt;
+&lt;p&gt;Accurately modeling the bouncing of light across objects, and how it reflects, refracts, and depletes is known as &lt;a href="https://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html"&gt;ray tracing&lt;/a&gt; in the 3D modeling world. In 3D modeling and rendering software, one has much more control over light sources than is provided by most GIS software. In addition to simulating light rays more accurately, most 3D modeling software can depict various textures to further refine how light behaves. For instance, you could specify your terrain to be shiny, diffuse, or even to emit its own light. As a result, 3D applications are an attractive alternative for shaded relief mapping. &lt;/p&gt;
 
-&lt;p&gt;Daniel Huffman has a great &lt;a href="http://somethingaboutmaps.wordpress.com/2014/01/01/blender-tutorial/"&gt;tutorial series&lt;/a&gt; showing how this can be done in Blender, an open source 3D modeling application. The results are superb and I highly recommend this technique.&lt;/p&gt;
+&lt;p&gt;Daniel Huffman has a great &lt;a href="http://somethingaboutmaps.wordpress.com/2014/01/01/blender-tutorial/"&gt;tutorial series&lt;/a&gt; showing how this can be done in Blender, an open source 3D modeling application. The results are superb and I highly recommend the technique.&lt;/p&gt;
 
 &lt;p&gt;Ray tracing is typically done with one (or more) kinds of light sources. In Blender, there are &lt;a href="http://wiki.blender.org/index.php/Doc:2.6/Manual/Lighting/Lamps"&gt;5 types of light sources&lt;/a&gt; - or &amp;ldquo;lamps.&amp;rdquo; A &lt;strong&gt;point&lt;/strong&gt; lamp emits light spherically in all directions. A &lt;strong&gt;spot&lt;/strong&gt; lamp directionally aims light, similar to a flashlight. An &lt;strong&gt;area&lt;/strong&gt; lamp emits light from a planar surface. A &lt;strong&gt;hemi&lt;/strong&gt; lamp emits light in a 180° arc, and a &lt;strong&gt;sun&lt;/strong&gt; lamp mimics (you guessed it) the sun.&lt;/p&gt;
 
