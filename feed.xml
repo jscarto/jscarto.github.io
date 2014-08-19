@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/"/>
     <id>http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</id>
     <published>2014-08-08T01:00:00-04:00</published>
-    <updated>2014-08-09T14:19:03-04:00</updated>
+    <updated>2014-08-19T12:31:48-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -38,9 +38,9 @@
 
 &lt;p&gt;Daniel Huffman has a great &lt;a href="http://somethingaboutmaps.wordpress.com/2014/01/01/blender-tutorial/"&gt;tutorial series&lt;/a&gt; showing how this can be done in Blender, an open source 3D modeling application. The results are superb and I highly recommend the technique.&lt;/p&gt;
 
-&lt;p&gt;Ray tracing is typically done with one (or more) kinds of light sources. In Blender, there are &lt;a href="http://wiki.blender.org/index.php/Doc:2.6/Manual/Lighting/Lamps"&gt;5 types of light sources&lt;/a&gt; - or &amp;ldquo;lamps.&amp;rdquo; A &lt;strong&gt;point&lt;/strong&gt; lamp emits light spherically in all directions. A &lt;strong&gt;spot&lt;/strong&gt; lamp directionally aims light, similar to a flashlight. An &lt;strong&gt;area&lt;/strong&gt; lamp emits light from a planar surface. A &lt;strong&gt;hemi&lt;/strong&gt; lamp emits light in a 180° arc, and a &lt;strong&gt;sun&lt;/strong&gt; lamp mimics (you guessed it) the sun.&lt;/p&gt;
+&lt;p&gt;Ray tracing is typically done with one (or more) kinds of light sources. In Blender, there are &lt;a href="http://wiki.blender.org/index.php/Doc:2.6/Manual/Lighting/Lamps"&gt;5 types of light sources&lt;/a&gt; - or &amp;ldquo;lamps.&amp;rdquo; A &lt;strong&gt;point&lt;/strong&gt; lamp emits light spherically in all directions. A &lt;strong&gt;spot&lt;/strong&gt; lamp directionally aims light, similar to a flashlight. An &lt;strong&gt;area&lt;/strong&gt; lamp emits light from a planar surface. A &lt;strong&gt;hemi&lt;/strong&gt; lamp emits light in a 180° arc, and a &lt;strong&gt;sun&lt;/strong&gt; lamp mimics (you guessed it) the sun. The sun lamp attempts greater realism by eliminating the distant falloff of light that occurs with the other lamps.&lt;/p&gt;
 
-&lt;p&gt;Each of these light sources have various parameters that can be adjusted, such as size, distance, intensity, direction, and color. They also have vary different behaviors and produce different results. For instance, illuminating a DEM with a small point light will create sharp highlights nearest the source with an obvious dimming at greater distances:&lt;/p&gt;
+&lt;p&gt;Each of these light sources have various parameters that can be adjusted, such as size, distance, intensity, direction, and color (note that distance is irrelevant when using the sun lamp). The lamps also emit light with different behaviors which produces very different results during ray tracing. For instance, illuminating a DEM with a small point light will create sharp highlights nearest the source with an obvious dimming at greater distances:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
 &lt;img src="/images/point_5size_1750int.png" /&gt;
@@ -76,7 +76,7 @@
 
 &lt;p&gt;Before becoming a cartographer, creating 3D scenes in Lightwave was my hobby. For side projects, I&amp;rsquo;d create 3D meshes for others to buy and use in their own projects. One of the best ways to advertise the quality of a model was to render it in a stunningly well-lit environment. Since it would take a lot of time to model a forest, or a futuristic kitchen full of appliances, I stumbled across a shortcut: &lt;a href="http://www.unparent.com/photos_probes.html"&gt;HDRI probes&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/High_dynamic_range_imaging"&gt;HDRI&lt;/a&gt;, or High Dynamic Range Imaging, is a method for capturing photos with a significantly greater range of luminosity than is typical of conventional photography. When combined with a file format (&lt;a href="http://en.wikipedia.org/wiki/RGBE_image_format"&gt;.hdr&lt;/a&gt;) that stores more data per pixel than the average image frmat, it becomes possible to retain an enormous amount of the light-emitting properties of a photo.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/High_dynamic_range_imaging"&gt;HDRI&lt;/a&gt;, or High Dynamic Range Imaging, is a method for capturing photos with a significantly greater range of luminosity than is typical of conventional photography. When combined with a file format (&lt;a href="http://en.wikipedia.org/wiki/RGBE_image_format"&gt;.hdr&lt;/a&gt;) that stores more data per pixel than the average image format, it becomes possible to retain an enormous amount of the light-emitting properties of a photo.&lt;/p&gt;
 
 &lt;p&gt;Since HDR images are so luminous, 3D modelers often use them to light their scenes. This technique has three primary advantages:&lt;/p&gt;
 
@@ -148,7 +148,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/open-source-copyright-infringement/"/>
     <id>http://www.joshuastevens.net/visualization/open-source-copyright-infringement/</id>
     <published>2014-07-07T01:00:00-04:00</published>
-    <updated>2014-07-07T21:01:08-04:00</updated>
+    <updated>2014-07-08T13:47:11-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -227,7 +227,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/"/>
     <id>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</id>
     <published>2014-06-27T01:00:00-04:00</published>
-    <updated>2014-07-02T23:31:30-04:00</updated>
+    <updated>2014-07-07T14:03:21-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -344,7 +344,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/"/>
     <id>http://www.joshuastevens.net/site/moving-from-wordpress-to-middleman/</id>
     <published>2014-06-18T01:00:00-04:00</published>
-    <updated>2014-06-27T19:21:55-04:00</updated>
+    <updated>2014-06-23T15:12:22-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -420,7 +420,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
     <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
     <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-20T16:57:39-04:00</updated>
+    <updated>2014-06-18T12:12:07-04:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -464,7 +464,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/"/>
     <id>http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/</id>
     <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-07-02T22:01:28-04:00</updated>
+    <updated>2014-06-23T11:33:07-04:00</updated>
     <author>
       <name>Josh</name>
     </author>

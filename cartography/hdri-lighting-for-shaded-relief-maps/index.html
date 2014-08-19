@@ -92,9 +92,9 @@
 
 <p>Daniel Huffman has a great <a href="http://somethingaboutmaps.wordpress.com/2014/01/01/blender-tutorial/">tutorial series</a> showing how this can be done in Blender, an open source 3D modeling application. The results are superb and I highly recommend the technique.</p>
 
-<p>Ray tracing is typically done with one (or more) kinds of light sources. In Blender, there are <a href="http://wiki.blender.org/index.php/Doc:2.6/Manual/Lighting/Lamps">5 types of light sources</a> - or &ldquo;lamps.&rdquo; A <strong>point</strong> lamp emits light spherically in all directions. A <strong>spot</strong> lamp directionally aims light, similar to a flashlight. An <strong>area</strong> lamp emits light from a planar surface. A <strong>hemi</strong> lamp emits light in a 180° arc, and a <strong>sun</strong> lamp mimics (you guessed it) the sun.</p>
+<p>Ray tracing is typically done with one (or more) kinds of light sources. In Blender, there are <a href="http://wiki.blender.org/index.php/Doc:2.6/Manual/Lighting/Lamps">5 types of light sources</a> - or &ldquo;lamps.&rdquo; A <strong>point</strong> lamp emits light spherically in all directions. A <strong>spot</strong> lamp directionally aims light, similar to a flashlight. An <strong>area</strong> lamp emits light from a planar surface. A <strong>hemi</strong> lamp emits light in a 180° arc, and a <strong>sun</strong> lamp mimics (you guessed it) the sun. The sun lamp attempts greater realism by eliminating the distant falloff of light that occurs with the other lamps.</p>
 
-<p>Each of these light sources have various parameters that can be adjusted, such as size, distance, intensity, direction, and color. They also have vary different behaviors and produce different results. For instance, illuminating a DEM with a small point light will create sharp highlights nearest the source with an obvious dimming at greater distances:</p>
+<p>Each of these light sources have various parameters that can be adjusted, such as size, distance, intensity, direction, and color (note that distance is irrelevant when using the sun lamp). The lamps also emit light with different behaviors which produces very different results during ray tracing. For instance, illuminating a DEM with a small point light will create sharp highlights nearest the source with an obvious dimming at greater distances:</p>
 
 <div class="fullImage">
 <img src="/images/point_5size_1750int.png" />
@@ -130,7 +130,7 @@
 
 <p>Before becoming a cartographer, creating 3D scenes in Lightwave was my hobby. For side projects, I&rsquo;d create 3D meshes for others to buy and use in their own projects. One of the best ways to advertise the quality of a model was to render it in a stunningly well-lit environment. Since it would take a lot of time to model a forest, or a futuristic kitchen full of appliances, I stumbled across a shortcut: <a href="http://www.unparent.com/photos_probes.html">HDRI probes</a>.</p>
 
-<p><a href="http://en.wikipedia.org/wiki/High_dynamic_range_imaging">HDRI</a>, or High Dynamic Range Imaging, is a method for capturing photos with a significantly greater range of luminosity than is typical of conventional photography. When combined with a file format (<a href="http://en.wikipedia.org/wiki/RGBE_image_format">.hdr</a>) that stores more data per pixel than the average image frmat, it becomes possible to retain an enormous amount of the light-emitting properties of a photo.</p>
+<p><a href="http://en.wikipedia.org/wiki/High_dynamic_range_imaging">HDRI</a>, or High Dynamic Range Imaging, is a method for capturing photos with a significantly greater range of luminosity than is typical of conventional photography. When combined with a file format (<a href="http://en.wikipedia.org/wiki/RGBE_image_format">.hdr</a>) that stores more data per pixel than the average image format, it becomes possible to retain an enormous amount of the light-emitting properties of a photo.</p>
 
 <p>Since HDR images are so luminous, 3D modelers often use them to light their scenes. This technique has three primary advantages:</p>
 
