@@ -5,10 +5,47 @@
   <id>http://www.joshuastevens.net/</id>
   <link href="http://www.joshuastevens.net/"/>
   <link href="http://www.joshuastevens.net/feed.xml" rel="self"/>
-  <updated>2014-08-08T01:00:00-04:00</updated>
+  <updated>2015-02-08T00:00:00-05:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>The Ebb and Flow of Polar Sea Ice</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/"/>
+    <id>http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/</id>
+    <published>2015-02-08T00:00:00-05:00</published>
+    <updated>2015-02-08T20:05:16-05:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;div class="fullImage"&gt;
+&lt;img src="/images/sea_ice_slices_th.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In some very real ways, polar sea ice is the backbone of our planet&amp;rsquo;s climate. When more ice is present, its bright surface tends to reflect sunlight, cooling things down. When there is less white, snow-covered ice, the ocean&amp;rsquo;s surface becomes a bit darker. A darker ocean surface absorbs more sunlight, causing it to warm. The relationships between climate and ice are much more complicated than that, as the thickness of the ice also influences a variety of subsurface feedback loops that have long-term effects.&lt;/p&gt;
+
+&lt;p&gt;But one thing is clear: the expansion and retreat of polar sea ice is cyclic. In the winter months, arctic sea ice grows. During the same time, antarctic ice in the south pole shrinks. In the summer, these trends reverse. This ebb and flow, like the &lt;a href="http://uxblog.idvsolutions.com/2013/07/a-breathing-earth.html"&gt;breathing of a living planet&lt;/a&gt;, happens every single year. &lt;/p&gt;
+
+&lt;p&gt;Scientists have been monitoring that &amp;lsquo;breathing&amp;rsquo; pattern for decades, looking for changes in cycles that occur over many, many years. By measuring the rate of the &amp;lsquo;inhales&amp;rsquo; (ice growth in the north pole/loss of ice in the south pole) and &amp;lsquo;exhales&amp;rsquo; (ice loss in the north pole/growth in the south pole), we can track the long-term health of the climate.&lt;/p&gt;
+
+&lt;p&gt;For the past few days, I&amp;rsquo;ve been creating maps and charts of polar sea ice using data from instruments aboard &lt;a href="http://nssdc.gsfc.nasa.gov/nmc/spacecraftDisplay.do?id=1978-098A"&gt;NASA&amp;rsquo;s Nimbus 7&lt;/a&gt; satellite. In total, these data feature 19,710 daily records of geographic ice extents - 9,855 for each of the two poles. That&amp;rsquo;s far too many maps to fit in your browser. Even if the maps were an animated sequence - at the standard 24 frames-per-second, the animation would be almost 7 minutes long.&lt;/p&gt;
+
+&lt;p&gt;Instead, I wanted to show &lt;em&gt;all&lt;/em&gt; of the data at once.&lt;/p&gt;
+
+&lt;p&gt;To make that happen, I first generated all 19,710 daily maps. I then smooshed each map horizontally, simplifying the maps to a 1-pixel-wide snapshot of the poles&amp;#39; maximum north-south sea ice extent for that day. Each pixel strip was then stitched together, side-by-side.&lt;/p&gt;
+
+&lt;p&gt;This was the result:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/sea_ice_slices_800w.png" /&gt;
+&lt;p&gt;The image above has been scaled down significantly. The super mega wide original depicts each day as a 1-pixel wide slice, making it 9,855 pixels long. For a hi-res version that is still reasonably sized for your browser, click &lt;a href="../../images/sea_ice_slices_hi.png"&gt; here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The cyclic pattern of each pole is evident - as is the alignment of each pole&amp;rsquo;s individual cycle. The waxing of one pole almost perfectly pairs with the waning of the other. A climatic system that looks like breathing when viewed annually appears as interlocked structured in the long view. &lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s as if Earth had bones and these are its vertebrae.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>HDRI Lighting for Shaded Relief Maps</title>
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/"/>
@@ -457,53 +494,6 @@
 &lt;p&gt;This isn’t just a story of dispute. The real story exists in highlighting those honored by this day, and those who made it their goal to remember them. &lt;a href="http://en.wikipedia.org/wiki/United_States_military_casualties_of_war"&gt;More than 1.3 million Americans have died in wars&lt;/a&gt;, and the number of deceased veterans is higher still. But death is not the only theme of Memorial Day. While reading through the various sources and claims, a clear trend emerges: regardless of location, this national day of remembrance and recognition was largely started by women and minorities. In the case of Charleston, SC, former slaves were responsible for commemorating (and honorably reburying) fallen Union soldiers.&lt;/p&gt;
 
 &lt;p&gt;Whether as a means to remember lost loved ones or to pay respects to those who gave their lives to defend ours, Memorial Day has a special place in American history. More importantly, it was a day born out of honor and commemoration – and no town can claim ownership of that.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>The Map of GDELT Predictions in Afghanistan as You Should Have Seen It</title>
-    <link rel="alternate" href="http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/"/>
-    <id>http://www.joshuastevens.net/visualization/gdelt-prediction-map-seen/</id>
-    <published>2013-10-21T01:00:00-04:00</published>
-    <updated>2014-06-21T13:25:50-04:00</updated>
-    <author>
-      <name>Josh</name>
-    </author>
-    <content type="html">&lt;p&gt;For the last several weeks, I’ve been creating a visualization of past and predicted conflicts in Afghanistan. The data, which come from a statistical model developed by &lt;a href="http://jayyonamine.com/"&gt;Jay Yonamine&lt;/a&gt; with help from &lt;a href="http://johnbeieler.org/"&gt;John Beieler&lt;/a&gt;, show us what might happen based on a long history of what has happened.  The database behind this model is known as &lt;a href="http://gdelt.utdallas.edu/"&gt;GDELT&lt;/a&gt;, or the Global Database of Events, Language, and Tone. GDELT has received &lt;a href="http://ideas.foreignpolicy.com/posts/2013/04/10/what_can_we_learn_from_the_last_200_million_things_that_happened_in_the_world"&gt;a lot of attention&lt;/a&gt; lately and I’ve participated in two hackathons that have emerged around it. After Wired showed interest in publishing this story along with the visualization, I was thrilled.&lt;/p&gt;
-
-&lt;h1&gt;What You Saw&lt;/h1&gt;
-
-&lt;p&gt;When I heard that &lt;a href="http://www.wired.com/dangerroom/2013/10/afghanwarmaps/"&gt;Wired had published the work&lt;/a&gt; this morning, I was excited to check it out and see how the visualization tied the story together.&lt;/p&gt;
-
-&lt;p&gt;And then I saw my map. Well, it was sort of my map. It had my name on it… but it was not at all how I had originally designed it. Here is the map as it is currently published:&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/wired_afg_map-300x300.jpg" alt="Wired's bastardization of my original map." /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Here’s my quibble:&lt;/strong&gt; Not only was my work altered without acknowledging the changes from the original, the change resulted in a red-green color scheme – a classic map mishap that no professional cartographer would ever make.&lt;/p&gt;
-
-&lt;p&gt;I’ve &lt;a href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/"&gt;written about red/green colorblindness&lt;/a&gt; in the past. &lt;a href="http://blog.visual.ly/subtleties-of-color-addendum/"&gt;Others have too&lt;/a&gt;. In fact, advice on not using red/green color schemes on maps and other visualizations are practically &lt;a href="http://vis4.net/blog/posts/goodbye-redgreen-scales/"&gt;all&lt;/a&gt;[1] &lt;a href="http://www.sciencedaily.com/releases/2000/04/000428082212.htm"&gt;over&lt;/a&gt;[2] &lt;a href="http://www.gislounge.com/making-color-blind-friendly-maps/"&gt;the&lt;/a&gt;[3] &lt;a href="http://misguidedmaps.com/2010/05/03/maps-for-the-colorblind/"&gt;web&lt;/a&gt;[4]. It’s not a new problem either: red/green color blindness has been written about by scientists for at least &lt;a href="http://archive.org/details/colourblindness00edrigoog"&gt;120 years&lt;/a&gt;. We even have tools, such as &lt;a href="http://colorbrewer2.org/"&gt;ColorBrewer&lt;/a&gt;, to help designers avoid common pitfalls with their color choices.&lt;/p&gt;
-
-&lt;p&gt;By being in red and green, this map is impossible to interpret by anyone affected by red/green colorblindness (almost 10% of  males, about 5% of the total population). Instead, readers with red/green colorblindness will see something like the image below (&lt;a href="http://www.color-blindness.com/2006/11/16/protanopia-red-green-color-blindness/"&gt;simulated protanopia&lt;/a&gt;):&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/wired_afg_map_cb-300x300.png" alt="Wired's map, to someone with red-green colorblindness." /&gt;
-&lt;p&gt;Wired&amp;rsquo;s map as seen by someone with red/green colorblindness.&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h1&gt;What You Should Have Seen&lt;/h1&gt;
-
-&lt;p&gt;The second problem is that I intended to show readers &lt;strong&gt;a lot more about the data&lt;/strong&gt; – temporal trends, the propensity of conflicts near district and country borders, and the role of &lt;a href="http://en.wikipedia.org/wiki/Operation_Enduring_Freedom"&gt;Operation Enduring Freedom&lt;/a&gt; in the high number of material conflicts over the past decade.&lt;/p&gt;
-
-&lt;p&gt;This is what I wanted you to see:&lt;/p&gt;
-
-&lt;div class="fullImage"&gt;
-&lt;img src="/images/afgEventsSmall.png" "My original GDELT visualization sent to Wired." /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This view shows much more about the material conflicts that have occurred in Afghanistan over the past 34 years. From more than a million geocoded conflicts (check out the activity at the border between Afghanistan and Pakistan) to temporal trends, readers instantly get a better sense of the situation and how the data have changed over time. As a professional cartographer, I also made sure &lt;strong&gt;it is red/green colorblind-safe&lt;/strong&gt; (&lt;a href="/images/afgEvents_cbSafe.png"&gt;preview&lt;/a&gt;). Naturally, I would have liked to see this version published for the article’s readers.&lt;/p&gt;
-
-&lt;p&gt;In the end, I really can’t change the article. But I can share the original, and I hope it provides the utility and clarity that was intended – for all readers, colorblind or not.&lt;/p&gt;
 </content>
   </entry>
 </feed>
