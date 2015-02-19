@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-18T23:13:00-05:00</updated>
+    <updated>2015-02-18T23:15:31-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -207,7 +207,7 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 &lt;p&gt;The final map, in all its bivariate glory.&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;h1&gt;Closing Tips, Caveats, and other Hand Waving&lt;/h1&gt;
+&lt;h1&gt;Closing Tips, Caveats, and Other Hand Waving&lt;/h1&gt;
 
 &lt;h4&gt;Tips&lt;/h4&gt;
 
