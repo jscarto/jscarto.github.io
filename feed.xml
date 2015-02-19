@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-19T07:32:29-05:00</updated>
+    <updated>2015-02-19T08:09:18-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -230,9 +230,9 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 
 &lt;p&gt;When developing bivariate color schemes, which generally have three hues, you&amp;rsquo;ll likely have to forgo at least two of the properties ColorBrewer was designed to support. A bivariate color scheme is inherently more difficult to balance in this regard than a univariate palette that steps through only one or two hues.&lt;/p&gt;
 
-&lt;p&gt;A couple colorblind-safe examples of bivariate color schemes can be found in Cindy Brewer&amp;rsquo;s older reference on color &lt;a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A colorblind-safe example of a bivariate color scheme can be found in the first map of Cindy Brewer&amp;rsquo;s older reference on color &lt;a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;If you absolutely need to ensure your map is colorblind-safe, use one of the color schemes in the above link. My color scheme used throughout this post will work, too. You may also want to consider other bivariate approaches - or whether a bivariate approach is sensible at all. With interactivity and small multiples as easy options, it is not always necessary (or even desirable) to show two or more variables at once.&lt;/p&gt;
+&lt;p&gt;If you absolutely need to ensure your map is colorblind-safe, use the top color scheme in the above link. My color scheme used throughout this post will work, too. You may also want to consider other bivariate approaches - or whether a bivariate approach is sensible at all. With interactivity and small multiples as easy options, it is not always necessary (or even desirable) to show two or more variables at once.&lt;/p&gt;
 
 &lt;h4&gt;Hand Waving&lt;/h4&gt;
 
