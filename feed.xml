@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-18T23:03:58-05:00</updated>
+    <updated>2015-02-18T23:13:00-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -152,7 +152,7 @@
 2
 3
 4&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;&lt;span class="n"&gt;CASE&lt;/span&gt; &lt;span class="n"&gt;WHEN&lt;/span&gt;  &lt;span class="s"&gt;"donations"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;6098.66&lt;/span&gt; &lt;span class="n"&gt;THEN&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
-    &lt;span class="n"&gt;WHEN&lt;/span&gt; &lt;span class="s"&gt;"donations"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mf"&gt;6098.66&lt;/span&gt; &lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="s"&gt;"donations"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;500&lt;/span&gt; &lt;span class="n"&gt;THEN&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="n"&gt;WHEN&lt;/span&gt; &lt;span class="s"&gt;"donations"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mf"&gt;6098.66&lt;/span&gt; &lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="s"&gt;"donations"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;500.00&lt;/span&gt; &lt;span class="n"&gt;THEN&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
     &lt;span class="n"&gt;ELSE&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
 &lt;span class="n"&gt;END&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
