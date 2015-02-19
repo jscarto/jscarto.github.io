@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-18T23:17:58-05:00</updated>
+    <updated>2015-02-19T06:53:26-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -204,7 +204,7 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 
 &lt;div class="fullImage"&gt;
 &lt;img src="/images/finalBivariateMap.png" /&gt;
-&lt;p&gt;The final map, in all its bivariate glory.&lt;/p&gt;
+&lt;p&gt;The final map, with 9-classes. Each is recorded in the GIS.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;h1&gt;Closing Tips, Caveats, and Other Hand Waving&lt;/h1&gt;
@@ -251,6 +251,8 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 &lt;div class="fullImage"&gt;
 &lt;img src="/images/bivariatePalettes.png" /&gt;
 &lt;/div&gt;
+
+&lt;p&gt;A couple colorblind-safe examples can be found in Cindy Brewer&amp;rsquo;s older reference on color &lt;a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html"&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h4&gt;Further Reading&lt;/h4&gt;
 
