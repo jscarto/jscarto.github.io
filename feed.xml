@@ -5,10 +5,266 @@
   <id>http://www.joshuastevens.net/</id>
   <link href="http://www.joshuastevens.net/"/>
   <link href="http://www.joshuastevens.net/feed.xml" rel="self"/>
-  <updated>2015-02-08T00:00:00-05:00</updated>
+  <updated>2015-02-18T00:00:00-05:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Bivariate Choropleth Maps: A How-to Guide</title>
+    <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
+    <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
+    <published>2015-02-18T00:00:00-05:00</published>
+    <updated>2015-02-18T23:03:58-05:00</updated>
+    <author>
+      <name>Josh</name>
+    </author>
+    <content type="html">&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariate_th.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;I&amp;rsquo;m not bivariate, but I am curious.&amp;rdquo;&lt;/em&gt;  That quip has been stuck in my mind ever since I overheard it at the 2013 &lt;a href="http://nacis.org/"&gt;NACIS&lt;/a&gt; conference in Greenville, S.C. Not only was it perfectly timed after a talk about bivariate mapping, but it rang with a great deal of truth: a lot of folks aren&amp;rsquo;t creating bivariate maps, but they want to try. While it was just a joke and the person who made it can easily create bivariate maps, most people find them too difficult or mysterious.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s a real shame because bivariate choropleth maps are incredibly useful and very easy to make. So let&amp;rsquo;s go ahead and make one!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Synopsis:&lt;/strong&gt; This post introduces the idea of bivariate choropleth mapping and demonstrates a technique for creating your own. Although I show some screenshots from QGIS, emphasis is placed on the concepts of the method rather than any particular tool or language. This technique will work with any software you prefer! A graphics program like Photoshop, Illustrator, &lt;a hef="https://inkscape.org/en/"&gt;Inkscape&lt;/a&gt;, or similar will be helpful if you choose to also create your own color scheme.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h1&gt;What is a Bivariate Choropleth Map, Anyway?&lt;/h1&gt;
+
+&lt;h4&gt;First things first: Univariate Choropleth Maps&lt;/h4&gt;
+
+&lt;p&gt;Before we make a bivariate choropleth map, let&amp;rsquo;s quickly cover the concept of univariate choropleth maps. Done correctly, basic choropleth maps use color to show quantities within geographic areas - such as states, US counties, or even countries. The term &lt;em&gt;choropleth&lt;/em&gt; derives from Greek: &lt;em&gt;choro&lt;/em&gt; (area) + &lt;em&gt;plethos&lt;/em&gt; (multitude). The example below shows a typical choropleth map:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/NYT_unemploymentMap.png" /&gt;
+&lt;p&gt;A univariate choropleth map of unemployment rates in the United States. Source: &lt;a href="http://www.nytimes.com/interactive/2009/03/03/us/20090303_LEONHARDT.html"&gt;The New York Times&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h4&gt;Normalize, normalize, normalize!&lt;/h4&gt;
+
+&lt;p&gt;Notice that the map above uses unemployment &lt;em&gt;rates&lt;/em&gt;, and not the total number of unemployed people. The use of proportions, or rates, instead of raw counts is fundamental to creating a proper choropleth map. If the map above used a raw count of the total number of unemployed people for each county, it would be subject to bias introduced by the size of each county. Larger geographic areas tend to have more people by virtue of having more space for people to live in. Using raw counts would show that: employment would seem higher in larger counties, not because unemployment is more common there but simply because there are more people there. That wouldn&amp;rsquo;t make a very interesting map.&lt;/p&gt;
+
+&lt;p&gt;Instead, choropleth maps should be &lt;a href="http://www.gsd.harvard.edu/gis/manual/normalize/"&gt;&lt;strong&gt;normalized&lt;/strong&gt;&lt;/a&gt;. The process of normalization accounts for differences in geographic areas by converting raw counts to rates or proportions. Population density is a great example of normalized data. It represents the number of persons &lt;em&gt;per unit of geographic area&lt;/em&gt; (often square miles or kilometers).&lt;/p&gt;
+
+&lt;p&gt;When social data are not normalized, they tend to reflect trends in where people live rather than interesting variations in the phenomena of interest. &lt;a href="http://xkcd.com/1138/"&gt;Obligatory XKCD&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h4&gt;Bivariate Choropleths: Mostly The Same, Now More Variate&lt;/h4&gt;
+
+&lt;p&gt;Bivariate choropleths follow the same concept, except they show &lt;em&gt;two variables&lt;/em&gt; at once. For example, the inset map in my &lt;a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"&gt;visualization of bigfoot sightings&lt;/a&gt; is a bivariate choropleth of sightings and population density:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bf_bivariate.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Ideally, you should at least have a hunch two variables are related when creating bivariate choropleth maps. This is because bivariate maps go further than simply showing two variables all willy nilly: they show where those two variables tend to be in agreement or disagreement. If there is no expectation that the two variables might be related, a bivariate choropleth is not the right choice.&lt;/p&gt;
+
+&lt;p&gt;Showing the agreement between two variables is also why the number of classes in a bivariate choropleth is larger than the combined sum of classes in each variable alone.  In general, if the individual variables have &lt;em&gt;n&lt;/em&gt; classes, the bivariate choropleth map will have n&lt;sup&gt;2&lt;/sup&gt; classes.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/choroMath.png" /&gt;
+&lt;p&gt;And then there were nine: Combining two 3-class univariate variables produces a 9-class bivariate map.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Most cartographers advise against maps with 9 or more classes. Thus it is recommended to keep things super simple when creating bivariate choropleth maps by not exceeding 3 classes in each variable.&lt;/p&gt;
+
+&lt;h1&gt;Neat. So How Are These Things Made?&lt;/h1&gt;
+
+&lt;p&gt;When making a bivariate choropleth map, the goal is to show a sequence of two variables and their combinations. I find it easiest to think through these relationships with something visual to refer to. So the first thing I do is create (or choose) a color scheme.&lt;/p&gt;
+
+&lt;h4&gt;Start With a Legend&lt;/h4&gt;
+
+&lt;p&gt;Remember that bivariate maps have a lot going on, so it is best to keep things simple to start with. We don&amp;rsquo;t want to exceed 9 classes total, so we&amp;rsquo;re going to have each variable step through only 3 classes.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1)&lt;/strong&gt; Begin by creating a 3-class sequential color scheme for one of your variables. The color scheme should begin with a very light, neutral color that will represent the lows for the first variable. The color scheme gradually becomes darker and more saturated towards a hue of your choice that will represent the highs. The middle color should be the same hue as the end color, but its saturation should be lower while the brightness is higher:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateGrid.png" /&gt;
+&lt;p&gt;Keep it simple: Use a single hue, with increasing saturation and value (darkness).&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;2)&lt;/strong&gt; Now do the same for the other variable. This time, choose a hue that is quite different from the first. Choosing a &lt;a href="http://www.tigercolor.com/color-lab/color-theory/color-harmonies.htm"&gt;complementary color&lt;/a&gt; can be a good start. But make sure to go slightly off center of complementary by picking a neighbor to the complement. This will give your final scheme a better shot at being colorblind-safe (you can fine-tune the final color scheme later to help with this).&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateGrid2.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;3)&lt;/strong&gt; So far, we have colors to represent 6 classes, but we need 9. To do that, turn each of the rectangular color schemes into squares by stretching (or duplicating) them vertically, like so:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateGrid3.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;4)&lt;/strong&gt; Now take the color scheme for the first variable and rotate it 90° counter-clockwise so that the neutral (low) color is on the bottom and the high is on top:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateGrid4.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;5)&lt;/strong&gt; This is where the magic happens. In Photoshop, Illustrator, or another capable graphics program, change the blending mode of the first color scheme to &lt;em&gt;darken&lt;/em&gt;. Then position the first color scheme so that it perfectly overlays the second one. Suddenly, a new palette emerges revealing both variables:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateMix.gif" /&gt;
+&lt;p&gt;The first color scheme now mixes with and darkens the colors beneath it, creating a 9-class bivariate color scheme. Experiment with other blending modes. &amp;lsquo;Multiply&amp;rsquo; also works well.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;6)&lt;/strong&gt; Almost there. We now have a 9-class bivariate sequential color scheme, but it needs a little more work. The top right cell of this grid - the dark blue color - represents cases when &lt;em&gt;both&lt;/em&gt; variables are high. As such, it should be the most salient color in the palette. To make that happen, let&amp;rsquo;s increase its saturation a bit. We&amp;rsquo;ll also adjust the color of the central cell, bringing its hue closer to the corner blue to further distinguish it as a mix of the two variables:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateGrid7.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;That step takes some practice. If you&amp;rsquo;ve been following along with different color choices, you&amp;rsquo;ll have to tweak things a bit differently from what is shown here. But the goal is the same: the color scheme should clarify relationships in the data along three paths, each sequentially arranged to increase in both saturation and darkness:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariatePaths.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;With a color scheme in hand, it&amp;rsquo;s time to classify the data and bring this thing to life.&lt;/p&gt;
+
+&lt;h4&gt;Classify Your Data&lt;/h4&gt;
+
+&lt;p&gt;Most GIS and visualization tools only let you select one attribute for classification. So how in the world could we get it to use two variables? Easy peasy: create a third attribute that represents the combination of the two variables by its location in the bivariate color scheme.&lt;/p&gt;
+
+&lt;p&gt;The most straightforward way to do this is to simply label the cells of the color palette. Mark cells in horizontal order with &lt;strong&gt;A&lt;/strong&gt;, &lt;strong&gt;B&lt;/strong&gt;, or &lt;strong&gt;C&lt;/strong&gt;. Then mark the cells in vertical order with &lt;strong&gt;1&lt;/strong&gt;, &lt;strong&gt;2&lt;/strong&gt;, or &lt;strong&gt;3&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateLabels.png" /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Labeled like this, the lowest value for both variables becomes A1, while the cell that represents the max for both becomes C3. Any combination of the two variables can be identified by its position in the color scheme. We now have a labeling system that the GIS can use as categories to symbolize the data.&lt;/p&gt;
+
+&lt;p&gt;This is where my examples become specific to QGIS, but the same approach can be applied to ArcGIS or any other software.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1)&lt;/strong&gt; The first thing to do is go into the symbology properties as if you were making a standard choropleth map using your first variable. Don&amp;rsquo;t worry about the colors - just the classification. Choose whichever classification method works best for your purposes. (Need help choosing a classification method? John Nelson has a great &lt;a href="http://uxblog.idvsolutions.com/2011/10/telling-truth.html"&gt;overview of common methods&lt;/a&gt;.) &lt;/p&gt;
+
+&lt;p&gt;Change the number of classes to 3 and record the breakpoints:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/classificationVar2.png" /&gt;
+&lt;p&gt;My &amp;lsquo;variable one&amp;rsquo; classified into 3 groups in &lt;a href="http://www.qgis.org"&gt;QGIS&lt;/a&gt;. For the curious: these data represent donations to Obama&amp;rsquo;s campaign in 2012.
+&lt;/div&gt;
+
+&lt;p&gt;Using the information in the screenshot above, the breakpoints are 500.00 and 6098.66.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2)&lt;/strong&gt; Now create a new field in your attribute table. This is going to record the class for the first variable, which goes vertically in our color palette from 1 to 3. In other words, the new field will convert the actual data values into a 1, 2, or 3. This is done using the breakpoints found in Step 1 above. &lt;/p&gt;
+
+&lt;p&gt;Add a new &lt;em&gt;integer&lt;/em&gt; column to the attribute table named &lt;code&gt;Var1_Class&lt;/code&gt;. To populate it with the proper information, use the field calculator with the following expression (replace &lt;em&gt;&amp;ldquo;donations&amp;rdquo;&lt;/em&gt; with the field name of your first variable, and using your own breakpoints):&lt;/p&gt;
+&lt;div class="highlight python"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;&lt;span class="n"&gt;CASE&lt;/span&gt; &lt;span class="n"&gt;WHEN&lt;/span&gt;  &lt;span class="s"&gt;"donations"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mf"&gt;6098.66&lt;/span&gt; &lt;span class="n"&gt;THEN&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="n"&gt;WHEN&lt;/span&gt; &lt;span class="s"&gt;"donations"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mf"&gt;6098.66&lt;/span&gt; &lt;span class="n"&gt;AND&lt;/span&gt; &lt;span class="s"&gt;"donations"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;500&lt;/span&gt; &lt;span class="n"&gt;THEN&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="n"&gt;ELSE&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p class="fullImage"&gt;
+This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach based on your software of choice.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;3)&lt;/strong&gt; Repeat steps 1 &amp;amp; 2 above for the second variable, using its own breakpoints found in the same wway. This time, add a new &lt;em&gt;string&lt;/em&gt; column called &lt;code&gt;Var2_Class&lt;/code&gt; and populate it with the characters A, B, or C (change &lt;em&gt;&amp;ldquo;perInsured&amp;rdquo;&lt;/em&gt; to the name of your variable two, and replace the breakpoints with your own):&lt;/p&gt;
+&lt;div class="highlight python"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;&lt;span class="n"&gt;CASE&lt;/span&gt; &lt;span class="n"&gt;WHEN&lt;/span&gt;  &lt;span class="s"&gt;"perInsured"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;86&lt;/span&gt;  &lt;span class="n"&gt;THEN&lt;/span&gt; &lt;span class="s"&gt;'C'&lt;/span&gt;
+    &lt;span class="n"&gt;WHEN&lt;/span&gt; &lt;span class="s"&gt;"perInsured"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;=&lt;/span&gt; &lt;span class="mi"&gt;86&lt;/span&gt; &lt;span class="ow"&gt;and&lt;/span&gt; &lt;span class="s"&gt;"perInsured"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="mi"&gt;50&lt;/span&gt; &lt;span class="n"&gt;THEN&lt;/span&gt; &lt;span class="s"&gt;'B'&lt;/span&gt;
+    &lt;span class="n"&gt;ELSE&lt;/span&gt; &lt;span class="s"&gt;'A'&lt;/span&gt;
+&lt;span class="n"&gt;END&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;After performing these steps, you should now have two new fields in your attribute table representing numbers 1-3 and characters A-C:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateAttributes.png" /&gt;
+&lt;p&gt;The first 10 records of my attribute table, with new fields (highlighted) showing the ranking for our labeling system.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;4)&lt;/strong&gt; All the necessary information is now in the attribute table. The last trick is to simply combine the new fields into one. This last column will represent the data&amp;rsquo;s position in the bivariate color scheme.&lt;/p&gt;
+
+&lt;p&gt;To combine the columns, create a new string field called &lt;code&gt;Bi_Class&lt;/code&gt;. Then using the field calculator, enter the expression below:&lt;/p&gt;
+&lt;div class="highlight python"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt; &lt;span class="n"&gt;concat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Var2_Class"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;tostring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Var1_Class"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This fills the new column with information that identifies which cell in the bivariate color scheme to use when symbolizing the data:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateAttributes2.png" /&gt;
+&lt;p&gt;The database now has entries pairing the variables with their position in the bivariate color scheme.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;5)&lt;/strong&gt; The final step is the easiest! Simply symbolize the map as a &lt;em&gt;categorized&lt;/em&gt; choropleth using &lt;code&gt;Bi_Class&lt;/code&gt; as the data column. Refer to the labeled color palette to know which class gets which color:&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateSymbolization.png" /&gt;
+&lt;p&gt;Tip: If you&amp;rsquo;re using QGIS, use the &amp;lsquo;eye dropper&amp;rsquo; tool to copy each color from the palette over to the appropriate value in the style window.
+&lt;/div&gt;
+
+&lt;h4&gt;Et Voila!&lt;/h4&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/finalBivariateMap.png" /&gt;
+&lt;p&gt;The final map, in all its bivariate glory.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h1&gt;Closing Tips, Caveats, and other Hand Waving&lt;/h1&gt;
+
+&lt;h4&gt;Tips&lt;/h4&gt;
+
+&lt;p&gt;Bivariate data is often complicated and can confuse your readers. Keep this in mind and strive for simplicity. Don&amp;rsquo;t weight your legend down with too many decimal points and raw numbers - try to emphasize relative rankings.&lt;/p&gt;
+
+&lt;p&gt;You can simplify things further by color coding the variables in the description. Then only label the corners of the bivariate legend. These are the most interesting scenarios on the map, and the intermediaries become obvious.&lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariateCornerLabels.png" /&gt;
+&lt;p&gt;The corner cases are what make bivariate maps interesting. Help your readers understand what they mean.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Also consider the overall design of your map. If you&amp;rsquo;re designing for a dark background, the neutral color in your palette should also be dark. The color schemes for each variable should then increase in lightness instead of darkness.&lt;/p&gt;
+
+&lt;p&gt;A similar type of mapping you should also be aware of is called &lt;a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173776/"&gt;value-by-alpha mapping&lt;/a&gt;. It was developed as a spatially accurate alternative to cartograms, though it shares some similarities with traditional bivariate choropleths.&lt;/p&gt;
+
+&lt;h4&gt;Caveats&lt;/h4&gt;
+
+&lt;p&gt;There&amp;rsquo;s a reason &lt;a href="http://www.colorbrewer2.org"&gt;ColorBrewer&lt;/a&gt; doesn&amp;rsquo;t provide handfuls of bivariate color schemes. If you try to make bivariate color schemes that are simultaneously colorblind-safe, photocopy-safe, and print friendly&amp;hellip;you&amp;rsquo;re going to have a bad time. &lt;/p&gt;
+
+&lt;p&gt;When developing bivariate color schemes, which generally have three hues, you&amp;rsquo;ll have to forgo two (if not all) of the properties ColorBrewer was designed to support.&lt;/p&gt;
+
+&lt;p&gt;If you absolutely need to ensure your map is colorblind-safe, you might consider other bivariate approaches - or whether a bivariate approach is sensible at all. With interactivity and small multiples being easy options, it is not always necessary (or even desirable) to show two or more variables at once.&lt;/p&gt;
+
+&lt;h4&gt;Hand Waving&lt;/h4&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;Wait!!&amp;rdquo;&lt;/em&gt; I hear you say. &lt;em&gt;&amp;ldquo;If I can overlay two color palettes to create a bivariate color scheme, can&amp;rsquo;t I just do that with the full maps?!&amp;rdquo;&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Yes. Yes you can. If you&amp;rsquo;re creating a quick one-off map, overlaying two univariate choropleths as you would the color palettes will instantly create a bivariate choropleth map. You can skip all the data manipulation and rely on color chemistry alone.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Here&amp;rsquo;s why I don&amp;rsquo;t recommend that as the go-to method:&lt;/strong&gt; Let&amp;rsquo;s say you create a bivariate choropleth by overlaying two univariate choropleths. Everything looks good, but you&amp;rsquo;re not happy with the color of the center cell in the palette. Since that color was the haphazard result of mixing entire maps, you&amp;rsquo;ll have to tweak one (or both) of the maps and overlay them again. This time, you might get the color right while adversely affecting the others. You&amp;rsquo;re now in a cat-and-mouse game with color choices, relying on trial-and-error for a fix.&lt;/p&gt;
+
+&lt;p&gt;By storing the information in the database, you can easily apply a new color scheme or make changes to any single class without affecting the others. You have full control over each individual color, allowing you to fine-tune things to your liking.&lt;/p&gt;
+
+&lt;p&gt;The most glaring problem with overlaying two entire maps however is that it is limited to static maps. A data-driven approach is the way to go for web mapping and interactives. Rendering two separate maps in a browser to produce a color scheme is crazy talk. Render a single map, with the colors you precisely define, and save yourself a lot of time (and sanity)!&lt;/p&gt;
+
+&lt;h1&gt;It&amp;rsquo;s Dangerous To Go Alone! Take This.&lt;/h1&gt;
+
+&lt;p&gt;I&amp;rsquo;ve made a few sequential biviarate color schemes you&amp;rsquo;re free to use if you&amp;rsquo;d rather not make one yourself. They were designed for use on light backgrounds. &lt;/p&gt;
+
+&lt;div class="fullImage"&gt;
+&lt;img src="/images/bivariatePalettes.png" /&gt;
+&lt;/div&gt;
+
+&lt;h4&gt;Further Reading&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html"&gt;Sequential-sequential bivariate color scheme examples and overview&lt;/a&gt; by Cindy Brewer.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.personal.psu.edu/cab38/ColorSch/Schemes.html"&gt;Color Use Guidelines for Mapping and Visualization&lt;/a&gt; by Cindy Brewer.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://andywoodruff.com/blog/value-by-alpha-maps/"&gt;Value-by-Alpha Maps&lt;/a&gt; by Andy Woodruff (technique developed with help from Rob Roth and Zach Johnson.  You can find their full paper &lt;a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173776/"&gt;here&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.slideshare.net/aileenbuckley/arc-gis-bivariate-mapping-tools-28903069"&gt;ArcGIS Bivariate Mapping Tools&lt;/a&gt; by Aileen Buckley. Also includes Esri&amp;rsquo;s collection of bivariate color schemes.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://resources.maphugger.com/melmer_webedition.pdf"&gt;Symbol Considerations for Bivariate Thematic Mapping (PDF)&lt;/a&gt; a thesis on bivariate mapping by Martin Elmer.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you make a sweet map using this tutorial, or have questions about it, drop me a line and let me know!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>The Ebb and Flow of Polar Sea Ice</title>
     <link rel="alternate" href="http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/"/>
@@ -450,50 +706,6 @@
 &lt;/div&gt;
 
 &lt;p&gt;I would say a 1500% improvement speaks for itself.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>The Many Birthplaces of Memorial Day</title>
-    <link rel="alternate" href="http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/"/>
-    <id>http://www.joshuastevens.net/thoughts/contentious-claims-memorial-days-origins/</id>
-    <published>2014-05-27T01:00:00-04:00</published>
-    <updated>2014-06-17T19:09:33-04:00</updated>
-    <author>
-      <name>Josh</name>
-    </author>
-    <content type="html">&lt;p&gt;Yesterday was Memorial Day. Like many other Americans, my family and I spent this day of national remembrance at a local park. We made the short trip to historic Boalsburg. Those in the know will recognize that Memorial Day in Boalsburg, PA is no ordinary affair. It is a massive celebration. This was especially true this year, which marks the 150th Memorial Day celebrated in Boalsburg. Thousands of people from all over gathered to honor our veterans who gave the ultimate sacrifice. What started as a time to decorate graves with flowers has now grown into a large festival, with celebratory events found at every corner of the township.&lt;/p&gt;
-
-&lt;p&gt;It was also a learning opportunity. Almost everyone knows about Pennsylvania’s vital role in the Civil War and the importance of Memorial Day in the region. As a Michigan native, what I didn’t know was that Boalsburg itself was the very birthplace of Memorial Day.&lt;/p&gt;
-
-&lt;p&gt;Or at least it claims to be.  After doing some reading, it turns out nearly two dozen towns – both North and South – claim to be the source of Memorial Day. Some of these claims are more legitimate than others. Some areas, like Savannah, GA, cite actual newspaper articles with specific dates. Others, like Knoxville, TN, rely on reports written long after the original event. Some locations do not provide any source at all – just secondhand mentions that such a claim was made.&lt;/p&gt;
-
-&lt;p&gt;I’ve gathered up a list of the locations that do have verifiable sources for their claims. Due to the nature of historic evidence (which might include everything from journal entires to Presidential Proclamations), this list is surely incomplete. But even still, the large number of towns that believe this special day started on their doorstep is, to me, quite interesting.&lt;/p&gt;
-
-&lt;h1&gt;Sourced claims of Memorial Day’s birthplace&lt;/h1&gt;
-
-&lt;iframe width="780" height="420" frameborder="0" seamless="true," src="http://www.joshuastevens.net/memorialDay/index.html"&gt;&lt;/iframe&gt;
-
-&lt;p&gt;Most of the data comes from the &lt;a href="http://www.civilwarcenter.olemiss.edu/"&gt;Center for Civil War Research&lt;/a&gt;. Other sources include the &lt;a href="http://www.va.gov/opa/speceven/memday/"&gt;US Department of Veterans’ Affairs&lt;/a&gt;. Where possible, I linked to the actual township’s claim (via local website or newspaper).&lt;/p&gt;
-
-&lt;h1&gt;Memorial Day vs Decoration Day&lt;/h1&gt;
-
-&lt;p&gt;Memorial Day wasn’t always known by that name. Its original name, Decoration Day, was given by &lt;a href="http://en.wikipedia.org/wiki/John_A._Logan"&gt;General John Logan&lt;/a&gt; of Illinois.  Nearly all stories about the birth of either holiday are based on one or more individuals placing flowers upon soldiers’ graves. Despite its northern namesake, a North-South distinction appears in the maintenance of Decoration Day. In the North (and now nationally) the day is most often recognized as Memorial Day. But in the South, many locations still celebrate Decoration Day in some capacity (this is also true of some Northern states). Regardless of the name, both the North and the South claim to have started this tradition around the end of the Civil War.&lt;/p&gt;
-
-&lt;p&gt;However, many historians believe graves were being decorated &lt;em&gt;during&lt;/em&gt; the war. Nella Sweet’s hymn &lt;a href="http://library.duke.edu/rubenstein/scriptorium/sheetmusic/b/b08/b0802/"&gt;&lt;em&gt;Kneel Where our Loves Are Sleeping&lt;/em&gt;&lt;/a&gt; from 1867 is addressed to “The Ladies of the South who are decorating the graves of the Confederate dead.” Given that the hymn was written barely two years after the end of the Civil War, it is likely that Sweet was referring to an already established tradition. If you go back even further, you find that others had been doing this for centuries – and not just in America: there is evidence &lt;a href="http://en.wikipedia.org/wiki/Roman_funerals_and_burial"&gt;the practice first began in the Roman Empire&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h1&gt;Does it matter who started it?&lt;/h1&gt;
-
-&lt;p&gt;In my view, absolutely not. This is being presented as a fun look at disputed history and bold claims. The true origins of Memorial Day may be forever disputed. I’m interested only in the geography of that dispute. The reason for the day is more important than the place of its origins. Because of this, I particularly like the disclaimer provided by the Center for Civil War Research, which states:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;While the issue for many has been to determine, as definitively as may be, the true origin of the tradition, we feel it is more important to observe the power of the impulse to commemorate manifest among so many. We present here, hopefully without prejudice or favor, a survey of some of the early instances of the commemorative impulse — along with select references — that much later became the national holiday.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1&gt;History’s Heroes&lt;/h1&gt;
-
-&lt;p&gt;This isn’t just a story of dispute. The real story exists in highlighting those honored by this day, and those who made it their goal to remember them. &lt;a href="http://en.wikipedia.org/wiki/United_States_military_casualties_of_war"&gt;More than 1.3 million Americans have died in wars&lt;/a&gt;, and the number of deceased veterans is higher still. But death is not the only theme of Memorial Day. While reading through the various sources and claims, a clear trend emerges: regardless of location, this national day of remembrance and recognition was largely started by women and minorities. In the case of Charleston, SC, former slaves were responsible for commemorating (and honorably reburying) fallen Union soldiers.&lt;/p&gt;
-
-&lt;p&gt;Whether as a means to remember lost loved ones or to pay respects to those who gave their lives to defend ours, Memorial Day has a special place in American history. More importantly, it was a day born out of honor and commemoration – and no town can claim ownership of that.&lt;/p&gt;
 </content>
   </entry>
 </feed>
