@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-18T23:15:31-05:00</updated>
+    <updated>2015-02-18T23:17:58-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -22,7 +22,7 @@
 &lt;img src="/images/bivariate_th.png" /&gt;
 &lt;/div&gt;
 
-&lt;p&gt;&lt;em&gt;&amp;ldquo;I&amp;rsquo;m not bivariate, but I am curious.&amp;rdquo;&lt;/em&gt;  That quip has been stuck in my mind ever since I overheard it at the 2013 &lt;a href="http://nacis.org/"&gt;NACIS&lt;/a&gt; conference in Greenville, S.C. Not only was it perfectly timed after a talk about bivariate mapping, but it rang with a great deal of truth: a lot of folks aren&amp;rsquo;t creating bivariate maps, but they want to try. While it was just a joke and the person who made it can easily create bivariate maps, most people find them too difficult or mysterious.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&amp;ldquo;I&amp;rsquo;m not bivariate, but I am curious.&amp;rdquo;&lt;/em&gt;  That quip has been stuck in my mind ever since I overheard it at the 2013 &lt;a href="http://nacis.org/"&gt;NACIS&lt;/a&gt; conference in Greenville, SC. Not only was it perfectly timed after a talk about bivariate mapping, but it rang with a great deal of truth: a lot of folks aren&amp;rsquo;t creating bivariate maps, but they want to try. While it was just a joke and the person who made it can easily create bivariate maps, most people find them too difficult or mysterious.&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s a real shame because bivariate choropleth maps are incredibly useful and very easy to make. So let&amp;rsquo;s go ahead and make one!&lt;/p&gt;
 
