@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-19T20:48:31-05:00</updated>
+    <updated>2015-02-19T21:45:03-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -61,7 +61,7 @@
 
 &lt;div class="fullImage"&gt;
 &lt;img src="/images/choroMath.png" /&gt;
-&lt;p&gt;And then there were nine: Combining two 3-class univariate variables produces a 9-class bivariate map.&lt;/p&gt;
+&lt;p&gt;And then there were nine: Combining two 3-class univariate maps produces one 9-class bivariate map.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Most cartographers advise against maps with 9 or more classes. Thus it is recommended to keep things super simple when creating bivariate choropleth maps by not exceeding 3 classes in each variable.&lt;/p&gt;
