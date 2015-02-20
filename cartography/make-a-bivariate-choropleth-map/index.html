@@ -296,9 +296,9 @@ This works in QGIS, but you&rsquo;ll have to alter the syntax and approach based
 
 <p><strong>Here&rsquo;s why I don&rsquo;t recommend that as the go-to method:</strong> Let&rsquo;s say you create a bivariate choropleth by overlaying two univariate choropleths. Everything looks good, but you&rsquo;re not happy with the color of the center cell in the palette. Since that color was the haphazard result of mixing entire maps, you&rsquo;ll have to tweak one (or both) of the maps and overlay them again. This time, you might get the color right while adversely affecting the others. You&rsquo;re now in a cat-and-mouse game with color choices, relying on trial-and-error for a fix.</p>
 
-<p>By storing the information in the database, you can easily apply a new color scheme or make changes to any single class without affecting the others. You have full control over each individual color, allowing you to fine-tune things to your liking.</p>
+<p>By storing the information in the database, you can easily apply a new color scheme or make changes to any single class without affecting the others. You have full control over each individual color, allowing you to fine-tune things to your liking. More importantly, you can query the database on this information for further analysis and statistics. That&rsquo;s an <em>enormous</em> advantage that can&rsquo;t be overstated.</p>
 
-<p>The most glaring problem with overlaying two entire maps however is that it is limited to static maps. A data-driven approach is the way to go for web mapping and interactives. Rendering two separate maps in a browser to produce a color scheme is crazy talk. Render a single map, with the colors you precisely define, and save yourself a lot of time (and sanity)!</p>
+<p>The other glaring problem with overlaying two entire maps however is that it is limited to static maps. A data-driven approach is the way to go for web mapping and interactives. Rendering two separate maps in a browser to produce a color scheme is crazy talk. Render a single map, with the colors you precisely define, and save yourself a lot of time (and sanity)!</p>
 
 <h1>It&rsquo;s Dangerous To Go Alone! Take This.</h1>
 
@@ -315,7 +315,7 @@ This works in QGIS, but you&rsquo;ll have to alter the syntax and approach based
 <li><a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html">Sequential-sequential bivariate color scheme examples and overview</a> by Cindy Brewer.</li>
 <li><a href="http://www.personal.psu.edu/cab38/ColorSch/Schemes.html">Color Use Guidelines for Mapping and Visualization</a> by Cindy Brewer.</li>
 <li><a href="http://andywoodruff.com/blog/value-by-alpha-maps/">Value-by-Alpha Maps</a> by Andy Woodruff (technique developed with help from Rob Roth and Zach Johnson.  You can find their full paper <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173776/">here</a>).</li>
-<li><a href="http://www.slideshare.net/aileenbuckley/arc-gis-bivariate-mapping-tools-28903069">ArcGIS Bivariate Mapping Tools</a> by Aileen Buckley. Also includes Esri&rsquo;s collection of bivariate color schemes.</li>
+<li><a href="http://www.slideshare.net/aileenbuckley/arc-gis-bivariate-mapping-tools-28903069">ArcGIS Bivariate Mapping Tools</a> by Aileen Buckley. It includes Esri&rsquo;s collection of bivariate color schemes. Also check out <a href="http://blogs.esri.com/esri/arcgis/2014/11/19/increase-your-transparency-with-arcgis-pro/">this blog post</a> by Kenneth Field on new transparency options in ArcGIS Pro.</li>
 <li><a href="http://resources.maphugger.com/melmer_webedition.pdf">Symbol Considerations for Bivariate Thematic Mapping (PDF)</a> a thesis on bivariate mapping by Martin Elmer.</li>
 </ol>
 

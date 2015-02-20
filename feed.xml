@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-19T08:09:18-05:00</updated>
+    <updated>2015-02-19T20:42:13-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -41,7 +41,7 @@
 
 &lt;h4&gt;Normalize, normalize, normalize!&lt;/h4&gt;
 
-&lt;p&gt;Notice that the map above uses unemployment &lt;em&gt;rates&lt;/em&gt;, and not the total number of unemployed people. The use of proportions, or rates, instead of raw counts is fundamental to creating a proper choropleth map. If the map above used a raw count of the total number of unemployed people for each county, it would be subject to bias introduced by the size of each county. Larger geographic areas tend to have more people by virtue of having more space for people to live in. Using raw counts would show that: employment would seem higher in larger counties, not because unemployment is more common there but simply because there are more people there. That wouldn&amp;rsquo;t make a very interesting map.&lt;/p&gt;
+&lt;p&gt;Notice that the map above uses unemployment &lt;em&gt;rates&lt;/em&gt;, and not the total number of unemployed people. The use of proportions, or rates, instead of raw counts is fundamental to creating a proper choropleth map. If the map above used a raw count of the total number of unemployed people for each county, it would be subject to bias introduced by the size of each county. Larger geographic areas tend to have more people by virtue of having more space for people to live in. Using raw counts would show that: unemployment would seem higher in larger counties, not because unemployment is more common there but simply because there are more people there. That wouldn&amp;rsquo;t make a very interesting map.&lt;/p&gt;
 
 &lt;p&gt;Instead, choropleth maps should be &lt;a href="http://www.gsd.harvard.edu/gis/manual/normalize/"&gt;&lt;strong&gt;normalized&lt;/strong&gt;&lt;/a&gt;. The process of normalization accounts for differences in geographic areas by converting raw counts to rates or proportions. Population density is a great example of normalized data. It represents the number of persons &lt;em&gt;per unit of geographic area&lt;/em&gt; (often square miles or kilometers).&lt;/p&gt;
 
@@ -242,13 +242,13 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 
 &lt;p&gt;&lt;strong&gt;Here&amp;rsquo;s why I don&amp;rsquo;t recommend that as the go-to method:&lt;/strong&gt; Let&amp;rsquo;s say you create a bivariate choropleth by overlaying two univariate choropleths. Everything looks good, but you&amp;rsquo;re not happy with the color of the center cell in the palette. Since that color was the haphazard result of mixing entire maps, you&amp;rsquo;ll have to tweak one (or both) of the maps and overlay them again. This time, you might get the color right while adversely affecting the others. You&amp;rsquo;re now in a cat-and-mouse game with color choices, relying on trial-and-error for a fix.&lt;/p&gt;
 
-&lt;p&gt;By storing the information in the database, you can easily apply a new color scheme or make changes to any single class without affecting the others. You have full control over each individual color, allowing you to fine-tune things to your liking.&lt;/p&gt;
+&lt;p&gt;By storing the information in the database, you can easily apply a new color scheme or make changes to any single class without affecting the others. You have full control over each individual color, allowing you to fine-tune things to your liking. More importantly, you can query the database on this information for further analysis and statistics. That&amp;rsquo;s an &lt;em&gt;enormous&lt;/em&gt; advantage that can&amp;rsquo;t be overstated.&lt;/p&gt;
 
-&lt;p&gt;The most glaring problem with overlaying two entire maps however is that it is limited to static maps. A data-driven approach is the way to go for web mapping and interactives. Rendering two separate maps in a browser to produce a color scheme is crazy talk. Render a single map, with the colors you precisely define, and save yourself a lot of time (and sanity)!&lt;/p&gt;
+&lt;p&gt;The other glaring problem with overlaying two entire maps however is that it is limited to static maps. A data-driven approach is the way to go for web mapping and interactives. Rendering two separate maps in a browser to produce a color scheme is crazy talk. Render a single map, with the colors you precisely define, and save yourself a lot of time (and sanity)!&lt;/p&gt;
 
 &lt;h1&gt;It&amp;rsquo;s Dangerous To Go Alone! Take This.&lt;/h1&gt;
 
-&lt;p&gt;I&amp;rsquo;ve made a few sequential biviarate color schemes you&amp;rsquo;re free to use if you&amp;rsquo;d rather not make one yourself. They were designed for use on light backgrounds. &lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;ve made a few sequential bivariate color schemes you&amp;rsquo;re free to use if you&amp;rsquo;d rather not make one yourself. They were designed for use on light backgrounds. &lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
 &lt;img src="/images/bivariatePalettes.png" /&gt;
@@ -261,7 +261,7 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 &lt;li&gt;&lt;a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html"&gt;Sequential-sequential bivariate color scheme examples and overview&lt;/a&gt; by Cindy Brewer.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.personal.psu.edu/cab38/ColorSch/Schemes.html"&gt;Color Use Guidelines for Mapping and Visualization&lt;/a&gt; by Cindy Brewer.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://andywoodruff.com/blog/value-by-alpha-maps/"&gt;Value-by-Alpha Maps&lt;/a&gt; by Andy Woodruff (technique developed with help from Rob Roth and Zach Johnson.  You can find their full paper &lt;a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173776/"&gt;here&lt;/a&gt;).&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://www.slideshare.net/aileenbuckley/arc-gis-bivariate-mapping-tools-28903069"&gt;ArcGIS Bivariate Mapping Tools&lt;/a&gt; by Aileen Buckley. Also includes Esri&amp;rsquo;s collection of bivariate color schemes.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.slideshare.net/aileenbuckley/arc-gis-bivariate-mapping-tools-28903069"&gt;ArcGIS Bivariate Mapping Tools&lt;/a&gt; by Aileen Buckley. It includes Esri&amp;rsquo;s collection of bivariate color schemes. Also check out &lt;a href="http://blogs.esri.com/esri/arcgis/2014/11/19/increase-your-transparency-with-arcgis-pro/"&gt;this blog post&lt;/a&gt; by Kenneth Field on new transparency options in ArcGIS Pro.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://resources.maphugger.com/melmer_webedition.pdf"&gt;Symbol Considerations for Bivariate Thematic Mapping (PDF)&lt;/a&gt; a thesis on bivariate mapping by Martin Elmer.&lt;/li&gt;
 &lt;/ol&gt;
 
