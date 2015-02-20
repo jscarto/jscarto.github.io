@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-19T20:42:13-05:00</updated>
+    <updated>2015-02-19T20:48:31-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -255,12 +255,13 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 &lt;p&gt;These example palettes should get you off to a good start.&lt;/p&gt;
 &lt;/div&gt;
 
-&lt;h4&gt;Further Reading&lt;/h4&gt;
+&lt;h4&gt;Further Reading and Other Examples&lt;/h4&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html"&gt;Sequential-sequential bivariate color scheme examples and overview&lt;/a&gt; by Cindy Brewer.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.personal.psu.edu/cab38/ColorSch/Schemes.html"&gt;Color Use Guidelines for Mapping and Visualization&lt;/a&gt; by Cindy Brewer.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://andywoodruff.com/blog/value-by-alpha-maps/"&gt;Value-by-Alpha Maps&lt;/a&gt; by Andy Woodruff (technique developed with help from Rob Roth and Zach Johnson.  You can find their full paper &lt;a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173776/"&gt;here&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://indiemapper.com/app/"&gt;IndieMapper&lt;/a&gt;, a Flash app that helps you design maps in your browser. Among many other great features, it supports bivariate choropleths.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.slideshare.net/aileenbuckley/arc-gis-bivariate-mapping-tools-28903069"&gt;ArcGIS Bivariate Mapping Tools&lt;/a&gt; by Aileen Buckley. It includes Esri&amp;rsquo;s collection of bivariate color schemes. Also check out &lt;a href="http://blogs.esri.com/esri/arcgis/2014/11/19/increase-your-transparency-with-arcgis-pro/"&gt;this blog post&lt;/a&gt; by Kenneth Field on new transparency options in ArcGIS Pro.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://resources.maphugger.com/melmer_webedition.pdf"&gt;Symbol Considerations for Bivariate Thematic Mapping (PDF)&lt;/a&gt; a thesis on bivariate mapping by Martin Elmer.&lt;/li&gt;
 &lt;/ol&gt;
