@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-19T21:45:03-05:00</updated>
+    <updated>2015-02-21T11:05:52-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
@@ -161,7 +161,7 @@
 &lt;p class="fullImage"&gt;
 This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach based on your software of choice.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;3)&lt;/strong&gt; Repeat steps 1 &amp;amp; 2 above for the second variable, using its own breakpoints found in the same wway. This time, add a new &lt;em&gt;string&lt;/em&gt; column called &lt;code&gt;Var2_Class&lt;/code&gt; and populate it with the characters A, B, or C (change &lt;em&gt;&amp;ldquo;perInsured&amp;rdquo;&lt;/em&gt; to the name of your variable two, and replace the breakpoints with your own):&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3)&lt;/strong&gt; Repeat steps 1 &amp;amp; 2 above for the second variable, using its own breakpoints found in the same way. This time, add a new &lt;em&gt;string&lt;/em&gt; column called &lt;code&gt;Var2_Class&lt;/code&gt; and populate it with the characters A, B, or C (change &lt;em&gt;&amp;ldquo;perInsured&amp;rdquo;&lt;/em&gt; to the name of your variable two, and replace the breakpoints with your own):&lt;/p&gt;
 &lt;div class="highlight python"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1
 2
 3
