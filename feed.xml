@@ -14,12 +14,12 @@
     <link rel="alternate" href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"/>
     <id>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</id>
     <published>2015-02-18T00:00:00-05:00</published>
-    <updated>2015-02-21T11:05:52-05:00</updated>
+    <updated>2015-02-26T07:53:17-05:00</updated>
     <author>
       <name>Josh</name>
     </author>
     <content type="html">&lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariate_th.png" /&gt;
+&lt;img src="/images/js_bivariate_th.png" /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;em&gt;&amp;ldquo;I&amp;rsquo;m not bivariate, but I am curious.&amp;rdquo;&lt;/em&gt;  That quip has been stuck in my mind ever since I overheard it at the 2013 &lt;a href="http://nacis.org/"&gt;NACIS&lt;/a&gt; conference in Greenville, SC. Not only was it perfectly timed after a talk about bivariate mapping, but it rang with a great deal of truth: a lot of folks aren&amp;rsquo;t creating bivariate maps, but they want to try. While it was just a joke and the person who made it can easily create bivariate maps, most people find them too difficult or mysterious.&lt;/p&gt;
@@ -35,7 +35,7 @@
 &lt;p&gt;Before we make a bivariate choropleth map, let&amp;rsquo;s quickly cover the concept of univariate choropleth maps. Done correctly, basic choropleth maps use color to show quantities within geographic areas - such as states, US counties, or even countries. The term &lt;em&gt;choropleth&lt;/em&gt; derives from Greek: &lt;em&gt;choro&lt;/em&gt; (area) + &lt;em&gt;plethos&lt;/em&gt; (multitude). The example below shows a typical choropleth map:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/NYT_unemploymentMap.png" /&gt;
+&lt;img src="/images/js_NYT_unemploymentMap.png" /&gt;
 &lt;p&gt;A univariate choropleth map of unemployment rates in the United States. Source: &lt;a href="http://www.nytimes.com/interactive/2009/03/03/us/20090303_LEONHARDT.html"&gt;The New York Times&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 
@@ -60,7 +60,7 @@
 &lt;p&gt;Showing the agreement between two variables is also why the number of classes in a bivariate choropleth is larger than the combined sum of classes in each variable alone.  In general, if the individual variables have &lt;em&gt;n&lt;/em&gt; classes, the bivariate choropleth map will have n&lt;sup&gt;2&lt;/sup&gt; classes.&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/choroMath.png" /&gt;
+&lt;img src="/images/js_choroMath.png" /&gt;
 &lt;p&gt;And then there were nine: Combining two 3-class univariate maps produces one 9-class bivariate map.&lt;/p&gt;
 &lt;/div&gt;
 
@@ -77,45 +77,45 @@
 &lt;p&gt;&lt;strong&gt;1)&lt;/strong&gt; Begin by creating a 3-class sequential color scheme for one of your variables. The color scheme should begin with a very light, neutral color that will represent the lows for the first variable. The color scheme gradually becomes darker and more saturated towards a hue of your choice that will represent the highs. The middle color should be the same hue as the end color, but its saturation should be lower while the brightness is higher:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateGrid.png" /&gt;
+&lt;img src="/images/js_bivariateGrid.png" /&gt;
 &lt;p&gt;Keep it simple: Use a single hue, with increasing saturation and value (darkness).&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;2)&lt;/strong&gt; Now do the same for the other variable. This time, choose a hue that is quite different from the first. Choosing a &lt;a href="http://www.tigercolor.com/color-lab/color-theory/color-harmonies.htm"&gt;complementary color&lt;/a&gt; can be a good start. But make sure to go slightly off center of complementary by picking a neighbor to the complement. This will give your final scheme a better shot at being colorblind-safe (you can fine-tune the final color scheme later to help with this).&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateGrid2.png" /&gt;
+&lt;img src="/images/js_bivariateGrid2.png" /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;3)&lt;/strong&gt; So far, we have colors to represent 6 classes, but we need 9. To do that, turn each of the rectangular color schemes into squares by stretching (or duplicating) them vertically, like so:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateGrid3.png" /&gt;
+&lt;img src="/images/js_bivariateGrid3.png" /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;4)&lt;/strong&gt; Now take the color scheme for the first variable and rotate it 90° counter-clockwise so that the neutral (low) color is on the bottom and the high is on top:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateGrid4.png" /&gt;
+&lt;img src="/images/js_bivariateGrid4.png" /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;5)&lt;/strong&gt; This is where the magic happens. In Photoshop, Illustrator, or another capable graphics program, change the blending mode of the first color scheme to &lt;em&gt;darken&lt;/em&gt;. Then position the first color scheme so that it perfectly overlays the second one. Suddenly, a new palette emerges revealing both variables:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateMix.gif" /&gt;
+&lt;img src="/images/js_bivariateMix.gif" /&gt;
 &lt;p&gt;The first color scheme now mixes with and darkens the colors beneath it, creating a 9-class bivariate color scheme. Experiment with other blending modes. &amp;lsquo;Multiply&amp;rsquo; also works well.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;6)&lt;/strong&gt; Almost there. We now have a 9-class bivariate sequential color scheme, but it needs a little more work. The top right cell of this grid - the dark blue color - represents cases when &lt;em&gt;both&lt;/em&gt; variables are high. As such, it should be the most salient color in the palette. To make that happen, let&amp;rsquo;s increase its saturation a bit. We&amp;rsquo;ll also adjust the color of the central cell, bringing its hue closer to the corner blue to further distinguish it as a mix of the two variables:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateGrid7.png" /&gt;
+&lt;img src="/images/js_bivariateGrid7.png" /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;That step takes some practice. If you&amp;rsquo;ve been following along with different color choices, you&amp;rsquo;ll have to tweak things a bit differently from what is shown here. But the goal is the same: the color scheme should clarify relationships in the data along three paths, each sequentially arranged to increase in both saturation and darkness:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariatePaths.png" /&gt;
+&lt;img src="/images/js_bivariatePaths.png" /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;With a color scheme in hand, it&amp;rsquo;s time to classify the data and bring this thing to life.&lt;/p&gt;
@@ -127,7 +127,7 @@
 &lt;p&gt;The most straightforward way to do this is to simply label the cells of the color palette. Mark cells in horizontal order with &lt;strong&gt;A&lt;/strong&gt;, &lt;strong&gt;B&lt;/strong&gt;, or &lt;strong&gt;C&lt;/strong&gt;. Then mark the cells in vertical order with &lt;strong&gt;1&lt;/strong&gt;, &lt;strong&gt;2&lt;/strong&gt;, or &lt;strong&gt;3&lt;/strong&gt;:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateLabels.png" /&gt;
+&lt;img src="/images/js_bivariateLabels.png" /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Labeled like this, the lowest value for both variables becomes A1, while the cell that represents the max for both becomes C3. Any combination of the two variables can be identified by its position in the color scheme. We now have a labeling system that the GIS can use as categories to symbolize the data.&lt;/p&gt;
@@ -139,7 +139,7 @@
 &lt;p&gt;Change the number of classes to 3 and record the breakpoints:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/classificationVar2.png" /&gt;
+&lt;img src="/images/js_classificationVar2.png" /&gt;
 &lt;p&gt;My &amp;lsquo;variable one&amp;rsquo; classified into 3 groups in &lt;a href="http://www.qgis.org"&gt;QGIS&lt;/a&gt;. For the curious: these data represent donations to Obama&amp;rsquo;s campaign in 2012.
 &lt;/div&gt;
 
@@ -175,7 +175,7 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 &lt;p&gt;After performing these steps, you should now have two new fields in your attribute table representing numbers 1-3 and characters A-C:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateAttributes.png" /&gt;
+&lt;img src="/images/js_bivariateAttributes.png" /&gt;
 &lt;p&gt;The first 10 records of my attribute table, with new fields (highlighted) showing the ranking for our labeling system.&lt;/p&gt;
 &lt;/div&gt;
 
@@ -189,21 +189,21 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 &lt;p&gt;This fills the new column with information that identifies which cell in the bivariate color scheme to use when symbolizing the data:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateAttributes2.png" /&gt;
+&lt;img src="/images/js_bivariateAttributes2.png" /&gt;
 &lt;p&gt;The database now has entries pairing the variables with their position in the bivariate color scheme.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;5)&lt;/strong&gt; The final step is the easiest! Simply symbolize the map as a &lt;em&gt;categorized&lt;/em&gt; choropleth using &lt;code&gt;Bi_Class&lt;/code&gt; as the data column. Refer to the labeled color palette to know which class gets which color:&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateSymbolization.png" /&gt;
+&lt;img src="/images/js_bivariateSymbolization.png" /&gt;
 &lt;p&gt;Tip: If you&amp;rsquo;re using QGIS, use the &amp;lsquo;eye dropper&amp;rsquo; tool to copy each color from the palette over to the appropriate value in the style window.
 &lt;/div&gt;
 
 &lt;h4&gt;Et Voila!&lt;/h4&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/finalBivariateMap.png" /&gt;
+&lt;img src="/images/js_finalBivariateMap.png" /&gt;
 &lt;p&gt;The final 9-class bivariate map. Each bivariate class identifier is recorded in the GIS.&lt;/p&gt;
 &lt;/div&gt;
 
@@ -216,7 +216,7 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 &lt;p&gt;You can simplify things further by color coding the variables in the description. Then only label the corners of the bivariate legend. These are the most interesting scenarios on the map, and the intermediaries become obvious.&lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariateCornerLabels.png" /&gt;
+&lt;img src="/images/js_bivariateCornerLabels.png" /&gt;
 &lt;p&gt;The corner cases are what make bivariate maps interesting. Help your readers understand what they mean.&lt;/p&gt;
 &lt;/div&gt;
 
@@ -251,7 +251,7 @@ This works in QGIS, but you&amp;rsquo;ll have to alter the syntax and approach b
 &lt;p&gt;I&amp;rsquo;ve made a few sequential bivariate color schemes you&amp;rsquo;re free to use if you&amp;rsquo;d rather not make one yourself. They were designed for use on light backgrounds. &lt;/p&gt;
 
 &lt;div class="fullImage"&gt;
-&lt;img src="/images/bivariatePalettes.png" /&gt;
+&lt;img src="/images/js_bivariatePalettes.png" /&gt;
 &lt;p&gt;These example palettes should get you off to a good start.&lt;/p&gt;
 &lt;/div&gt;
 
