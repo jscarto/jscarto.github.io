@@ -26,7 +26,7 @@ svg { height: auto; max-width: 100%; }
 .map { margin-top: 3em; background: url("parks_map_bg.png") top left no-repeat; position: relative; }
 .map-markers { list-style: none; margin: 0; padding: 0; }
 .map-marker { position: absolute; }
-.map-marker:after { animation-duration: 10s; animation-iteration-count: infinite; animation-name: pop; border-radius: 50%; border: 1px solid #386240; content: ''; height: 20px; left: 0; margin: -5px 0 0 -5px; opacity: 0; position: absolute; top: 0; width: 20px; }
+.map-marker:after { animation-duration: 10s; animation-iteration-count: infinite; border-radius: 50%; border: 1px solid #386240; content: ''; height: 20px; left: 0; margin: -5px 0 0 -5px; opacity: 0; position: absolute; top: 0; width: 20px; }
 .map-marker:hover .map-marker-info { display: block; }
 .map-marker .dot { background-color: #386240; border-radius: 50%; height: 8px; display: block; text-indent: -9999px; width: 8px; }
 .map-marker-yellowstone { left: 266px; top: 133px; }
