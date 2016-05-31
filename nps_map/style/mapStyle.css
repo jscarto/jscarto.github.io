@@ -3,7 +3,7 @@
 
 body { background-color: #ffffff; color: #383838; font: 400 13px/1.5em sans-serif; margin: 0; }
 
-a { color: #386240; }
+a { color: #153A1D; }
 
 p a .read-more { color: #ff0ff0; }
 
@@ -26,9 +26,9 @@ svg { height: auto; max-width: 100%; }
 .map { margin-top: 3em; background: url("parks_map_bg.png") top left no-repeat; position: relative; }
 .map-markers { list-style: none; margin: 0; padding: 0; }
 .map-marker { position: absolute; }
-.map-marker:after { animation-duration: 10s; animation-iteration-count: infinite; border-radius: 50%; border: 1px solid #386240; content: ''; height: 20px; left: 0; margin: -5px 0 0 -5px; opacity: 0; position: absolute; top: 0; width: 20px; }
+.map-marker:after { animation-duration: 10s; animation-iteration-count: infinite; border-radius: 50%; border: 1px solid #153A1D; content: ''; height: 20px; left: 0; margin: -5px 0 0 -5px; opacity: 0; position: absolute; top: 0; width: 20px; }
 .map-marker:hover .map-marker-info { display: block; }
-.map-marker .dot { background-color: #386240; border-radius: 50%; height: 8px; display: block; text-indent: -9999px; width: 8px; }
+.map-marker .dot { background-color: #153A1D; border-radius: 50%; height: 8px; display: block; text-indent: -9999px; width: 8px; }
 .map-marker-yellowstone { left: 266px; top: 133px; }
 .map-marker-acadia { left: 874px; top: 95px; }
 .map-marker-arches { left: 263px; top: 254px; }
@@ -85,11 +85,11 @@ svg { height: auto; max-width: 100%; }
 .map-marker-denali { left: 81px; top: 482px; }
 .map-marker-haleakala { left: 278px; top: 490px; }
 .map-marker-info { display: none; left: 50%; position: absolute; bottom: 0; transform: translate(-50%, -2em); width: 20em; z-index: 999; }
-.map-marker-info header { background-color: #386240; border-radius: .5em .5em .5em .5em; color: #fff; padding: .5em 1em; }
+.map-marker-info header { background: #153A1D; /* Old browsers */ background: -moz-linear-gradient(top, #5e7c48 1%, #153a1d 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(top, #5e7c48 1%, #153a1d 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to bottom, #5e7c48 1%, #153a1d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e7c48', endColorstr='#153a1d',GradientType=0 ); /* IE6-9 */ border-radius: .5em .5em .5em .5em; color: #fff; padding: .5em 1em; }
 .map-marker-info main { background-color: #fff; border-radius: 0 0 .5em .5em; color: #383838; padding: .5em 1em; }
 .map-marker-info h2 { margin-bottom: 0; text-align: center; }
 .map-marker-info-inner { border-radius: .5em; box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.3); font-size: .875em; }
-.map-marker-info-inner:after { border-left: .75em solid transparent; border-right: .75em solid transparent; border-top: 1em solid #386240; content: ''; height: 0; left: 50%; position: absolute; top: 100%; transform: translateX(-50%); width: 0; }
+.map-marker-info-inner:after { border-left: .75em solid transparent; border-right: .75em solid transparent; border-top: 1em solid #153A1D; content: ''; height: 0; left: 50%; position: absolute; top: 100%; transform: translateX(-50%); width: 0; }
 
 .animate { animation-duration: .5s; animation-fill-mode: both; }
 
@@ -100,7 +100,7 @@ svg { height: auto; max-width: 100%; }
   60% { opacity: 1; transform: scale3d(1.03, 1.03, 1.03); }
   80% { transform: scale3d(0.97, 0.97, 0.97); }
   100% { opacity: 1; transform: scale3d(1, 1, 1); } }
-.animate-bounce-in { animation-duration: .5s; animation-name: bounce-in; }
+.animate-bounce-in { animation-duration: 0s; animation-name: bounce-in; }
 
 @keyframes pop { 0% { transform: scale(0); }
   8% { opacity: .4; }

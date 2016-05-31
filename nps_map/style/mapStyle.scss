@@ -16,7 +16,7 @@ $h3-font-size: 1.25em;
 $color: #383838;
 $color-bg: #ffffff;
 
-$color-primary: #386240;
+$color-primary: #153A1D;
 
 $color-link: $color-primary;
 $color-headings: #fff;
@@ -152,7 +152,6 @@ svg {
       text-indent: -9999px;
       width: 8px;
     }
-
   }
  
  // Park locations
@@ -443,7 +442,13 @@ svg {
     z-index: 999;
 
     header {
-      background-color: $color-box-header-bg;
+      //background-color: $color-box-header-bg;
+      background: #153A1D; /* Old browsers */
+      background: -moz-linear-gradient(top,  #5e7c48 1%, #153a1d 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #5e7c48 1%,#153a1d 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #5e7c48 1%,#153a1d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5e7c48', endColorstr='#153a1d',GradientType=0 ); /* IE6-9 */
+
       border-radius: .5em .5em .5em .5em;
       color: $color-box-header;
       padding: .5em 1em;
@@ -528,7 +533,7 @@ svg {
 }
 
 .animate-bounce-in {
-  animation-duration: .5s;
+  animation-duration: 0s;
   animation-name: bounce-in;
 }
 
