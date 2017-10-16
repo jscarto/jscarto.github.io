@@ -1,83 +1,76 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
-    <title>Joshua Stevens - Blog</title>
-    <link rel="icon" href="http://www.joshuastevens.net/favicon.ico" type="image/x-icon" />
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="../stylesheets/main.css" rel="stylesheet" type="text/css" />
-    <link href="../stylesheets/syntax.css" rel="stylesheet" type="text/css" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/stylesheets/jquery.mmenu.all.css" />
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.mmenu.min.js"></script>
-    <meta name="description" content="Joshua Stevens is a cartographer and GIScientist focusing on UI/UX design, human-computer interaction, and the visualization of spatial data."/>
-    <link rel="canonical" href="http://www.joshuastevens.net/blog/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://www.joshuastevens.net/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://www.joshuastevens.net/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://www.joshuastevens.net/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://www.joshuastevens.net/favicon-16x16.png">
+    <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
+
+    <title>
+      Joshua Stevens - Blog
+    </title>
+
+    <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.joshuastevens.net/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.joshuastevens.net/css/font-awesome.min.css">
+    
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jscarto" />
+    <meta name="twitter:title" content="Joshua Stevens - Blog" />
+    <meta name="twitter:image" content="http://www.joshuastevens.net/images/default_th.png" />
   </head>
-  <body class="blog blog_index">
-  <script type="text/javascript">
-  $(document).ready(function(){
-      $("#my-menu").mmenu({
-        header:false,
-        position:"right"
-      });
-      $("#mobileNav").on("click", function(){
-        $("#my-menu")
-           .mmenu()
-           .trigger( "open.mm" )
-      });
-  });
-  </script>
-  <div id="master">
-  <div id="header">
-	<div id="logo"><a href="/"><img id="top" src="/images/jsLogoMed.png" /></a></div>
-	<div id="nav">
-		<ul>
-  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
-  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
-      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
-      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
-		</ul>
-	</div>
-  <div id="mobileNav">
-    <ul>
-      <li class="homenav"><i class="fa fa-bars"></i> Menu</li>
-    </ul>
-  </div>
-	<nav id="my-menu">
-		<ul>
-  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
-  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
-      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
-      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
-		</ul>
-	</nav>
-</div>
 
-  <div id="wrapper">
-    <div id="content">
-    <div id="main" role="main">
-    <div class="post_content">
-        <p class="pageNav">Page 1 of 2</p>
+  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="http://www.joshuastevens.net/css/js_logo.png" /> Joshua Stevens</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/cartography/make-a-bivariate-choropleth-map/">Bivariate Choropleth Maps: A How-to Guide</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Feb 18, 2015
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net//">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="http://www.joshuastevens.net/blog/">Blog</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/about/">About</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/portfolio/">Work</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-    <div class="summary">
-      <p><div class="fullImage">
+    </nav>
+	
+<div class="container">
+  <div class="article">
+
+  <br><p>Page 1 of 2</p>
+  
+    <div class="post-list">
+      <h2><a href="/cartography/make-a-bivariate-choropleth-map/">Bivariate Choropleth Maps: A How-to Guide</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> February 18, 2015
+        </div>
+      <div class="fullImage">
 <img src="/images/js_bivariate_th.png" />
 </div>
 
@@ -85,41 +78,35 @@
 
 <p>That&rsquo;s a real shame because bivariate choropleth maps are incredibly useful and very easy to make. So let&rsquo;s go ahead and make one!</p>
     </div>
-    <div class="readPost">
-      <a href="/cartography/make-a-bivariate-choropleth-map/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/visualization/sea-ice-ebb-flow-visualized/">The Ebb and Flow of Polar Sea Ice</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Feb  8, 2015
+
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/cartography/make-a-bivariate-choropleth-map/" role="button">Read more</a>
       </div>
-    </div>
-    <div class="summary">
-      <p><div class="fullImage">
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/visualization/sea-ice-ebb-flow-visualized/">The Ebb and Flow of Polar Sea Ice</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> February 8, 2015
+        </div>
+      <div class="fullImage">
 <img src="/images/sea_ice_slices_th.png" />
 </div>
 
 <p>In some very real ways, polar sea ice is the backbone of our planet&rsquo;s climate. When more ice is present, its bright surface tends to reflect sunlight, cooling things down. When there is less white, snow-covered ice, the ocean&rsquo;s surface becomes a bit darker. A darker ocean surface absorbs more sunlight, causing it to warm. The relationships between climate and ice are much more complicated than that, as the thickness of the ice also influences a variety of subsurface feedback loops that have long-term effects.</p>
     </div>
-    <div class="readPost">
-      <a href="/visualization/sea-ice-ebb-flow-visualized/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/cartography/hdri-lighting-for-shaded-relief-maps/">HDRI Lighting for Shaded Relief Maps</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Aug  8, 2014
+
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/visualization/sea-ice-ebb-flow-visualized/" role="button">Read more</a>
       </div>
-    </div>
-    <div class="summary">
-      <p><div class="fullImage">
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/cartography/hdri-lighting-for-shaded-relief-maps/">HDRI Lighting for Shaded Relief Maps</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> August 8, 2014
+        </div>
+      <div class="fullImage">
 <img src="/images/shadedRelief_featured.png" />
 </div>
 
@@ -127,73 +114,64 @@
 
 <p>This push and pull between modeling a natural phenomenon (the illumination of Earth and the shadows cast by the sun) with artistic purposes has captivated cartographers for centuries. It&rsquo;s no surprise that as technology advanced, so too did the modeling of the sun&rsquo;s rays. With this in mind, I wondered how techniques in 3D ray tracing carry over to shaded relief mapping. </p>
     </div>
-    <div class="readPost">
-      <a href="/cartography/hdri-lighting-for-shaded-relief-maps/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/visualization/open-source-copyright-infringement/">Open Source Copyright Infringement: Are DMCA Takedowns on GitHub Increasing?</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Jul  7, 2014
+
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/cartography/hdri-lighting-for-shaded-relief-maps/" role="button">Read more</a>
       </div>
-    </div>
-    <div class="summary">
-      <p><div class="fullImage">
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/visualization/open-source-copyright-infringement/">Open Source Copyright Infringement: Are DMCA Takedowns on GitHub Increasing?</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> July 7, 2014
+        </div>
+      <div class="fullImage">
 <img src="/images/octocatThumb.png" />
 </div>
 
 <p>While browsing <a href="http://www.reddit.com/r/linux">/r/linux</a> I saw this post: <a href="http://www.reddit.com/r/linux/comments/29vvz5/rate_of_dmca_takedown_demands_is_increasing_on/">Rate of DMCA takedown demands is increasing on GitHub</a>.</p>
 
-<p>That sounds pretty scary, for a couple of reasons. On one hand, it could mean that companies are really dropping the hammer and coming after folks more often and <a href="https://torrentfreak.com/google-further-highlights-wrongful-dmca-takedowns-130320/">potentially in error</a>. On the other, it could mean the open source community is becoming more lax or lazy, using others&#39; code without respecting licenses or copyright.</p>
+<p>That sounds pretty scary, for a couple of reasons. On one hand, it could mean that companies are really dropping the hammer and coming after folks more often and <a href="https://torrentfreak.com/google-further-highlights-wrongful-dmca-takedowns-130320/">potentially in error</a>. On the other, it could mean the open source community is becoming more lax or lazy, using others&rsquo; code without respecting licenses or copyright.</p>
 
-<p>But could there be a third alternative? Is the rate of DMCA takedowns <em>really</em> increasing in a meaningful way? </p>
+<p>But could there be a third alternative? Is the rate of DMCA takedowns <em>really</em> increasing in a meaningful way?</p>
 
 <p>Fortunately GitHub is open about the DMCA notices they receive. Since January 27, 2011 GitHub has <a href="https://github.com/github/dmca">posted each request received and each counter-notice issued</a>. All 317 of them.</p>
     </div>
-    <div class="readPost">
-      <a href="/visualization/open-source-copyright-infringement/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/visualization/visual-guide-to-painful-insect-stings/">Visual Guide to Painful Hymenopteran Stings</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Jun 27, 2014
+
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/visualization/open-source-copyright-infringement/" role="button">Read more</a>
       </div>
-    </div>
-    <div class="summary">
-      <p><div class="fullImage">
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/visualization/visual-guide-to-painful-insect-stings/">Visual Guide to Painful Hymenopteran Stings</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> June 27, 2014
+        </div>
+      <div class="fullImage">
 <img src="/images/stingFeatured.png" alt="View the other images to see which hymenopteran is the king of sting!" />
 </div>
 
 <p>For most of us, insect stings are a thing to avoid. That&rsquo;s not the case for entomologist Justin O. Schmidt. That&rsquo;s because Dr. Schmidt has dedicated his life to studying venomous hymenopterans, the order of insects made up of ants, bees, and wasps. Through his research, he has been stung countless times. As a result, he developed the <a href="http://en.wikipedia.org/wiki/Schmidt_sting_pain_index">Schmidt Sting Pain Index</a>.</p>
 
 <p>I stumbled upon Schmidt&rsquo;s work after seeing <a href="https://www.youtube.com/watch?v=1_K7Tp97PsE">this video of warrior wasps</a>. One of the noteworthy characteristics of warrior wasps is that when threatened, they rhythmically flap their wings against their bodies in perfect synchrony, producing a sound not unlike marching soldiers. The other characteristic these wasps are known for is a sting that <strong>hurts!</strong></p>
+    </div>
 
-<p>Just how much does a sting from a warrior wasp hurt?</p>
-    </div>
-    <div class="readPost">
-      <a href="/visualization/visual-guide-to-painful-insect-stings/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/site/moving-from-wordpress-to-middleman/">Moving from WordPress to Middleman</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Jun 18, 2014
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/visualization/visual-guide-to-painful-insect-stings/" role="button">Read more</a>
       </div>
-    </div>
-    <div class="summary">
-      <p><div class="fullImage">
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/blog/moving-from-wordpress-to-middleman/">Moving from WordPress to Middleman</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> June 18, 2014
+        </div>
+      <div class="fullImage">
 <img src="/images/rubyMMsass.png" alt="Ruby, Sass, and Middleman are awesome together." />
 </div>
+
+<p><em>Note: In September 2017 this site was rebuilt with <a href="https://www.gohugo.io">Hugo</a>. The text below no longer describes my own site, but I would still use Middleman (or any other static generator) over WordPress.</em></p>
 
 <p>Recently I&rsquo;ve spent a few evenings removing WordPress and rebuilding this site on top of <a href="http://www.middlemanapp.com">Middleman</a>. The new site is still a work in progress and I have more features to add, but all of the previous content has been brought over. It should be safe to launch this.</p>
 
@@ -201,57 +179,46 @@
 
 <p>Even when WordPress itself performed well, it required additional plugins just to have reasonable features (e.g., caching, contact forms, spam protection, SEO optimization, etc.). Each of these requires constant updates, and one can never be sure if updating one plugin is going to break other plugins, or worse, the entire site. Compatibility reports from other users are helpful, but are often incomplete. Logging in just to write a simple post became a chore: update this, double check that, fix this other thing that the previous update broke, and so on. Long story short, it got old. </p>
     </div>
-    <div class="readPost">
-      <a href="/site/moving-from-wordpress-to-middleman/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/thoughts/contentious-claims-memorial-days-origins/">The Many Birthplaces of Memorial Day</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; May 27, 2014
+
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/blog/moving-from-wordpress-to-middleman/" role="button">Read more</a>
       </div>
-    </div>
-    <div class="summary">
-      <p><p>Yesterday was Memorial Day. Like many other Americans, my family and I spent this day of national remembrance at a local park. We made the short trip to historic Boalsburg. Those in the know will recognize that Memorial Day in Boalsburg, PA is no ordinary affair. It is a massive celebration. This was especially true this year, which marks the 150th Memorial Day celebrated in Boalsburg. Thousands of people from all over gathered to honor our veterans who gave the ultimate sacrifice. What started as a time to decorate graves with flowers has now grown into a large festival, with celebratory events found at every corner of the township.</p>
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/blog/the-many-birthplaces-of-memorial-day/">The Many Birthplaces of Memorial Day</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> May 27, 2014
+        </div>
+      <p>Yesterday was Memorial Day. Like many other Americans, my family and I spent this day of national remembrance at a local park. We made the short trip to historic Boalsburg. Those in the know will recognize that Memorial Day in Boalsburg, PA is no ordinary affair. It is a massive celebration. This was especially true this year, which marks the 150th Memorial Day celebrated in Boalsburg. Thousands of people from all over gathered to honor our veterans who gave the ultimate sacrifice. What started as a time to decorate graves with flowers has now grown into a large festival, with celebratory events found at every corner of the township.</p>
 
 <p>It was also a learning opportunity. Almost everyone knows about Pennsylvania’s vital role in the Civil War and the importance of Memorial Day in the region. As a Michigan native, what I didn’t know was that Boalsburg itself was the very birthplace of Memorial Day.</p>
+    </div>
 
-<p>Or at least it claims to be. </p>
-    </div>
-    <div class="readPost">
-      <a href="/thoughts/contentious-claims-memorial-days-origins/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/visualization/gdelt-prediction-map-seen/">The Map of GDELT Predictions in Afghanistan as You Should Have Seen It</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Oct 21, 2013
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/blog/the-many-birthplaces-of-memorial-day/" role="button">Read more</a>
       </div>
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/">The Map of GDELT Predictions in Afghanistan as You Should Have Seen It</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> October 21, 2013
+        </div>
+      <p>For the last several weeks, I’ve been creating a visualization of past and predicted conflicts in Afghanistan. The data, which come from a statistical model developed by <a href="http://jayyonamine.com/">Jay Yonamine</a> with help from <a href="http://johnbeieler.org/">John Beieler</a>, show us what might happen based on a long history of what has happened.  The database behind this model is known as <a href="http://gdelt.utdallas.edu/">GDELT</a>, or the Global Database of Events, Language, and Tone. GDELT has received <a href="http://ideas.foreignpolicy.com/posts/2013/04/10/what_can_we_learn_from_the_last_200_million_things_that_happened_in_the_world">a lot of attention</a> lately and I’ve participated in two hackathons that have emerged around it. After Wired showed interest in publishing this story along with the visualization, I was thrilled.</p>
     </div>
-    <div class="summary">
-      <p><p>For the last several weeks, I’ve been creating a visualization of past and predicted conflicts in Afghanistan. The data, which come from a statistical model developed by <a href="http://jayyonamine.com/">Jay Yonamine</a> with help from <a href="http://johnbeieler.org/">John Beieler</a>, show us what might happen based on a long history of what has happened.  The database behind this model is known as <a href="http://gdelt.utdallas.edu/">GDELT</a>, or the Global Database of Events, Language, and Tone. GDELT has received <a href="http://ideas.foreignpolicy.com/posts/2013/04/10/what_can_we_learn_from_the_last_200_million_things_that_happened_in_the_world">a lot of attention</a> lately and I’ve participated in two hackathons that have emerged around it. After Wired showed interest in publishing this story along with the visualization, I was thrilled.</p>
-    </div>
-    <div class="readPost">
-      <a href="/visualization/gdelt-prediction-map-seen/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">'Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Sep 17, 2013
+
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/" role="button">Read more</a>
       </div>
-    </div>
-    <div class="summary">
-      <p><p>Every now and then a dataset comes along that just has to be mapped. This is one of those times.</p>
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">&#39;Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> September 17, 2013
+        </div>
+      <p>Every now and then a dataset comes along that just has to be mapped. This is one of those times.</p>
 
 <p>Bigfoot. Sasquatch. Skookum. Yahoo. Whatever you call it, the towering man-like ape is a folklore staple. From stories of Yeti in the Himalayas to Wildmen in the Pacific Northwest, people have been talking about and trying to find the creature for ages. Occasionally, some form of evidence – like <a href="http://en.wikipedia.org/wiki/Patterson-Gimlin_film">Patterson’s famous 1967 film</a> – emerges and either feeds our fascination or gets dismissed as a hoax. In either case, it’s easy to see why believers search for proof and skeptics remain doubtful.</p>
 
@@ -259,63 +226,68 @@
 
 <p>After crawling the data and converting it to a more convenient format, I mapped and graphed all 3,313 sightings that were reported from 1921 to 2013:</p>
     </div>
-    <div class="readPost">
-      <a href="/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-  <div class="blogList">
-    <div class="title">
-      <h1><a href="/design/your-favorite-traffic-map-is-lying-to-you/">Your Favorite Traffic Map is Lying to You</a></h1>
-      <h2></h2>
-      <div class="blogDate">
-        <i class="fa fa-calendar"></i>&nbsp; Jun 28, 2013
+
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/" role="button">Read more</a>
       </div>
+      <hr>
+  
+    <div class="post-list">
+      <h2><a href="/design/your-favorite-traffic-map-is-lying-to-you/">Your Favorite Traffic Map is Lying to You</a></h2>
+      <div class="postDate">
+          <i class="fa fa-calendar"></i> June 28, 2013
+        </div>
+      <p>Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.</p>
     </div>
-    <div class="summary">
-      <p><p>Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.</p>
 
-<p>Or so many think. </p>
-    </div>
-    <div class="readPost">
-      <a href="/design/your-favorite-traffic-map-is-lying-to-you/" class="btnLarge">Read Post</a>
-    </div>
-    <hr />
-  </div>
-
-    <p class="pageNav"><a href="/blog/page/2/">Next page <i class="fa fa-arrow-right"></i></a></p>
-
+      <div class="read-more-btn">
+        <a class="btn btn-secondary" href="/design/your-favorite-traffic-map-is-lying-to-you/" role="button">Read more</a>
       </div>
+      <hr>
+  <div class="d-flex justify-content-between">
+    &nbsp;
+    <a class="btn btn-outline-secondary" href="/blog/page/2/">
+            Next Page <i class="fa fa-arrow-right" aria-hidden="true"></i>
+
+        </a>
     </div>
   </div>
 </div>
-<div id="handle"><a href="#top" title="Back to the top!"><img src="/stylesheets/wrapperBottom.png" /></a></div>
-</div>
-<div id="footer">
-	<div id="footer_bottom">
-	<div id="footer_copyright">
-		<div class="footer_inner">Copyright &copy; 2015 Joshua Stevens</div>
-	</div>	
-		<div id="footerContent">
-		<div id="contactArea">
-			<h2>Get in touch or follow me to see what I'm up to!</h2>
-			<li><a id="email" href="mailto:josh@joshuastevens.net"><img src="/images/emailBtn.png" /></a></li>
-			<li><a href="http://www.twitter.com/jscarto" title="Follow @jscarto on Twitter!"><img src="/images/twitterBtn.png" /></a></li>
-			<li><a href="http://www.linkedin.com/in/jscarto" title="Connect with me on LinkedIn!"><img src="/images/linkedInBtn.png" /></a></li>
-			<li><a href="/feed.xml" title="Grab my RSS feed!"><img src="/images/rssBtn.png" /></a></li>
-		</div>
-	</div>
-</div>
-<!-- Google Analytics Code -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+   
+  </div>
 
-  ga('create', 'UA-39165504-1', 'joshuastevens.net');
-  ga('send', 'pageview');
 
-</script>
-</body>
+
+
+<footer class="footer">
+      <div class="container">
+        <div class="row">
+        <div class="col-sm-12 col-md-5 footer-left">
+          <ul>
+            <li><a  href="http://www.joshuastevens.net//">Home</a></li>
+            <li><a class="active" href="http://www.joshuastevens.net/blog/">Blog</a></li>
+            <li><a  href="http://www.joshuastevens.net/about/">About</a></li>
+            <li><a  href="http://www.joshuastevens.net/portfolio/">Works</a></li>
+            <li><a  href="http://www.joshuastevens.net/contact/">Contact</a></li>
+          </ul>
+          </div>
+          <div class="col-sm-12 col-md-2 footer-mid"><a href="https://twitter.com/jscarto"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; <a href="https://www.linkedin.com/in/jscarto/"><i class="fa fa-linkedin fa-2x"></i></a></div>
+          <div class="col-sm-12 col-md-5 footer-right">© 2017 Joshua Stevens</div>
+        </div>
+      </div>
+    </footer>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="http://www.joshuastevens.net/js/bootstrap.min.js"></script>
+    <script src="http://www.joshuastevens.net/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-39165504-1', 'joshuastevens.net');
+        ga('send', 'pageview');
+    </script>
+  </body>
 </html>

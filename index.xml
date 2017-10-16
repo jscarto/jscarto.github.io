@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Joshua Stevens</title>
+    <link>http://www.joshuastevens.net/</link>
+    <description>Recent content on Joshua Stevens</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 18 Feb 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://www.joshuastevens.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bivariate Choropleth Maps: A How-to Guide</title>
+      <link>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</link>
+      <pubDate>Wed, 18 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</guid>
+      <description>&lt;div class=&#34;fullImage&#34;&gt;
+&lt;img src=&#34;http://www.joshuastevens.net/images/js_bivariate_th.png&#34; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;&amp;ldquo;I&amp;rsquo;m not bivariate, but I am curious.&amp;rdquo;&lt;/em&gt;  That quip has been stuck in my mind ever since I overheard it at the 2013 &lt;a href=&#34;http://nacis.org/&#34;&gt;NACIS&lt;/a&gt; conference in Greenville, SC. Not only was it perfectly timed after a talk about bivariate mapping, but it rang with a great deal of truth: a lot of folks aren&amp;rsquo;t creating bivariate maps, but they want to try. While it was just a joke and the person who made it can easily create bivariate maps, most people find them too difficult or mysterious.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s a real shame because bivariate choropleth maps are incredibly useful and very easy to make. So let&amp;rsquo;s go ahead and make one!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Ebb and Flow of Polar Sea Ice</title>
+      <link>http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/</link>
+      <pubDate>Sun, 08 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/</guid>
+      <description>&lt;div class=&#34;fullImage&#34;&gt;
+&lt;img src=&#34;http://www.joshuastevens.net/images/sea_ice_slices_th.png&#34; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In some very real ways, polar sea ice is the backbone of our planet&amp;rsquo;s climate. When more ice is present, its bright surface tends to reflect sunlight, cooling things down. When there is less white, snow-covered ice, the ocean&amp;rsquo;s surface becomes a bit darker. A darker ocean surface absorbs more sunlight, causing it to warm. The relationships between climate and ice are much more complicated than that, as the thickness of the ice also influences a variety of subsurface feedback loops that have long-term effects.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HDRI Lighting for Shaded Relief Maps</title>
+      <link>http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</link>
+      <pubDate>Fri, 08 Aug 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</guid>
+      <description>&lt;div class=&#34;fullImage&#34;&gt;
+&lt;img src=&#34;http://www.joshuastevens.net/images/shadedRelief_featured.png&#34; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Shaded relief maps are among my favorite of all map types. Not only do they form the foundation for many other maps and derivative layers, they present a fascinating challenge: depicting an abstraction of terrain in a natural way while balancing accuracy with aesthetics.&lt;/p&gt;
+
+&lt;p&gt;This push and pull between modeling a natural phenomenon (the illumination of Earth and the shadows cast by the sun) with artistic purposes has captivated cartographers for centuries. It&amp;rsquo;s no surprise that as technology advanced, so too did the modeling of the sun&amp;rsquo;s rays. With this in mind, I wondered how techniques in 3D ray tracing carry over to shaded relief mapping. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Open Source Copyright Infringement: Are DMCA Takedowns on GitHub Increasing?</title>
+      <link>http://www.joshuastevens.net/visualization/open-source-copyright-infringement/</link>
+      <pubDate>Mon, 07 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/visualization/open-source-copyright-infringement/</guid>
+      <description>&lt;div class=&#34;fullImage&#34;&gt;
+&lt;img src=&#34;http://www.joshuastevens.net/images/octocatThumb.png&#34; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;While browsing &lt;a href=&#34;http://www.reddit.com/r/linux&#34;&gt;/r/linux&lt;/a&gt; I saw this post: &lt;a href=&#34;http://www.reddit.com/r/linux/comments/29vvz5/rate_of_dmca_takedown_demands_is_increasing_on/&#34;&gt;Rate of DMCA takedown demands is increasing on GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;That sounds pretty scary, for a couple of reasons. On one hand, it could mean that companies are really dropping the hammer and coming after folks more often and &lt;a href=&#34;https://torrentfreak.com/google-further-highlights-wrongful-dmca-takedowns-130320/&#34;&gt;potentially in error&lt;/a&gt;. On the other, it could mean the open source community is becoming more lax or lazy, using others&amp;rsquo; code without respecting licenses or copyright.&lt;/p&gt;
+
+&lt;p&gt;But could there be a third alternative? Is the rate of DMCA takedowns &lt;em&gt;really&lt;/em&gt; increasing in a meaningful way?&lt;/p&gt;
+
+&lt;p&gt;Fortunately GitHub is open about the DMCA notices they receive. Since January 27, 2011 GitHub has &lt;a href=&#34;https://github.com/github/dmca&#34;&gt;posted each request received and each counter-notice issued&lt;/a&gt;. All 317 of them.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Visual Guide to Painful Hymenopteran Stings</title>
+      <link>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</link>
+      <pubDate>Fri, 27 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</guid>
+      <description>&lt;div class=&#34;fullImage&#34;&gt;
+&lt;img src=&#34;http://www.joshuastevens.net/images/stingFeatured.png&#34; alt=&#34;View the other images to see which hymenopteran is the king of sting!&#34; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For most of us, insect stings are a thing to avoid. That&amp;rsquo;s not the case for entomologist Justin O. Schmidt. That&amp;rsquo;s because Dr. Schmidt has dedicated his life to studying venomous hymenopterans, the order of insects made up of ants, bees, and wasps. Through his research, he has been stung countless times. As a result, he developed the &lt;a href=&#34;http://en.wikipedia.org/wiki/Schmidt_sting_pain_index&#34;&gt;Schmidt Sting Pain Index&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I stumbled upon Schmidt&amp;rsquo;s work after seeing &lt;a href=&#34;https://www.youtube.com/watch?v=1_K7Tp97PsE&#34;&gt;this video of warrior wasps&lt;/a&gt;. One of the noteworthy characteristics of warrior wasps is that when threatened, they rhythmically flap their wings against their bodies in perfect synchrony, producing a sound not unlike marching soldiers. The other characteristic these wasps are known for is a sting that &lt;strong&gt;hurts!&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Moving from WordPress to Middleman</title>
+      <link>http://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/</link>
+      <pubDate>Wed, 18 Jun 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/</guid>
+      <description>&lt;div class=&#34;fullImage&#34;&gt;
+&lt;img src=&#34;http://www.joshuastevens.net/images/rubyMMsass.png&#34; alt=&#34;Ruby, Sass, and Middleman are awesome together.&#34; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Note: In September 2017 this site was rebuilt with &lt;a href=&#34;https://www.gohugo.io&#34;&gt;Hugo&lt;/a&gt;. The text below no longer describes my own site, but I would still use Middleman (or any other static generator) over WordPress.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Recently I&amp;rsquo;ve spent a few evenings removing WordPress and rebuilding this site on top of &lt;a href=&#34;http://www.middlemanapp.com&#34;&gt;Middleman&lt;/a&gt;. The new site is still a work in progress and I have more features to add, but all of the previous content has been brought over. It should be safe to launch this.&lt;/p&gt;
+
+&lt;p&gt;So why did I do it? Over the past two years I&amp;rsquo;ve become increasingly frustrated with WordPress. Despite serving compressed pages, caching data, and reducing unnecessary scripts, page load times seemed to increase with each new version. Some of my more popular pages were averaging 5 seconds to load. That&amp;rsquo;s ridiculous.&lt;/p&gt;
+
+&lt;p&gt;Even when WordPress itself performed well, it required additional plugins just to have reasonable features (e.g., caching, contact forms, spam protection, SEO optimization, etc.). Each of these requires constant updates, and one can never be sure if updating one plugin is going to break other plugins, or worse, the entire site. Compatibility reports from other users are helpful, but are often incomplete. Logging in just to write a simple post became a chore: update this, double check that, fix this other thing that the previous update broke, and so on. Long story short, it got old. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Many Birthplaces of Memorial Day</title>
+      <link>http://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/</link>
+      <pubDate>Tue, 27 May 2014 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/</guid>
+      <description>&lt;p&gt;Yesterday was Memorial Day. Like many other Americans, my family and I spent this day of national remembrance at a local park. We made the short trip to historic Boalsburg. Those in the know will recognize that Memorial Day in Boalsburg, PA is no ordinary affair. It is a massive celebration. This was especially true this year, which marks the 150th Memorial Day celebrated in Boalsburg. Thousands of people from all over gathered to honor our veterans who gave the ultimate sacrifice. What started as a time to decorate graves with flowers has now grown into a large festival, with celebratory events found at every corner of the township.&lt;/p&gt;
+
+&lt;p&gt;It was also a learning opportunity. Almost everyone knows about Pennsylvania’s vital role in the Civil War and the importance of Memorial Day in the region. As a Michigan native, what I didn’t know was that Boalsburg itself was the very birthplace of Memorial Day.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>The Map of GDELT Predictions in Afghanistan as You Should Have Seen It</title>
+      <link>http://www.joshuastevens.net/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</link>
+      <pubDate>Mon, 21 Oct 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</guid>
+      <description>&lt;p&gt;For the last several weeks, I’ve been creating a visualization of past and predicted conflicts in Afghanistan. The data, which come from a statistical model developed by &lt;a href=&#34;http://jayyonamine.com/&#34;&gt;Jay Yonamine&lt;/a&gt; with help from &lt;a href=&#34;http://johnbeieler.org/&#34;&gt;John Beieler&lt;/a&gt;, show us what might happen based on a long history of what has happened.  The database behind this model is known as &lt;a href=&#34;http://gdelt.utdallas.edu/&#34;&gt;GDELT&lt;/a&gt;, or the Global Database of Events, Language, and Tone. GDELT has received &lt;a href=&#34;http://ideas.foreignpolicy.com/posts/2013/04/10/what_can_we_learn_from_the_last_200_million_things_that_happened_in_the_world&#34;&gt;a lot of attention&lt;/a&gt; lately and I’ve participated in two hackathons that have emerged around it. After Wired showed interest in publishing this story along with the visualization, I was thrilled.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>&#39;Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada</title>
+      <link>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</link>
+      <pubDate>Tue, 17 Sep 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</guid>
+      <description>&lt;p&gt;Every now and then a dataset comes along that just has to be mapped. This is one of those times.&lt;/p&gt;
+
+&lt;p&gt;Bigfoot. Sasquatch. Skookum. Yahoo. Whatever you call it, the towering man-like ape is a folklore staple. From stories of Yeti in the Himalayas to Wildmen in the Pacific Northwest, people have been talking about and trying to find the creature for ages. Occasionally, some form of evidence – like &lt;a href=&#34;http://en.wikipedia.org/wiki/Patterson-Gimlin_film&#34;&gt;Patterson’s famous 1967 film&lt;/a&gt; – emerges and either feeds our fascination or gets dismissed as a hoax. In either case, it’s easy to see why believers search for proof and skeptics remain doubtful.&lt;/p&gt;
+
+&lt;p&gt;Through archival work and reports submitted directly to their website, the &lt;a href=&#34;http://www.bfro.net&#34;&gt;Bigfoot Field Researchers Organization&lt;/a&gt; has amassed a database of thousands of sasquatch sightings. Each report is geocoded and timestamped. Occasionally, even photos and videos of the alleged evidence are included. I’m not quite sure how I stumbled across this, but I’m glad I did.&lt;/p&gt;
+
+&lt;p&gt;After crawling the data and converting it to a more convenient format, I mapped and graphed all 3,313 sightings that were reported from 1921 to 2013:&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Your Favorite Traffic Map is Lying to You</title>
+      <link>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</link>
+      <pubDate>Fri, 28 Jun 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</guid>
+      <description>&lt;p&gt;Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Big Data Social Science Video Demo: SensePlace2</title>
+      <link>http://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/</link>
+      <pubDate>Mon, 27 May 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/</guid>
+      <description>&lt;div class=&#34;fullImage&#34;&gt;
+&lt;img src=&#34;http://www.joshuastevens.net/images/sp2.png&#34; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;This year I was selected to represent the 2013 &lt;a href=&#34;http://bdss.psu.edu&#34;&gt;Big Data Social Science IGERT&lt;/a&gt; in the annual poster and video competition hosted by the National Science Foundation. The news came as both an honor and a challenge. &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Big Data Week: Geographic Visualization and a Demo of CartoDB</title>
+      <link>http://www.joshuastevens.net/blog/big-data-week-geographic-visualization-and-a-demo-of-cartodb/</link>
+      <pubDate>Fri, 26 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/big-data-week-geographic-visualization-and-a-demo-of-cartodb/</guid>
+      <description>&lt;p&gt;Spatial is special. Accordingly, there are many considerations that need to be made prior to and during the task of visualizing spatial data. Chief among these considerations are your goals and what it is you’re actually trying to accomplish with a map. Are you communicating results you’ve already found? Enabling users to explore the data to discover information on their own, possibly generating new hypotheses?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Accommodating Big Data in Visual Analytics</title>
+      <link>http://www.joshuastevens.net/blog/accommodating-big-data-in-visual-analytics/</link>
+      <pubDate>Wed, 17 Apr 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/accommodating-big-data-in-visual-analytics/</guid>
+      <description>&lt;p&gt;Last week I had a blast visiting Santa Barbara and Los Angeles. While I enjoyed the wineries and sunshine, the annual meeting of the &lt;a href=&#34;http://www.aag.org/cs/annualmeeting&#34;&gt;Association of American Geographers&lt;/a&gt; was the highlight of the trip. With so many talks on cartography, GIS, and cyber science, it was my favorite AAG conference yet.&lt;/p&gt;
+
+&lt;p&gt;What made AAG even more enjoyable was the acknowledgement of big data within GIS (though I’d argue we’ve all been doing “big data” for decades now).&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Big Data Social Science Poster Session</title>
+      <link>http://www.joshuastevens.net/blog/big-data-social-science-poster-session/</link>
+      <pubDate>Tue, 12 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/big-data-social-science-poster-session/</guid>
+      <description>&lt;p&gt;As part of the &lt;a href=&#34;http://www.igert.org/projects/294&#34;&gt;NSF IGERT in Big Data Social Science&lt;/a&gt;, Pond Lab hosted a public poster session this afternoon.&lt;/p&gt;
+
+&lt;p&gt;A total of eleven different posters were presented, covering topics in big data that ranged from text processing and visualizing uncertainty to computing voter sentiment and analyzing data of patients’ heart rates.&lt;/p&gt;
+
+&lt;p&gt;I presented work on a &lt;a href=&#34;http://www.geovista.psu.edu/&#34;&gt;GeoVISTA&lt;/a&gt; project that leverages geovisual analytics and Twitter to help users make sense of the spatiotemporal variation of place and topic mentions within hundreds of millions of tweets.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Mapping Tools – Analysis and Visualization of Spatial Data</title>
+      <link>http://www.joshuastevens.net/blog/mapping-tools--analysis-and-visualization-of-spatial-data/</link>
+      <pubDate>Fri, 11 Jan 2013 00:00:00 +0000</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/mapping-tools--analysis-and-visualization-of-spatial-data/</guid>
+      <description>&lt;p&gt;I had the pleasure of being invited to talk about mapping tools at the &lt;a href=&#34;http://sites.psu.edu/hackingscience/&#34;&gt;Hacking Science&lt;/a&gt; Hands on Sessions, led by professor and tech enthusiast &lt;a href=&#34;http://www.salathegroup.com/people.html&#34;&gt;Marcel Salathé&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

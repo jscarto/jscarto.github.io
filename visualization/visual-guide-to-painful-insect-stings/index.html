@@ -1,79 +1,83 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
-    <title>Joshua Stevens - Visual Guide to Painful Hymenopteran Stings</title>
-    <link rel="icon" href="http://www.joshuastevens.net/favicon.ico" type="image/x-icon" />
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="../../stylesheets/main.css" rel="stylesheet" type="text/css" />
-    <link href="../../stylesheets/syntax.css" rel="stylesheet" type="text/css" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/stylesheets/jquery.mmenu.all.css" />
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.mmenu.min.js"></script>
-    <meta name="description" content="Joshua Stevens is a cartographer and GIScientist focusing on UI/UX design, human-computer interaction, and the visualization of spatial data."/>
-    <link rel="canonical" href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/" />
-  </head>
-  <body class="visualization visualization_visual-guide-to-painful-insect-stings visualization_visual-guide-to-painful-insect-stings_index">
-  <script type="text/javascript">
-  $(document).ready(function(){
-      $("#my-menu").mmenu({
-        header:false,
-        position:"right"
-      });
-      $("#mobileNav").on("click", function(){
-        $("#my-menu")
-           .mmenu()
-           .trigger( "open.mm" )
-      });
-  });
-  </script>
-  <div id="master">
-  <div id="header">
-	<div id="logo"><a href="/"><img id="top" src="/images/jsLogoMed.png" /></a></div>
-	<div id="nav">
-		<ul>
-  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
-  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
-      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
-      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
-		</ul>
-	</div>
-  <div id="mobileNav">
-    <ul>
-      <li class="homenav"><i class="fa fa-bars"></i> Menu</li>
-    </ul>
-  </div>
-	<nav id="my-menu">
-		<ul>
-  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
-  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
-      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
-      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
-		</ul>
-	</nav>
-</div>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://www.joshuastevens.net/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://www.joshuastevens.net/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://www.joshuastevens.net/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://www.joshuastevens.net/favicon-16x16.png">
+    <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
 
-  <div id="wrapper">
-    <div id="content">
-    <div id="main" role="main">
-    <div class="post_content">
-        <article>
- 	<div class="title">
- 		<h1>Visual Guide to Painful Hymenopteran Stings</h1>
- 		<h2></h2>
- 		<div class="blogDate">
-      		<i class="fa fa-calendar"></i>&nbsp; June 27, 2014
-    	</div>
- 	</div>
-    	<div class="fullImage">
+    <title>
+      Joshua Stevens - Visual Guide to Painful Hymenopteran Stings
+    </title>
+
+    <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.joshuastevens.net/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.joshuastevens.net/css/font-awesome.min.css">
+    
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jscarto" />
+    <meta name="twitter:title" content="Joshua Stevens - Visual Guide to Painful Hymenopteran Stings" />
+    <meta name="twitter:image" content="http://www.joshuastevens.net/images/default_th.png" />
+  </head>
+
+  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="http://www.joshuastevens.net/css/js_logo.png" /> Joshua Stevens</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net//">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="http://www.joshuastevens.net/blog/">Blog</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/about/">About</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/portfolio/">Work</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=240209906031266";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div class="container">
+	<div class="article">
+
+	<h1 class="title">Visual Guide to Painful Hymenopteran Stings</h1>
+	<div class="postDate">
+		<i class="fa fa-calendar"></i> June 27, 2014
+	</div>
+
+	<div class="fullImage">
 <img src="/images/stingFeatured.png" alt="View the other images to see which hymenopteran is the king of sting!" />
 </div>
 
@@ -81,7 +85,7 @@
 
 <p>I stumbled upon Schmidt&rsquo;s work after seeing <a href="https://www.youtube.com/watch?v=1_K7Tp97PsE">this video of warrior wasps</a>. One of the noteworthy characteristics of warrior wasps is that when threatened, they rhythmically flap their wings against their bodies in perfect synchrony, producing a sound not unlike marching soldiers. The other characteristic these wasps are known for is a sting that <strong>hurts!</strong></p>
 
-<p>Just how much does a sting from a warrior wasp hurt? According to the pain index developed by Schmidt, the warrior wasp tops in at a 4 - the highest level of pain in the scale. What&rsquo;s more, the excruciating pain will last at least 60 minutes before subsiding even the slightest.</p>
+<p>Just how much does a sting from a warrior wasp hurt?  According to the pain index developed by Schmidt, the warrior wasp tops in at a 4 - the highest level of pain in the scale. What&rsquo;s more, the excruciating pain will last at least 60 minutes before subsiding even the slightest.</p>
 
 <p>The warrior wasp is not the most painful sting recorded in Schmidt&rsquo;s index, however. In fact, it pales in comparison to some other insect stings. To date, Schmidt has cataloged the painful stings of nearly 80 different hymenopteran species, from various ants to the giant Asian hornet.</p>
 
@@ -97,7 +101,7 @@
 
 <p>Such a powerful sting has earned the bullet ant a place among the <a href="http://en.wikipedia.org/wiki/Maw%C3%A9_people">Satere-Mawe</a>, a tribe in the Brazilian Amazon rain forest. During their coming-of-age initiation, young members of the Satere-Mawe wear mittens lined with bullet ants. For 10 minutes  initiates dance in the stinging mittens to prove their courage. They must do this not once, but <em>20 times before</em> completing their ceremonial journey.</p>
 
-<h3>Pain and Place: The Bodily Geography of Schmidt&rsquo;s Index</h3>
+<h3 id="pain-and-place-the-bodily-geography-of-schmidt-s-index">Pain and Place: The Bodily Geography of Schmidt&rsquo;s Index</h3>
 
 <p>In addition to the subjective nature of pain, location matters when it comes to insect stings [<a href="#refs">3</a>]. Using honey bees as a baseline, Michael L. Smith <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3994616/">tested the variance of Schmidt&rsquo;s Pain Index</a> based on where the sting occurred. According to Smith&rsquo;s research, the nostril was the worst place to be stung, followed by the upper lip.</p>
 
@@ -111,17 +115,17 @@
 <p>Stings to the nostril were especially violent, immediately inducing sneezing, tears and a copious flow of mucus. The sting did autotomize in the nostril (self-severed when the bee was pulled away). The copious mucus flow, however, may help prevent subsequent stings to the area during a natural attack. (p. 6)</p>
 </blockquote>
 
-<h1>Stings That Kill</h1>
+<h3 id="stings-that-kill">Stings That Kill</h3>
 
 <p>In the United States, bee and wasp stings are responsible for the deaths of about <a href="http://abcnews.go.com/Health/AllergiesNews/story?id=8148229">40 people each year</a>. This makes bees more deadly than dogs, spiders, and snakes [<a href="#refs">2</a>]. Even sharks, which are one of the most feared animals in the world, have <a href="http://oceana.org/en/our-work/protect-marine-wildlife/sharks/learn-act/shark-attack-statistics">only killed 3 people in the US during the years 2006 - 2010</a>.</p>
 
-<p>Nearly all of the deaths related to bee stings are the result of <a href="http://www.nlm.nih.gov/medlineplus/ency/article/000033.htm">anaphylaxis</a>, which is a severe allergic reaction that can lead to difficulty in breathing, dizziness, unconsciousness, and ultimately death. Anaphylaxis is the result of compounds in the insects&#39; venom that are not related to the amount of pain inflicted. As a result, the Schmidt Pain Index is not an indicator of how deadly an animal is to humans. Small bees (pain level 1-2) kill far more people than the bullet ant (level 4).</p>
+<p>Nearly all of the deaths related to bee stings are the result of <a href="http://www.nlm.nih.gov/medlineplus/ency/article/000033.htm">anaphylaxis</a>, which is a severe allergic reaction that can lead to difficulty in breathing, dizziness, unconsciousness, and ultimately death. Anaphylaxis is the result of compounds in the insects&rsquo; venom that are not related to the amount of pain inflicted. As a result, the Schmidt Pain Index is not an indicator of how deadly an animal is to humans. Small bees (pain level 1-2) kill far more people than the bullet ant (level 4).</p>
 
 <p>The deadliness of smaller, less painful insects has more to do with their behavior and the likelihood of an encounter. <a href="http://en.wikipedia.org/wiki/Africanized_bees">Africanized honey bees</a> - the famed &ldquo;killer bees&rdquo; - are particularly deadly because of their aggressive swarming characteristics. They are easier to provoke, attack in large numbers, and are known to chase their targets for long distances. Just last year, a man in Texas was killed after a swarm of nearly <a href="http://www.usnews.com/news/newsgram/articles/2013/06/03/40000-killer-bees-sting-texas-man-to-death">40,000 killer bees</a> descended upon him.</p>
 
-<h3>A Different Dose</h3>
+<h3 id="a-different-dose">A Different Dose</h3>
 
-<p>Just as location affects pain, the biochemistry of the species&#39; venom influences its lethality. Each species has a slightly different arrangement of enzymes in their venom, making some more lethal than others. In addition, each species injects a different amount of their venom, per sting. For example, the Honey bee injects 0.05mg of venom per sting while the fire ant can inject up to 0.1mg [<a href="#refs">3</a>]. Typically, insects sting other insects or smaller animals that attempt to prey on them, so their venom has not evolved for the purpose of killing humans. But with a high enough dose - delivered by the right number of stings, hymenopteran venom <em>can</em> be lethal. Just how much does it take?</p>
+<p>Just as location affects pain, the biochemistry of the species&rsquo; venom influences its lethality. Each species has a slightly different arrangement of enzymes in their venom, making some more lethal than others. In addition, each species injects a different amount of their venom, per sting. For example, the Honey bee injects 0.05mg of venom per sting while the fire ant can inject up to 0.1mg [<a href="#refs">3</a>]. Typically, insects sting other insects or smaller animals that attempt to prey on them, so their venom has not evolved for the purpose of killing humans. But with a high enough dose - delivered by the right number of stings, hymenopteran venom <em>can</em> be lethal. Just how much does it take?</p>
 
 <div class="fullImage">
 <img src="/images/lethalityOfStingsFull.png" alt="Lethality of hymenopteran stings" />
@@ -155,19 +159,19 @@
 
 <p>Fortunately for us the poison dart frog fits in the latter category.</p>
 
-<h1>Closing Thoughts</h1>
+<h3 id="closing-thoughts">Closing Thoughts</h3>
 
 <p>Aside from their interestingness, these data shattered a few of my preconceptions about insect stings. Being in the outdoors often has given me my fair share of stings and encounters with various bees, wasps, and hornets. Among all of these, I avoided hornets the most (the <a href="http://en.wikipedia.org/wiki/Bald-faced_hornet">bald-faced hornet</a> is common in every area I&rsquo;ve lived). I&rsquo;m willing to bet that many others also view hornets as nastier, more painful stingers than other wasps and bees.</p>
 
-<p>But according to the data, that needn&rsquo;t be so. These hornets are no more painful than the common yellowjackets and bumble bees that frequent backyards and gardens. In fact, the pain subsides more quickly and their venom is much weaker. </p>
+<p>But according to the data, that needn&rsquo;t be so. These hornets are no more painful than the common yellowjackets and bumble bees that frequent backyards and gardens. In fact, the pain subsides more quickly and their venom is much weaker.</p>
 
-<p>So what gives? Why would we fear the insects we see less frequently (such as hornets) while remaining comfortable around those most common to us (like honey bees) - despite the latter being more painful stingers and even more deadly? Personally, I think the question reveals the answer. As in many situations, it seems that fear of the unknown outweighs reality. </p>
+<p>So what gives? Why would we fear the insects we see less frequently (such as hornets) while remaining comfortable around those most common to us (like honey bees) - despite the latter being more painful stingers and even more deadly? Personally, I think the question reveals the answer. As in many situations, it seems that fear of the unknown outweighs reality.</p>
 
 <p>While I won&rsquo;t be hunting for a pet hornet anytime soon, I&rsquo;m glad I took a look at these data and hope some of the findings were as eye-opening to you as they were for me.</p>
 
-<h1 id="refs">References</h1>
+<h3 id="refs">References</h3>
 
-<div class="smaller">
+<div class="text-small"">
 <p>[1] Schmidt, J. O. (1990). Hymenopteran venoms: striving toward the ultimate defense against vertebrates. <em>Insect defenses: adaptive mechanisms and strategies of prey and predators.</em> State University of New York Press, Albany, 387-419.</p>
 
 <p>[2] Centers for Disease Control and Prevention, National Center for Health Statistics. Compressed Mortality File 1999-2010 on CDC WONDER Online Database, released January 2013. Data are compiled from Compressed Mortality File 1999-2010 Series 20 No. 2P, 2013. Accessed at http://wonder.cdc.gov/cmf-icd10.html on Jun 28, 2014 1:00:26 PM</p>
@@ -180,87 +184,73 @@
 
 </div>
 
-    	<a href="/site/moving-from-wordpress-to-middleman/"><span class="secondaryNav prevLink"><i class="fa fa-arrow-left"></i> Moving from WordPress to Middleman</span></a>
-<a href="/visualization/open-source-copyright-infringement/"><span class="secondaryNav nextLink">Open Source Copyright Infringement: Are DMCA Takedowns on GitHub Increasing? <i class="fa fa-arrow-right"></i></span></a>    
-<div id="article_bottom">
-<hr />
-	<div id="blog_bottom_right">
-		<div id="about_author">
-		<img src="/images/joshSmall.png" />
-		<p>Josh is a PhD candidate at Penn State researching UI/UX design for interactive maps and data visualization. He currently works at NASA's Earth Observatory.</p>
- 	
-		<p><a href="/about/">Learn more</a> or follow <a href="http://www.twitter.com/jscarto">@jscarto</a> on Twitter.</p>
+	<hr>
+
+	<div class="social">
+		<span class="text-muted">Share This</span>
+		<br>
+		<div class="social-btn">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
+
+		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/" data-layout="button" data-size="large" data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fvisualization%2fvisual-guide-to-painful-insect-stings%2f&amp;src=sdkpreparse">Share</a>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="d-flex justify-content-between pagination text-small">
+		<a href="http://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/"><i class="fa fa-arrow-left"></i> Moving from WordPress to Middleman</a>
 		
-	</div>
-	<div id="article_share">Share This
-		<ul>
-		<li><div class="g-plusone" data-size="tall" data-annotation="none"></div></li>
-		<li><a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red" data-pin-height="28"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a></li>
-		<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="jscarto" data-size="large"></a></li>
-		</ul>
-	</div>
-</div>
-<!-- Disqus Comments -->
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'joshuastevens'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    
-
-<!-- Scripts for share buttons -->
-<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-  </article>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div id="handle"><a href="#top" title="Back to the top!"><img src="/stylesheets/wrapperBottom.png" /></a></div>
-</div>
-<div id="footer">
-	<div id="footer_bottom">
-	<div id="footer_copyright">
-		<div class="footer_inner">Copyright &copy; 2015 Joshua Stevens</div>
-	</div>	
-		<div id="footerContent">
-		<div id="contactArea">
-			<h2>Get in touch or follow me to see what I'm up to!</h2>
-			<li><a id="email" href="mailto:josh@joshuastevens.net"><img src="/images/emailBtn.png" /></a></li>
-			<li><a href="http://www.twitter.com/jscarto" title="Follow @jscarto on Twitter!"><img src="/images/twitterBtn.png" /></a></li>
-			<li><a href="http://www.linkedin.com/in/jscarto" title="Connect with me on LinkedIn!"><img src="/images/linkedInBtn.png" /></a></li>
-			<li><a href="/feed.xml" title="Grab my RSS feed!"><img src="/images/rssBtn.png" /></a></li>
+		
+		<a href="http://www.joshuastevens.net/visualization/open-source-copyright-infringement/">Open Source Copyright Infringement: Are DMCA Takedowns on GitHub Increasing? <i class="fa fa-arrow-right"></i></a>
 		</div>
+
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'joshuastevens';
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	</div>
 </div>
-<!-- Google Analytics Code -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-39165504-1', 'joshuastevens.net');
-  ga('send', 'pageview');
 
-</script>
-</body>
+<footer class="footer">
+      <div class="container">
+        <div class="row">
+        <div class="col-sm-12 col-md-5 footer-left">
+          <ul>
+            <li><a  href="http://www.joshuastevens.net//">Home</a></li>
+            <li><a class="active" href="http://www.joshuastevens.net/blog/">Blog</a></li>
+            <li><a  href="http://www.joshuastevens.net/about/">About</a></li>
+            <li><a  href="http://www.joshuastevens.net/portfolio/">Works</a></li>
+            <li><a  href="http://www.joshuastevens.net/contact/">Contact</a></li>
+          </ul>
+          </div>
+          <div class="col-sm-12 col-md-2 footer-mid"><a href="https://twitter.com/jscarto"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; <a href="https://www.linkedin.com/in/jscarto/"><i class="fa fa-linkedin fa-2x"></i></a></div>
+          <div class="col-sm-12 col-md-5 footer-right">© 2017 Joshua Stevens</div>
+        </div>
+      </div>
+    </footer>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="http://www.joshuastevens.net/js/bootstrap.min.js"></script>
+    <script src="http://www.joshuastevens.net/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-39165504-1', 'joshuastevens.net');
+        ga('send', 'pageview');
+    </script>
+  </body>
 </html>

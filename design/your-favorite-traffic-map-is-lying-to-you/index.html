@@ -1,83 +1,87 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
-    <title>Joshua Stevens - Your Favorite Traffic Map is Lying to You</title>
-    <link rel="icon" href="http://www.joshuastevens.net/favicon.ico" type="image/x-icon" />
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="../../stylesheets/main.css" rel="stylesheet" type="text/css" />
-    <link href="../../stylesheets/syntax.css" rel="stylesheet" type="text/css" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/stylesheets/jquery.mmenu.all.css" />
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.mmenu.min.js"></script>
-    <meta name="description" content="Joshua Stevens is a cartographer and GIScientist focusing on UI/UX design, human-computer interaction, and the visualization of spatial data."/>
-    <link rel="canonical" href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://www.joshuastevens.net/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://www.joshuastevens.net/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://www.joshuastevens.net/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://www.joshuastevens.net/favicon-16x16.png">
+    <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
+
+    <title>
+      Joshua Stevens - Your Favorite Traffic Map is Lying to You
+    </title>
+
+    <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.joshuastevens.net/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.joshuastevens.net/css/font-awesome.min.css">
+    
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jscarto" />
+    <meta name="twitter:title" content="Joshua Stevens - Your Favorite Traffic Map is Lying to You" />
+    <meta name="twitter:image" content="http://www.joshuastevens.net/images/default_th.png" />
   </head>
-  <body class="design design_your-favorite-traffic-map-is-lying-to-you design_your-favorite-traffic-map-is-lying-to-you_index">
-  <script type="text/javascript">
-  $(document).ready(function(){
-      $("#my-menu").mmenu({
-        header:false,
-        position:"right"
-      });
-      $("#mobileNav").on("click", function(){
-        $("#my-menu")
-           .mmenu()
-           .trigger( "open.mm" )
-      });
-  });
-  </script>
-  <div id="master">
-  <div id="header">
-	<div id="logo"><a href="/"><img id="top" src="/images/jsLogoMed.png" /></a></div>
-	<div id="nav">
-		<ul>
-  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
-  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
-      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
-      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
-		</ul>
+
+  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="http://www.joshuastevens.net/css/js_logo.png" /> Joshua Stevens</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net//">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="http://www.joshuastevens.net/blog/">Blog</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/about/">About</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/portfolio/">Work</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=240209906031266";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div class="container">
+	<div class="article">
+
+	<h1 class="title">Your Favorite Traffic Map is Lying to You</h1>
+	<div class="postDate">
+		<i class="fa fa-calendar"></i> June 28, 2013
 	</div>
-  <div id="mobileNav">
-    <ul>
-      <li class="homenav"><i class="fa fa-bars"></i> Menu</li>
-    </ul>
-  </div>
-	<nav id="my-menu">
-		<ul>
-  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
-  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
-      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
-      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
-		</ul>
-	</nav>
-</div>
 
-  <div id="wrapper">
-    <div id="content">
-    <div id="main" role="main">
-    <div class="post_content">
-        <article>
- 	<div class="title">
- 		<h1>Your Favorite Traffic Map is Lying to You</h1>
- 		<h2></h2>
- 		<div class="blogDate">
-      		<i class="fa fa-calendar"></i>&nbsp; June 28, 2013
-    	</div>
- 	</div>
-    	<p>Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.</p>
+	<p>Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.</p>
 
-<p>Or so many think. As it turns out, conventional traffic maps don’t actually tell you how long it will take to get from point A to point B. Not only do traffic maps fail to communicate the information you’re after, the information they do communicate can be very misleading.</p>
+<p>Or so many think.  As it turns out, conventional traffic maps don’t actually tell you how long it will take to get from point A to point B. Not only do traffic maps fail to communicate the information you’re after, the information they do communicate can be very misleading.</p>
 
-<h1>Most Traffic Maps are Similar</h1>
+<h3 id="most-traffic-maps-are-similar">Most Traffic Maps are Similar</h3>
 
 <p>Examples of conventional traffic maps are shown below. Each is from a different source and represents the same location and time of day:</p>
 
@@ -91,7 +95,7 @@
 
 <p>This is the case with traffic maps. In short, traffic maps are lying to you: their design suggests a use that cannot effectively be carried out by the user. Here’s a breakdown of the half-truths told by traffic maps and why their shared design is problematic.</p>
 
-<h1>Lie #1: The colors identify the fastest routes</h1>
+<h3 id="lie-1-the-colors-identify-the-fastest-routes">Lie #1: The colors identify the fastest routes</h3>
 
 <div class="leftImage">
 <img src="/images/googleTraffic.png" alt="Google's traffic map legend." />
@@ -104,7 +108,7 @@
 
 <p>Some might argue that actual speeds don’t matter and yellow is obviously slower than green, so the green routes will be fastest. Unfortunately this scenario is complicated by the fact that a wide range of velocities (roughly 1 to 90mph) are broken into just three classes and spread across multiple individual segments of varying lengths. Google uses 1-24, 25-50, 50+ mph as class breaks. With these ranges, it is possible for a yellow segment to require less time to traverse than a green segment of a slightly greater length. Identifying the fastest route, which will consist of multiple segments, requires assessing every segment and the speeds they represent. But (1) the actual speed is hidden, and (2) we don’t know the lengths of the segments. Suddenly, selecting the fastest route isn’t as simple as the map suggests.</p>
 
-<h1>Lie #2: The colors depict routes that require less time.</h1>
+<h3 id="lie-2-the-colors-depict-routes-that-require-less-time">Lie #2: The colors depict routes that require less time.</h3>
 
 <p>This is where things get really interesting. Imagine you want to know how long a particular route will take. In order to do this, you need to know how fast you can travel and the total distance of the route. With this information, you can do the math to figure out the total time required, using the formula:</p>
 
@@ -125,13 +129,13 @@
 
 <p>Such a scenario is not the result of good cartographic design. It leaves too much information hidden behind impossible estimations and guesswork. <strong>The map is posing questions when the user is looking for answers.</strong></p>
 
-<h1>Lie #3: The red-yellow-green color scheme is best suited for a quick glance.</h1>
+<h3 id="lie-3-the-red-yellow-green-color-scheme-is-best-suited-for-a-quick-glance">Lie #3: The red-yellow-green color scheme is best suited for a quick glance.</h3>
 
 <p>In order to be effective at a simple glance, the conventional traffic map design would have to depict overall delays without under- or over-exaggerating traffic conditions. If the map systematically exaggerated conditions in a particular direction (positive or negative), that suggests a design that is disjoint from the actual data. In a sense, it’s the difference between a design that is visually screaming when the data represent whispers (or vice versa), and one that is tuned appropriately to the data.</p>
 
 <p>Results from our paper show that users consistently underestimate travel times when using the conventional traffic map (average underestimation of 11 minutes, which is more than 20% of the time required for most routes in the exercise). Clearly there is something about interpreting the conventional design (likely at the precognitive level) that masks the true severity of traffic conditions.</p>
 
-<h1>Lie #4: Red-yellow-green color schemes work for everyone.</h1>
+<h3 id="lie-4-red-yellow-green-color-schemes-work-for-everyone">Lie #4: Red-yellow-green color schemes work for everyone.</h3>
 
 <p>Almost 5% of the general population has some form of colorblindness. <a href="http://medical-dictionary.thefreedictionary.com/protanopia">Protanopia</a> and <a href="http://medical-dictionary.thefreedictionary.com/deuteranopia">deuteranopia</a>, two common types of colorblindness, affect the way individuals see red and green due to a lack of the photo receptors necessary to interpret either hue. These conditions are collectively referred to as red-green colorblindness.</p>
 
@@ -143,7 +147,7 @@
 
 <p>This is one of the easier problems to correct. Simply adding a slight tint of blue to the green can help colorblind users distinguish it from red, without breaking the traffic light metaphor for other users. Cartographer Andy Woodruff applied this technique to his <a href="http://bostonography.com/2013/live-mbta-bus-speeds/">recent map of bus speeds in Boston</a>.</p>
 
-<h1>Lie #5: We can solve these problems by only showing congested traffic (i.e., the yellows and reds).</h1>
+<h3 id="lie-5-we-can-solve-these-problems-by-only-showing-congested-traffic-i-e-the-yellows-and-reds">Lie #5: We can solve these problems by only showing congested traffic (i.e., the yellows and reds).</h3>
 
 <div class="rightImage">
 <img src="/images/apple_traffic-200x300.jpg" alt="Apple's attempt at traffic mapping." />
@@ -154,7 +158,7 @@
 
 <p>Simplicity is great, and simpler maps should be the goal of any cartographer. But there is a fine line between simplicity and confusion. For all the reasons stated so far, it makes sense to focus solely on the reds and yellows. There is a major benefit to including green, though: <strong>it shows users where data exist and which street levels are considered</strong>. Leaving out green makes the map very ambiguous. Does the absence of green represent free-flow traffic, streets not included in the traffic layer, or simply a lack of available data? That’s exactly what the lack of green means in every other traffic map. Without green, the separation of the traffic layer and the base map is less defined and it is no longer clear for which roads traffic information should be expected.</p>
 
-<h1>So how do we solve these problems and design better traffic maps?</h1>
+<h3 id="so-how-do-we-solve-these-problems-and-design-better-traffic-maps">So how do we solve these problems and design better traffic maps?</h3>
 
 <p>There are many possible solutions, and I’m hesitant to claim that an optimal traffic map exists. Different users have different needs, techniques, and map reading skills. However, some of these problems can be solved, at least in part, by better aligning map design with the tasks users wish to carry out. I’m interested in travel time, as I believe that is the most important information traffic maps can communicate. As a result, I suggest two simplifications.</p>
 
@@ -186,87 +190,73 @@
 
 <p>So let’s rethink traffic map design, recognize the failures of existing solutions, and make some changes. Given the high demand for traffic maps and the rapid growth in open source mapping tools, cartographers are better poised than ever to make their mark.</p>
 
-    	<a href="/visualization/big-data-social-science-video-demo-senseplace2/"><span class="secondaryNav prevLink"><i class="fa fa-arrow-left"></i> Big Data Social Science Video Demo: SensePlace2</span></a>
-<a href="/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"><span class="secondaryNav nextLink">'Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada <i class="fa fa-arrow-right"></i></span></a>    
-<div id="article_bottom">
-<hr />
-	<div id="blog_bottom_right">
-		<div id="about_author">
-		<img src="/images/joshSmall.png" />
-		<p>Josh is a PhD candidate at Penn State researching UI/UX design for interactive maps and data visualization. He currently works at NASA's Earth Observatory.</p>
- 	
-		<p><a href="/about/">Learn more</a> or follow <a href="http://www.twitter.com/jscarto">@jscarto</a> on Twitter.</p>
+	<hr>
+
+	<div class="social">
+		<span class="text-muted">Share This</span>
+		<br>
+		<div class="social-btn">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
+
+		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/" data-layout="button" data-size="large" data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fdesign%2fyour-favorite-traffic-map-is-lying-to-you%2f&amp;src=sdkpreparse">Share</a>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="d-flex justify-content-between pagination text-small">
+		<a href="http://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/"><i class="fa fa-arrow-left"></i> Big Data Social Science Video Demo: SensePlace2</a>
 		
-	</div>
-	<div id="article_share">Share This
-		<ul>
-		<li><div class="g-plusone" data-size="tall" data-annotation="none"></div></li>
-		<li><a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red" data-pin-height="28"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a></li>
-		<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="jscarto" data-size="large"></a></li>
-		</ul>
-	</div>
-</div>
-<!-- Disqus Comments -->
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'joshuastevens'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    
-
-<!-- Scripts for share buttons -->
-<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-  </article>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div id="handle"><a href="#top" title="Back to the top!"><img src="/stylesheets/wrapperBottom.png" /></a></div>
-</div>
-<div id="footer">
-	<div id="footer_bottom">
-	<div id="footer_copyright">
-		<div class="footer_inner">Copyright &copy; 2015 Joshua Stevens</div>
-	</div>	
-		<div id="footerContent">
-		<div id="contactArea">
-			<h2>Get in touch or follow me to see what I'm up to!</h2>
-			<li><a id="email" href="mailto:josh@joshuastevens.net"><img src="/images/emailBtn.png" /></a></li>
-			<li><a href="http://www.twitter.com/jscarto" title="Follow @jscarto on Twitter!"><img src="/images/twitterBtn.png" /></a></li>
-			<li><a href="http://www.linkedin.com/in/jscarto" title="Connect with me on LinkedIn!"><img src="/images/linkedInBtn.png" /></a></li>
-			<li><a href="/feed.xml" title="Grab my RSS feed!"><img src="/images/rssBtn.png" /></a></li>
+		
+		<a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">&#39;Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada <i class="fa fa-arrow-right"></i></a>
 		</div>
+
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'joshuastevens';
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	</div>
 </div>
-<!-- Google Analytics Code -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-39165504-1', 'joshuastevens.net');
-  ga('send', 'pageview');
 
-</script>
-</body>
+<footer class="footer">
+      <div class="container">
+        <div class="row">
+        <div class="col-sm-12 col-md-5 footer-left">
+          <ul>
+            <li><a  href="http://www.joshuastevens.net//">Home</a></li>
+            <li><a class="active" href="http://www.joshuastevens.net/blog/">Blog</a></li>
+            <li><a  href="http://www.joshuastevens.net/about/">About</a></li>
+            <li><a  href="http://www.joshuastevens.net/portfolio/">Works</a></li>
+            <li><a  href="http://www.joshuastevens.net/contact/">Contact</a></li>
+          </ul>
+          </div>
+          <div class="col-sm-12 col-md-2 footer-mid"><a href="https://twitter.com/jscarto"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; <a href="https://www.linkedin.com/in/jscarto/"><i class="fa fa-linkedin fa-2x"></i></a></div>
+          <div class="col-sm-12 col-md-5 footer-right">© 2017 Joshua Stevens</div>
+        </div>
+      </div>
+    </footer>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="http://www.joshuastevens.net/js/bootstrap.min.js"></script>
+    <script src="http://www.joshuastevens.net/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-39165504-1', 'joshuastevens.net');
+        ga('send', 'pageview');
+    </script>
+  </body>
 </html>

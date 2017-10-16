@@ -1,0 +1,419 @@
+body {
+  padding-bottom: 2rem;
+  color: #777;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a {
+  color: #7ec5b0;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a:hover {
+  color: #8ae1ae;
+  text-decoration: underline;
+}
+
+.navbar-light {
+  opacity: 0.98;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.works a:hover {
+  text-decoration: none;
+}
+
+.about-mast {
+  padding: .5rem 1.5rem;
+  text-align: center;
+}
+
+.about-mast p {
+  color: #c3c3c3 ;
+}
+
+.about-mast h3 {
+  margin-top: 2rem;
+}
+
+.about-intro {
+  background: url('contact_mast.jpg') top left no-repeat;
+  background-size: cover;
+  color: #fff;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+
+.about-research {
+  background: url('about_research.jpg') center right no-repeat;
+  background-size: cover;
+  color: #fff;
+  padding-bottom: 1rem;
+}
+
+.about-image {
+  float: left;
+  margin: 0 1rem 0 0;
+  padding: 1rem;
+}
+
+.about-side ul {
+  /*list-style-type: none;*/
+  padding-left: 1.5rem;
+}
+
+
+.navbar-brand, .display-45, .poppins, h1, h2, h3, h4, h5 {
+	font-family: 'Poppins', sans-serif;
+}
+
+.intro-mast {
+  padding: 5rem 1rem 1rem 1rem;
+  margin-bottom: 0rem;
+  background: #583a77 url('intro_mast.jpg') top center no-repeat;
+  background-size: cover;
+  color: #fff;
+  text-shadow: .15rem .15rem .5rem #333;
+}
+
+.contact-mast {
+  padding: 5rem 1rem 1rem 1rem;
+  margin-bottom: 0rem;
+  background: #fff url('contact_mast.jpg') top center no-repeat;
+  background-size: cover;
+  color: #fff;
+  text-shadow: .15rem .15rem .5rem #333;
+}
+
+.intro, .welcome {
+	width:80%;
+	margin: auto;
+}
+
+.display-45 {
+  font-size: 2.75rem;
+  font-weight: 300;
+  line-height: 3rem;
+  margin: 2rem auto;
+}
+
+.intro-mast .btn-outline-primary {
+  color: #fff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #fff;
+  margin: 1rem;
+}
+
+.intro-mast .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #2e3152;
+  border-color: #2e3152;
+}
+
+.intro-mast .btn-outline-primary:focus, .btn-outline-primary.focus {
+  box-shadow: 0 0 0 1px #fff;
+}
+
+.intro-mast .btn-outline-primary.disabled, .btn-outline-primary:disabled {
+  color: #333;
+  background-color: transparent;
+}
+
+.intro-mast .btn-outline-primary:active, .btn-outline-primary.active,
+.intro-mast .show > .btn-outline-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #333;
+  border
+}
+
+.latest-spanner{
+	width: 100%;
+	min-height: 3.75rem;
+	padding:1rem;
+  margin-bottom: 2rem;
+	background: #5c5888;
+	color: #fff;
+}
+
+.latest-spanner .spanner-muted {
+	color: #bcbbcc;
+}
+
+.latest-spanner a, .latest-spanner a:visited {
+  color: #fff;
+}
+
+.seen-on {
+  background: #f8f9fa;
+  padding: 0 0 2rem 0;
+}
+
+.seen-on img {
+  margin-top: 1rem;
+}
+
+.seen-on small {
+  color: #c9c9c9;
+}
+
+.works {
+  margin: 0 auto 2rem auto;
+}
+
+.works img{
+  width: 100%;
+  margin-bottom: .5rem;
+  transition: width, height, 0.3s ease-in-out;
+}
+
+.works .works-example {
+  transition: width, height, 0.3s ease-in-out;
+}
+.works .works-example:hover {
+  transform: scale(1.025, 1.025);
+}
+
+.works .works-example img {
+  box-shadow: 5px 5px 30px -4px rgba(0, 0, 0, 0.15);
+}
+
+.works .works-example:hover img {
+  box-shadow: 8px 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.works .more-works {
+  transition: none !important;
+}
+
+.works p {
+  font-size: .8rem;
+  color: #666;
+}
+
+.works strong {
+  color: #555;
+}
+
+.more-works {
+  line-height: 256px;
+  margin: auto;
+  padding-bottom: 4rem;
+  background: transparent url('more_works_th.png') top center no-repeat;
+}
+
+.container p {
+  line-height: 1.5;
+  margin-bottom: 1.3rem;
+}
+
+.row .row {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+[class*="col-"] {
+
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.page h3, .page h4, .page h5 {
+  margin-top: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.article {
+  margin: 2rem auto 2rem;
+  max-width: 780px;
+}
+
+.article h1, .article h2, .article h3, .article h4, .article h5,
+.page h1, .page h2, .page h3, .page h4, .page h5{
+  color: #555;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.article p {
+  line-height: 1.5;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a {
+  color: #555;
+}
+
+.post-list h2 {
+  text-align: center;
+  line-height: 2.5rem;
+}
+
+.fullImage {
+    width: 100%;
+    text-align: center;
+    margin: 10px auto 20px auto;
+}
+
+.article img, .fullImage img, .rightImage img, .leftImage img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+.rightImage {
+    height: auto;
+    padding: 0 0px 10px 40px;
+    text-align: center;
+    float: right;
+}
+
+.leftImage {
+    height: auto;
+    padding: 0 40px 10px 0px;
+    text-align: center;
+    float: left;
+}
+
+.fullImage, .leftImage, .rightImage {
+    color: #999;
+    font-size: 0.9rem;
+    padding: .2rem 1rem;
+
+  }
+
+.title {
+  text-align: center;
+  margin-top: 3rem  ;
+}
+
+.postDate {
+    color: #999999;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 0 20px 0;
+}
+
+.text-small {
+  font-size: .8rem;
+}
+
+.read-more-btn {
+  text-align: center;
+}
+
+pre {
+   box-shadow: 5px 5px 30px -4px rgba(0, 0, 0, 0.15);
+}
+
+.social {
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.social-btn {
+  float: left;
+  margin-right: .5rem;
+  display: block;
+}
+
+.pagination {
+  margin-bottom: 3rem;
+}
+
+textarea.form-control {
+  height: 10rem;
+}
+
+form {
+  margin: 2rem 0;
+}
+
+.page-404 {
+  background: url('squatch404.png') top center no-repeat;
+  background-size: contain;
+  min-height: 400px;
+  margin-bottom: -5rem;
+}
+.popular-404 {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  min-height: 60px;
+  line-height: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #5c5888;
+  font-size: 1rem;
+  color: #b9b8c9;
+}
+
+.footer a {
+  color: #b9b8c9;
+}
+
+.footer a.active {
+  color: #fff;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer ul li {
+  display: inline;
+  margin-right: .25rem;
+}
+
+.footer-left{
+ text-align: center;
+ display: block;
+ }
+
+.footer-right {
+ text-align: center;
+ }
+
+ .footer-mid {
+ text-align: center;
+}
+
+@media (min-width: 768px) {
+
+.footer-left{ 
+ text-align: left;
+ float: left;
+ }
+
+.footer-right {
+ float: right;
+ text-align: right;
+ }
+
+ .footer-mid {
+ text-align: center;
+ }
+
+ .page-404 {
+  background: url('squatch404.png') top center no-repeat;
+  background-size: contain;
+  min-height: 600px;
+} 
+
+}

@@ -1,0 +1,18 @@
+h3 {
+  margin-top: 2rem;
+}
+
+.row {
+}
+.row .row {
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+[class*="col-"] {
+
+}
+
+hr {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

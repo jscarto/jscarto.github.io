@@ -1,79 +1,83 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,300italic,400italic|Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
-    <title>Joshua Stevens - HDRI Lighting for Shaded Relief Maps</title>
-    <link rel="icon" href="http://www.joshuastevens.net/favicon.ico" type="image/x-icon" />
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
-    <link href="../../stylesheets/main.css" rel="stylesheet" type="text/css" />
-    <link href="../../stylesheets/syntax.css" rel="stylesheet" type="text/css" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="/stylesheets/jquery.mmenu.all.css" />
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="/scripts/jquery.mmenu.min.js"></script>
-    <meta name="description" content="Joshua Stevens is a cartographer and GIScientist focusing on UI/UX design, human-computer interaction, and the visualization of spatial data."/>
-    <link rel="canonical" href="http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/" />
-  </head>
-  <body class="cartography cartography_hdri-lighting-for-shaded-relief-maps cartography_hdri-lighting-for-shaded-relief-maps_index">
-  <script type="text/javascript">
-  $(document).ready(function(){
-      $("#my-menu").mmenu({
-        header:false,
-        position:"right"
-      });
-      $("#mobileNav").on("click", function(){
-        $("#my-menu")
-           .mmenu()
-           .trigger( "open.mm" )
-      });
-  });
-  </script>
-  <div id="master">
-  <div id="header">
-	<div id="logo"><a href="/"><img id="top" src="/images/jsLogoMed.png" /></a></div>
-	<div id="nav">
-		<ul>
-  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
-  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
-      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
-      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
-		</ul>
-	</div>
-  <div id="mobileNav">
-    <ul>
-      <li class="homenav"><i class="fa fa-bars"></i> Menu</li>
-    </ul>
-  </div>
-	<nav id="my-menu">
-		<ul>
-  		<li class="homenav"><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li class="blognav"><a href="/blog/"><i class="fa fa-book"></i> Blog</a></li>
-  		<li class="aboutnav"><a href="/about/"><i class="fa fa-info-circle"></i> About</a></li>
-  		<li class="researchnav"><a href="/research/"><i class="fa fa-flask"></i> Research &amp; Teaching</a></li>
-      <li class="cvnav"><a href="/stevens_vita.pdf"><i class="fa fa-download"></i> CV</a></li>
-      <li class="contactnav"><a href="/about/#email"><i class="fa fa-envelope"></i> Contact</a></li>
-		</ul>
-	</nav>
-</div>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://www.joshuastevens.net/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://www.joshuastevens.net/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://www.joshuastevens.net/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://www.joshuastevens.net/favicon-16x16.png">
+    <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
 
-  <div id="wrapper">
-    <div id="content">
-    <div id="main" role="main">
-    <div class="post_content">
-        <article>
- 	<div class="title">
- 		<h1>HDRI Lighting for Shaded Relief Maps</h1>
- 		<h2></h2>
- 		<div class="blogDate">
-      		<i class="fa fa-calendar"></i>&nbsp; August  8, 2014
-    	</div>
- 	</div>
-    	<div class="fullImage">
+    <title>
+      Joshua Stevens - HDRI Lighting for Shaded Relief Maps
+    </title>
+
+    <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.joshuastevens.net/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.joshuastevens.net/css/font-awesome.min.css">
+    
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jscarto" />
+    <meta name="twitter:title" content="Joshua Stevens - HDRI Lighting for Shaded Relief Maps" />
+    <meta name="twitter:image" content="http://www.joshuastevens.net/images/default_th.png" />
+  </head>
+
+  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="http://www.joshuastevens.net/css/js_logo.png" /> Joshua Stevens</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net//">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="http://www.joshuastevens.net/blog/">Blog</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/about/">About</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/portfolio/">Work</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=240209906031266";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div class="container">
+	<div class="article">
+
+	<h1 class="title">HDRI Lighting for Shaded Relief Maps</h1>
+	<div class="postDate">
+		<i class="fa fa-calendar"></i> August 8, 2014
+	</div>
+
+	<div class="fullImage">
 <img src="/images/shadedRelief_featured.png" />
 </div>
 
@@ -81,15 +85,15 @@
 
 <p>This push and pull between modeling a natural phenomenon (the illumination of Earth and the shadows cast by the sun) with artistic purposes has captivated cartographers for centuries. It&rsquo;s no surprise that as technology advanced, so too did the modeling of the sun&rsquo;s rays. With this in mind, I wondered how techniques in 3D ray tracing carry over to shaded relief mapping. </p>
 
-<h1>Shaded Relief</h1>
+<h3 id="shaded-relief">Shaded Relief</h3>
 
 <p>In common GIS software, relief mapping is made relatively easy. Typically, the user inputs a Digital Elevation Model (<a href="http://en.wikipedia.org/wiki/Digital_elevation_model">DEM</a>) and specifies some parameters for the sun - most often its altitude, azimuth, and ambient strength. The software then decides, based on a simulation of light cast with these properties, which features of the elevation model are lit and which are not. This process forms a gradient of shadows and highlights that reveal the structure of the terrain, based on the height of the terrain and how directly it faces the source of the light.</p>
 
 <p>There is a major drawback to this process in common GIS software: it only identifies which terrain features are lit directly by the sun, and how strongly each is lit. In the natural world, light does not terminate once it strikes an object - it reflects. The reflected ray, now slightly diminished in strength, might then strike another feature. Again, the ray is reflected, and this process continues until the angle of reflection sends the ray skyward or the light has been absorbed.</p>
 
-<h1>Ray Tracing</h1>
+<h3 id="ray-tracing">Ray Tracing</h3>
 
-<p>Accurately modeling the bouncing of light across objects, and how it reflects, refracts, and depletes is known as <a href="https://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html">ray tracing</a> in the 3D modeling world. In 3D modeling and rendering software, one has much greater control over light sources than is provided by most GIS software. In addition to simulating light rays more accurately, most 3D modeling software can depict various textures to further refine how light behaves. For instance, you could specify your terrain to be shiny, diffuse, or even to emit its own light. As a result, 3D applications are an attractive alternative for shaded relief mapping. </p>
+<p>Accurately modeling the bouncing of light across objects, and how it reflects, refracts, and depletes is known as <a href="https://www.cs.unc.edu/~rademach/xroads-RT/RTarticle.html">ray tracing</a> in the 3D modeling world. In 3D modeling and rendering software, one has much greater control over light sources than is provided by most GIS software. In addition to simulating light rays more accurately, most 3D modeling software can depict various textures to further refine how light behaves. For instance, you could specify your terrain to be shiny, diffuse, or even to emit its own light. As a result, 3D applications are an attractive alternative for shaded relief mapping.</p>
 
 <p>Daniel Huffman has a great <a href="http://somethingaboutmaps.wordpress.com/2014/01/01/blender-tutorial/">tutorial series</a> showing how this can be done in Blender, an open source 3D modeling application. The results are superb and I highly recommend the technique.</p>
 
@@ -106,7 +110,7 @@
 
 <div class="fullImage">
 <img src="/images/point_40size_12500.png" />
-<p>A DEM ray traced using a large, high intensity point light. Meh&hellip;</p>
+<p>A DEM ray traced using a large, high intensity point light. Meh...</p>
 </div>
 
 <p>The result above is a little better, but the shadows in the southeast still indicate their distance from the light. Let&rsquo;s crank up the intensity some more:</p>
@@ -127,7 +131,7 @@
 
 <p>Using a ray traced sun produces a relief map that is incredibly well lit. It has smooth gradations between light and dark while persevering highlighted peaks and deep, dark shadows where necessary. With a few minor tweaks, I would be very happy with this version.</p>
 
-<h1>High Dynamic Range Imagery</h1>
+<h3 id="high-dynamic-range-imagery">High Dynamic Range Imagery</h3>
 
 <p>Before becoming a cartographer, creating 3D scenes in Lightwave was my hobby. For side projects, I&rsquo;d create 3D meshes for others to buy and use in their own projects. One of the best ways to advertise the quality of a model was to render it in a stunningly well-lit environment. Since it would take a lot of time to model a forest, or a futuristic kitchen full of appliances, I stumbled across a shortcut: <a href="http://www.unparent.com/photos_probes.html">HDRI probes</a>.</p>
 
@@ -137,31 +141,33 @@
 
 <ol>
 <li><p>Instead of lighting objects in a uniform color, as is done in GIS software and single-source 3D techniques, HDR images emit both <a href="http://dativ.at/lightprobes/">light <em>and</em> color</a>.</p></li>
+
 <li><p>HDR lighting greatly reduces rendering time. Since the equivalent in a fully modeled world would require numerous objects and multiple &ldquo;bounces&rdquo; of light, cutting out these steps saves a ton of time.</p></li>
+
 <li><p>With effective depth-of-field, HDR images can serve as the backdrop of a scene.</p></li>
 </ol>
 
 <p>The last item isn&rsquo;t really important for relief mapping since we often depict terrain orthographically, so the area surrounding the terrain is out of view. But the first two are incredibly useful.</p>
 
-<h1>Using HDRI Lighting for Shaded Relief</h1>
+<h3 id="using-hdri-lighting-for-shaded-relief">Using HDRI Lighting for Shaded Relief</h3>
 
 <p>Using HDR images as a light source first requires a <em>probe.</em> These are HDR photos, often of spheres with a mirror surface, that can be projected onto other surfaces. By reprojecting the image back onto the inside of a hollow sphere, you can mimic the environment and ambient light sources of the original scene. The example below shows an HDR probe of Galileo&rsquo;s Tomb, and a scene rendered using that probe. There are no other light sources in the scene; everything is lit with ambient light as if it sat in the same room in which the probe was taken:</p>
 
 <div class="fullImage">
 <img src="/images/galileo_example.png" />
-<p>An HDR probe of Galileo&rsquo;s Tomb (left) and a mesh rendered using the probe as a light source. Images from <a href="http://www.pauldebevec.com/Probes/">Paul Debevec</a></p>
+<p>An HDR probe of Galileo's Tomb (left) and a mesh rendered using the probe as a light source. Images from <a href="http://www.pauldebevec.com/Probes/">Paul Debevec</a></p>
 </div>
 
 <p>What would a shaded relief look like using this technique? To find out, I created a scene in which the DEM was lit by Galileo&rsquo;s Tomb (a fitting example for a geographic study). When rendered using this HDR probe, the shaded relief looks like this:</p>
 
 <div class="fullImage">
 <img src="/images/tomb_015int.png" />
-<p>The DEM rendered with an HDR probe of Galileo&rsquo;s Tomb. The terrain itself has no color (muted gray). The tone comes entirely from the HDR lighting.</p>
+<p>The DEM rendered with an HDR probe of Galileo's Tomb. The terrain itself has no color (muted gray). The tone comes entirely from the HDR lighting.</p>
 </div>
 
 <p>Generally, this relief map looks a lot like the version rendered with the standard sun, though it is cast in the dominant color of the probe. Somewhat surprisingly, it is being lit from the northwest. I did not expect this, as HDR lighting illuminates the scene from all directions, with the strength dependent upon the light sources in the original images. The northwest lighting here is merely a convenient coincidence. If it had not occurred, we could easily rotate the probe within Blender to achieve the desired effect (or throw in a weak sun lamp to compensate).</p>
 
-<h2>When Things Go Awry</h2>
+<h2 id="when-things-go-awry">When Things Go Awry</h2>
 
 <p>For another example, I rendered the DEM using a probe of a beach scene. This time the angle of lighting did not work in my favor out of the box. Initially the scene was completely lit from the top [A]. To add northwest highlights, I placed a sun lamp with a relatively flat angle of illumination in the scene [B]. Since the HDR probe can be reprojected and rotated, I also generated a version where the water was the dominant feature [C]. This cast everything in deep blue, which is interesting but not exactly what we want. Similarly, [D] is the result of orienting the probe with the sand overhead.</p>
 
@@ -174,12 +180,12 @@
 
 <div class="fullImage">
 <img src="/images/rainbow_relief.png" />
-<p>As if the world really needed another rainbow map&hellip; This one has a purpose, though :-)</p>
+<p>As if the world really needed another rainbow map... This one has a purpose, though :-)</p>
 </div>
 
 <p>In the relief map above, the entire scene is cast in a magenta hue. This is because HDR probes wrap in 360 degrees and when using a structured image (e.g., ordered hues) the leftmost pixels get stretched the most to complete the projection, resulting in an image that is mostly that color.</p>
 
-<h1>Conclusion</h1>
+<h3 id="conclusion">Conclusion</h3>
 
 <p>As I hope I&rsquo;ve shown, HDR lighting can work for shaded relief mapping. Whether the relief map turns out adequately is highly dependent on the source image for the probe. But all in all, it is an interesting process and one I look forward to exploring more.</p>
 
@@ -189,7 +195,9 @@
 
 <ol>
 <li><p>Every event occurs at some location. Similarly, every event also happens at a <em>time</em>. The combination of both space and time is often missing from most maps; this is especially true for shaded relief maps. Although there is value (and convenience) in depicting relief while ignoring time, I find there is an attraction in representing relief that hints at the passage of time. With HDR, one could generate relief maps that accurately depict the half light of dawn or an aurora passing overhead.</p></li>
+
 <li><p>Even the phenomenal results of using a ray traced sun lacks the realism of natural light. Atmospheric scattering, ambient reflections, and the azure tinting of the environment that happens at great distances is wholly absent. With little effort, HDR lighting could provide some of these.</p></li>
+
 <li><p>Because you can.</p></li>
 </ol>
 
@@ -197,87 +205,73 @@
 
 <p>Until then, I hope this provokes some thought and generates ideas on how we can more realistically (and even artistically) represent relief in maps with 3D software.</p>
 
-    	<a href="/visualization/open-source-copyright-infringement/"><span class="secondaryNav prevLink"><i class="fa fa-arrow-left"></i> Open Source Copyright Infringement: Are DMCA Takedowns on GitHub Increasing?</span></a>
-<a href="/visualization/sea-ice-ebb-flow-visualized/"><span class="secondaryNav nextLink">The Ebb and Flow of Polar Sea Ice <i class="fa fa-arrow-right"></i></span></a>    
-<div id="article_bottom">
-<hr />
-	<div id="blog_bottom_right">
-		<div id="about_author">
-		<img src="/images/joshSmall.png" />
-		<p>Josh is a PhD candidate at Penn State researching UI/UX design for interactive maps and data visualization. He currently works at NASA's Earth Observatory.</p>
- 	
-		<p><a href="/about/">Learn more</a> or follow <a href="http://www.twitter.com/jscarto">@jscarto</a> on Twitter.</p>
+	<hr>
+
+	<div class="social">
+		<span class="text-muted">Share This</span>
+		<br>
+		<div class="social-btn">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
+
+		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/" data-layout="button" data-size="large" data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fcartography%2fhdri-lighting-for-shaded-relief-maps%2f&amp;src=sdkpreparse">Share</a>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="d-flex justify-content-between pagination text-small">
+		<a href="http://www.joshuastevens.net/visualization/open-source-copyright-infringement/"><i class="fa fa-arrow-left"></i> Open Source Copyright Infringement: Are DMCA Takedowns on GitHub Increasing?</a>
 		
-	</div>
-	<div id="article_share">Share This
-		<ul>
-		<li><div class="g-plusone" data-size="tall" data-annotation="none"></div></li>
-		<li><a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"  data-pin-color="red" data-pin-height="28"><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_red_28.png" /></a></li>
-		<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="jscarto" data-size="large"></a></li>
-		</ul>
-	</div>
-</div>
-<!-- Disqus Comments -->
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'joshuastevens'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    
-
-<!-- Scripts for share buttons -->
-<script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-<script type="text/javascript">
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/platform.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-  </article>
-
-      </div>
-    </div>
-  </div>
-</div>
-<div id="handle"><a href="#top" title="Back to the top!"><img src="/stylesheets/wrapperBottom.png" /></a></div>
-</div>
-<div id="footer">
-	<div id="footer_bottom">
-	<div id="footer_copyright">
-		<div class="footer_inner">Copyright &copy; 2015 Joshua Stevens</div>
-	</div>	
-		<div id="footerContent">
-		<div id="contactArea">
-			<h2>Get in touch or follow me to see what I'm up to!</h2>
-			<li><a id="email" href="mailto:josh@joshuastevens.net"><img src="/images/emailBtn.png" /></a></li>
-			<li><a href="http://www.twitter.com/jscarto" title="Follow @jscarto on Twitter!"><img src="/images/twitterBtn.png" /></a></li>
-			<li><a href="http://www.linkedin.com/in/jscarto" title="Connect with me on LinkedIn!"><img src="/images/linkedInBtn.png" /></a></li>
-			<li><a href="/feed.xml" title="Grab my RSS feed!"><img src="/images/rssBtn.png" /></a></li>
+		
+		<a href="http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/">The Ebb and Flow of Polar Sea Ice <i class="fa fa-arrow-right"></i></a>
 		</div>
+
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'joshuastevens';
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	</div>
 </div>
-<!-- Google Analytics Code -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-39165504-1', 'joshuastevens.net');
-  ga('send', 'pageview');
 
-</script>
-</body>
+<footer class="footer">
+      <div class="container">
+        <div class="row">
+        <div class="col-sm-12 col-md-5 footer-left">
+          <ul>
+            <li><a  href="http://www.joshuastevens.net//">Home</a></li>
+            <li><a class="active" href="http://www.joshuastevens.net/blog/">Blog</a></li>
+            <li><a  href="http://www.joshuastevens.net/about/">About</a></li>
+            <li><a  href="http://www.joshuastevens.net/portfolio/">Works</a></li>
+            <li><a  href="http://www.joshuastevens.net/contact/">Contact</a></li>
+          </ul>
+          </div>
+          <div class="col-sm-12 col-md-2 footer-mid"><a href="https://twitter.com/jscarto"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; <a href="https://www.linkedin.com/in/jscarto/"><i class="fa fa-linkedin fa-2x"></i></a></div>
+          <div class="col-sm-12 col-md-5 footer-right">© 2017 Joshua Stevens</div>
+        </div>
+      </div>
+    </footer>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="http://www.joshuastevens.net/js/bootstrap.min.js"></script>
+    <script src="http://www.joshuastevens.net/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-39165504-1', 'joshuastevens.net');
+        ga('send', 'pageview');
+    </script>
+  </body>
 </html>

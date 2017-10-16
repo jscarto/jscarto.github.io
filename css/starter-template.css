@@ -1,0 +1,88 @@
+body {
+  padding-bottom: 2rem;
+  color: #555
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.navbar-brand {
+	font-family: 'Poppins', sans-serif;
+}
+
+.intro-mast {
+  padding: 4rem 1rem;
+  margin-bottom: 0rem;
+  background: #583a77 url('intro_mast.jpg') top center no-repeat;
+  background-size: cover;
+  color: #fff;
+  text-shadow: .15rem .15rem 2rem #333;
+}
+
+.intro, .welcome {
+	width:80%;
+	margin: auto;
+}
+
+.mid-intro {
+  /*background: url('intro_mid.jpg') top center no-repeat;*/
+  background-size: cover;
+  padding-bottom: 4rem;
+}
+
+.display-45 {
+  font-size: 2.75rem;
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.intro-mast .btn-outline-primary {
+  color: #fff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #fff;
+  margin: 1rem;
+}
+
+.intro-mast .btn-outline-primary:hover {
+  color: #fff;
+  background-color: #333;
+  border-color: #333;
+}
+
+.intro-mast .btn-outline-primary:focus, .btn-outline-primary.focus {
+  box-shadow: 0 0 0 1px #fff;
+}
+
+.intro-mast .btn-outline-primary.disabled, .btn-outline-primary:disabled {
+  color: #333;
+  background-color: transparent;
+}
+
+.intro-mast .btn-outline-primary:active, .btn-outline-primary.active,
+.intro-mast .show > .btn-outline-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #333;
+  border
+}
+
+.latest-spanner{
+	width: 100%;
+	min-height: 3.75rem;
+	padding:1rem;
+	background: #5c5888;
+	color: #fff;
+}
+.latest-spanner .spanner-muted {
+	color: #bcbbcc;
+}
+
+.works {
+  margin: 0 auto 2rem auto;
+}
+.works img {
+  width: 100%;
+  max-width: 256px;
+  margin-bottom: 20px;
+}

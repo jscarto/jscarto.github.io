@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="apple-touch-icon" sizes="57x57" href="http://www.joshuastevens.net/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://www.joshuastevens.net/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://www.joshuastevens.net/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://www.joshuastevens.net/favicon-16x16.png">
+    <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
+
+    <title>
+      Joshua Stevens - The Map of GDELT Predictions in Afghanistan as You Should Have Seen It
+    </title>
+
+    <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://www.joshuastevens.net/css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300" rel="stylesheet">
+    <link rel="stylesheet" href="http://www.joshuastevens.net/css/font-awesome.min.css">
+    
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@jscarto" />
+    <meta name="twitter:title" content="Joshua Stevens - The Map of GDELT Predictions in Afghanistan as You Should Have Seen It" />
+    <meta name="twitter:image" content="http://www.joshuastevens.net/images/afgThumb.png" />
+  </head>
+
+  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="http://www.joshuastevens.net/css/js_logo.png" /> Joshua Stevens</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net//">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="http://www.joshuastevens.net/blog/">Blog</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/about/">About</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/portfolio/">Work</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="http://www.joshuastevens.net/contact/">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+	
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=240209906031266";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>hljs.initHighlightingOnLoad();</script>
+<div class="container">
+	<div class="article">
+
+	<h1 class="title">The Map of GDELT Predictions in Afghanistan as You Should Have Seen It</h1>
+	<div class="postDate">
+		<i class="fa fa-calendar"></i> October 21, 2013
+	</div>
+
+	<p>For the last several weeks, I’ve been creating a visualization of past and predicted conflicts in Afghanistan. The data, which come from a statistical model developed by <a href="http://jayyonamine.com/">Jay Yonamine</a> with help from <a href="http://johnbeieler.org/">John Beieler</a>, show us what might happen based on a long history of what has happened.  The database behind this model is known as <a href="http://gdelt.utdallas.edu/">GDELT</a>, or the Global Database of Events, Language, and Tone. GDELT has received <a href="http://ideas.foreignpolicy.com/posts/2013/04/10/what_can_we_learn_from_the_last_200_million_things_that_happened_in_the_world">a lot of attention</a> lately and I’ve participated in two hackathons that have emerged around it. After Wired showed interest in publishing this story along with the visualization, I was thrilled.</p>
+
+<h3 id="what-you-saw">What You Saw</h3>
+
+<p>When I heard that <a href="http://www.wired.com/dangerroom/2013/10/afghanwarmaps/">Wired had published the work</a> this morning, I was excited to check it out and see how the visualization tied the story together.</p>
+
+<p>And then I saw my map. Well, it was sort of my map. It had my name on it… but it was not at all how I had originally designed it. Here is the map as it is currently published:</p>
+
+<div class="fullImage">
+<img src="/images/wired_afg_map-300x300.jpg" alt="Wired's bastardization of my original map." />
+</div>
+
+<p><strong>Here’s my quibble:</strong> Not only was my work altered without acknowledging the changes from the original, the change resulted in a red-green color scheme – a classic map mishap that no professional cartographer would ever make.</p>
+
+<p>I’ve <a href="http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/">written about red/green colorblindness</a> in the past. <a href="http://blog.visual.ly/subtleties-of-color-addendum/">Others have too</a>. In fact, advice on not using red/green color schemes on maps and other visualizations are practically <a href="http://vis4.net/blog/posts/goodbye-redgreen-scales/">all</a>[1] <a href="http://www.sciencedaily.com/releases/2000/04/000428082212.htm">over</a>[2] <a href="http://www.gislounge.com/making-color-blind-friendly-maps/">the</a>[3] <a href="http://misguidedmaps.com/2010/05/03/maps-for-the-colorblind/">web</a>[4]. It’s not a new problem either: red/green color blindness has been written about by scientists for at least <a href="http://archive.org/details/colourblindness00edrigoog">120 years</a>. We even have tools, such as <a href="http://colorbrewer2.org/">ColorBrewer</a>, to help designers avoid common pitfalls with their color choices.</p>
+
+<p>By being in red and green, this map is impossible to interpret by anyone affected by red/green colorblindness (almost 10% of  males, about 5% of the total population). Instead, readers with red/green colorblindness will see something like the image below (<a href="http://www.color-blindness.com/2006/11/16/protanopia-red-green-color-blindness/">simulated protanopia</a>):</p>
+
+<div class="fullImage">
+<img src="/images/wired_afg_map_cb-300x300.png" alt="Wired's map, to someone with red-green colorblindness." />
+<p>Wired's map as seen by someone with red/green colorblindness.</p>
+</div>
+
+<h3 id="what-you-should-have-seen">What You Should Have Seen</h3>
+
+<p>The second problem is that I intended to show readers <strong>a lot more about the data</strong> – temporal trends, the propensity of conflicts near district and country borders, and the role of <a href="http://en.wikipedia.org/wiki/Operation_Enduring_Freedom">Operation Enduring Freedom</a> in the high number of material conflicts over the past decade.</p>
+
+<p>This is what I wanted you to see:</p>
+
+<div class="fullImage">
+<img src="/images/afgEventsSmall.png" "My original GDELT visualization sent to Wired." />
+</div>
+
+<p>This view shows much more about the material conflicts that have occurred in Afghanistan over the past 34 years. From more than a million geocoded conflicts (check out the activity at the border between Afghanistan and Pakistan) to temporal trends, readers instantly get a better sense of the situation and how the data have changed over time. As a professional cartographer, I also made sure <strong>it is red/green colorblind-safe</strong> (<a href="/images/afgEvents_cbSafe.png">preview</a>). Naturally, I would have liked to see this version published for the article’s readers.</p>
+
+<p>In the end, I really can’t change the article. But I can share the original, and I hope it provides the utility and clarity that was intended – for all readers, colorblind or not.</p>
+
+	<hr>
+
+	<div class="social">
+		<span class="text-muted">Share This</span>
+		<br>
+		<div class="social-btn">
+			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+		</div>
+
+		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/" data-layout="button" data-size="large" data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fblog%2fthe-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it%2f&amp;src=sdkpreparse">Share</a>
+		</div>
+	</div>
+
+	<br>
+
+	<div class="d-flex justify-content-between pagination text-small">
+		<a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/"><i class="fa fa-arrow-left"></i> &#39;Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada</a>
+		
+		
+		<a href="http://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/">The Many Birthplaces of Memorial Day <i class="fa fa-arrow-right"></i></a>
+		</div>
+
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+	    var disqus_shortname = 'joshuastevens';
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	</div>
+</div>
+
+
+<footer class="footer">
+      <div class="container">
+        <div class="row">
+        <div class="col-sm-12 col-md-5 footer-left">
+          <ul>
+            <li><a  href="http://www.joshuastevens.net//">Home</a></li>
+            <li><a class="active" href="http://www.joshuastevens.net/blog/">Blog</a></li>
+            <li><a  href="http://www.joshuastevens.net/about/">About</a></li>
+            <li><a  href="http://www.joshuastevens.net/portfolio/">Works</a></li>
+            <li><a  href="http://www.joshuastevens.net/contact/">Contact</a></li>
+          </ul>
+          </div>
+          <div class="col-sm-12 col-md-2 footer-mid"><a href="https://twitter.com/jscarto"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; <a href="https://www.linkedin.com/in/jscarto/"><i class="fa fa-linkedin fa-2x"></i></a></div>
+          <div class="col-sm-12 col-md-5 footer-right">© 2017 Joshua Stevens</div>
+        </div>
+      </div>
+    </footer>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="http://www.joshuastevens.net/js/bootstrap.min.js"></script>
+    <script src="http://www.joshuastevens.net/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-39165504-1', 'joshuastevens.net');
+        ga('send', 'pageview');
+    </script>
+  </body>
+</html>
