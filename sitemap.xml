@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.joshuastevens.net/blog/now-on-hugo/</loc>
+    <lastmod>2017-10-16T20:50:23-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</loc>
     <lastmod>2015-02-18T00:00:00+00:00</lastmod>
   </url>
@@ -91,7 +96,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/blog/</loc>
-    <lastmod>2015-02-18T00:00:00+00:00</lastmod>
+    <lastmod>2017-10-16T20:50:23-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -102,7 +107,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/</loc>
-    <lastmod>2015-02-18T00:00:00+00:00</lastmod>
+    <lastmod>2017-10-16T20:50:23-04:00</lastmod>
     <priority>0</priority>
   </url>
   
