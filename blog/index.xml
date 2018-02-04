@@ -27,19 +27,6 @@
     </item>
     
     <item>
-      <title>Put a Hex on Custom Color Ramps in QGIS and Python</title>
-      <link>http://www.joshuastevens.net/blog/put-a-hex-on-custom-color-ramps-in-qgis-and-python/</link>
-      <pubDate>Mon, 15 Jan 2018 16:22:32 -0400</pubDate>
-      
-      <guid>http://www.joshuastevens.net/blog/put-a-hex-on-custom-color-ramps-in-qgis-and-python/</guid>
-      <description>&lt;p&gt;It is now 2018. The good news: by now, both QGIS and Python (via Matplotlib) come with a great selection of percetually linear palletes from &lt;a href=&#34;http://colorbrewer2.org/&#34;&gt;Colorbrewer&lt;/a&gt;, as well as Viridis, Inferno, Magma, and Plasma. The bad news: creating your own color ramp can be a bit tedius.&lt;/p&gt;
-
-&lt;p&gt;Back in 2011, &lt;a href=&#34;https://anitagraser.com/&#34;&gt;Anita Graser&lt;/a&gt; created &lt;a href=&#34;http://colorbrewer2.org/&#34;&gt;Colorbrewer color ramps for QGIS&lt;/a&gt;. Not long afterward, Colorbrewer palettes were included as defaults. As most QGIS users can attest, this has come in super handy for years.&lt;/p&gt;
-
-&lt;p&gt;While Colorbrewer palettes are great choices, they are not the only option. What if you make your own palette, or find one online? In 2017, importing a faithful copy of custom color palettes into QGIS is still a little cumbersome. This post will show you how to do it - and once more, it is largely thanks to the excellent work of Anita.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Now on Hugo</title>
       <link>http://www.joshuastevens.net/blog/now-on-hugo/</link>
       <pubDate>Mon, 16 Oct 2017 20:50:23 -0400</pubDate>
