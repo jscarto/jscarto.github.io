@@ -6,10 +6,38 @@
     <description>Recent content in Blog on Joshua Stevens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Oct 2017 20:50:23 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 04 Feb 2018 08:08:46 -0500</lastBuildDate>
     
 	<atom:link href="http://www.joshuastevens.net/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Landsat Fact Meets Fiction in Kong: Skull Island</title>
+      <link>http://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/</link>
+      <pubDate>Sun, 04 Feb 2018 08:08:46 -0500</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/</guid>
+      <description>&lt;div class=&#34;fullImage&#34;&gt;
+&lt;img src=&#34;http://www.joshuastevens.net/images/kong_intro.jpg&#34; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In &lt;em&gt;Kong: Skull Island&lt;/em&gt;, we follow a crew of scientists and military specialists into the thick jungles of an uncharted Pacific island. Encounters with previously unknown creatures abound. Released in 2017, the film is set in 1973 and prominently features a fictional company—&lt;a href=&#34;https://medium.com/@alekseybusygin/landsat-in-kong-skull-island-2017-9f66603a627f&#34;&gt;Landsat&lt;/a&gt;—whose work involves classified satellite data.&lt;/p&gt;
+
+&lt;p&gt;But is it all fiction?&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Put a Hex on Custom Color Ramps in QGIS and Python</title>
+      <link>http://www.joshuastevens.net/blog/put-a-hex-on-custom-color-ramps-in-qgis-and-python/</link>
+      <pubDate>Mon, 15 Jan 2018 16:22:32 -0400</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/put-a-hex-on-custom-color-ramps-in-qgis-and-python/</guid>
+      <description>&lt;p&gt;It is now 2018. The good news: by now, both QGIS and Python (via Matplotlib) come with a great selection of percetually linear palletes from &lt;a href=&#34;http://colorbrewer2.org/&#34;&gt;Colorbrewer&lt;/a&gt;, as well as Viridis, Inferno, Magma, and Plasma. The bad news: creating your own color ramp can be a bit tedius.&lt;/p&gt;
+
+&lt;p&gt;Back in 2011, &lt;a href=&#34;https://anitagraser.com/&#34;&gt;Anita Graser&lt;/a&gt; created &lt;a href=&#34;http://colorbrewer2.org/&#34;&gt;Colorbrewer color ramps for QGIS&lt;/a&gt;. Not long afterward, Colorbrewer palettes were included as defaults. As most QGIS users can attest, this has come in super handy for years.&lt;/p&gt;
+
+&lt;p&gt;While Colorbrewer palettes are great choices, they are not the only option. What if you make your own palette, or find one online? In 2017, importing a faithful copy of custom color palettes into QGIS is still a little cumbersome. This post will show you how to do it - and once more, it is largely thanks to the excellent work of Anita.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Now on Hugo</title>

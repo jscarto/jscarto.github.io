@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/</loc>
+    <lastmod>2018-02-04T08:08:46-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.joshuastevens.net/blog/put-a-hex-on-custom-color-ramps-in-qgis-and-python/</loc>
+    <lastmod>2018-01-15T16:22:32-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.joshuastevens.net/blog/now-on-hugo/</loc>
     <lastmod>2017-10-16T20:50:23-04:00</lastmod>
   </url>
@@ -96,7 +106,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/blog/</loc>
-    <lastmod>2017-10-16T20:50:23-04:00</lastmod>
+    <lastmod>2018-02-04T08:08:46-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -107,7 +117,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/</loc>
-    <lastmod>2017-10-16T20:50:23-04:00</lastmod>
+    <lastmod>2018-02-04T08:08:46-05:00</lastmod>
     <priority>0</priority>
   </url>
   

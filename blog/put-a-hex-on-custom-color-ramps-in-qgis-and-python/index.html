@@ -12,7 +12,7 @@
     <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
 
     <title>
-      Joshua Stevens - Now on Hugo
+      Joshua Stevens - Put a Hex on Custom Color Ramps in QGIS and Python
     </title>
 
     <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
@@ -27,13 +27,13 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@jscarto" />
-    <meta name="twitter:title" content="Joshua Stevens - Now on Hugo" />
+    <meta name="twitter:title" content="Joshua Stevens - Put a Hex on Custom Color Ramps in QGIS and Python" />
     
-    <meta name="twitter:image" content="http://www.joshuastevens.net/images/hugo_th.png" />
-    <meta name="twitter:description" content="This site was redeveloped with Hugo and Golang, and I couldn&#39;t be more excited about what&#39;s in store!"/>
-    <meta property="og:image" content="http://www.joshuastevens.net/images/hugo_th.png" />
-    <meta name="description" content="This site was redeveloped with Hugo and Golang, and I couldn&#39;t be more excited about what&#39;s in store!"/>
-     <meta property="og:description" content="This site was redeveloped with Hugo and Golang, and I couldn&#39;t be more excited about what&#39;s in store!"/>
+    <meta name="twitter:image" content="http://www.joshuastevens.net/images/default_th.png" />
+    <meta name="twitter:description" content=""/>
+    <meta property="og:image" content="http://www.joshuastevens.net/images/default_th.png" />
+    <meta name="description" content=""/>
+     <meta property="og:description" content=""/>
     
   </head>
 
@@ -78,28 +78,45 @@
 <div class="container">
 	<div class="article">
 
-	<h1 class="title">Now on Hugo</h1>
+	<h1 class="title">Put a Hex on Custom Color Ramps in QGIS and Python</h1>
 	<div class="postDate">
-		<i class="fa fa-calendar"></i> October 16, 2017
+		<i class="fa fa-calendar"></i> January 15, 2018
 	</div>
 
-	<div class="fullImage">
-<img src="/images/hugo_tiny.png" />
-</div>
+	<p>It is now 2018. The good news: by now, both QGIS and Python (via Matplotlib) come with a great selection of percetually linear palletes from <a href="http://colorbrewer2.org/">Colorbrewer</a>, as well as Viridis, Inferno, Magma, and Plasma. The bad news: creating your own color ramp can be a bit tedius.</p>
 
-<p>A few years ago I made the move from <a href="http://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/">Wordpress to static pages</a>. The benefits were immediate, and it has been nice not worrying about plugins, security patches, or millions of updates since.</p>
+<p>Back in 2011, <a href="https://anitagraser.com/">Anita Graser</a> created <a href="http://colorbrewer2.org/">Colorbrewer color ramps for QGIS</a>. Not long afterward, Colorbrewer palettes were included as defaults. As most QGIS users can attest, this has come in super handy for years.</p>
 
-<p>At the time, I was using Middleman to generate the site. Middleman is pretty great itself, but it too has drawbacks. In particular it is built on Ruby. I am not a Ruby developer, so I&rsquo;ll leave critiques of the language to others. But I will say in short: Ruby development in a mixed OS environment is awful.</p>
+<p>While Colorbrewer palettes are great choices, they are not the only option. What if you make your own palette, or find one online? In 2017, importing a faithful copy of custom color palettes into QGIS is still a little cumbersome. This post will show you how to do it - and once more, it is largely thanks to the excellent work of Anita.</p>
 
-<h2 id="enter-hugo">Enter Hugo</h2>
+<h2 id="first-things-first-finding-color-palettes">First Things First: Finding Color Palettes</h2>
 
-<p>After evaluating a few different static site generators, <a href="https://blog.getpelican.com/">Pelican</a> and <a href="https://gohugo.io/">Hugo</a> stood out. Both are hugely popular, actively developed, and would be a breeze to use on OS X, Linux, and Windows; if you can&rsquo;t tell, that&rsquo;s important to me.</p>
+<p>Making a color palette is easy. Making a good color palette—one that considers human perception and common vision deficiencies, and one that changes congruently with the underlying data—is much harder. Fortunely, a number of folks have worked hard to bring great palettes to the masses.</p>
 
-<p>I chose Hugo. Not only is the framework incredibly elegant and flexible, but it is built on <a href="https://golang.org/">Go</a>, which is a super fast language that has been tugging at my curiosity for a couple years now. So this seemed like a great opportunity to learn a new language and have a little fun.</p>
+<p>The links below are great resources for expertly crafted color palettes:</p>
 
-<p>What began as a much-needed update and refresh turned into a project to play with a new language.</p>
+<pre><code class="language-python">from PyQt4.QtGui import QColor
 
-<p>Anyway, that&rsquo;s all just a long way to say that this site has been redeveloped from the ground up, and I&rsquo;m looking forward to lots of new posts. Check back soon for some new tutorials in data visualization and map design; I can&rsquo;t wait to share them!</p>
+paletteName = '' # give the palette a name
+colors = [] # replace with hex values
+
+color1 = QColor(colors[0])
+color2 = QColor(colors[-1])
+stops = []
+
+ramp = QgsVectorGradientColorRampV2(color1,color2,1,stops)
+tags = []
+
+if len(colors) &gt; 2:
+    step = 1.0 / (len(colors))
+    for i, color in enumerate(colors[1:]):
+        stops.append(QgsGradientStop(step * (i+1), QColor(color)))
+    ramp.setStops(stops)
+
+QgsStyleV2.defaultStyle().removeColorRamp(paletteName)
+QgsStyleV2.defaultStyle().addColorRamp(paletteName, ramp, 0)
+QgsStyleV2.defaultStyle().saveColorRamp(paletteName, ramp, 0, tags)
+</code></pre>
 
 	<hr>
 
@@ -110,18 +127,18 @@
 			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 
-		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/blog/now-on-hugo/" data-layout="button" data-size="large" data-mobile-iframe="true">
-			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fblog%2fnow-on-hugo%2f&amp;src=sdkpreparse">Share</a>
+		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/blog/put-a-hex-on-custom-color-ramps-in-qgis-and-python/" data-layout="button" data-size="large" data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fblog%2fput-a-hex-on-custom-color-ramps-in-qgis-and-python%2f&amp;src=sdkpreparse">Share</a>
 		</div>
 	</div>
 
 	<br>
 
 	<div class="d-flex justify-content-between pagination text-small">
-		<a href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/"><i class="fa fa-arrow-left"></i> Bivariate Choropleth Maps: A How-to Guide</a>
+		<a href="http://www.joshuastevens.net/blog/now-on-hugo/"><i class="fa fa-arrow-left"></i> Now on Hugo</a>
 		
 		
-		<a href="http://www.joshuastevens.net/blog/put-a-hex-on-custom-color-ramps-in-qgis-and-python/">Put a Hex on Custom Color Ramps in QGIS and Python <i class="fa fa-arrow-right"></i></a>
+		<a href="http://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/">Landsat Fact Meets Fiction in Kong: Skull Island <i class="fa fa-arrow-right"></i></a>
 		</div>
 
 	<div id="disqus_thread"></div>
