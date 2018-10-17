@@ -6,10 +6,19 @@
     <description>Recent content in Blog on Joshua Stevens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Feb 2018 08:08:46 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 17 Oct 2018 13:03:32 -0400</lastBuildDate>
     
 	<atom:link href="http://www.joshuastevens.net/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Commanding Cartography: Take Control of Faster, More Elegant Workflows from the Command Line</title>
+      <link>http://www.joshuastevens.net/blog/nacis2018/</link>
+      <pubDate>Wed, 17 Oct 2018 13:03:32 -0400</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/nacis2018/</guid>
+      <description>&lt;p&gt;Compelling cartography has never been easier or more abundant. We are inundated with new tools and technologies. All the while, one of the most powerful assets in the cartographer&amp;rsquo;s arsenal is being overlooked: the command line. Using keystrokes to create maps might sound like a task of yesteryear, but I am here to tell you it is a wormhole to the future. Whether you design maps for national parks or newsrooms, the terminal will enable you to supercharge your workflows with speed and elegance. This talk introduced some old tricks and new tools for designers on any deadline. &lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Landsat Fact Meets Fiction in Kong: Skull Island</title>
