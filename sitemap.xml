@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.joshuastevens.net/blog/graveyards-of-the-contiguous-usa/</loc>
+    <lastmod>2018-10-28T18:24:44-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.joshuastevens.net/blog/nacis2018/</loc>
     <lastmod>2018-10-17T13:03:32-04:00</lastmod>
   </url>
@@ -106,7 +111,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/blog/</loc>
-    <lastmod>2018-10-17T13:03:32-04:00</lastmod>
+    <lastmod>2018-10-28T18:24:44-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -117,7 +122,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/</loc>
-    <lastmod>2018-10-17T13:03:32-04:00</lastmod>
+    <lastmod>2018-10-28T18:24:44-04:00</lastmod>
     <priority>0</priority>
   </url>
   
