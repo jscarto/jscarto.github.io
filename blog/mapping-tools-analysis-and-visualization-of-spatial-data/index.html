@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="http://www.joshuastevens.net/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="http://www.joshuastevens.net/favicon-16x16.png">
     <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
-    <title>Joshua Stevens - Big Data Social Science Poster Session
+    <title>Joshua Stevens - Mapping Tools – Analysis and Visualization of Spatial Data
     </title>
     <meta name="theme-color" content="#5c5888">
     <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@jscarto" />
-    <meta name="twitter:title" content="Joshua Stevens - Big Data Social Science Poster Session" />
+    <meta name="twitter:title" content="Joshua Stevens - Mapping Tools – Analysis and Visualization of Spatial Data" />
 
     <meta name="twitter:image" content="http://www.joshuastevens.net/images/default_th.png" />
     <meta name="twitter:description" content=""/>
@@ -73,22 +73,30 @@
 <div class="container">
 	<div class="article">
 
-	<h1 class="title">Big Data Social Science Poster Session</h1>
+	<h1 class="title">Mapping Tools – Analysis and Visualization of Spatial Data</h1>
 	<div class="postDate">
-		<i class="fa fa-calendar"></i> February 12, 2013
+		<i class="fa fa-calendar"></i> January 11, 2013
 	</div>
 
-	<p>As part of the <a href="http://www.igert.org/projects/294">NSF IGERT in Big Data Social Science</a>, Pond Lab hosted a public poster session this afternoon.</p>
+	<p>I had the pleasure of being invited to talk about mapping tools at the <a href="http://sites.psu.edu/hackingscience/">Hacking Science</a> Hands on Sessions, led by professor and tech enthusiast <a href="http://www.salathegroup.com/people.html">Marcel Salathé</a>.</p>
 
-<p>A total of eleven different posters were presented, covering topics in big data that ranged from text processing and visualizing uncertainty to computing voter sentiment and analyzing data of patients’ heart rates.</p>
+<p>“Mapping tools” is a pretty broad topic and it’s impossible to cover the whole scope of cartography, GIScience, and the suite of existing software in a single hour. So I took attendants on a whirlwind tour of tools, both open source and not, highlighting the strengths and weaknesses of each.  Among those showcased were <a href="http://www.esri.com/">Esri ArcGIS</a>, <a href="http://www.qgis.org/">QGIS</a>, <a href="http://www.r-project.org/">R</a>, <a href="http://mapbox.com/tilemill/">TileMill</a>, <a href="http://www.cartodb.com/">CartoDB</a>, <a href="http://postgis.net/">PostGIS</a>, <a href="http://d3js.org/">D3</a>, <a href="http://leafletjs.com/">Leaflet</a>, and more.</p>
 
-<p>I presented work on a <a href="http://www.geovista.psu.edu/">GeoVISTA</a> project that leverages geovisual analytics and Twitter to help users make sense of the spatiotemporal variation of place and topic mentions within hundreds of millions of tweets.</p>
+<p>Following an introduction of various tools and their capabilities, I led a hands-on demo of CartoDB and introduced <a href="http://mapbox.com/tilemill/docs/manual/carto/">CartoCSS</a>. During the demo we mapped over 1,200 automobile accidents in Pennsylvania (screen shot below).</p>
 
-<p>You can view my poster below (try viewing full screen with the button on the upper right).</p>
+<div class="fullImage">
+<img src="/images/accidentmap.png" alt="A heat map of traffic accidents in Pennslyvania." />
+</div>
 
-<p><script async class="speakerdeck-embed" data-id="612a8710550d01303fe422000a8e85da" data-ratio="1.49926793557833" src="//speakerdeck.com/assets/embed.js"></script></p>
+<p>Since styling, variable selection, and simple definition queries can all be done with CartoCSS, it’s a great tool for those new to cartography to master. In the talk I demonstrated how CartoCSS can be used to employ scale-dependent visualizations that update as users zoom in or out of the map. For example, heat maps work very well when many events are clustered together, but are not ideal at large scales when clusters become dispersed and individual points should be emphasized.</p>
 
-<p>For more information about SensePlace2, please visit the <a href="http://www.geovista.psu.edu/SensePlace2/">project web site</a>.</p>
+<p>In modern web mapping, CartoCSS is the gateway drug to more complex queries and styling that will (I hope) lead the curious to SQL and PostGIS.</p>
+
+<p>Slides from my talk are included below.</p>
+
+<p><script async class="speakerdeck-embed" data-id="70c968203dc50130569f1231381357bd" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script></p>
+
+<p>If you&rsquo;d like to follow the demo, the data and CartoCSS I used is online: <a class="btn" href="https://gist.github.com/jscarto/4541842"><i class="fa fa-github"> </i> get the gist</a></p>
 
 	<hr>
 
@@ -99,18 +107,16 @@
 			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 
-		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/blog/big-data-social-science-poster-session/" data-layout="button" data-size="large" data-mobile-iframe="true">
-			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fblog%2fbig-data-social-science-poster-session%2f&amp;src=sdkpreparse">Share</a>
+		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/blog/mapping-tools-analysis-and-visualization-of-spatial-data/" data-layout="button" data-size="large" data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fblog%2fmapping-tools-analysis-and-visualization-of-spatial-data%2f&amp;src=sdkpreparse">Share</a>
 		</div>
 	</div>
 
 	<br>
 
 	<div class="d-flex justify-content-between pagination text-small">
-		<a href="http://www.joshuastevens.net/blog/mapping-tools-analysis-and-visualization-of-spatial-data/"><i class="fa fa-arrow-left"></i> Mapping Tools – Analysis and Visualization of Spatial Data</a>
 		
-		
-		<a href="http://www.joshuastevens.net/blog/accommodating-big-data-in-visual-analytics/">Accommodating Big Data in Visual Analytics <i class="fa fa-arrow-right"></i></a>
+		<a href="http://www.joshuastevens.net/blog/big-data-social-science-poster-session/">Big Data Social Science Poster Session <i class="fa fa-arrow-right"></i></a>
 		</div>
 
 	<div id="disqus_thread"></div>
