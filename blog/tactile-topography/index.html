@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="http://www.joshuastevens.net/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="http://www.joshuastevens.net/favicon-16x16.png">
     <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
-    <title>Joshua Stevens - The Ebb and Flow of Polar Sea Ice
+    <title>Joshua Stevens - Tactile Topography
     </title>
     <meta name="theme-color" content="#5c5888">
     <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
@@ -23,13 +23,13 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@jscarto" />
-    <meta name="twitter:title" content="Joshua Stevens - The Ebb and Flow of Polar Sea Ice" />
+    <meta name="twitter:title" content="Joshua Stevens - Tactile Topography" />
 
-    <meta name="twitter:image" content="http://www.joshuastevens.net/images/default_th.png" />
-    <meta name="twitter:description" content=""/>
-    <meta property="og:image" content="http://www.joshuastevens.net/images/default_th.png" />
-    <meta name="description" content=""/>
-     <meta property="og:description" content=""/>
+    <meta name="twitter:image" content="http://www.joshuastevens.net/images/ashlandtopo_th.jpg" />
+    <meta name="twitter:description" content="Modern elevation data can raise old topo maps to new heights."/>
+    <meta property="og:image" content="http://www.joshuastevens.net/images/ashlandtopo_th.jpg" />
+    <meta name="description" content="Modern elevation data can raise old topo maps to new heights."/>
+     <meta property="og:description" content="Modern elevation data can raise old topo maps to new heights."/>
   </head>
 
   <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
@@ -73,36 +73,63 @@
 <div class="container">
 	<div class="article">
 
-	<h1 class="title">The Ebb and Flow of Polar Sea Ice</h1><div class="postDate">
-		<i class="fa fa-calendar"></i> February 8, 2015
+	<h1 class="title">Tactile Topography</h1>
+	<h3 class="title">New Heights for Old Maps</h3>
+	<div class="postDate">
+		<i class="fa fa-calendar"></i> January 23, 2019
 	</div>
 
-	<div class="fullImage">
-<img src="/images/sea_ice_slices_th.png" />
-</div>
+	<p>There&rsquo;s something special about topographic maps. Each is different than the next, yet many reflect a canvas replete with smooth contours, pleasing colors, and a technical accuracy that can send both the mind and feet wandering.</p>
 
-<p>In some very real ways, polar sea ice is the backbone of our planet&rsquo;s climate. When more ice is present, its bright surface tends to reflect sunlight, cooling things down. When there is less white, snow-covered ice, the ocean&rsquo;s surface becomes a bit darker. A darker ocean surface absorbs more sunlight, causing it to warm. The relationships between climate and ice are much more complicated than that, as the thickness of the ice also influences a variety of subsurface feedback loops that have long-term effects.</p>
+<p>It is hard to imagine improving the natural aesthetic that topographic maps tend to convey. But <a href="https://twitter.com/scottreinhard">Scott Reinhard</a> did just that. By adding elevation data, realistic and atmospheric lighting, and rendering the map anew as a 3D model, Reinhard lifted the contours and topographic relief off the page.</p>
 
-<p>But one thing is clear: the expansion and retreat of polar sea ice is cyclic. In the winter months, arctic sea ice grows. During the same time, antarctic ice in the south pole shrinks. In the summer, these trends reverse. This ebb and flow, like the <a href="http://uxblog.idvsolutions.com/2013/07/a-breathing-earth.html">breathing of a living planet</a>, happens every single year.</p>
+<p>I was inspired by these renders, both as a thing of beauty and as an experiment in process. So I pulled some data together and gave it a go.</p>
 
-<p>Scientists have been monitoring that &lsquo;breathing&rsquo; pattern for decades, looking for changes in cycles that occur over many, many years. By measuring the rate of the &lsquo;inhales&rsquo; (ice growth in the north pole/loss of ice in the south pole) and &lsquo;exhales&rsquo; (ice loss in the north pole/growth in the south pole), we can track the long-term health of the climate.</p>
+<h2 id="ashland-1953">Ashland 1953</h2>
 
-<p>For the past few days, I&rsquo;ve been creating maps and charts of polar sea ice using data from instruments aboard <a href="http://nssdc.gsfc.nasa.gov/nmc/spacecraftDisplay.do?id=1978-098A">NASA&rsquo;s Nimbus 7</a> satellite. In total, these data feature 19,710 daily records of geographic ice extents - 9,855 for each of the two poles. That&rsquo;s far too many maps to fit in your browser. Even if the maps were an animated sequence - at the standard 24 frames-per-second, the animation would be almost 7 minutes long.</p>
-
-<p>Instead, I wanted to show <em>all</em> of the data at once.</p>
-
-<p>To make that happen, I first generated all 19,710 daily maps. I then smooshed each map horizontally, simplifying the maps to a 1-pixel-wide snapshot of the poles&rsquo; maximum north-south sea ice extent for that day. Each pixel strip was then stitched together, side-by-side.</p>
-
-<p>This was the result:</p>
+<p>Equipped with a 1953 USGS topo map featuring Wisconsin, Minnesota, and Michigan, along with Shuttle Radar Topography Mission (SRTM) data from USGS/NASA, I rendered the 3D topographic map below.</p>
 
 <div class="fullImage">
-<img src="/images/sea_ice_slices_800w.png" />
-<p>The image above has been scaled down significantly. The super mega wide original depicts each day as a 1-pixel wide slice, making it 9,855 pixels long. For a hi-res version that is still reasonably sized for your browser, click <a href="../../images/sea_ice_slices_hi.png"> here</a>.</p>
+<img src="/images/ashlandtopo.jpg" />
+<p>Lake Superior really is the greatest of lakes. Not shown in the map are some of my fondest memories spent near its shores. <strong><a href="/images/ashlandtopo_lrg.jpg">View larger and superior.</a></strong></p>
 </div>
 
-<p>The cyclic pattern of each pole is evident - as is the alignment of each pole&rsquo;s individual cycle. The waxing of one pole almost perfectly pairs with the waning of the other. A climatic system that looks like breathing when viewed annually appears as interlocked, vertebrae-like structures in the long view.</p>
+<p>To compliment the blues and greens of the topo map, the scene is lit with warm light that casts cool shadows. I strived for something that looked like it was hung near a window of a quiet DNR office or game warden&rsquo;s outpost, lit by a late afternoon sun. It does, I think.</p>
 
-<p>It&rsquo;s as if Earth had bones.</p>
+<p>Processing the data for these renders also reveals inconsistencies. Unsurprisingly, modern elevation data does not perfectly align with the the topographic maps of yesteryear. Still, the inaccuracy is quite subtle and only apparent to those who seek it. Some mismatch is technical (e.g., slight imperfection in the original georeferencing of the USGS topo maps). Some is geophysical; Earth undergoes constant change, most notably in coastlines and <a href="https://earthobservatory.nasa.gov/images/92529/the-most-erosive-area-on-the-padma">river courses</a>. Such change is sure to have happened between 1953 and the SRTM collection in 2000. And some mismatch is plain practical. Different tools, different results. Ground surveys and space shuttles are, after all, different beasts.</p>
+
+<p>And to tell you the truth, the more I work with Earth observations from space, the more I am impressed by the data collection and capabilities of our Earthbound predecessors.</p>
+
+<div class="fullImage">
+<img src="/images/ashlandtopo_collage.jpg" />
+<p>A selection of close-ups. In general, hills rise where they ought and not often where they're not.</p>
+</div>
+
+<p>This was a fun project to tinker with for an evening. There are many variations on this type of display that I am excited to explore. Stay tuned!</p>
+
+<p>If you like 3D topo maps, give <a href="https://twitter.com/scottreinhard">Scott Reinhard</a> a follow. He produces them in gorgeous detail by the dozens.</p>
+
+<h3 id="a-brief-note-on-process">A Brief Note on Process</h3>
+
+<p>In place of a lengthy tutorial, here is a brief rundown of what I did to create the map above. AKA, how to draw the owl:</p>
+
+<ol>
+<li><p>Acquire a GeoTIFF of a USGS Topo map that you like using <a href="https://ngmdb.usgs.gov/topoview/viewer/">topoView</a>.</p></li>
+
+<li><p>Grab some elevation data. 30-meter SRTM data is a great start. I recommend the <a href="http://dwtkns.com/srtm30m/">30m Tile Downloader</a> from Derek Watkins.</p>
+
+<p>(Optional) If you have download multiple SRTM tiles, merge them with <code>$ gdal_merge.py</code></p></li>
+
+<li><p>Ensure the elevation data is in the same projection as the topo map. (Use <code>$ gdalinfo</code> to read the topo map&rsquo;s metadata and then <code>$ gdalwarp</code> to reproject the elevation data to match.)</p></li>
+
+<li><p>Clip the elevation data to the extent of the topo map.</p></li>
+
+<li><p>Double check the alignment of the data in Photoshop (or GIMP). Export an aligned elevation image in black (low elevations) and white (highest elevation). <strong>Use 16-bit color for this step!</strong> Otherwise the elevation data will be posterized to 256 values, resulting in a stairstep appearance once rendered.</p></li>
+
+<li><p>Create a plane in <a href="https://www.blender.org">Blender</a> with the same aspect ratio as the topo map. Use the topo map for a color texture and the elevation image for a displacement map. Exagerate the displacement liberally. Position a sun (or three) at low angles to produce long shadows.</p></li>
+</ol>
+
+<p>I hope looking at this map brought you as much joy as I found in making it. Better yet, I hope you feel encouraged to make one of your own. And if you do, please share!</p>
 
 	<hr>
 
@@ -113,18 +140,16 @@
 			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 
-		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/" data-layout="button" data-size="large" data-mobile-iframe="true">
-			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fvisualization%2fsea-ice-ebb-flow-visualized%2f&amp;src=sdkpreparse">Share</a>
+		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/blog/tactile-topography/" data-layout="button" data-size="large" data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fblog%2ftactile-topography%2f&amp;src=sdkpreparse">Share</a>
 		</div>
 	</div>
 
 	<br>
 
 	<div class="d-flex justify-content-between pagination text-small">
-		<a href="http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/"><i class="fa fa-arrow-left"></i> HDRI Lighting for Shaded Relief Maps</a>
+		<a href="http://www.joshuastevens.net/blog/graveyards-of-the-contiguous-usa/"><i class="fa fa-arrow-left"></i> Graveyards of The Contiguous USA</a>
 		
-		
-		<a href="http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/">Bivariate Choropleth Maps: A How-to Guide <i class="fa fa-arrow-right"></i></a>
 		</div>
 
 	<div id="disqus_thread"></div>
