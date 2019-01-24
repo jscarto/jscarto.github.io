@@ -83,7 +83,9 @@
 
 <p>It is hard to imagine improving the natural aesthetic that topographic maps tend to convey. But <a href="https://twitter.com/scottreinhard">Scott Reinhard</a> did just that. By adding elevation data, realistic and atmospheric lighting, and rendering the map anew as a 3D model, Reinhard lifted the contours and topographic relief off the page.</p>
 
-<p>I was inspired by these renders, both as a thing of beauty and as an experiment in process. So I pulled some data together and gave it a go.</p>
+<p>Raised-relief maps are not new. Many classrooms and school hallways are still decorated with yellowed, brittle, and bumpy maps that have shown their age long ago. Physical versions of maps with terrain you could actually touch have been made for over 2,000 years. Some more recent varieties are <a href="https://www.baronycastle.com/about-barony-castle/the-great-polish-map-at-barony-castle/">so large you can walk around them</a>.</p>
+
+<p>I was inspired by the digital renders, both as a thing of beauty and as an experiment in process. So I pulled some data together and gave it a go.</p>
 
 <h2 id="ashland-1953">Ashland 1953</h2>
 
@@ -118,7 +120,7 @@
 
 <li><p>Grab some elevation data. 30-meter SRTM data is a great start. I recommend the <a href="http://dwtkns.com/srtm30m/">30m Tile Downloader</a> from Derek Watkins.</p>
 
-<p>(Optional) If you have download multiple SRTM tiles, merge them with <code>$ gdal_merge.py</code></p></li>
+<p>(Optional) If you have multiple SRTM tiles, merge them with <code>$ gdal_merge.py</code></p></li>
 
 <li><p>Ensure the elevation data is in the same projection as the topo map. (Use <code>$ gdalinfo</code> to read the topo map&rsquo;s metadata and then <code>$ gdalwarp</code> to reproject the elevation data to match.)</p></li>
 
