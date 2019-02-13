@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="http://www.joshuastevens.net/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="http://www.joshuastevens.net/favicon-16x16.png">
     <link rel="manifest" href="http://www.joshuastevens.net/manifest.json">
-    <title>Glen Canyon National Recreation Area
+    <title>Mapping the Distance to the Nearest Coastline
     </title>
     <meta name="theme-color" content="#5c5888">
     <link href="http://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
@@ -23,13 +23,13 @@
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@jscarto" />
-    <meta name="twitter:title" content="Glen Canyon National Recreation Area" />
+    <meta name="twitter:title" content="Mapping the Distance to the Nearest Coastline" />
 
-    <meta name="twitter:image" content="http://www.joshuastevens.net/images/rincon_th.jpg" />
-    <meta name="twitter:description" content="Myriad canyons reach out from the serpentine courses of the Colorado and Escalante Rivers."/>
-    <meta property="og:image" content="http://www.joshuastevens.net/images/rincon_th.jpg" />
-    <meta name="description" content="Myriad canyons reach out from the serpentine courses of the Colorado and Escalante Rivers."/>
-     <meta property="og:description" content="Myriad canyons reach out from the serpentine courses of the Colorado and Escalante Rivers."/>
+    <meta name="twitter:image" content="http://www.joshuastevens.net/images/coastlines_th.jpg" />
+    <meta name="twitter:description" content="Ridgelines of remoteness separate one coast from the next."/>
+    <meta property="og:image" content="http://www.joshuastevens.net/images/coastlines_th.jpg" />
+    <meta name="description" content="Ridgelines of remoteness separate one coast from the next."/>
+     <meta property="og:description" content="Ridgelines of remoteness separate one coast from the next."/>
   </head>
 
   <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
@@ -73,42 +73,46 @@
 <div class="container">
 	<div class="article">
 
-	<h1 class="title">Glen Canyon National Recreation Area</h1>
-	<h3 class="title">A Modern Rendering of an American Landmark</h3>
-	<div class="postDate">
-		<i class="fa fa-calendar"></i> January 27, 2019
+	<h1 class="title">Mapping the Distance to the Nearest Coastline</h1><div class="postDate">
+		<i class="fa fa-calendar"></i> February 12, 2019
 	</div>
 
-	<p>One of my favorite places to see in imagery and maps is <a href="https://www.nps.gov/glca/index.htm">Glen Canyon National Recreation Area</a> and The Rincon. Here, water meets stone as myriad canyons reach out from the serpentine courses of the Colorado and Escalante Rivers.</p>
+	<p>Recently, I stumbled upon a <a href="https://oceancolor.gsfc.nasa.gov/docs/distfromcoast/">NASA dataset</a> containing the distance to the nearest coastline. The data are a rather straightforward calculation based on input from <a href="http://www.soest.hawaii.edu/wessel/gshhg/">GSHHG</a>—the Global Self-consistent, Hierarchical, High-resolution Geography Database.</p>
 
-<p>Topographic maps of areas like this are remarkable contradictions. Rugged and irregular landscapes perfectly conveyed by smooth lines, flowing typography, and a precision that is more architectural than anything that truly exists within the neatline of the map.</p>
+<p>Provided as a convenient GeoTIFF, the coastline distances are available in 0.04° and 0.01° resolutions. This makes it ideal for quick exploration. Or a dive down geographic rabbit holes.</p>
 
-<p>I&rsquo;ve been exploring <a href="http://www.joshuastevens.net/blog/tactile-topography/">psuedo raised-relief maps</a>, so naturally I had to make one of Glen Canyon. I combined a 1970 release of a USGS topographic map with Space Shuttle Radar Topography Mission (SRTM) data from 2000 in <a href="https://www.blender.org">Blender</a>, a free and open source 3D rendering software.</p>
+<p>So that&rsquo;s just what I did.</p>
 
-<p>Using the SRTM data to &lsquo;raise&rsquo; the topography off the map, and an atmospheric lighting to compliment the red, rocky tones of the landscape, I produced the map below.</p>
+<h2 id="ridgelines-of-remoteness">Ridgelines of Remoteness</h2>
 
-<div class="fullImage">
-<img src="/images/rincontopo.jpg" />
-<p>Glen Canyon National Recreation Area is a geologic panorama of meanders past and present. <strong><a href="/images/rincontopo_lrg.jpg">View larger</a></strong>.</p>
-</div>
-
-<p>Warm vistas cast long shadows over the pale, cool waters of Lake Powell. The Rincon, a feature formed by an abandoned meander thousands of years ago, calls from the viewer an attention no longer given to it by the Colorado River.</p>
+<p>Using an intuitive color scheme and relief for emphasis, I mapped the coastline distances.</p>
 
 <div class="fullImage">
-<img src="/images/rincontopo_comparison.jpg" />
-<p>The original USGS map before (left) and after being revitalized with raytraced shadows (right).</p>
+<img src="/images/coastlines.png" />
+<p><strong><a href="/images/coastlines_lrg.jpg">View larger.</a></strong></p>
 </div>
 
-<h3 id="bonus-rincon-wallpaper">Bonus: Rincon Wallpaper</h3>
+<p>Ridgelines of remoteness separate one coast from the next. Central landmasses rise, while distant reaches of the sea descend into glowing fissures.</p>
 
-<p>I liked the way this render came out, so I turned it into a desktop background. Click the image below to download a 1920 x 1080 version for yourself.</p>
+<h3 id="point-nemo">Point Nemo</h3>
 
-<div class="fullImage">
-<a href="/images/rincon_1080_bg.jpg"><img src="/images/rincon_1080_bg_th.jpg" /></a>
-<p>The Glen Canyon/Rincon render makes a perfect desktop background. <strong><a href="/images/rincon_1080_bg.jpg">Download the 1920 x 1080 version</a></strong>.</p>
-</div>
+<p>The remoteness of the eastern South Pacific is especially notable. These lonely waters are home to the South Pacific Gyre, a vast expanse of <a href="https://upload.wikimedia.org/wikipedia/commons/e/ef/Ocean_currents_1943_%28borderless%29.png">circulating currents</a>. Within the South Pacific Gyre are the <a href="https://earthobservatory.nasa.gov/images/91107/searching-for-the-bluest">bluest and clearest water</a> in the oceans. And due to its remote location, this area is referred to as the <a href="https://www.atlasobscura.com/articles/have-fun-trying-to-reach-the-poles-of-inaccessibility">Oceanic Pole of Inaccessibility</a>. Emptiness and an endless horizon are all that can be found there. Almost.</p>
 
-<p>If you&rsquo;re interested in making these kinds of topographic mashups, I&rsquo;ve written a brief overview of the process in <a href="http://www.joshuastevens.net/blog/tactile-topography/">my previous post</a>.</p>
+<p>Unfortunately, the currents of the South Pacific Gyre act like a black hole for debris and plastics, pulling them in without hope of escape. The amount of garbage amassed here covers an area larger than the state of Texas.</p>
+
+<p>Most of the debris within this garbage patch drifted in without aim. But some items come crashing down here, hitting their mark with a sharpshooter&rsquo;s accuracy. The target is <a href="https://phys.org/news/2018-03-nemo-earth-watery-graveyard-spacecraft.html">&ldquo;Point Nemo,&rdquo;</a> a location further from the coast than any other location on Earth. Rather than letting Earth&rsquo;s gravity pull defunct spacecraft into a haphazard deorbit, many space debris receive a final flight plan: a controlled crash into Point Nemo. The remote location, with a lack of humans and low biodiversity, is ideal for minimizing risk.</p>
+
+<h3 id="one-pole-two-pole-which-is-the-true-pole">One Pole, Two Pole, which is the True Pole?</h3>
+
+<p>Just as Point Nemo designates the oceanic point furthest from the coast, EPIA2—the Eurasian Pole of Inaccessibility (2)— is the continental counterpart. This the furthest <em>inland</em> point from the coast.</p>
+
+<p>As the name suggests, there are two Eurasian Poles of Inaccessibility—EPIA1 and EPIA2. Coastlines are <a href="http://mathworld.wolfram.com/CoastlineParadox.html">no stranger to dispute</a>. This is also the case for calculating distance from a coast. <a href="https://www.tandfonline.com/doi/abs/10.1080/14702540801897809">A paper</a> published in the <em>Scottish Geographical Journal</em> proposes the two Eurasian Poles of Inaccessibility, based on the assumptions and errors involved in precisely calculating a coastline.</p>
+
+<p>Prior to EPIA1 and EPIA2, calculations did not consider the <a href="http://www.waterbodies.org/waterbody/gulf-ob">Gulf of Ob</a> part of the ocean. Doing so seems like the right call to me.</p>
+
+<p>Note that none of these calculations consider inland coasts from lakes, nor the shores of large rivers. Factoring in these would shuffle things up quite a bit. And it would be a fun map to see! There could be many such maps, each derived from different rules for what is or is not a waterbody, how coasts are calculated, and at what scale geographical features should be resolved.</p>
+
+<p>But that is rabbit hole, or a PhD in geodesy, for another day.</p>
 
 	<hr>
 
@@ -119,18 +123,16 @@
 			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 
-		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/blog/glen-canyon-national-recreation-area/" data-layout="button" data-size="large" data-mobile-iframe="true">
-			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fblog%2fglen-canyon-national-recreation-area%2f&amp;src=sdkpreparse">Share</a>
+		<div class="fb-share-button social-btn" data-href="http://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/" data-layout="button" data-size="large" data-mobile-iframe="true">
+			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fwww.joshuastevens.net%2fblog%2fmapping-the-distance-to-the-nearest-coastline%2f&amp;src=sdkpreparse">Share</a>
 		</div>
 	</div>
 
 	<br>
 
 	<div class="d-flex justify-content-between pagination text-small">
-		<a href="http://www.joshuastevens.net/blog/tactile-topography/"><i class="fa fa-arrow-left"></i> Tactile Topography</a>
+		<a href="http://www.joshuastevens.net/blog/glen-canyon-national-recreation-area/"><i class="fa fa-arrow-left"></i> Glen Canyon National Recreation Area</a>
 		
-		
-		<a href="http://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/">Mapping the Distance to the Nearest Coastline <i class="fa fa-arrow-right"></i></a>
 		</div>
 
 	<div id="disqus_thread"></div>

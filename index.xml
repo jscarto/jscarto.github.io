@@ -6,10 +6,21 @@
     <description>Recent content on Joshua Stevens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Jan 2019 09:41:58 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 12 Feb 2019 19:50:03 -0500</lastBuildDate>
     
 	<atom:link href="http://www.joshuastevens.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mapping the Distance to the Nearest Coastline</title>
+      <link>http://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/</link>
+      <pubDate>Tue, 12 Feb 2019 19:50:03 -0500</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/</guid>
+      <description>&lt;p&gt;Recently, I stumbled upon a &lt;a href=&#34;https://oceancolor.gsfc.nasa.gov/docs/distfromcoast/&#34;&gt;NASA dataset&lt;/a&gt; containing the distance to the nearest coastline. The data are a rather straightforward calculation based on input from &lt;a href=&#34;http://www.soest.hawaii.edu/wessel/gshhg/&#34;&gt;GSHHG&lt;/a&gt;—the Global Self-consistent, Hierarchical, High-resolution Geography Database.&lt;/p&gt;
+
+&lt;p&gt;Provided as a convenient GeoTIFF, the coastline distances are available in 0.04° and 0.01° resolutions. This makes it ideal for quick exploration. Or a dive down geographic rabbit holes.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Glen Canyon National Recreation Area</title>

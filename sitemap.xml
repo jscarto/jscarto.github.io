@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/</loc>
+    <lastmod>2019-02-12T19:50:03-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.joshuastevens.net/blog/glen-canyon-national-recreation-area/</loc>
     <lastmod>2019-01-27T09:41:58-05:00</lastmod>
   </url>
@@ -121,7 +126,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/blog/</loc>
-    <lastmod>2019-01-27T09:41:58-05:00</lastmod>
+    <lastmod>2019-02-12T19:50:03-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -132,7 +137,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/</loc>
-    <lastmod>2019-01-27T09:41:58-05:00</lastmod>
+    <lastmod>2019-02-12T19:50:03-05:00</lastmod>
     <priority>0</priority>
   </url>
   
