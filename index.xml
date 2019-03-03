@@ -6,10 +6,21 @@
     <description>Recent content on Joshua Stevens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Feb 2019 19:50:03 -0500</lastBuildDate>
+    <lastBuildDate>Sun, 03 Mar 2019 09:24:03 -0500</lastBuildDate>
     
 	<atom:link href="http://www.joshuastevens.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>3D Models from NASA</title>
+      <link>http://www.joshuastevens.net/blog/3d-models-from-nasa/</link>
+      <pubDate>Sun, 03 Mar 2019 09:24:03 -0500</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/3d-models-from-nasa/</guid>
+      <description>&lt;p&gt;You&amp;rsquo;re probably well aware that NASA has launched numerous spacecraft—some destined for orbit, others to land on distant planets, and some to &lt;a href=&#34;https://voyager.jpl.nasa.gov/&#34;&gt;initiate a galactic handshake beyond our solar system&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Many of these missions have corresponding 3D models. What&amp;rsquo;s more, NASA has made a number of these available to the public. From satellites and shuttles to rovers and crew modules, more than 300 objects are currently available to download.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Mapping the Distance to the Nearest Coastline</title>
