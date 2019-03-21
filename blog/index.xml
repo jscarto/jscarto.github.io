@@ -6,10 +6,21 @@
     <description>Recent content in Blog on Joshua Stevens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Mar 2019 09:24:03 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 21 Mar 2019 12:19:38 -0400</lastBuildDate>
     
 	<atom:link href="http://www.joshuastevens.net/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Topographic Diversity of the Contiguous USA</title>
+      <link>http://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/</link>
+      <pubDate>Thu, 21 Mar 2019 12:19:38 -0400</pubDate>
+      
+      <guid>http://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/</guid>
+      <description>&lt;p&gt;While exploring data offered within &lt;a href=&#34;https://earthengine.google.com/&#34;&gt;Google Earth Engine&lt;/a&gt; (as I am wont to do), I came across a gorgeous and elegant layer from the U.S. Geological Survey.&lt;/p&gt;
+
+&lt;p&gt;This data, which represents &amp;ldquo;topographic diversity,&amp;rdquo; immediately conveys exactly what it aims to: topography. But the ridges and valleys are not representative of Earth&amp;rsquo;s bumpy surface alone.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>3D Models from NASA</title>
