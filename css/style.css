@@ -65,6 +65,9 @@ a:hover {
   padding-left: 1.5rem;
 }
 
+.single-page a {
+  font-weight: bold;
+}
 
 .navbar-brand, .display-45, .poppins, h1, h2, h3, h4, h5 {
 	font-family: 'Poppins', sans-serif;
@@ -251,6 +254,9 @@ html {
   line-height: 1.5;
 }
 
+.article a {
+  font-weight: bold;
+}
 h1 a, h2 a, h3 a, h4 a, h5 a {
   color: #555;
 }
@@ -427,4 +433,18 @@ form {
   min-height: 600px;
 } 
 
+/* alerts */
+
+.alert-purp {
+  background-color:#f1f0f8;
+  color: #827faa;
+  border-color: #e2e1ed; 
+}
+
+.alert-purp .alert-link {
+  color: #5c5888;
+}
+
+.alert-purp hr {
+  border-top-color: #d4d2e5;
 }

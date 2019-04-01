@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://www.joshuastevens.net/blog/turning-on-the-lights/</loc>
+    <lastmod>2019-04-01T09:55:02-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/</loc>
     <lastmod>2019-03-21T12:19:38-04:00</lastmod>
   </url>
@@ -136,7 +141,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/blog/</loc>
-    <lastmod>2019-03-21T12:19:38-04:00</lastmod>
+    <lastmod>2019-04-01T09:55:02-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -147,7 +152,7 @@
   
   <url>
     <loc>http://www.joshuastevens.net/</loc>
-    <lastmod>2019-03-21T12:19:38-04:00</lastmod>
+    <lastmod>2019-04-01T09:55:02-04:00</lastmod>
     <priority>0</priority>
   </url>
   
