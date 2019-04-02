@@ -413,26 +413,27 @@ form {
 
 @media (min-width: 768px) {
 
-.footer-left{ 
- text-align: left;
- float: left;
- }
+  .footer-left{ 
+  text-align: left;
+  float: left;
+  }
 
-.footer-right {
- float: right;
- text-align: right;
- }
+  .footer-right {
+  float: right;
+  text-align: right;
+  }
 
- .footer-mid {
- text-align: center;
- }
+  .footer-mid {
+  text-align: center;
+  }
 
- .page-404 {
-  background: url('squatch404.png') top center no-repeat;
-  background-size: contain;
-  min-height: 600px;
-} 
+  .page-404 {
+    background: url('squatch404.png') top center no-repeat;
+    background-size: contain;
+    min-height: 600px;
+  } 
 
+}
 /* alerts */
 
 .alert-purp {
