@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Joshua Stevens</title>
-    <link>http://www.joshuastevens.net/</link>
+    <link>https://www.joshuastevens.net/</link>
     <description>Recent content on Joshua Stevens</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Apr 2019 09:55:02 -0400</lastBuildDate>
     
-	<atom:link href="http://www.joshuastevens.net/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.joshuastevens.net/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Tutorial: Turning on The Lights</title>
-      <link>http://www.joshuastevens.net/blog/turning-on-the-lights/</link>
+      <link>https://www.joshuastevens.net/blog/turning-on-the-lights/</link>
       <pubDate>Mon, 01 Apr 2019 09:55:02 -0400</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/turning-on-the-lights/</guid>
+      <guid>https://www.joshuastevens.net/blog/turning-on-the-lights/</guid>
       <description>&lt;p&gt;The most familiar views of Earth from space feature a blue-green planet lit by the Sun.&lt;/p&gt;
 
 &lt;p&gt;But in the darkness of night when &lt;a href=&#34;https://earthobservatory.nasa.gov/images/87468/elba-and-the-mediterranean-at-night&#34;&gt;the Moon&lt;/a&gt;, &lt;a href=&#34;https://earthobservatory.nasa.gov/images/90008/night-light-maps-open-up-new-applications&#34;&gt;city lights&lt;/a&gt;, &lt;a href=&#34;https://earthobservatory.nasa.gov/images/90578/fires-light-up-mount-vesuvius&#34;&gt;fires&lt;/a&gt;, or &lt;a href=&#34;https://earthobservatory.nasa.gov/images/144754/dazzling-spring-aurora-over-hudson-bay&#34;&gt;aurorae&lt;/a&gt; illuminate Earth, some satellites continue to gather images of light. And they are fantastic!&lt;/p&gt;
@@ -26,10 +26,10 @@
     
     <item>
       <title>Topographic Diversity of the Contiguous USA</title>
-      <link>http://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/</link>
+      <link>https://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/</link>
       <pubDate>Thu, 21 Mar 2019 12:19:38 -0400</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/</guid>
+      <guid>https://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/</guid>
       <description>&lt;p&gt;While exploring data offered within &lt;a href=&#34;https://earthengine.google.com/&#34;&gt;Google Earth Engine&lt;/a&gt; (as I am wont to do), I came across a gorgeous and elegant layer from the U.S. Geological Survey.&lt;/p&gt;
 
 &lt;p&gt;This data, which represents &amp;ldquo;topographic diversity,&amp;rdquo; immediately conveys exactly what it aims to: topography. But the ridges and valleys are not representative of Earth&amp;rsquo;s bumpy surface alone.&lt;/p&gt;</description>
@@ -37,10 +37,10 @@
     
     <item>
       <title>3D Models from NASA</title>
-      <link>http://www.joshuastevens.net/blog/3d-models-from-nasa/</link>
+      <link>https://www.joshuastevens.net/blog/3d-models-from-nasa/</link>
       <pubDate>Sun, 03 Mar 2019 09:24:03 -0500</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/3d-models-from-nasa/</guid>
+      <guid>https://www.joshuastevens.net/blog/3d-models-from-nasa/</guid>
       <description>&lt;p&gt;You&amp;rsquo;re probably well aware that NASA has launched numerous spacecraft—some destined for orbit, others to land on distant planets, and some to &lt;a href=&#34;https://voyager.jpl.nasa.gov/&#34;&gt;initiate a galactic handshake beyond our solar system&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Many of these missions have corresponding 3D models. What&amp;rsquo;s more, NASA has made a number of these available to the public. From satellites and shuttles to rovers and crew modules, more than 300 objects are currently available to download.&lt;/p&gt;</description>
@@ -48,10 +48,10 @@
     
     <item>
       <title>Mapping the Distance to the Nearest Coastline</title>
-      <link>http://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/</link>
+      <link>https://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/</link>
       <pubDate>Tue, 12 Feb 2019 19:50:03 -0500</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/</guid>
+      <guid>https://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/</guid>
       <description>&lt;p&gt;Recently, I stumbled upon a &lt;a href=&#34;https://oceancolor.gsfc.nasa.gov/docs/distfromcoast/&#34;&gt;NASA dataset&lt;/a&gt; containing the distance to the nearest coastline. The data are a rather straightforward calculation based on input from &lt;a href=&#34;http://www.soest.hawaii.edu/wessel/gshhg/&#34;&gt;GSHHG&lt;/a&gt;—the Global Self-consistent, Hierarchical, High-resolution Geography Database.&lt;/p&gt;
 
 &lt;p&gt;Provided as a convenient GeoTIFF, the coastline distances are available in 0.04° and 0.01° resolutions. This makes it ideal for quick exploration. Or a dive down geographic rabbit holes.&lt;/p&gt;</description>
@@ -59,46 +59,46 @@
     
     <item>
       <title>Glen Canyon National Recreation Area</title>
-      <link>http://www.joshuastevens.net/blog/glen-canyon-national-recreation-area/</link>
+      <link>https://www.joshuastevens.net/blog/glen-canyon-national-recreation-area/</link>
       <pubDate>Sun, 27 Jan 2019 09:41:58 -0500</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/glen-canyon-national-recreation-area/</guid>
+      <guid>https://www.joshuastevens.net/blog/glen-canyon-national-recreation-area/</guid>
       <description>&lt;p&gt;One of my favorite places to see in imagery and maps is &lt;a href=&#34;https://www.nps.gov/glca/index.htm&#34;&gt;Glen Canyon National Recreation Area&lt;/a&gt; and The Rincon. Here, water meets stone as myriad canyons reach out from the serpentine courses of the Colorado and Escalante Rivers.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Tactile Topography</title>
-      <link>http://www.joshuastevens.net/blog/tactile-topography/</link>
+      <link>https://www.joshuastevens.net/blog/tactile-topography/</link>
       <pubDate>Wed, 23 Jan 2019 12:33:53 -0500</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/tactile-topography/</guid>
+      <guid>https://www.joshuastevens.net/blog/tactile-topography/</guid>
       <description>&lt;p&gt;There&amp;rsquo;s something special about topographic maps. Each is different than the next, yet many reflect a canvas replete with smooth contours, pleasing colors, and a technical accuracy that can send both the mind and feet wandering.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Graveyards of The Contiguous USA</title>
-      <link>http://www.joshuastevens.net/blog/graveyards-of-the-contiguous-usa/</link>
+      <link>https://www.joshuastevens.net/blog/graveyards-of-the-contiguous-usa/</link>
       <pubDate>Sun, 28 Oct 2018 18:24:44 -0400</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/graveyards-of-the-contiguous-usa/</guid>
+      <guid>https://www.joshuastevens.net/blog/graveyards-of-the-contiguous-usa/</guid>
       <description>&lt;p&gt;Lately I have been challenging myself to read more fiction. The most recent book to be checked off my list is Stephen King&amp;rsquo;s &lt;em&gt;Pet Sematary&lt;/em&gt;. A morbid and suffocatingly dark story, and one I had previously only known from seeing the 1989 film as a kid. (Yes, the book is better. By a long shot!)&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Commanding Cartography</title>
-      <link>http://www.joshuastevens.net/blog/nacis2018/</link>
+      <link>https://www.joshuastevens.net/blog/nacis2018/</link>
       <pubDate>Wed, 17 Oct 2018 13:03:32 -0400</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/nacis2018/</guid>
+      <guid>https://www.joshuastevens.net/blog/nacis2018/</guid>
       <description>&lt;p&gt;Compelling cartography has never been easier or more abundant. We are inundated with new tools and technologies. All the while, one of the most powerful assets in the cartographer&amp;rsquo;s arsenal is being overlooked: the command line. Using keystrokes to create maps might sound like a task of yesteryear, but I am here to tell you it is a wormhole to the future. Whether you design maps for national parks or newsrooms, the terminal will enable you to supercharge your workflows with speed and elegance. This talk introduced some old tricks and new tools for designers on any deadline. &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Landsat Fact Meets Fiction in Kong: Skull Island</title>
-      <link>http://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/</link>
+      <link>https://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/</link>
       <pubDate>Sun, 04 Feb 2018 08:08:46 -0500</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/</guid>
+      <guid>https://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/</guid>
       <description>&lt;p&gt;In &lt;em&gt;Kong: Skull Island&lt;/em&gt;, we follow a crew of scientists and military specialists into the thick jungles of an uncharted Pacific island. Encounters with previously unknown creatures abound. Released in 2017, the film is set in 1973 and prominently features a fictional company—&lt;a href=&#34;https://medium.com/@alekseybusygin/landsat-in-kong-skull-island-2017-9f66603a627f&#34;&gt;Landsat&lt;/a&gt;—whose work involves classified satellite data.&lt;/p&gt;
 
 &lt;p&gt;But is it all fiction?&lt;/p&gt;</description>
@@ -106,19 +106,19 @@
     
     <item>
       <title>Now on Hugo</title>
-      <link>http://www.joshuastevens.net/blog/now-on-hugo/</link>
+      <link>https://www.joshuastevens.net/blog/now-on-hugo/</link>
       <pubDate>Mon, 16 Oct 2017 20:50:23 -0400</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/now-on-hugo/</guid>
+      <guid>https://www.joshuastevens.net/blog/now-on-hugo/</guid>
       <description>&lt;p&gt;A few years ago I made the move from &lt;a href=&#34;http://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/&#34;&gt;Wordpress to static pages&lt;/a&gt;. The benefits were immediate, and it has been nice not worrying about plugins, security patches, or millions of updates since.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Bivariate Choropleth Maps: A How-to Guide</title>
-      <link>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</link>
+      <link>https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</link>
       <pubDate>Wed, 18 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</guid>
+      <guid>https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</guid>
       <description>&lt;p&gt;&lt;em&gt;&amp;ldquo;I&amp;rsquo;m not bivariate, but I am curious.&amp;rdquo;&lt;/em&gt;  That quip has been stuck in my mind ever since I overheard it at the 2013 &lt;a href=&#34;http://nacis.org/&#34;&gt;NACIS&lt;/a&gt; conference in Greenville, SC. Not only was it perfectly timed after a talk about bivariate mapping, but it rang with a great deal of truth: a lot of folks aren&amp;rsquo;t creating bivariate maps, but they want to try. While it was just a joke and the person who made it can easily create bivariate maps, most people find them too difficult or mysterious.&lt;/p&gt;
 
 &lt;p&gt;That&amp;rsquo;s a real shame because bivariate choropleth maps are incredibly useful and very easy to make. So let&amp;rsquo;s go ahead and make one!&lt;/p&gt;</description>
@@ -126,12 +126,12 @@
     
     <item>
       <title>The Ebb and Flow of Polar Sea Ice</title>
-      <link>http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/</link>
+      <link>https://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/</link>
       <pubDate>Sun, 08 Feb 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/</guid>
+      <guid>https://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/</guid>
       <description>&lt;div class=&#34;fullImage&#34;&gt;
-&lt;img src=&#34;http://www.joshuastevens.net/images/sea_ice_slices_th.png&#34; /&gt;
+&lt;img src=&#34;https://www.joshuastevens.net/images/sea_ice_slices_th.png&#34; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;In some very real ways, polar sea ice is the backbone of our planet&amp;rsquo;s climate. When more ice is present, its bright surface tends to reflect sunlight, cooling things down. When there is less white, snow-covered ice, the ocean&amp;rsquo;s surface becomes a bit darker. A darker ocean surface absorbs more sunlight, causing it to warm. The relationships between climate and ice are much more complicated than that, as the thickness of the ice also influences a variety of subsurface feedback loops that have long-term effects.&lt;/p&gt;</description>
@@ -139,12 +139,12 @@
     
     <item>
       <title>HDRI Lighting for Shaded Relief Maps</title>
-      <link>http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</link>
+      <link>https://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</link>
       <pubDate>Fri, 08 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</guid>
+      <guid>https://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</guid>
       <description>&lt;div class=&#34;fullImage&#34;&gt;
-&lt;img src=&#34;http://www.joshuastevens.net/images/shadedRelief_featured.png&#34; /&gt;
+&lt;img src=&#34;https://www.joshuastevens.net/images/shadedRelief_featured.png&#34; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Shaded relief maps are among my favorite of all map types. Not only do they form the foundation for many other maps and derivative layers, they present a fascinating challenge: depicting an abstraction of terrain in a natural way while balancing accuracy with aesthetics.&lt;/p&gt;
@@ -154,10 +154,10 @@
     
     <item>
       <title>Open Source Copyright Infringement: Are DMCA Takedowns on GitHub Increasing?</title>
-      <link>http://www.joshuastevens.net/visualization/open-source-copyright-infringement/</link>
+      <link>https://www.joshuastevens.net/visualization/open-source-copyright-infringement/</link>
       <pubDate>Mon, 07 Jul 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/visualization/open-source-copyright-infringement/</guid>
+      <guid>https://www.joshuastevens.net/visualization/open-source-copyright-infringement/</guid>
       <description>&lt;p&gt;While browsing &lt;a href=&#34;http://www.reddit.com/r/linux&#34;&gt;/r/linux&lt;/a&gt; I saw this post: &lt;a href=&#34;http://www.reddit.com/r/linux/comments/29vvz5/rate_of_dmca_takedown_demands_is_increasing_on/&#34;&gt;Rate of DMCA takedown demands is increasing on GitHub&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;That sounds pretty scary, for a couple of reasons. On one hand, it could mean that companies are really dropping the hammer and coming after folks more often and &lt;a href=&#34;https://torrentfreak.com/google-further-highlights-wrongful-dmca-takedowns-130320/&#34;&gt;potentially in error&lt;/a&gt;. On the other, it could mean the open source community is becoming more lax or lazy, using others&amp;rsquo; code without respecting licenses or copyright.&lt;/p&gt;
@@ -169,12 +169,12 @@
     
     <item>
       <title>Visual Guide to Painful Hymenopteran Stings</title>
-      <link>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</link>
+      <link>https://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</link>
       <pubDate>Fri, 27 Jun 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</guid>
+      <guid>https://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</guid>
       <description>&lt;div class=&#34;fullImage&#34;&gt;
-&lt;img src=&#34;http://www.joshuastevens.net/images/stingFeatured.png&#34; alt=&#34;View the other images to see which hymenopteran is the king of sting!&#34; /&gt;
+&lt;img src=&#34;https://www.joshuastevens.net/images/stingFeatured.png&#34; alt=&#34;View the other images to see which hymenopteran is the king of sting!&#34; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;For most of us, insect stings are a thing to avoid. That&amp;rsquo;s not the case for entomologist Justin O. Schmidt. That&amp;rsquo;s because Dr. Schmidt has dedicated his life to studying venomous hymenopterans, the order of insects made up of ants, bees, and wasps. Through his research, he has been stung countless times. As a result, he developed the &lt;a href=&#34;http://en.wikipedia.org/wiki/Schmidt_sting_pain_index&#34;&gt;Schmidt Sting Pain Index&lt;/a&gt;.&lt;/p&gt;
@@ -184,12 +184,12 @@
     
     <item>
       <title>Moving from WordPress to Middleman</title>
-      <link>http://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/</link>
+      <link>https://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/</link>
       <pubDate>Wed, 18 Jun 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/</guid>
+      <guid>https://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/</guid>
       <description>&lt;div class=&#34;fullImage&#34;&gt;
-&lt;img src=&#34;http://www.joshuastevens.net/images/rubyMMsass.png&#34; alt=&#34;Ruby, Sass, and Middleman are awesome together.&#34; /&gt;
+&lt;img src=&#34;https://www.joshuastevens.net/images/rubyMMsass.png&#34; alt=&#34;Ruby, Sass, and Middleman are awesome together.&#34; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;&lt;em&gt;Note: In September 2017 this site was rebuilt with &lt;a href=&#34;https://www.gohugo.io&#34;&gt;Hugo&lt;/a&gt;. The text below no longer describes my own site, but I would still use Middleman (or any other static generator) over WordPress.&lt;/em&gt;&lt;/p&gt;
@@ -203,10 +203,10 @@
     
     <item>
       <title>The Many Birthplaces of Memorial Day</title>
-      <link>http://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/</link>
+      <link>https://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/</link>
       <pubDate>Tue, 27 May 2014 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/</guid>
+      <guid>https://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/</guid>
       <description>&lt;p&gt;Yesterday was Memorial Day. Like many other Americans, my family and I spent this day of national remembrance at a local park. We made the short trip to historic Boalsburg. Those in the know will recognize that Memorial Day in Boalsburg, PA is no ordinary affair. It is a massive celebration. This was especially true this year, which marks the 150th Memorial Day celebrated in Boalsburg. Thousands of people from all over gathered to honor our veterans who gave the ultimate sacrifice. What started as a time to decorate graves with flowers has now grown into a large festival, with celebratory events found at every corner of the township.&lt;/p&gt;
 
 &lt;p&gt;It was also a learning opportunity. Almost everyone knows about Pennsylvania’s vital role in the Civil War and the importance of Memorial Day in the region. As a Michigan native, what I didn’t know was that Boalsburg itself was the very birthplace of Memorial Day.&lt;/p&gt;</description>
@@ -214,19 +214,19 @@
     
     <item>
       <title>The Map of GDELT Predictions in Afghanistan as You Should Have Seen It</title>
-      <link>http://www.joshuastevens.net/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</link>
+      <link>https://www.joshuastevens.net/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</link>
       <pubDate>Mon, 21 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</guid>
+      <guid>https://www.joshuastevens.net/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</guid>
       <description>&lt;p&gt;For the last several weeks, I’ve been creating a visualization of past and predicted conflicts in Afghanistan. The data, which come from a statistical model developed by &lt;a href=&#34;http://jayyonamine.com/&#34;&gt;Jay Yonamine&lt;/a&gt; with help from &lt;a href=&#34;http://johnbeieler.org/&#34;&gt;John Beieler&lt;/a&gt;, show us what might happen based on a long history of what has happened.  The database behind this model is known as &lt;a href=&#34;http://gdelt.utdallas.edu/&#34;&gt;GDELT&lt;/a&gt;, or the Global Database of Events, Language, and Tone. GDELT has received &lt;a href=&#34;http://ideas.foreignpolicy.com/posts/2013/04/10/what_can_we_learn_from_the_last_200_million_things_that_happened_in_the_world&#34;&gt;a lot of attention&lt;/a&gt; lately and I’ve participated in two hackathons that have emerged around it. After Wired showed interest in publishing this story along with the visualization, I was thrilled.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>&#39;Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada</title>
-      <link>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</link>
+      <link>https://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</link>
       <pubDate>Tue, 17 Sep 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</guid>
+      <guid>https://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</guid>
       <description>&lt;p&gt;Every now and then a dataset comes along that just has to be mapped. This is one of those times.&lt;/p&gt;
 
 &lt;p&gt;Bigfoot. Sasquatch. Skookum. Yahoo. Whatever you call it, the towering man-like ape is a folklore staple. From stories of Yeti in the Himalayas to Wildmen in the Pacific Northwest, people have been talking about and trying to find the creature for ages. Occasionally, some form of evidence – like &lt;a href=&#34;http://en.wikipedia.org/wiki/Patterson-Gimlin_film&#34;&gt;Patterson’s famous 1967 film&lt;/a&gt; – emerges and either feeds our fascination or gets dismissed as a hoax. In either case, it’s easy to see why believers search for proof and skeptics remain doubtful.&lt;/p&gt;
@@ -238,21 +238,21 @@
     
     <item>
       <title>Your Favorite Traffic Map is Lying to You</title>
-      <link>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</link>
+      <link>https://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</link>
       <pubDate>Fri, 28 Jun 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</guid>
+      <guid>https://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</guid>
       <description>&lt;p&gt;Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Big Data Social Science Video Demo: SensePlace2</title>
-      <link>http://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/</link>
+      <link>https://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/</link>
       <pubDate>Mon, 27 May 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/</guid>
+      <guid>https://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/</guid>
       <description>&lt;div class=&#34;fullImage&#34;&gt;
-&lt;img src=&#34;http://www.joshuastevens.net/images/sp2.png&#34; /&gt;
+&lt;img src=&#34;https://www.joshuastevens.net/images/sp2.png&#34; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;This year I was selected to represent the 2013 &lt;a href=&#34;http://bdss.psu.edu&#34;&gt;Big Data Social Science IGERT&lt;/a&gt; in the annual poster and video competition hosted by the National Science Foundation. The news came as both an honor and a challenge. &lt;/p&gt;</description>
@@ -260,19 +260,19 @@
     
     <item>
       <title>Big Data Week: Geographic Visualization and a Demo of CartoDB</title>
-      <link>http://www.joshuastevens.net/blog/big-data-week-geographic-visualization-and-a-demo-of-cartodb/</link>
+      <link>https://www.joshuastevens.net/blog/big-data-week-geographic-visualization-and-a-demo-of-cartodb/</link>
       <pubDate>Fri, 26 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/big-data-week-geographic-visualization-and-a-demo-of-cartodb/</guid>
+      <guid>https://www.joshuastevens.net/blog/big-data-week-geographic-visualization-and-a-demo-of-cartodb/</guid>
       <description>&lt;p&gt;Spatial is special. Accordingly, there are many considerations that need to be made prior to and during the task of visualizing spatial data. Chief among these considerations are your goals and what it is you’re actually trying to accomplish with a map. Are you communicating results you’ve already found? Enabling users to explore the data to discover information on their own, possibly generating new hypotheses?&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Accommodating Big Data in Visual Analytics</title>
-      <link>http://www.joshuastevens.net/blog/accommodating-big-data-in-visual-analytics/</link>
+      <link>https://www.joshuastevens.net/blog/accommodating-big-data-in-visual-analytics/</link>
       <pubDate>Wed, 17 Apr 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/accommodating-big-data-in-visual-analytics/</guid>
+      <guid>https://www.joshuastevens.net/blog/accommodating-big-data-in-visual-analytics/</guid>
       <description>&lt;p&gt;Last week I had a blast visiting Santa Barbara and Los Angeles. While I enjoyed the wineries and sunshine, the annual meeting of the &lt;a href=&#34;http://www.aag.org/cs/annualmeeting&#34;&gt;Association of American Geographers&lt;/a&gt; was the highlight of the trip. With so many talks on cartography, GIS, and cyber science, it was my favorite AAG conference yet.&lt;/p&gt;
 
 &lt;p&gt;What made AAG even more enjoyable was the acknowledgement of big data within GIS (though I’d argue we’ve all been doing “big data” for decades now).&lt;/p&gt;</description>
@@ -280,10 +280,10 @@
     
     <item>
       <title>Big Data Social Science Poster Session</title>
-      <link>http://www.joshuastevens.net/blog/big-data-social-science-poster-session/</link>
+      <link>https://www.joshuastevens.net/blog/big-data-social-science-poster-session/</link>
       <pubDate>Tue, 12 Feb 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/big-data-social-science-poster-session/</guid>
+      <guid>https://www.joshuastevens.net/blog/big-data-social-science-poster-session/</guid>
       <description>&lt;p&gt;As part of the &lt;a href=&#34;http://www.igert.org/projects/294&#34;&gt;NSF IGERT in Big Data Social Science&lt;/a&gt;, Pond Lab hosted a public poster session this afternoon.&lt;/p&gt;
 
 &lt;p&gt;A total of eleven different posters were presented, covering topics in big data that ranged from text processing and visualizing uncertainty to computing voter sentiment and analyzing data of patients’ heart rates.&lt;/p&gt;
@@ -293,10 +293,10 @@
     
     <item>
       <title>Mapping Tools – Analysis and Visualization of Spatial Data</title>
-      <link>http://www.joshuastevens.net/blog/mapping-tools-analysis-and-visualization-of-spatial-data/</link>
+      <link>https://www.joshuastevens.net/blog/mapping-tools-analysis-and-visualization-of-spatial-data/</link>
       <pubDate>Fri, 11 Jan 2013 00:00:00 +0000</pubDate>
       
-      <guid>http://www.joshuastevens.net/blog/mapping-tools-analysis-and-visualization-of-spatial-data/</guid>
+      <guid>https://www.joshuastevens.net/blog/mapping-tools-analysis-and-visualization-of-spatial-data/</guid>
       <description>&lt;p&gt;I had the pleasure of being invited to talk about mapping tools at the &lt;a href=&#34;http://sites.psu.edu/hackingscience/&#34;&gt;Hacking Science&lt;/a&gt; Hands on Sessions, led by professor and tech enthusiast &lt;a href=&#34;http://www.salathegroup.com/people.html&#34;&gt;Marcel Salathé&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
