@@ -205,8 +205,8 @@
 <p>Add a new <em>integer</em> column to the attribute table named <code>Var1_Class</code>. To populate it with the proper information, use the field calculator with the following expression (replace <em>&ldquo;donations&rdquo;</em> with the field name of your first variable, and using your own breakpoints):</p>
 
 <pre><code class="language-python">CASE WHEN  &quot;donations&quot; &gt; 6098.66 THEN 3
-    WHEN &quot;donations&quot; &lt;= 6098.66 AND &quot;donations&quot; &gt; 500.00 THEN 2
-    ELSE 1
+	WHEN &quot;donations&quot; &lt;= 6098.66 AND &quot;donations&quot; &gt; 500.00 THEN 2
+	ELSE 1
 END
 </code></pre>
 
@@ -216,8 +216,8 @@ This works in QGIS, but you'll have to alter the syntax and approach based on yo
 <p><strong>3)</strong> Repeat steps 1 &amp; 2 above for the second variable, using its own breakpoints found in the same way. This time, add a new <em>string</em> column called <code>Var2_Class</code> and populate it with the characters A, B, or C (change <em>&ldquo;perInsured&rdquo;</em> to the name of your variable two, and replace the breakpoints with your own):</p>
 
 <pre><code class="language-python">CASE WHEN  &quot;perInsured&quot; &gt; 86  THEN 'C'
-    WHEN &quot;perInsured&quot; &lt;= 86 and &quot;perInsured&quot; &gt; 50 THEN 'B'
-    ELSE 'A'
+	WHEN &quot;perInsured&quot; &lt;= 86 and &quot;perInsured&quot; &gt; 50 THEN 'B'
+	ELSE 'A'
 END
 </code></pre>
 
