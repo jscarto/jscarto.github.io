@@ -138,7 +138,9 @@ a:hover {
 	min-height: 3.75rem;
 	padding:1rem;
   margin-bottom: 2rem;
-	background: #5c5888;
+	background-color: #5c5888;
+  background-image: url('topo-bg.png');
+  background-position: center center;
 	color: #fff;
 }
 
@@ -376,6 +378,8 @@ form {
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: #5c5888;
+  background-image: url('topo-bg.png');
+  background-position: top center;
   font-size: 1rem;
   color: #b9b8c9;
 }
