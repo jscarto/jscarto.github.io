@@ -2,310 +2,213 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="apple-touch-icon" sizes="57x57" href="https://www.joshuastevens.net/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://www.joshuastevens.net/apple-icon-60x60.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://www.joshuastevens.net/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://www.joshuastevens.net/favicon-16x16.png">
-    <link rel="manifest" href="https://www.joshuastevens.net/manifest.json">
-    <title>Bivariate Choropleth Maps: A How-to Guide
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bivariate Choropleth Maps: A How-to Guide — Joshua Stevens
     </title>
-    <meta name="theme-color" content="#5c5888">
-    <link href="https://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://www.joshuastevens.net/css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.joshuastevens.net/css/font-awesome.min.css">
-    <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <meta name="description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="theme-color" content="#0b1220">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <meta property="og:title" content="Bivariate Choropleth Maps: A How-to Guide — Joshua Stevens">
+    <meta property="og:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta property="og:image" content="https://www.joshuastevens.net/images/js_bivariate_th.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jscarto">
+    <meta name="twitter:title" content="Bivariate Choropleth Maps: A How-to Guide — Joshua Stevens">
+    <meta name="twitter:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="twitter:image" content="https://www.joshuastevens.net/images/js_bivariate_th.png">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@jscarto" />
-    <meta name="twitter:title" content="Bivariate Choropleth Maps: A How-to Guide" />
-
-    <meta name="twitter:image" content="https://www.joshuastevens.net/images/js_bivariate_th.png" />
-    <meta name="twitter:description" content=""/>
-    <meta property="og:image" content="https://www.joshuastevens.net/images/js_bivariate_th.png" />
-    <meta name="description" content=""/>
-     <meta property="og:description" content=""/>
   </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="https://www.joshuastevens.net/"><img src="https://www.joshuastevens.net/css/js_logo.png" /> Joshua Stevens</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/">
+          <img class="brand-mark" src="/images/logo-mark.png" alt="" width="30" height="30">
+          Joshua Stevens
+        </a>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/">Home</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="https://www.joshuastevens.net/blog/">Blog</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/about/">About</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/portfolio/">Work</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/contact/">Contact</a>
-            </li>
+        <nav aria-label="Primary">
+          <ul class="nav-list" id="primary-nav">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/portfolio/" >Work</a></li>
+            <li><a href="/blog/" aria-current="page">Blog</a></li>
+            <li><a href="/about/" >About</a></li>
+            <li><a href="/contact/" >Contact</a></li>
           </ul>
-        </div>
+        </nav>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
+        </button>
       </div>
-    </nav>
-	
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=240209906031266";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>hljs.initHighlightingOnLoad();</script>
+    </header>
+
+<main id="main">
+  
+
+<div class="article-mast">
+  <div class="container">
+    <p class="kicker kicker-light kicker-center">Blog</p>
+    <h1>Bivariate Choropleth Maps: A How-to Guide</h1><p class="post-date">February 18, 2015</p>
+  </div>
+</div>
+
 <div class="container">
-	<div class="article">
+  <div class="article">
 
-	<h1 class="title">Bivariate Choropleth Maps: A How-to Guide</h1><div class="postDate">
-		<i class="fa fa-calendar"></i> February 18, 2015
-	</div>
-
-	<p><em>&ldquo;I&rsquo;m not bivariate, but I am curious.&rdquo;</em>  That quip has been stuck in my mind ever since I overheard it at the 2013 <a href="http://nacis.org/">NACIS</a> conference in Greenville, SC. Not only was it perfectly timed after a talk about bivariate mapping, but it rang with a great deal of truth: a lot of folks aren&rsquo;t creating bivariate maps, but they want to try. While it was just a joke and the person who made it can easily create bivariate maps, most people find them too difficult or mysterious.</p>
-
+    <p><em>&ldquo;I&rsquo;m not bivariate, but I am curious.&rdquo;</em>  That quip has been stuck in my mind ever since I overheard it at the 2013 <a href="http://nacis.org/">NACIS</a> conference in Greenville, SC. Not only was it perfectly timed after a talk about bivariate mapping, but it rang with a great deal of truth: a lot of folks aren&rsquo;t creating bivariate maps, but they want to try. While it was just a joke and the person who made it can easily create bivariate maps, most people find them too difficult or mysterious.</p>
 <p>That&rsquo;s a real shame because bivariate choropleth maps are incredibly useful and very easy to make. So let&rsquo;s go ahead and make one!</p>
-
 <p><strong><em>Synopsis:</strong> This post introduces the idea of bivariate choropleth mapping and demonstrates a technique for creating your own. Although I show some screenshots from QGIS, emphasis is placed on the concepts of the method rather than any particular tool or language. This technique will work with any software you prefer! A graphics program like Photoshop, Illustrator, <a hef="https://inkscape.org/en/">Inkscape</a>, or similar will be helpful if you choose to also create your own color scheme.</em></p>
-
 <h3 id="what-is-a-bivariate-choropleth-map-anyway">What is a Bivariate Choropleth Map, Anyway?</h3>
-
 <h4 id="first-things-first-univariate-choropleth-maps">First things first: Univariate Choropleth Maps</h4>
-
 <p>Before we make a bivariate choropleth map, let&rsquo;s quickly cover the concept of univariate choropleth maps. Done correctly, basic choropleth maps use color to show quantities within geographic areas - such as states, US counties, or even countries. The term <em>choropleth</em> derives from Greek: <em>choro</em> (area) + <em>plethos</em> (multitude). The example below shows a typical choropleth map:</p>
-
 <div class="fullImage">
 <img src="/images/js_NYT_unemploymentMap.png" />
 <p>A univariate choropleth map of unemployment rates in the United States. Source: <a href="http://www.nytimes.com/interactive/2009/03/03/us/20090303_LEONHARDT.html">The New York Times</a>.</p>
 </div>
-
 <h4 id="normalize-normalize-normalize">Normalize, normalize, normalize!</h4>
-
 <p>Notice that the map above uses unemployment <em>rates</em>, and not the total number of unemployed people. The use of proportions, or rates, instead of raw counts is fundamental to creating a proper choropleth map. If the map above used a raw count of the total number of unemployed people for each county, it would be subject to bias introduced by the size of each county. Larger geographic areas tend to have more people by virtue of having more space for people to live in. Using raw counts would show that: unemployment would seem higher in larger counties, not because unemployment is more common there but simply because there are more people there. That wouldn&rsquo;t make a very interesting map.</p>
-
 <p>Instead, choropleth maps should be <a href="http://www.gsd.harvard.edu/gis/manual/normalize/"><strong>normalized</strong></a>. The process of normalization accounts for differences in geographic areas by converting raw counts to rates or proportions. Population density is a great example of normalized data. It represents the number of persons <em>per unit of geographic area</em> (often square miles or kilometers).</p>
-
 <p>When social data are not normalized, they tend to reflect trends in where people live rather than interesting variations in the phenomena of interest. <a href="http://xkcd.com/1138/">Obligatory XKCD</a>.</p>
-
 <h4 id="bivariate-choropleths-mostly-the-same-now-more-variate">Bivariate Choropleths: Mostly The Same, Now More Variate</h4>
-
 <p>Bivariate choropleths follow the same concept, except they show <em>two variables</em> at once. For example, the inset map in my <a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">visualization of bigfoot sightings</a> is a bivariate choropleth of sightings and population density:</p>
-
 <div class="fullImage">
 <img src="/images/bf_bivariate.png" />
 </div>
-
 <p>Ideally, you should at least have a hunch two variables are related when creating bivariate choropleth maps. This is because bivariate maps go further than simply showing two variables all willy nilly: they show where those two variables tend to be in agreement or disagreement. If there is no expectation that the two variables might be related, a bivariate choropleth is not the right choice.</p>
-
 <p>Showing the agreement between two variables is also why the number of classes in a bivariate choropleth is larger than the combined sum of classes in each variable alone.  In general, if the individual variables have <em>n</em> classes, the bivariate choropleth map will have n<sup>2</sup> classes.</p>
-
 <div class="fullImage">
 <img src="/images/js_choroMath.png" />
 <p>And then there were nine: Combining two 3-class univariate maps produces one 9-class bivariate map.</p>
 </div>
-
 <p>Most cartographers advise against maps with 9 or more classes. Thus it is recommended to keep things super simple when creating bivariate choropleth maps by not exceeding 3 classes in each variable.</p>
-
 <h3 id="neat-so-how-are-these-things-made">Neat. So How Are These Things Made?</h3>
-
 <p>When making a bivariate choropleth map, the goal is to show a sequence of two variables and their combinations. I find it easiest to think through these relationships with something visual to refer to. So the first thing I do is create (or choose) a color scheme.</p>
-
 <h4 id="start-with-a-legend">Start With a Legend</h4>
-
 <p>Remember that bivariate maps have a lot going on, so it is best to keep things simple to start with. We don&rsquo;t want to exceed 9 classes total, so we&rsquo;re going to have each variable step through only 3 classes.</p>
-
 <p><strong>1)</strong> Begin by creating a 3-class sequential color scheme for one of your variables. The color scheme should begin with a very light, neutral color that will represent the lows for the first variable. The color scheme gradually becomes darker and more saturated towards a hue of your choice that will represent the highs. The middle color should be the same hue as the end color, but its saturation should be lower while the brightness is higher:</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateGrid.png" />
 <p>Keep it simple: Use a single hue, with increasing saturation and value (darkness).</p>
 </div>
-
 <p><strong>2)</strong> Now do the same for the other variable. This time, choose a hue that is quite different from the first. Choosing a <a href="http://www.tigercolor.com/color-lab/color-theory/color-harmonies.htm">complementary color</a> can be a good start. But make sure to go slightly off center of complementary by picking a neighbor to the complement. This will give your final scheme a better shot at being colorblind-safe (you can fine-tune the final color scheme later to help with this).</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateGrid2.png" />
 </div>
-
 <p><strong>3)</strong> So far, we have colors to represent 6 classes, but we need 9. To do that, turn each of the rectangular color schemes into squares by stretching (or duplicating) them vertically, like so:</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateGrid3.png" />
 </div>
-
 <p><strong>4)</strong> Now take the color scheme for the first variable and rotate it 90° counter-clockwise so that the neutral (low) color is on the bottom and the high is on top:</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateGrid4.png" />
 </div>
-
 <p><strong>5)</strong> This is where the magic happens. In Photoshop, Illustrator, or another capable graphics program, change the blending mode of the first color scheme to <em>darken</em>. Then position the first color scheme so that it perfectly overlays the second one. Suddenly, a new palette emerges revealing both variables:</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateMix.gif" />
 <p>The first color scheme now mixes with and darkens the colors beneath it, creating a 9-class bivariate color scheme. Experiment with other blending modes. 'Multiply' also works well.</p>
 </div>
-
 <p><strong>6)</strong> Almost there. We now have a 9-class bivariate sequential color scheme, but it needs a little more work. The top right cell of this grid - the dark blue color - represents cases when <em>both</em> variables are high. As such, it should be the most salient color in the palette. To make that happen, let&rsquo;s increase its saturation a bit. We&rsquo;ll also adjust the color of the central cell, bringing its hue closer to the corner blue to further distinguish it as a mix of the two variables:</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateGrid7.png" />
 </div>
-
 <p>That step takes some practice. If you&rsquo;ve been following along with different color choices, you&rsquo;ll have to tweak things a bit differently from what is shown here. But the goal is the same: the color scheme should clarify relationships in the data along three paths, each sequentially arranged to increase in both saturation and darkness:</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariatePaths.png" />
 </div>
-
 <p>With a color scheme in hand, it&rsquo;s time to classify the data and bring this thing to life.</p>
-
 <h4 id="classify-your-data">Classify Your Data</h4>
-
 <p>Most GIS and visualization tools only let you select one attribute for classification. So how in the world could we get it to use two variables? Easy peasy: create a third attribute that represents the combination of the two variables by its location in the bivariate color scheme.</p>
-
 <p>The most straightforward way to do this is to simply label the cells of the color palette. Mark cells in horizontal order with <strong>A</strong>, <strong>B</strong>, or <strong>C</strong>. Then mark the cells in vertical order with <strong>1</strong>, <strong>2</strong>, or <strong>3</strong>:</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateLabels.png" />
 </div>
-
 <p>Labeled like this, the lowest value for both variables becomes A1, while the cell that represents the max for both becomes C3. Any combination of the two variables can be identified by its position in the color scheme. We now have a labeling system that the GIS can use as categories to symbolize the data.</p>
-
 <p>This is where my examples become specific to QGIS, but the same approach can be applied to ArcGIS or any other software.</p>
-
 <p><strong>1)</strong> The first thing to do is go into the symbology properties as if you were making a standard choropleth map using your first variable. Don&rsquo;t worry about the colors - just the classification. Choose whichever classification method works best for your purposes. (Need help choosing a classification method? John Nelson has a great <a href="http://uxblog.idvsolutions.com/2011/10/telling-truth.html">overview of common methods</a>.)</p>
-
 <p>Change the number of classes to 3 and record the breakpoints:</p>
-
 <div class="fullImage">
 <img src="/images/js_classificationVar2.png" />
 <p>My 'variable one' classified into 3 groups in <a href="http://www.qgis.org">QGIS</a>. For the curious: these data represent donations to Obama's campaign in 2012.
 </div>
-
 <p>Using the information in the screenshot above, the breakpoints are 500.00 and 6098.66.</p>
-
 <p><strong>2)</strong> Now create a new field in your attribute table. This is going to record the class for the first variable, which goes vertically in our color palette from 1 to 3. In other words, the new field will convert the actual data values into a 1, 2, or 3. This is done using the breakpoints found in Step 1 above.</p>
-
 <p>Add a new <em>integer</em> column to the attribute table named <code>Var1_Class</code>. To populate it with the proper information, use the field calculator with the following expression (replace <em>&ldquo;donations&rdquo;</em> with the field name of your first variable, and using your own breakpoints):</p>
-
-<pre><code class="language-python">CASE WHEN  &quot;donations&quot; &gt; 6098.66 THEN 3
-	WHEN &quot;donations&quot; &lt;= 6098.66 AND &quot;donations&quot; &gt; 500.00 THEN 2
-	ELSE 1
-END
-</code></pre>
-
-<p class="fullImage">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>CASE WHEN  <span style="color:#e6db74">&#34;donations&#34;</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">6098.66</span> THEN <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>	WHEN <span style="color:#e6db74">&#34;donations&#34;</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">6098.66</span> AND <span style="color:#e6db74">&#34;donations&#34;</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">500.00</span> THEN <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>	ELSE <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>END
+</span></span></code></pre></div><p class="fullImage">
 This works in QGIS, but you'll have to alter the syntax and approach based on your software of choice.</p>
-
 <p><strong>3)</strong> Repeat steps 1 &amp; 2 above for the second variable, using its own breakpoints found in the same way. This time, add a new <em>string</em> column called <code>Var2_Class</code> and populate it with the characters A, B, or C (change <em>&ldquo;perInsured&rdquo;</em> to the name of your variable two, and replace the breakpoints with your own):</p>
-
-<pre><code class="language-python">CASE WHEN  &quot;perInsured&quot; &gt; 86  THEN 'C'
-	WHEN &quot;perInsured&quot; &lt;= 86 and &quot;perInsured&quot; &gt; 50 THEN 'B'
-	ELSE 'A'
-END
-</code></pre>
-
-<p>After performing these steps, you should now have two new fields in your attribute table representing numbers 1-3 and characters A-C:</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>CASE WHEN  <span style="color:#e6db74">&#34;perInsured&#34;</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">86</span>  THEN <span style="color:#e6db74">&#39;C&#39;</span>
+</span></span><span style="display:flex;"><span>	WHEN <span style="color:#e6db74">&#34;perInsured&#34;</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">86</span> <span style="color:#f92672">and</span> <span style="color:#e6db74">&#34;perInsured&#34;</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span> THEN <span style="color:#e6db74">&#39;B&#39;</span>
+</span></span><span style="display:flex;"><span>	ELSE <span style="color:#e6db74">&#39;A&#39;</span>
+</span></span><span style="display:flex;"><span>END
+</span></span></code></pre></div><p>After performing these steps, you should now have two new fields in your attribute table representing numbers 1-3 and characters A-C:</p>
 <div class="fullImage">
 <img src="/images/js_bivariateAttributes.png" />
 <p>The first 10 records of my attribute table, with new fields (highlighted) showing the ranking for our labeling system.</p>
 </div>
-
 <p><strong>4)</strong> All the necessary information is now in the attribute table. The last trick is to simply combine the new fields into one. This last column will represent the data&rsquo;s position in the bivariate color scheme.</p>
-
 <p>To combine the columns, create a new string field called <code>Bi_Class</code>. Then using the field calculator, enter the expression below:</p>
-
-<pre><code class="language-python"> concat(&quot;Var2_Class&quot;,tostring(&quot;Var1_Class&quot;))
-</code></pre>
-
-<p>This fills the new column with information that identifies which cell in the bivariate color scheme to use when symbolizing the data:</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span> concat(<span style="color:#e6db74">&#34;Var2_Class&#34;</span>,tostring(<span style="color:#e6db74">&#34;Var1_Class&#34;</span>))
+</span></span></code></pre></div><p>This fills the new column with information that identifies which cell in the bivariate color scheme to use when symbolizing the data:</p>
 <div class="fullImage">
 <img src="/images/js_bivariateAttributes2.png" />
 <p>The database now has entries pairing the variables with their position in the bivariate color scheme.</p>
 </div>
-
 <p><strong>5)</strong> The final step is the easiest! Simply symbolize the map as a <em>categorized</em> choropleth using <code>Bi_Class</code> as the data column. Refer to the labeled color palette to know which class gets which color:</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateSymbolization.png" />
 <p>Tip: If you're using QGIS, use the 'eye dropper' tool to copy each color from the palette over to the appropriate value in the style window.
 </div>
-
 <h4 id="et-voila">Et Voila!</h4>
-
 <div class="fullImage">
 <img src="/images/js_finalBivariateMap.png" />
 <p>The final 9-class bivariate map. Each bivariate class identifier is recorded in the GIS.</p>
 </div>
-
 <h3 id="closing-tips-caveats-and-other-hand-waving">Closing Tips, Caveats, and Other Hand Waving</h3>
-
 <h4 id="tips">Tips</h4>
-
 <p>Bivariate data is often complicated and can confuse your readers. Keep this in mind and strive for simplicity. Don&rsquo;t weight your legend down with too many decimal points and raw numbers - try to emphasize relative rankings.</p>
-
 <p>You can simplify things further by color coding the variables in the description. Then only label the corners of the bivariate legend. These are the most interesting scenarios on the map, and the intermediaries become obvious.</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariateCornerLabels.png" />
 <p>The corner cases are what make bivariate maps interesting. Help your readers understand what they mean.</p>
 </div>
-
 <p>Also consider the overall design of your map. If you&rsquo;re designing for a dark background, the neutral color in your palette should also be dark. The color schemes for each variable should then increase in lightness instead of darkness.</p>
-
 <p>A similar type of mapping you should also be aware of is called <a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3173776/">value-by-alpha mapping</a>. It was developed as a spatially accurate alternative to cartograms, though it shares some similarities with traditional bivariate choropleths.</p>
-
 <h4 id="caveats">Caveats</h4>
-
 <p>There&rsquo;s a reason <a href="http://www.colorbrewer2.org">ColorBrewer</a> doesn&rsquo;t provide handfuls of bivariate color schemes. If you try to make bivariate color schemes that are simultaneously colorblind-safe, photocopy-safe, and print friendly&hellip;you&rsquo;re going to have a bad time.</p>
-
 <p>When developing bivariate color schemes, which generally have three hues, you&rsquo;ll likely have to forgo at least two of the properties ColorBrewer was designed to support. A bivariate color scheme is inherently more difficult to balance in this regard than a univariate palette that steps through only one or two hues.</p>
-
 <p>A colorblind-safe example of a bivariate color scheme can be found in the first map of Cindy Brewer&rsquo;s older reference on color <a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html">here</a>.</p>
-
 <p>If you absolutely need to ensure your map is colorblind-safe, use the top color scheme in the above link. My color scheme used throughout this post will work, too. You may also want to consider other bivariate approaches - or whether a bivariate approach is sensible at all. With interactivity and small multiples as easy options, it is not always necessary (or even desirable) to show two or more variables at once.</p>
-
 <h4 id="hand-waving">Hand Waving</h4>
-
 <p><em>&ldquo;Wait!!&rdquo;</em> I hear you say. <em>&ldquo;If I can overlay two color palettes to create a bivariate color scheme, can&rsquo;t I just do that with the full maps?!&rdquo;</em></p>
-
 <p>Yes. Yes you can. If you&rsquo;re creating a quick one-off map, overlaying two univariate choropleths as you would the color palettes will instantly create a bivariate choropleth map. You can skip all the data manipulation and rely on color chemistry alone.</p>
-
 <p><strong>Here&rsquo;s why I don&rsquo;t recommend that as the go-to method:</strong> Let&rsquo;s say you create a bivariate choropleth by overlaying two univariate choropleths. Everything looks good, but you&rsquo;re not happy with the color of the center cell in the palette. Since that color was the haphazard result of mixing entire maps, you&rsquo;ll have to tweak one (or both) of the maps and overlay them again. This time, you might get the color right while adversely affecting the others. You&rsquo;re now in a cat-and-mouse game with color choices, relying on trial-and-error for a fix.</p>
-
 <p>By storing the information in the database, you can easily apply a new color scheme or make changes to any single class without affecting the others. You have full control over each individual color, allowing you to fine-tune things to your liking. More importantly, you can query the database on this information for further analysis and statistics. That&rsquo;s an <em>enormous</em> advantage that can&rsquo;t be overstated.</p>
-
 <p>The other glaring problem with overlaying two entire maps however is that it is limited to static maps. A data-driven approach is the way to go for web mapping and interactives. Rendering two separate maps in a browser to produce a color scheme is crazy talk. Render a single map, with the colors you precisely define, and save yourself a lot of time (and sanity)!</p>
-
-<h3 id="it-s-dangerous-to-go-alone-take-this">It&rsquo;s Dangerous To Go Alone! Take This.</h3>
-
+<h3 id="its-dangerous-to-go-alone-take-this">It&rsquo;s Dangerous To Go Alone! Take This.</h3>
 <p>I&rsquo;ve made a few sequential bivariate color schemes you&rsquo;re free to use if you&rsquo;d rather not make one yourself. They were designed for use on light backgrounds.</p>
-
 <div class="fullImage">
 <img src="/images/js_bivariatePalettes.png" />
 <p>These example palettes should get you off to a good start.</p>
 </div>
-
 <h4 id="further-reading-and-other-examples">Further Reading and Other Examples</h4>
-
 <ol>
 <li><a href="http://www.personal.psu.edu/cab38/ColorSch/SchHTMLs/CBColorSeqSeq.html">Sequential-sequential bivariate color scheme examples and overview</a> by Cindy Brewer.</li>
 <li><a href="http://www.personal.psu.edu/cab38/ColorSch/Schemes.html">Color Use Guidelines for Mapping and Visualization</a> by Cindy Brewer.</li>
@@ -314,66 +217,82 @@ END
 <li><a href="http://www.slideshare.net/aileenbuckley/arc-gis-bivariate-mapping-tools-28903069">ArcGIS Bivariate Mapping Tools</a> by Aileen Buckley. It includes Esri&rsquo;s collection of bivariate color schemes. Also check out <a href="http://blogs.esri.com/esri/arcgis/2014/11/19/increase-your-transparency-with-arcgis-pro/">this blog post</a> by Kenneth Field on new transparency options in ArcGIS Pro.</li>
 <li><a href="http://resources.maphugger.com/melmer_webedition.pdf">Symbol Considerations for Bivariate Thematic Mapping (PDF)</a> a thesis on bivariate mapping by Martin Elmer.</li>
 </ol>
-
 <p>If you make a sweet map using this tutorial, or have questions about it, drop me a line and let me know!</p>
 
-	<hr>
+    <hr>
 
-	<div class="social">
-		<span class="text-muted">Share This</span>
-		<br>
-		<div class="social-btn">
-			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-		</div>
+    <div class="share">
+      <span>Share this</span>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Bivariate%20Choropleth%20Maps%3a%20A%20How-to%20Guide&url=https%3a%2f%2fwww.joshuastevens.net%2fcartography%2fmake-a-bivariate-choropleth-map%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+      </a>
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.joshuastevens.net%2fcartography%2fmake-a-bivariate-choropleth-map%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+      </a>
+      <button type="button" class="share-btn" data-copy-link="https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/" aria-label="Copy link to this post">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h4v2h-4a3 3 0 1 0 0 6h4v2h-4a5 5 0 0 1-5-5zm7-1h6v2h-6v-2zm3-4h4a5 5 0 1 1 0 10h-4v-2h4a3 3 0 1 0 0-6h-4V7z"/></svg>
+      </button>
+    </div>
 
-		<div class="fb-share-button social-btn" data-href="https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/" data-layout="button" data-size="large" data-mobile-iframe="true">
-			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.joshuastevens.net%2fcartography%2fmake-a-bivariate-choropleth-map%2f&amp;src=sdkpreparse">Share</a>
-		</div>
-	</div>
-
-	<br>
-
-	<div class="d-flex justify-content-between pagination text-small">
-		<a href="https://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/"><i class="fa fa-arrow-left"></i> The Ebb and Flow of Polar Sea Ice</a>
-		
-		
-		<a href="https://www.joshuastevens.net/blog/now-on-hugo/">Now on Hugo <i class="fa fa-arrow-right"></i></a>
-		</div>
-
-	
-	</div>
+    <nav class="pager" aria-label="Post navigation">
+      <a href="https://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/">&larr; The Ebb and Flow of Polar Sea Ice</a>
+      
+      <a href="https://www.joshuastevens.net/blog/now-on-hugo/">Now on Hugo &rarr;</a>
+      </nav>
+  </div>
 </div>
 
+<script>hljs.initHighlightingOnLoad();</script>
 
-<footer class="footer">
+
+</main>
+    <footer class="site-footer">
       <div class="container">
-        <div class="row">
-        <div class="col-sm-12 col-md-5 footer-left">
-          <ul>
-            <li><a  href="https://www.joshuastevens.net/">Home</a></li>
-            <li><a class="active" href="https://www.joshuastevens.net/blog/">Blog</a></li>
-            <li><a  href="https://www.joshuastevens.net/about/">About</a></li>
-            <li><a  href="https://www.joshuastevens.net/portfolio/">Work</a></li>
-            <li><a  href="https://www.joshuastevens.net/contact/">Contact</a></li>
-          </ul>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <strong>Joshua Stevens</strong>
+            Cartographer &amp; data visualization lead at NASA's Earth Observatory
           </div>
-          <div class="col-sm-12 col-md-2 footer-mid"><a href="https://twitter.com/jscarto"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; <a href="https://www.linkedin.com/in/jscarto/"><i class="fa fa-linkedin fa-2x"></i></a></div>
-          <div class="col-sm-12 col-md-5 footer-right">© 2023 Joshua Stevens</div>
+
+          <nav aria-label="Footer">
+            <ul class="footer-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/portfolio/">Work</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer-social">
+            <a href="https://twitter.com/jscarto" aria-label="Joshua Stevens on Twitter / X" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/jscarto/" aria-label="Joshua Stevens on LinkedIn" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-meta">
+          <span>&copy; 2026 Joshua Stevens</span>
+          <span>Cartography, data visualization &amp; visual journalism</span>
         </div>
       </div>
     </footer>
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://www.joshuastevens.net/js/bootstrap.min.js"></script>
-    <script src="https://www.joshuastevens.net/js/ie10-viewport-bug-workaround.js"></script>
+
+    <div id="copy-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <script src="/js/main.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
+
         ga('create', 'UA-39165504-1', 'joshuastevens.net');
         ga('send', 'pageview');
     </script>
   </body>
 </html>
+

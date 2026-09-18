@@ -2,204 +2,187 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="apple-touch-icon" sizes="57x57" href="https://www.joshuastevens.net/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://www.joshuastevens.net/apple-icon-60x60.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://www.joshuastevens.net/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://www.joshuastevens.net/favicon-16x16.png">
-    <link rel="manifest" href="https://www.joshuastevens.net/manifest.json">
-    <title>Moving from WordPress to Middleman
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moving from WordPress to Middleman — Joshua Stevens
     </title>
-    <meta name="theme-color" content="#5c5888">
-    <link href="https://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://www.joshuastevens.net/css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.joshuastevens.net/css/font-awesome.min.css">
-    <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <meta name="description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="theme-color" content="#0b1220">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <meta property="og:title" content="Moving from WordPress to Middleman — Joshua Stevens">
+    <meta property="og:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta property="og:image" content="https://www.joshuastevens.net/images/blackmarble-hero-poster.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jscarto">
+    <meta name="twitter:title" content="Moving from WordPress to Middleman — Joshua Stevens">
+    <meta name="twitter:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="twitter:image" content="https://www.joshuastevens.net/images/blackmarble-hero-poster.jpg">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@jscarto" />
-    <meta name="twitter:title" content="Moving from WordPress to Middleman" />
-
-    <meta name="twitter:image" content="https://www.joshuastevens.net/images/default_th.png" />
-    <meta name="twitter:description" content=""/>
-    <meta property="og:image" content="https://www.joshuastevens.net/images/default_th.png" />
-    <meta name="description" content=""/>
-     <meta property="og:description" content=""/>
   </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="https://www.joshuastevens.net/"><img src="https://www.joshuastevens.net/css/js_logo.png" /> Joshua Stevens</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/">
+          <img class="brand-mark" src="/images/logo-mark.png" alt="" width="30" height="30">
+          Joshua Stevens
+        </a>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/">Home</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="https://www.joshuastevens.net/blog/">Blog</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/about/">About</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/portfolio/">Work</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/contact/">Contact</a>
-            </li>
+        <nav aria-label="Primary">
+          <ul class="nav-list" id="primary-nav">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/portfolio/" >Work</a></li>
+            <li><a href="/blog/" aria-current="page">Blog</a></li>
+            <li><a href="/about/" >About</a></li>
+            <li><a href="/contact/" >Contact</a></li>
           </ul>
-        </div>
+        </nav>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
+        </button>
       </div>
-    </nav>
-	
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=240209906031266";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>hljs.initHighlightingOnLoad();</script>
-<div class="container">
-	<div class="article">
+    </header>
 
-	<h1 class="title">Moving from WordPress to Middleman</h1><div class="postDate">
-		<i class="fa fa-calendar"></i> June 18, 2014
-	</div>
+<main id="main">
+  
 
-	<div class="fullImage">
-<img src="/images/rubyMMsass.png" alt="Ruby, Sass, and Middleman are awesome together." />
+<div class="article-mast">
+  <div class="container">
+    <p class="kicker kicker-light kicker-center">Blog</p>
+    <h1>Moving from WordPress to Middleman</h1><p class="post-date">June 18, 2014</p>
+  </div>
 </div>
 
+<div class="container">
+  <div class="article">
+
+    <div class="fullImage">
+<img src="/images/rubyMMsass.png" alt="Ruby, Sass, and Middleman are awesome together." />
+</div>
 <p><em>Note: In September 2017 this site was rebuilt with <a href="https://www.gohugo.io">Hugo</a>. The text below no longer describes my own site, but I would still use Middleman (or any other static generator) over WordPress.</em></p>
-
 <p>Recently I&rsquo;ve spent a few evenings removing WordPress and rebuilding this site on top of <a href="http://www.middlemanapp.com">Middleman</a>. The new site is still a work in progress and I have more features to add, but all of the previous content has been brought over. It should be safe to launch this.</p>
-
 <p>So why did I do it? Over the past two years I&rsquo;ve become increasingly frustrated with WordPress. Despite serving compressed pages, caching data, and reducing unnecessary scripts, page load times seemed to increase with each new version. Some of my more popular pages were averaging 5 seconds to load. That&rsquo;s ridiculous.</p>
-
-<p>Even when WordPress itself performed well, it required additional plugins just to have reasonable features (e.g., caching, contact forms, spam protection, SEO optimization, etc.). Each of these requires constant updates, and one can never be sure if updating one plugin is going to break other plugins, or worse, the entire site. Compatibility reports from other users are helpful, but are often incomplete. Logging in just to write a simple post became a chore: update this, double check that, fix this other thing that the previous update broke, and so on. Long story short, it got old. </p>
-
+<p>Even when WordPress itself performed well, it required additional plugins just to have reasonable features (e.g., caching, contact forms, spam protection, SEO optimization, etc.). Each of these requires constant updates, and one can never be sure if updating one plugin is going to break other plugins, or worse, the entire site. Compatibility reports from other users are helpful, but are often incomplete. Logging in just to write a simple post became a chore: update this, double check that, fix this other thing that the previous update broke, and so on. Long story short, it got old.</p>
 <div class="fullImage">
 <img src="/images/wpUpdates.png" alt="WordPress plugins are a chore to upkeep" />
 <p>A familiar sight to WordPress users.</p>
 </div>
-
 <p>On top of that, this site (and most blogs in general) really don&rsquo;t need to be dynamic. Once published, the page content rarely changes. Involving a database and PHP scripts to deliver static content only adds unnecessary overhead. Under heavy load (thanks, <a href="http://newsfeed.time.com/2013/09/23/want-to-find-bigfoot-now-theres-a-map-for-that/">Time</a>!) I found WordPress achingly slow. During my largest traffic spike page performance suffered so much that my email exploded with inquiries about it (on the bright side, it did not go down). Nonetheless, WordPress was no longer a pest that lived only on my web server: its shortcomings were now invading my inbox.</p>
-
 <p>The decision to switch to something else was a long time coming. Now that I had a few evenings to spare, I was able to do something about it.</p>
-
 <p>So I set up Ruby, installed and configured Middleman, and re-developed everything from scratch.</p>
-
 <h2 id="the-benefits-have-been-immediate">The benefits have been immediate:</h2>
-
 <ul>
 <li>Middleman is a roll-your-own beast. This site now does exactly what I want it to, no more, no less. No plugins to fuss with or break.</li>
 <li>Middleman uses the <a href="http://sass-lang.com/">Sass</a> CSS preprocessor and <a href="http://compass-style.org/">Compass</a> framework. If you&rsquo;re not already using Sass + Compass, I highly recommend them. They make rapidly deploying CSS designs incredibly painless by adding variables, mixins, and functions while removing the need to worry about vendor-specific prefixes.</li>
 <li>Since all of the ruby scripts, Middleman configs and templates, and page content is first generated on my local machine, my entire site can be versioned on github and served via <a href="https://pages.github.com">Github Pages</a>.</li>
 </ul>
-
 <p>I&rsquo;ve wanted to do this before, but have been a bit hesitant. My post on <a href="http://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">mapping sasquatch sightings</a> generated a ton of discussion that I didn&rsquo;t want to lose. Fortunately I could import all the comments to <a href="https://disqus.com/">Disqus</a>.</p>
-
 <p>With that all done, the new site is up and chugging along. Stay tuned for more content, and if you notice anything wonky please let me know!</p>
-
-<h3 id="some-tips-on-middleman-github-pages">Some tips on Middleman + Github Pages</h3>
-
+<h3 id="some-tips-on-middleman--github-pages">Some tips on Middleman + Github Pages</h3>
 <p>If you&rsquo;re thinking of using Middleman with Github Pages, there are two ways to make it really easy. The first is to use the <a href="https://github.com/neo/middleman-gh-pages">middleman-gh-pages</a> extension. This adds rake tasks to deploy your site upon build.</p>
-
 <p>The second method is to simply setup your <code>config.rb</code> file to use your Github Pages repo as the build destination by adding:</p>
-
-<pre><code class="language-ruby">### Change build directory to Github Pages repo
-set :build_dir, '../YOUR_GH_NAME.github.io'
-</code></pre>
-
-<p>This is the approach I use. It is much cleaner - no additional rake tasks, overrides, or issues to worry about. In addition, it uses completely separate repositories for the development and production versions of your site. This enables you to test things out, revert changes, and ensure everything is working in a test environment before pushing the changes live, <em>even after a build</em>.</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e">### Change build directory to Github Pages repo</span>
+</span></span><span style="display:flex;"><span>set <span style="color:#e6db74">:build_dir</span>, <span style="color:#e6db74">&#39;../YOUR_GH_NAME.github.io&#39;</span>
+</span></span></code></pre></div><p>This is the approach I use. It is much cleaner - no additional rake tasks, overrides, or issues to worry about. In addition, it uses completely separate repositories for the development and production versions of your site. This enables you to test things out, revert changes, and ensure everything is working in a test environment before pushing the changes live, <em>even after a build</em>.</p>
 <p>Lastly, if you plan to use a custom 404 page, ensure your <code>404.html</code> file is left as-is during the build operation. In <code>config.rb</code> add:</p>
-
-<pre><code class="language-ruby">### Exlude 404.html from being placed in a directory
-page &quot;/404.html&quot;, :directory_index =&gt; false
-</code></pre>
-
-<p>That&rsquo;s it! Just run <code>$ bundle exec middleman build</code> and commit the changes if you&rsquo;re happy with how things work.</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span><span style="color:#75715e">### Exlude 404.html from being placed in a directory</span>
+</span></span><span style="display:flex;"><span>page <span style="color:#e6db74">&#34;/404.html&#34;</span>, <span style="color:#e6db74">:directory_index</span> <span style="color:#f92672">=&gt;</span> <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><p>That&rsquo;s it! Just run <code>$ bundle exec middleman build</code> and commit the changes if you&rsquo;re happy with how things work.</p>
 <h3 id="update-was-developing-a-static-site-worth-it">Update: Was developing a static site worth it?</h3>
-
 <p>The big question comes down to whether or not it was worth the effort to redevelop a new site. Despite already being happier with the more minimal and personal design, I wanted to compare page load times between the old and new sites. Here are the average page load times for one week before the switch, and one week after:</p>
-
 <div class="fullImage">
 <img src="/images/siteSpeed.png" alt="WordPress is slower than mollasses in January" />
 <p>The proof is in the pudding.</p>
 </div>
-
 <p>I would say a 1500% improvement speaks for itself.</p>
 
-	<hr>
+    <hr>
 
-	<div class="social">
-		<span class="text-muted">Share This</span>
-		<br>
-		<div class="social-btn">
-			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-		</div>
+    <div class="share">
+      <span>Share this</span>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Moving%20from%20WordPress%20to%20Middleman&url=https%3a%2f%2fwww.joshuastevens.net%2fblog%2fmoving-from-wordpress-to-middleman%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+      </a>
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.joshuastevens.net%2fblog%2fmoving-from-wordpress-to-middleman%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+      </a>
+      <button type="button" class="share-btn" data-copy-link="https://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/" aria-label="Copy link to this post">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h4v2h-4a3 3 0 1 0 0 6h4v2h-4a5 5 0 0 1-5-5zm7-1h6v2h-6v-2zm3-4h4a5 5 0 1 1 0 10h-4v-2h4a3 3 0 1 0 0-6h-4V7z"/></svg>
+      </button>
+    </div>
 
-		<div class="fb-share-button social-btn" data-href="https://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/" data-layout="button" data-size="large" data-mobile-iframe="true">
-			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.joshuastevens.net%2fblog%2fmoving-from-wordpress-to-middleman%2f&amp;src=sdkpreparse">Share</a>
-		</div>
-	</div>
-
-	<br>
-
-	<div class="d-flex justify-content-between pagination text-small">
-		<a href="https://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/"><i class="fa fa-arrow-left"></i> The Many Birthplaces of Memorial Day</a>
-		
-		
-		<a href="https://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/">Visual Guide to Painful Hymenopteran Stings <i class="fa fa-arrow-right"></i></a>
-		</div>
-
-	
-	</div>
+    <nav class="pager" aria-label="Post navigation">
+      <a href="https://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/">&larr; The Many Birthplaces of Memorial Day</a>
+      
+      <a href="https://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/">Visual Guide to Painful Hymenopteran Stings &rarr;</a>
+      </nav>
+  </div>
 </div>
 
+<script>hljs.initHighlightingOnLoad();</script>
 
-<footer class="footer">
+
+</main>
+    <footer class="site-footer">
       <div class="container">
-        <div class="row">
-        <div class="col-sm-12 col-md-5 footer-left">
-          <ul>
-            <li><a  href="https://www.joshuastevens.net/">Home</a></li>
-            <li><a class="active" href="https://www.joshuastevens.net/blog/">Blog</a></li>
-            <li><a  href="https://www.joshuastevens.net/about/">About</a></li>
-            <li><a  href="https://www.joshuastevens.net/portfolio/">Work</a></li>
-            <li><a  href="https://www.joshuastevens.net/contact/">Contact</a></li>
-          </ul>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <strong>Joshua Stevens</strong>
+            Cartographer &amp; data visualization lead at NASA's Earth Observatory
           </div>
-          <div class="col-sm-12 col-md-2 footer-mid"><a href="https://twitter.com/jscarto"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; <a href="https://www.linkedin.com/in/jscarto/"><i class="fa fa-linkedin fa-2x"></i></a></div>
-          <div class="col-sm-12 col-md-5 footer-right">© 2023 Joshua Stevens</div>
+
+          <nav aria-label="Footer">
+            <ul class="footer-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/portfolio/">Work</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer-social">
+            <a href="https://twitter.com/jscarto" aria-label="Joshua Stevens on Twitter / X" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/jscarto/" aria-label="Joshua Stevens on LinkedIn" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-meta">
+          <span>&copy; 2026 Joshua Stevens</span>
+          <span>Cartography, data visualization &amp; visual journalism</span>
         </div>
       </div>
     </footer>
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://www.joshuastevens.net/js/bootstrap.min.js"></script>
-    <script src="https://www.joshuastevens.net/js/ie10-viewport-bug-workaround.js"></script>
+
+    <div id="copy-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <script src="/js/main.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
+
         ga('create', 'UA-39165504-1', 'joshuastevens.net');
         ga('send', 'pageview');
     </script>
   </body>
 </html>
+

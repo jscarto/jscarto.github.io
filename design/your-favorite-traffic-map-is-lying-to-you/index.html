@@ -2,251 +2,216 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="apple-touch-icon" sizes="57x57" href="https://www.joshuastevens.net/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="https://www.joshuastevens.net/apple-icon-60x60.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://www.joshuastevens.net/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://www.joshuastevens.net/favicon-16x16.png">
-    <link rel="manifest" href="https://www.joshuastevens.net/manifest.json">
-    <title>Your Favorite Traffic Map is Lying to You
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Favorite Traffic Map is Lying to You — Joshua Stevens
     </title>
-    <meta name="theme-color" content="#5c5888">
-    <link href="https://www.joshuastevens.net/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://www.joshuastevens.net/css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins:300" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.joshuastevens.net/css/font-awesome.min.css">
-    <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <meta name="description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="theme-color" content="#0b1220">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <meta property="og:title" content="Your Favorite Traffic Map is Lying to You — Joshua Stevens">
+    <meta property="og:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta property="og:image" content="https://www.joshuastevens.net/images/traffic_th.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jscarto">
+    <meta name="twitter:title" content="Your Favorite Traffic Map is Lying to You — Joshua Stevens">
+    <meta name="twitter:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="twitter:image" content="https://www.joshuastevens.net/images/traffic_th.png">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@jscarto" />
-    <meta name="twitter:title" content="Your Favorite Traffic Map is Lying to You" />
-
-    <meta name="twitter:image" content="https://www.joshuastevens.net/images/traffic_th.png" />
-    <meta name="twitter:description" content="Popular traffic maps may be posing more question than they answer—and it&#39;s all about design."/>
-    <meta property="og:image" content="https://www.joshuastevens.net/images/traffic_th.png" />
-    <meta name="description" content="Popular traffic maps may be posing more question than they answer—and it&#39;s all about design."/>
-     <meta property="og:description" content="Popular traffic maps may be posing more question than they answer—and it&#39;s all about design."/>
   </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <nav class="navbar navbar-expand-md sticky-top navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="https://www.joshuastevens.net/"><img src="https://www.joshuastevens.net/css/js_logo.png" /> Joshua Stevens</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/">
+          <img class="brand-mark" src="/images/logo-mark.png" alt="" width="30" height="30">
+          Joshua Stevens
+        </a>
 
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/">Home</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="https://www.joshuastevens.net/blog/">Blog</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/about/">About</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/portfolio/">Work</a>
-            </li>
-            <li class="nav-item ">
-              <a class="nav-link" href="https://www.joshuastevens.net/contact/">Contact</a>
-            </li>
+        <nav aria-label="Primary">
+          <ul class="nav-list" id="primary-nav">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/portfolio/" >Work</a></li>
+            <li><a href="/blog/" aria-current="page">Blog</a></li>
+            <li><a href="/about/" >About</a></li>
+            <li><a href="/contact/" >Contact</a></li>
           </ul>
-        </div>
+        </nav>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
+        </button>
       </div>
-    </nav>
-	
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10&appId=240209906031266";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>hljs.initHighlightingOnLoad();</script>
+    </header>
+
+<main id="main">
+  
+
+<div class="article-mast">
+  <div class="container">
+    <p class="kicker kicker-light kicker-center">Blog</p>
+    <h1>Your Favorite Traffic Map is Lying to You</h1><p class="post-date">June 28, 2013</p>
+  </div>
+</div>
+
 <div class="container">
-	<div class="article">
+  <div class="article">
 
-	<h1 class="title">Your Favorite Traffic Map is Lying to You</h1><div class="postDate">
-		<i class="fa fa-calendar"></i> June 28, 2013
-	</div>
-
-	<p>Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.</p>
-
-<p>Or so many think.  As it turns out, conventional traffic maps don’t actually tell you how long it will take to get from point A to point B. Not only do traffic maps fail to communicate the information you’re after, the information they do communicate can be very misleading.</p>
-
+    <p>Traffic maps are among the most widely used maps available today. Whether they are accessed through a web browser, an app on your smartphone, or an in-vehicle navigation system, many popular maps include a traffic layer – and for good reason.  The proliferation of live traffic information is extremely beneficial. With real-time congestion data we can avoid delays, plan better routes, and get to the places we need to be when we need to be there. Traffic maps simplify this process and clarify the costs and benefits associated with various routes.</p>
+<p>Or so many think.</p>
+<p>As it turns out, conventional traffic maps don’t actually tell you how long it will take to get from point A to point B. Not only do traffic maps fail to communicate the information you’re after, the information they do communicate can be very misleading.</p>
 <h3 id="most-traffic-maps-are-similar">Most Traffic Maps are Similar</h3>
-
 <p>Examples of conventional traffic maps are shown below. Each is from a different source and represents the same location and time of day:</p>
-
 <div class="fullImage">
 <img src="/images/trafficMaps.png" alt="Examples of existing traffic maps." />
 </div>
-
 <p>Although there are many cartographic differences between these maps, they all employ the same overall design strategy: variable length road segments in a red, yellow, and green color scheme. This design is typical of almost all traffic maps. This isn’t really surprising. For designers of traffic maps, it makes a lot of sense to base traffic map designs on a metaphor familiar to all drivers – in this case, traffic lights. A common design strategy is also something that makes a lot of sense for users. Consistency across designs makes the maps familiar, regardless of their source. Users shouldn’t have to relearn how to read maps from one vendor to the next, especially when the underlying data are the same.</p>
-
 <p>Often, the designs that are ubiquitous are also those that are effective. After all, why mimic something that doesn’t work? The geographically distorted <a href="http://en.wikipedia.org/wiki/Harry_Beck#London_Underground_map">tube maps popularized by Harry Beck</a> are a great example of an effective design mimicked the world over. The <a href="http://www.arrowsandicons.com/articles/typeface-series-frutiger/">Frutiger typeface</a> used in many airports and rail stations is another example of successful design mimicry. Sometimes though, even ineffective designs get copied and become widespread.</p>
-
 <p>This is the case with traffic maps. In short, traffic maps are lying to you: their design suggests a use that cannot effectively be carried out by the user. Here’s a breakdown of the half-truths told by traffic maps and why their shared design is problematic.</p>
-
 <h3 id="lie-1-the-colors-identify-the-fastest-routes">Lie #1: The colors identify the fastest routes</h3>
-
 <div class="leftImage">
 <img src="/images/googleTraffic.png" alt="Google's traffic map legend." />
 <p>A map-based mystery: How fast is green?</p>
 </div>
-
 <p>When looking at a traffic map, like the one on the left, users want to see which routes are the fastest. Fortunately this is a simple task because the map makes it pretty clear: green is faster than yellow. It says so right in the legend. Right?</p>
-
 <p>Here’s the problem: Which speeds are within the yellow category? How about the red category? Unless you’ve worked with the raw data, or dug deep into the chasm of documentation behind it, you won’t be able to answer that question correctly.</p>
-
 <p>Some might argue that actual speeds don’t matter and yellow is obviously slower than green, so the green routes will be fastest. Unfortunately this scenario is complicated by the fact that a wide range of velocities (roughly 1 to 90mph) are broken into just three classes and spread across multiple individual segments of varying lengths. Google uses 1-24, 25-50, 50+ mph as class breaks. With these ranges, it is possible for a yellow segment to require less time to traverse than a green segment of a slightly greater length. Identifying the fastest route, which will consist of multiple segments, requires assessing every segment and the speeds they represent. But (1) the actual speed is hidden, and (2) we don’t know the lengths of the segments. Suddenly, selecting the fastest route isn’t as simple as the map suggests.</p>
-
 <h3 id="lie-2-the-colors-depict-routes-that-require-less-time">Lie #2: The colors depict routes that require less time.</h3>
-
 <p>This is where things get really interesting. Imagine you want to know how long a particular route will take. In order to do this, you need to know how fast you can travel and the total distance of the route. With this information, you can do the math to figure out the total time required, using the formula:</p>
-
 <p class="formula">t = d/v</p>
-
 <p>So far, so good. As it turns out, this math can be carried out reasonably well by users when both speed and distance are provided to them.</p>
-
 <p>Things get tricky when users need to estimate distances. Consider again the maps above. How long are the particular segments represented by each little chunk of color? You’d need to be able to estimate this in order to determine the total travel time. Unfortunately, you can’t. At least not very accurately. This is because (1) each segment is a different length, (2) each length is unknown, and (3) the linear scale bar included with most maps is not adequate for non-linear route distance estimation.</p>
-
 <p>The graph below shows the results of a very simple distance estimation task. We wanted to know if users can actually estimate distances along curved roads, using a standard (linear) scale bar. The exercise was repeated, with new routes, using a road map with a new, non-linear scale bar embedded into the actual transportation network.</p>
-
 <div class="fullImage">
 <img src="/images/estimationGraph.png" alt="Graphs of distance estimationt tasks" />
 <p>Results from a forthcoming paper. Errors in distance estimation with the conventional map compared to a map with a non-linear scale bar embedded directly into the road network.</p>
 </div>
-
 <p>Now consider that a given route between any two points will contain multiple segments, each representing a different distance and velocity. It’s no less than the <a href="http://en.wikipedia.org/wiki/Modifiable_areal_unit_problem">modifiable areal unit problem</a> run amuck. For every segment, users must try to estimate the distance, guess a velocity, and then mentally compute the travel time.</p>
-
 <p>Such a scenario is not the result of good cartographic design. It leaves too much information hidden behind impossible estimations and guesswork. <strong>The map is posing questions when the user is looking for answers.</strong></p>
-
 <h3 id="lie-3-the-red-yellow-green-color-scheme-is-best-suited-for-a-quick-glance">Lie #3: The red-yellow-green color scheme is best suited for a quick glance.</h3>
-
 <p>In order to be effective at a simple glance, the conventional traffic map design would have to depict overall delays without under- or over-exaggerating traffic conditions. If the map systematically exaggerated conditions in a particular direction (positive or negative), that suggests a design that is disjoint from the actual data. In a sense, it’s the difference between a design that is visually screaming when the data represent whispers (or vice versa), and one that is tuned appropriately to the data.</p>
-
 <p>Results from our paper show that users consistently underestimate travel times when using the conventional traffic map (average underestimation of 11 minutes, which is more than 20% of the time required for most routes in the exercise). Clearly there is something about interpreting the conventional design (likely at the precognitive level) that masks the true severity of traffic conditions.</p>
-
 <h3 id="lie-4-red-yellow-green-color-schemes-work-for-everyone">Lie #4: Red-yellow-green color schemes work for everyone.</h3>
-
 <p>Almost 5% of the general population has some form of colorblindness. <a href="http://medical-dictionary.thefreedictionary.com/protanopia">Protanopia</a> and <a href="http://medical-dictionary.thefreedictionary.com/deuteranopia">deuteranopia</a>, two common types of colorblindness, affect the way individuals see red and green due to a lack of the photo receptors necessary to interpret either hue. These conditions are collectively referred to as red-green colorblindness.</p>
-
 <p>Conventional traffic maps, which rely on red and green, are utterly useless to people with red-green colorblindness.<a href="http://uxblog.idvsolutions.com/"> John Nelson</a> provides the following example of the conventional traffic maps, simulating their appearance to those with red-green colorblindness:</p>
-
 <div class="fullImage">
 <img src="/images/colorsim.jpg" "Red-green-yellow traffic maps, to those with color blindness." />
 </div>
-
 <p>This is one of the easier problems to correct. Simply adding a slight tint of blue to the green can help colorblind users distinguish it from red, without breaking the traffic light metaphor for other users. Cartographer Andy Woodruff applied this technique to his <a href="http://bostonography.com/2013/live-mbta-bus-speeds/">recent map of bus speeds in Boston</a>.</p>
-
-<h3 id="lie-5-we-can-solve-these-problems-by-only-showing-congested-traffic-i-e-the-yellows-and-reds">Lie #5: We can solve these problems by only showing congested traffic (i.e., the yellows and reds).</h3>
-
+<h3 id="lie-5-we-can-solve-these-problems-by-only-showing-congested-traffic-ie-the-yellows-and-reds">Lie #5: We can solve these problems by only showing congested traffic (i.e., the yellows and reds).</h3>
 <div class="rightImage">
 <img src="/images/apple_traffic-200x300.jpg" alt="Apple's attempt at traffic mapping." />
 <p>To Apple, “green” means parks, not free-flow traffic.</p>
 </div>
-
 <p>When Apple Maps bursted into the cartography scene, they received a lot of attention (both positive and negative). Like the other companies, Apple was also quick to offer a traffic layer. But unlike the other companies – and typical of Apple – their design followed a unique path and did not simply mimic what others were doing. In an attempt to simplify the map, Apple leaves the green category out, reasoning that users are interested in where congestion <em>is</em>, not where it <em>isn’t</em>.</p>
-
 <p>Simplicity is great, and simpler maps should be the goal of any cartographer. But there is a fine line between simplicity and confusion. For all the reasons stated so far, it makes sense to focus solely on the reds and yellows. There is a major benefit to including green, though: <strong>it shows users where data exist and which street levels are considered</strong>. Leaving out green makes the map very ambiguous. Does the absence of green represent free-flow traffic, streets not included in the traffic layer, or simply a lack of available data? That’s exactly what the lack of green means in every other traffic map. Without green, the separation of the traffic layer and the base map is less defined and it is no longer clear for which roads traffic information should be expected.</p>
-
 <h3 id="so-how-do-we-solve-these-problems-and-design-better-traffic-maps">So how do we solve these problems and design better traffic maps?</h3>
-
 <p>There are many possible solutions, and I’m hesitant to claim that an optimal traffic map exists. Different users have different needs, techniques, and map reading skills. However, some of these problems can be solved, at least in part, by better aligning map design with the tasks users wish to carry out. I’m interested in travel time, as I believe that is the most important information traffic maps can communicate. As a result, I suggest two simplifications.</p>
-
 <p><strong>Solution 1: Fix segment lengths to a standard unit of distance.</strong> When using the red-yellow-green color scheme, you forfeit accurate velocity estimation. The least you can do, then, is to make it easy for users to estimate distances. By fixing the colored segments to a fixed length (e.g., 5 miles, depending on map scale), you enable users to estimate distances very quickly and accurately. This is the <em>equal-interval approach</em>.</p>
-
 <p><strong>Solution 2: Show temporal, not geographic, segments.</strong> Instead of showing travel times indirectly, through velocity and color, travel times can be embedded directly into the road network. This is the <em>fixed-minute method</em>, because each cartographic symbol (or segment) represents some number of minutes of travel time.</p>
-
 <div class="fullImage">
 <img src="/images/prototypes.png" alt="My prototypes for improved traffic map design." />
 <p>Two improvements (middle and right) to the conventional traffic map (left).</p>
 </div>
-
 <p>The fixed-minute approach is particularly interesting because not only does it depict travel times directly, it does so without any of the problems introduced by previous traffic map designs. Determining travel times becomes as simple as counting segments. In the example above, each purple ‘chevron’ symbol represents 1 minute of travel time. The darker, bolder symbols represent 5 minutes. <strong>With the fixed-minute design, users can estimate travel times far more accurately, and in much less time, than is allowed by the other designs.</strong> For this reason, it’s not surprising to see that users in our study liked it much more than the other traffic map designs:</p>
-
 <div class="fullImage">
 <img src="/images/mapPreference.png" alt="Results show users greatly prefer the fixed-minute design." />
 <p>Not a single participant prefered the conventional design.</p>
 </div>
-
 <p>Wondering what a traffic map, using actual traffic sensors, looks like in the fixed-minute design?</p>
-
 <div class="fullImage">
 <img src="/images/fixedminute.png" alt="The final fixed-minute traffic map design" />
 </div>
-
 <p>Under the traffic conditions at the time the map was created, getting from Compton to Los Angeles (via the 710 and 5) would take about 13 minutes. Such precision is not possible with the popular red-yellow-green traffic maps.</p>
-
 <p>While the fixed-minute design addresses many of the existing problems with traffic maps and greatly simplifies travel time estimation, it is not without its own shortcomings. Counting segments is incredibly easy and quick to do, but it’s not an ideal task for drivers. Accordingly, finding ways to optimize both en route and pre-trip consumption of traffic data, for all users, will be a key challenge for designers of traffic maps in the future.</p>
-
 <p>So let’s rethink traffic map design, recognize the failures of existing solutions, and make some changes. Given the high demand for traffic maps and the rapid growth in open source mapping tools, cartographers are better poised than ever to make their mark.</p>
 
-	<hr>
+    <hr>
 
-	<div class="social">
-		<span class="text-muted">Share This</span>
-		<br>
-		<div class="social-btn">
-			<a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-via="jscarto" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-		</div>
+    <div class="share">
+      <span>Share this</span>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Your%20Favorite%20Traffic%20Map%20is%20Lying%20to%20You&url=https%3a%2f%2fwww.joshuastevens.net%2fdesign%2fyour-favorite-traffic-map-is-lying-to-you%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+      </a>
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.joshuastevens.net%2fdesign%2fyour-favorite-traffic-map-is-lying-to-you%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+      </a>
+      <button type="button" class="share-btn" data-copy-link="https://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/" aria-label="Copy link to this post">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h4v2h-4a3 3 0 1 0 0 6h4v2h-4a5 5 0 0 1-5-5zm7-1h6v2h-6v-2zm3-4h4a5 5 0 1 1 0 10h-4v-2h4a3 3 0 1 0 0-6h-4V7z"/></svg>
+      </button>
+    </div>
 
-		<div class="fb-share-button social-btn" data-href="https://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/" data-layout="button" data-size="large" data-mobile-iframe="true">
-			<a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.joshuastevens.net%2fdesign%2fyour-favorite-traffic-map-is-lying-to-you%2f&amp;src=sdkpreparse">Share</a>
-		</div>
-	</div>
-
-	<br>
-
-	<div class="d-flex justify-content-between pagination text-small">
-		<a href="https://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/"><i class="fa fa-arrow-left"></i> Big Data Social Science Video Demo: SensePlace2</a>
-		
-		
-		<a href="https://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">&#39;Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada <i class="fa fa-arrow-right"></i></a>
-		</div>
-
-	
-	</div>
+    <nav class="pager" aria-label="Post navigation">
+      <a href="https://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/">&larr; Big Data Social Science Video Demo: SensePlace2</a>
+      
+      <a href="https://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/">&#39;Squatch Watch: 92 Years of Bigfoot Sightings in the US and Canada &rarr;</a>
+      </nav>
+  </div>
 </div>
 
+<script>hljs.initHighlightingOnLoad();</script>
 
-<footer class="footer">
+
+</main>
+    <footer class="site-footer">
       <div class="container">
-        <div class="row">
-        <div class="col-sm-12 col-md-5 footer-left">
-          <ul>
-            <li><a  href="https://www.joshuastevens.net/">Home</a></li>
-            <li><a class="active" href="https://www.joshuastevens.net/blog/">Blog</a></li>
-            <li><a  href="https://www.joshuastevens.net/about/">About</a></li>
-            <li><a  href="https://www.joshuastevens.net/portfolio/">Work</a></li>
-            <li><a  href="https://www.joshuastevens.net/contact/">Contact</a></li>
-          </ul>
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <strong>Joshua Stevens</strong>
+            Cartographer &amp; data visualization lead at NASA's Earth Observatory
           </div>
-          <div class="col-sm-12 col-md-2 footer-mid"><a href="https://twitter.com/jscarto"><i class="fa fa-twitter fa-2x"></i></a> &nbsp; <a href="https://www.linkedin.com/in/jscarto/"><i class="fa fa-linkedin fa-2x"></i></a></div>
-          <div class="col-sm-12 col-md-5 footer-right">© 2023 Joshua Stevens</div>
+
+          <nav aria-label="Footer">
+            <ul class="footer-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/portfolio/">Work</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer-social">
+            <a href="https://twitter.com/jscarto" aria-label="Joshua Stevens on Twitter / X" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/jscarto/" aria-label="Joshua Stevens on LinkedIn" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-meta">
+          <span>&copy; 2026 Joshua Stevens</span>
+          <span>Cartography, data visualization &amp; visual journalism</span>
         </div>
       </div>
     </footer>
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://www.joshuastevens.net/js/bootstrap.min.js"></script>
-    <script src="https://www.joshuastevens.net/js/ie10-viewport-bug-workaround.js"></script>
+
+    <div id="copy-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <script src="/js/main.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
+
         ga('create', 'UA-39165504-1', 'joshuastevens.net');
         ga('send', 'pageview');
     </script>
   </body>
 </html>
+
