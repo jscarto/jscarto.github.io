@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1315&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Griddy: How to Make Image Grids (or Small Multiples) — Joshua Stevens
+    </title>
+    <meta name="description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="theme-color" content="#0b1220">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <meta property="og:title" content="Getting Griddy: How to Make Image Grids (or Small Multiples) — Joshua Stevens">
+    <meta property="og:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta property="og:image" content="https://www.joshuastevens.net/images/griddy_th.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jscarto">
+    <meta name="twitter:title" content="Getting Griddy: How to Make Image Grids (or Small Multiples) — Joshua Stevens">
+    <meta name="twitter:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="twitter:image" content="https://www.joshuastevens.net/images/griddy_th.jpg">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/">
+          <img class="brand-mark" src="/images/logo-mark.png" alt="" width="30" height="30">
+          Joshua Stevens
+        </a>
+
+        <nav aria-label="Primary">
+          <ul class="nav-list" id="primary-nav">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/portfolio/" >Work</a></li>
+            <li><a href="/blog/" aria-current="page">Blog</a></li>
+            <li><a href="/about/" >About</a></li>
+            <li><a href="/contact/" >Contact</a></li>
+          </ul>
+        </nav>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
+        </button>
+      </div>
+    </header>
+
+<main id="main">
+  
+
+<div class="article-mast">
+  <div class="container">
+    <p class="kicker kicker-light kicker-center">Blog</p>
+    <h1>Getting Griddy: How to Make Image Grids (or Small Multiples)</h1><p class="post-date">November 5, 2022</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article">
+
+    <p>Small multiples—essentially a grid of maps, visualizations, or photos—are a great way to present information. Data visualization arranged in this way helps readers spot trends or patterns, relate multiple variables, and see <a href="https://loc.gov/pictures/resource/cph.3a45870/">numerous conditions at once</a>. And unlike an animation of the same data, small multiples make it easy to quickly compare any individual component visualizations without interactively scrubbing through a timeline.</p>
+<div class="fullImage">
+<img src="/images/germany_grc_2016-2019.png" />
+<p>Small multiples display of soil moisture conditions in Germany arranged by month and year. <br />Credit: <a href="https://earthobservatory.nasa.gov/images/146647/parched-conditions-in-germany-again">NASA Earth Observatory</a>.</p>
+</div>
+<p>Small multiples are incredibly intuitive and easy to read. Making them however remains a challenge in many tools. Despite how common the technique is, direct support for producing small multiples is not currently a core feature in many GIS applications.</p>
+<p>That is a limitation we can circumvent. I am going to show you two ways to produce an image grid, first in Photoshop and then in the command line. Both techniques have their pros and cons, and both are broadly applicable to any type of images whether they be maps, charts, or photographs.</p>
+<p>All you need to get started is a bunch of images. How you create or obtain them is up to you. We will focus only on putting them into a grid <em>quickly and easily</em>.</p>
+<p>Use the menu below to choose which technique you&rsquo;d like to learn.</p>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="photoshop-tab" data-toggle="tab" href="#photoshop" role="tab" aria-controls="photoshop" aria-selected="true">Photoshop</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="commandline-tab" data-toggle="tab" href="#commandline" role="tab" aria-controls="commandline" aria-selected="false">Command Line</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="photoshop" role="tabpanel" aria-labelledby="photoshop-tab">
+<h3 id="adobe-photoshop">Adobe Photoshop</h3>
+<p>Did you know Photoshop can create in image grid with just a few clicks? Photographers have been using this feature for years to create contact sheets.</p>
+<p>In fact, that is exactly what the tool is called. Let&rsquo;s see how it works:</p>
+<ol>
+<li>Open Photoshop.</li>
+<li>Navigate to the <strong>File</strong> menu, then <strong>Automate</strong>, and select <strong>Contact Sheet II</strong>.</li>
+</ol>
+<div class="fullImage">
+<img src="/images/photoshop_contactsheet_menu.jpg" />
+<p>The Contact Sheet feature in Photoshop is one of the software's best kept not-so-secrets.</p>
+</div>
+<ol start="3">
+<li>Import the images you want to use in the grid. In the Contact Sheet II options you can select whether to use a specific folder containing your images, individually select multiple files, or use the images that are already open in Photoshop.</li>
+</ol>
+<div class="fullImage">
+<img src="/images/photoshop_contactsheet_window.jpg" />
+<p>Options abound for contact sheets.</p>
+</div>
+I find it best to have all my individual images in their own folder, and then use this folder as input for the Contact Sheet tool.
+<ol start="4">
+<li>
+<p>Setup the layout of the grid (small multiples) to be created.</p>
+<ul>
+<li>
+<p>Contact Sheet II will automatically resize your images to fit the document size you specify. In some cases, this is great and you can choose the desired output size and let it do all the work.</p>
+</li>
+<li>
+<p>If you do not want your original images resized—perhaps if they include text or other features you want to retain in full detail—you will need to do a little math. It is easy to figure out your final output dimensions and decide how many rows and columns this will require.
+For instance, if you have 30 images that are 500x500 pixels each, you might decide to have 5 columns and 6 rows. This means your document width will be 2500 pixels and the document height will need to be 3000 pixels.</p>
+</li>
+<li>
+<p>If you want to be able to change the background color or do not wish to have a white background, be sure to uncheck the option to <strong>flatten all layers</strong>. This will leave each image on its own layer, allowing you to change the color and style of the background layer.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Click <strong>OK</strong> and watch the magic happen!</p>
+</li>
+</ol>
+  </div>
+  <div class="tab-pane fade" id="commandline" role="tabpanel" aria-labelledby="commandline-tab">
+<h3 id="command-line-imagemagick">Command Line (ImageMagick)</h3>
+<p><a href="https://imagemagick.org/index.php">ImageMagick</a> is a staple of open source image manipulation. It can edit, combine, annotate, and transform all sorts of image filetypes in powerful ways.</p>
+<p>It is no surprise then to see that ImageMagick makes it rather painless to create small multiples or grids.</p>
+<div class="alert alert-purp" role="alert">
+  ImageMagick must first be installed on your system for this to work. Before continuing, ensure this is the case or install ImageMagick if necessary. If on a Mac, I recommend using <a class="alert-link" href="https://brew.sh/">Homebrew</a> to do so.
+</div>
+<p>Like many command line applications, ImageMagick is not a single program but a collection of many separate commands. Among these is the <strong>montage</strong> command.</p>
+<p><a href="https://legacy.imagemagick.org/Usage/montage/">Montage</a> was originally designed to make a table of thumbnail images or proof sheets. That is pretty convenient since that is essentially what small multiples are.</p>
+<p>Let&rsquo;s put it to work.</p>
+<ol>
+<li>
+<p>Begin by ensuring all of your images are together in a single folder with no other files.</p>
+</li>
+<li>
+<p>Determine how you want your grid to look. How many rows? How many columns? Should there be any gaps between the individual images? What color should the background be?</p>
+</li>
+</ol>
+  </div>
+</div>
+
+    <hr>
+
+    <div class="share">
+      <span>Share this</span>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Getting%20Griddy%3a%20How%20to%20Make%20Image%20Grids%20%28or%20Small%20Multiples%29&url=http%3a%2f%2flocalhost%3a1315%2fblog%2fmaking-image-grids-small-multiples%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+      </a>
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2flocalhost%3a1315%2fblog%2fmaking-image-grids-small-multiples%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+      </a>
+      <button type="button" class="share-btn" data-copy-link="http://localhost:1315/blog/making-image-grids-small-multiples/" aria-label="Copy link to this post">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h4v2h-4a3 3 0 1 0 0 6h4v2h-4a5 5 0 0 1-5-5zm7-1h6v2h-6v-2zm3-4h4a5 5 0 1 1 0 10h-4v-2h4a3 3 0 1 0 0-6h-4V7z"/></svg>
+      </button>
+    </div>
+
+    <nav class="pager" aria-label="Post navigation">
+      <a href="http://localhost:1315/blog/tutorial-lets-make-an-animated-map/">&larr; Tutorial: Let&#39;s Make an Animated Map</a>
+      
+      <a href="http://localhost:1315/blog/formatting-gratitude/">Formatting Gratitude &rarr;</a>
+      </nav>
+  </div>
+</div>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <strong>Joshua Stevens</strong>
+            Welcome
+          </div>
+
+          <nav aria-label="Footer">
+            <ul class="footer-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/portfolio/">Work</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer-social">
+            <a href="https://twitter.com/jscarto" aria-label="Joshua Stevens on Twitter / X" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/jscarto/" aria-label="Joshua Stevens on LinkedIn" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-meta">
+          <span>&copy; 2026 Joshua Stevens</span>
+          <span>Cartography, data visualization &amp; visual journalism</span>
+        </div>
+      </div>
+    </footer>
+
+    <div id="copy-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <script src="/js/main.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-39165504-1', 'joshuastevens.net');
+        ga('send', 'pageview');
+    </script>
+  </body>
+</html>
+

@@ -371,15 +371,40 @@ section { padding-block: clamp(3rem, 6vw, 5.5rem); }
 
 /* ---------- Latest post banner ---------- */
 .banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5em;
   background: var(--navy-800);
   color: rgba(255, 255, 255, 0.85);
-  padding: 0.9rem 0;
+  padding: 0.9rem 1.25rem;
   font-size: 0.92rem;
   text-align: center;
 }
-.banner strong { color: var(--white); }
+.banner strong { color: var(--white); font-weight: 600; }
 .banner a { color: var(--amber-bright); font-weight: 600; }
-.banner-label { color: rgba(255, 255, 255, 0.55); margin-right: 0.4em; }
+.banner-label { color: rgba(255, 255, 255, 0.55); }
+.banner-date { color: rgba(255, 255, 255, 0.55); font-size: 0.85em; }
+.banner-title::before,
+.banner-date::before {
+  content: "\00b7";
+  margin-right: 0.5em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 560px) {
+  .banner {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding-block: 1.1rem;
+  }
+  .banner-title::before,
+  .banner-date::before {
+    content: none;
+  }
+}
 
 /* ==========================================================================
    Featured / portfolio grid
@@ -388,6 +413,15 @@ section { padding-block: clamp(3rem, 6vw, 5.5rem); }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+/* Portfolio thumbnails are native 256x256 images. Below the width where two
+   250px tracks can no longer fit, a single auto-fill column would stretch to
+   fill the leftover space and upscale past its native resolution (blurry).
+   Switch to a smaller track minimum so narrow viewports keep 2-3 sharp
+   columns instead of one oversized, blurry one. */
+@media (max-width: 600px) {
+  .grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
 }
 
 .work-card {
@@ -715,7 +749,19 @@ section { padding-block: clamp(3rem, 6vw, 5.5rem); }
   color: var(--muted);
   margin-bottom: 0.6rem;
 }
-.post-card-body p:last-child { margin-bottom: 0; color: var(--ink-soft); }
+.post-card-summary { margin-bottom: 0.9rem; color: var(--ink-soft); }
+
+.post-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--amber-ink);
+}
+.post-card-cta svg { width: 16px; height: 16px; transition: transform 0.2s ease; }
+.post-card:hover .post-card-cta svg,
+.post-card:focus-visible .post-card-cta svg { transform: translateX(3px); }
 
 @media (max-width: 640px) {
   .post-card { grid-template-columns: 1fr; }

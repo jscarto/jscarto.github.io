@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1315&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Topographic Diversity of the Contiguous USA — Joshua Stevens
+    <title>Tutorial: Let&#39;s Make an Animated Map — Joshua Stevens
     </title>
     <meta name="description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
     <meta name="theme-color" content="#0b1220">
@@ -19,14 +19,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
-    <meta property="og:title" content="Topographic Diversity of the Contiguous USA — Joshua Stevens">
+    <meta property="og:title" content="Tutorial: Let&#39;s Make an Animated Map — Joshua Stevens">
     <meta property="og:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
-    <meta property="og:image" content="https://www.joshuastevens.net/images/topographic_diversity_map_th.png">
+    <meta property="og:image" content="https://www.joshuastevens.net/images/blackmarble-hero-poster.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@jscarto">
-    <meta name="twitter:title" content="Topographic Diversity of the Contiguous USA — Joshua Stevens">
+    <meta name="twitter:title" content="Tutorial: Let&#39;s Make an Animated Map — Joshua Stevens">
     <meta name="twitter:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
-    <meta name="twitter:image" content="https://www.joshuastevens.net/images/topographic_diversity_map_th.png">
+    <meta name="twitter:image" content="https://www.joshuastevens.net/images/blackmarble-hero-poster.jpg">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -62,41 +62,60 @@
 <div class="article-mast">
   <div class="container">
     <p class="kicker kicker-light kicker-center">Blog</p>
-    <h1>Topographic Diversity of the Contiguous USA</h1><p class="post-date">March 21, 2019</p>
+    <h1>Tutorial: Let&#39;s Make an Animated Map</h1><p class="post-date">August 26, 2022</p>
   </div>
 </div>
 
 <div class="container">
   <div class="article">
 
-    <p>While exploring data offered within <a href="https://earthengine.google.com/">Google Earth Engine</a> (as I am wont to do), I came across a gorgeous and elegant layer from the U.S. Geological Survey.</p>
-<p>This data, which represents &ldquo;topographic diversity,&rdquo; immediately conveys exactly what it aims to: topography. But the ridges and valleys are not representative of Earth&rsquo;s bumpy surface alone.</p>
-<p>These valleys and ridges are composed from proxy data that captures temperature ranges and moisture levels <em>in addition</em> to the terrain. In other words, diverse habitats drive the topography as much as the hills do. What&rsquo;s more, these values reflect areas that may be the most resilient in the face of our ever-changing climate.</p>
-<div class="fullImage">
-<img src="/images/topographic_diversity_map.png" />
-<p><a href="/images/topographic_diversity_map_lrg.png"><strong>View larger.</strong></a></p>
-</div>
-<p>If you like this map, consider <a href="https://www.redbubble.com/people/jscarto/works/37843673-topographic-diversity-of-the-contiguous-usa?p=poster&amp;finish=semi_gloss&amp;size=medium">buying a poster</a> of it!</p>
+    <p>It wouldn&rsquo;t be the internet as we know it without GIFs. And GIFs of maps.</p>
+<p>We know them, we love them&hellip; but how do we make them?</p>
+<p>This tutorial will show you how to quickly create an animated map using QGIS and GDAL. Whether you have four frames or four thousand, the process is straightforward. And you won&rsquo;t need to make a single screenshot!</p>
+<h3 id="background-and-pre-reqs">Background and Pre-Reqs</h3>
+<p>Gone are the days when a static view of some (probably old) data is a cartographic default. There&rsquo;s petabytes of data out there, and a great deal of it is acquired in near-real time with high temporal frequency. Wind patterns, hourly rainfall, and daily temperatures just begin to scratch the surface. The data are there. But processing it and producing a quality animation can seem daunting.</p>
+<p>It is somewhat of a cartographic coming-of-age ritual to approach the task of animating a map by manually taking dozens of screenshots and stitching them together. We <a href="https://earthobservatory.nasa.gov/images/87131/historic-rainfall-floods-southeast-india">have all done it</a>, and it is a practice that lives on in newsrooms today.</p>
+<p>But there is a better way! Let me show just how easy it can be.</p>
+<p>First things first, there are a few things you will need.</p>
+<ol>
+<li>Some temporal data. (Don&rsquo;t have that? I&rsquo;ve got you covered. Download these example files of XXXXXX&hellip;)</li>
+<li>QGIS</li>
+<li>GDAL and comfort using the command line—or at least a willingness to try</li>
+<li>Photoshop, ffmpeg, imagemagick, or video software of your choice</li>
+</ol>
+<h3 id="step-1-thinking-of-a-map-sandwich">Step 1: Thinking of a Map Sandwich</h3>
+<p>Before processing any data, we first have to understand what we&rsquo;re about to do. And the easiest way to think of it is this: <strong>we&rsquo;re going to create a map sandwich.</strong></p>
+<p>Every map is the product of layers. This is especially true of animated maps, and approaching this task knowing there will be layers is key. What makes animated maps a bit different than others is that <em>only some layers need to animate.</em> In this tutorial we&rsquo;re only going to be animating a single layer. The others can remain static.</p>
+<p>This is where the map sandwich comes in.</p>
+<p>Like your favorite hoagie, sub, melt, or burger, an animated map is a stack of ingredients built from the bottom up. You can think of it something like this:</p>
+<ul>
+<li>Top layer: Some reference data - borders, cities, labels, and so on.</li>
+<li>Middle layer: The thematic data to be animated.</li>
+<li>Bottom layer: The base map. Maybe terrain, land/water masks, or just a blank canvas.</li>
+</ul>
+<p>Conceptualizing the project in this way greatly simplifies the task. For instance, imagine we have a detailed terrain map and we wanted to overlay it with <a href="https://earthobservatory.nasa.gov/images/150138/tracking-deluge-and-drought-through-soil-moisture">animated soil moisture over hundreds of days</a>, while also showing state and/or country borders. The terrain doesn&rsquo;t change. The borders aren&rsquo;t going to change. So there is no need to draw that information over and over again hundreds of times. Instead, a single base map can be rendered as a still image, followed by an image that is just the borders over a transparent background. And then the animated data can be slipped in between those two images.</p>
+<p>Let&rsquo;s go ahead and do that.</p>
+<h3 id="step-2-preparing-the-overlay">Step 2: Preparing the Overlay</h3>
 
     <hr>
 
     <div class="share">
       <span>Share this</span>
-      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Topographic%20Diversity%20of%20the%20Contiguous%20USA&url=https%3a%2f%2fwww.joshuastevens.net%2fblog%2ftopographic-diversity-of-the-contiguous-usa%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Tutorial%3a%20Let%27s%20Make%20an%20Animated%20Map&url=http%3a%2f%2flocalhost%3a1315%2fblog%2ftutorial-lets-make-an-animated-map%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
       </a>
-      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.joshuastevens.net%2fblog%2ftopographic-diversity-of-the-contiguous-usa%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2flocalhost%3a1315%2fblog%2ftutorial-lets-make-an-animated-map%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
       </a>
-      <button type="button" class="share-btn" data-copy-link="https://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/" aria-label="Copy link to this post">
+      <button type="button" class="share-btn" data-copy-link="http://localhost:1315/blog/tutorial-lets-make-an-animated-map/" aria-label="Copy link to this post">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h4v2h-4a3 3 0 1 0 0 6h4v2h-4a5 5 0 0 1-5-5zm7-1h6v2h-6v-2zm3-4h4a5 5 0 1 1 0 10h-4v-2h4a3 3 0 1 0 0-6h-4V7z"/></svg>
       </button>
     </div>
 
     <nav class="pager" aria-label="Post navigation">
-      <a href="https://www.joshuastevens.net/blog/3d-models-from-nasa/">&larr; 3D Models from NASA</a>
+      <a href="http://localhost:1315/blog/behind-the-scenes-earthobservatory/">&larr; Behind the Scenes of the Earth Observatory</a>
       
-      <a href="https://www.joshuastevens.net/blog/turning-on-the-lights/">Tutorial: Turning on The Lights &rarr;</a>
+      <a href="http://localhost:1315/blog/making-image-grids-small-multiples/">Getting Griddy: How to Make Image Grids (or Small Multiples) &rarr;</a>
       </nav>
   </div>
 </div>

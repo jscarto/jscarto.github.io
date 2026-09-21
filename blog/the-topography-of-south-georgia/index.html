@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1315&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Topography of South Georgia — Joshua Stevens
+    </title>
+    <meta name="description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="theme-color" content="#0b1220">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <meta property="og:title" content="The Topography of South Georgia — Joshua Stevens">
+    <meta property="og:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta property="og:image" content="https://www.joshuastevens.net/images/southgeorgia_th.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@jscarto">
+    <meta name="twitter:title" content="The Topography of South Georgia — Joshua Stevens">
+    <meta name="twitter:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
+    <meta name="twitter:image" content="https://www.joshuastevens.net/images/southgeorgia_th.jpg">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="/">
+          <img class="brand-mark" src="/images/logo-mark.png" alt="" width="30" height="30">
+          Joshua Stevens
+        </a>
+
+        <nav aria-label="Primary">
+          <ul class="nav-list" id="primary-nav">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/portfolio/" >Work</a></li>
+            <li><a href="/blog/" aria-current="page">Blog</a></li>
+            <li><a href="/about/" >About</a></li>
+            <li><a href="/contact/" >Contact</a></li>
+          </ul>
+        </nav>
+
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 5h16M2 10h16M2 15h16"/></svg>
+        </button>
+      </div>
+    </header>
+
+<main id="main">
+  
+
+<div class="article-mast">
+  <div class="container">
+    <p class="kicker kicker-light kicker-center">Blog</p>
+    <h1>The Topography of South Georgia</h1>
+    <h3>And How I Made it in Blender</h3>
+    <p class="post-date">January 1, 2019</p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="article">
+
+    <p>South Georgia is a mountainous island in the South Atlantic. Its rugged landscape is home to diverse wildlife, towering fjords, and numerous glaciers—the latter of which outnumber the island&rsquo;s seasonal population of humans.</p>
+<p>While working on a project that made us of South Georgia&rsquo;s terrain, I took a moment to produce a topographic relief map in Blender.</p>
+<p>In addition to the map, I also wanted to share a bit about how it was made.</p>
+<div class="fullImage">
+<img src="/images/southgeorgia_render.jpg" />
+<p>A render of South Georgia Island with long shadows. <strong><a href="/images/southgeorgia_render_large.jpg">View larger.</a></strong>
+</p>
+</div>
+<p>This tutorial assumes you have some familiarity with the following:</p>
+<ul>
+<li>Blender and the nodes interface</li>
+<li>GDAL (or equivalent ability to merge and reproject rasters in GIS)</li>
+</ul>
+<h2 id="making-the-map">Making the map</h2>
+<p>The render above was made from Shuttle Radar Topography Mission (SRTM) data. SRTM is a <a href="https://www.usgs.gov/faqs/what-are-digital-elevation-models-dems">digital elevation model</a> (DEM), available for much of the globe (between 56° S and 60° N). It is available in spatial resolutions of 30 and 90 meters.</p>
+<p>SRTM data is essentially an image, where pixel values represent terrain height (in meters).</p>
+<div class="fullImage">
+<img src="/images/georgia_dem.jpg" />
+<p>Elevation data of South Georgia Island. Higher elevations are shown in in white. For clarity, values have been scaled across the 16-bit integer range (0-65536).</p>
+</div>
+<h3 id="getting-elevation-data">Getting elevation data</h3>
+<p>The easiest way to get SRTM data is through <a href="http://dwtkns.com/srtm30m/">SRTM Tile Downloader</a>, a phenomenal tool made by <a href="https://twitter.com/dwtkns">Derek Watkins</a>. In order to download the SRTM data, which comes from NASA and the U.S. Geological Survey, you will need a free <a href="https://urs.earthdata.nasa.gov/">NASA Earthdata</a> account.</p>
+<div class="fullImage">
+<img src="/images/srtm_tile_grabber.jpg" />
+<p><a href="http://dwtkns.com/srtm30m/">SRTM Tile Downloader</a> makes it a breeze to acquire elevation data.
+</p>
+</div>
+<p>Downloading the data from SRTM Tile Downloader is as simple as clicking the tile(s) you want and selecting &lsquo;Download DEM.&rsquo;</p>
+<p>The example above shows the main island of South Georgia requires six tiles.</p>
+<h3 id="data-prep-partly-optional">Data prep (partly optional)</h3>
+<p>Before the data are ready for Blender, two things need happen for convenience and better representation of the geography.</p>
+<p><strong>1: If multiple tiles are used, they need to be merged into a single DEM.</strong></p>
+<p>The easiest way to do this is through the Geospatial Data Abstraction library, better known as <a href="https://www.gdal.org/">GDAL</a>.</p>
+<p>Once the tiles are unzipped to reveal a number of .hgt files, they can be merged into one seamless file like so:</p>
+<pre tabindex="0"><code>$ gdal_merge.py -n -32768 -o merged_dem.tif *.hgt
+</code></pre><p>This produces a new file called &lsquo;merged_dem.tif.&rsquo; The <code>-n -32768</code> option tells gdal_merge to use -32768 as no-data values, essentially ignoring those values and allowing the input images to overlap one another seamlessly.</p>
+<p><strong>2: The DEM should be reprojected.</strong></p>
+<p>SRTM data comes georefferenced in WGS84, which is not the best choice for large scale mapping. Depending on the area of interest, a variety of map projections would be suitable. For my map it was important to preserve the shape of South Georgia. I opted for Universal Transverse Mercator (UTM), which is a conformal projection. (To see a map of UTM zones, <a href="https://upload.wikimedia.org/wikipedia/commons/e/ed/Utm-zones.jpg">go here</a>.)</p>
+<p>South Georgia is within UTM zone 24 South. This projection can be identified by <a href="http://www.spatialreference.org/ref/epsg/wgs-84-utm-zone-24s/">EPSG:32724</a>.</p>
+<p>To reproject the data to UTM 24 S, I used GDAL again:</p>
+<pre tabindex="0"><code>$ gdalwarp -t_srs EPSG:32724 merged_dem.tif projected_dem.tif
+</code></pre><div class="alert alert-info" role="alert">
+  <strong>Tip:</strong> The EPSG code for UTM zones has the form <strong>32YZZ</strong>. <br /><br />
+<p>Y = 6 for the northern hemisphere, 7 for the south. ZZ = two-digit UTM zone.</p>
+</div>
+<p>For other projections, I&rsquo;d recommend exploring <a href="http://projectionwizard.org/">Projection Wizard</a>.</p>
+<h3 id="shaded-relief-in-blender">Shaded Relief in Blender</h3>
+<p>Now the fun can really begin: unleashing the power of Blender! In particular, we&rsquo;re going to make use of two features of Blender: the <a href="https://www.blender.org/features/rendering/#cycles">cycles</a> render engine and <a href="https://docs.blender.org/manual/en/dev/render/cycles/settings/objects/adaptive_subsurf.html">adaptive subdivision</a>.</p>
+<p>Adaptive subdivision is a somewhat new feature in Blender. It allows a mesh to be subdivided (i.e. increase the number of faces and vertices) nonuniformly across the object. As a result, rugged terrain surfaces can have a higher density of vertices than flat terrain, allocating resolution and detail to where it is needed most. Through the  <em>OpenSubdiv</em> option, adaptive subdivision also accounts for viewing distance. In oblique views, terrain closest to the camera will be subdivided more than distant terrain.</p>
+<p>In contrast to a standard uniform subdivision, adaptive subdivision increases detail in the most visible areas, while reducing the number of unnecessary vertices. This increase in detail is visually stunning, while also being computationally more efficient. It is truly a win-win!</p>
+<p>The basic approach to creating a relief map in Blender is:</p>
+<p>Create a plane <i class="fa fa-arrow-right" aria-hidden="true"></i> subdivide the plane <i class="fa fa-arrow-right" aria-hidden="true"></i> displace the subdivisions using elevation data</p>
+<p>So let&rsquo;s do that!</p>
+<h4 id="blender-setup">Blender Setup</h4>
+<p>Start up Blender and create a new project. Delete the default cube.</p>
+<p>In order to use the features necessary for this map, change the rendering engine to <strong>Cycles Renderer</strong>, and then change the feature set to <strong>Experimental</strong>. The experimental feature set provides access to adaptive subdivision. (It&rsquo;s up to you—and your computer—whether to use CPU or GPU for rendering. Either will work fine!)</p>
+<div class="fullImage">
+<img src="/images/blender_setup.jpg" />
+<p>We start off by enabling cycles and the experimental feature set.</p>
+</div>
+<p>Now create a plane. The default location (0, 0, 0) is perfect. But we&rsquo;ll need to change the X and Y scale of the plane so it matches the width and height of the elevation image.</p>
+<div class="alert alert-warning" role="alert">
+<strong>Caution!</strong> By default, Blender units will not be the same as pixel sizes. That's OK! What matters is that we get the correct aspect ratio.
+</div>
+<p>My merged and projected DEM of South Georgia is an image that is 8946 x 5032 pixels. If I made an 8946 x 5032 plane in Blender, using the default units, the plane would be ginormous—much too large for the scene and camera. Instead, I can simplify things by making a plane that is 1000 times smaller: 8.946 x 5.032.</p>
+<div class="fullImage">
+<img src="/images/blender_plane.jpg" />
+<p>The dimensions of the plane must have the same aspect ratio as the elevation image.</p>
+</div>
+<p>In general, you want the X and Y scales to be less than 20. The raw values don&rsquo;t matter, as long as the aspect ratio and proportions remain correct. The Z scale can be left alone at 1.0.</p>
+<p>With a plane created and scaled to the right size, it is time to start setting up the adaptive subdivision.</p>
+<p>With the plane still selected, go to the <i class="fa fa-wrench"></i> <strong>Modifiers</strong> panel and select <strong>Subdivision Surface</strong> from the dropdown.</p>
+<div class="fullImage">
+<img src="/images/blender_modifyplane.jpg" />
+<p>A subdivision surface modifier prepares the plane for a rugged future.</p>
+</div>
+<p>Once the subdivision surface modifier has been added, the plane will initially appear distorted. A couple more settings need to be changed.</p>
+<p>In the options for the subdivision surface modifier, change the mode to <strong>Simple</strong>, and check the boxes for <strong>Adaptive</strong> and <strong>Use OpenSubdiv</strong>.</p>
+<div class="rightImage">
+<img src="/images/blender_modifyopts.jpg" />
+<p>Setting the settings.</p>
+</div>
+<p>The <strong>Simple</strong> option returns the plane to its original shape. This ensures the geometry of the plane remains unchanged without any smoothing or generalization.</p>
+<p><strong>Adaptive</strong> is the real MVP here: this is the setting that allows the plane to subdivided at different resolutions, depending on the complexity of the displacement. More subdivisions will be made where the displacement varies most (e.g., rugged terrain).</p>
+<p>By checking <strong>Use OpenSubdiv</strong>, Blender uses a high-performance subdivision approach <a href="http://graphics.pixar.com/opensubdiv/docs/intro.html">developed by Pixar</a>. If your system supports it, Opensubdiv will greatly improve the performance of the subdivision, and account for camera distance in addition to the complexity of the displacement.</p>
+<p>Other settings, like Dicing Rate, can be left unchanged. The Dicing Rate scales the number of subdivisions. Smaller numbers will result in many more subdivisions. If the DEM resolution is high, lowering this value can bring even more detail to the final render (at the expense of additional rendering time).</p>
+<h4 id="getting-bumpy-displacing-the-plane">Getting Bumpy: Displacing the Plane</h4>
+<p>We have a plane. It is prepared for subdivision. Now we need to influence the height of the subdivisions based on the elevation data.</p>
+<p>To do that, we&rsquo;re going to feed the SRTM imagery to the plane as an image texture, using the image as a displacement map.</p>
+<p>Go to the plane&rsquo;s <strong>Materials</strong> tab and click <strong>new</strong> to assign it a new, default material.</p>
+<p>Under the new material&rsquo;s settings, change the <strong>Displacement</strong> to <strong>True</strong>. This allows the displacement to affect the actual geometry of the plane.</p>
+<div class="fullImage">
+<img src="/images/blender_addmaterial.jpg" />
+<p>Assigning the plane a material and enabling true displacement.</p>
+</div>
+<p>Now the fun can begin!</p>
+
+    <hr>
+
+    <div class="share">
+      <span>Share this</span>
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=The%20Topography%20of%20South%20Georgia&url=http%3a%2f%2flocalhost%3a1315%2fblog%2fthe-topography-of-south-georgia%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+      </a>
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2flocalhost%3a1315%2fblog%2fthe-topography-of-south-georgia%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+      </a>
+      <button type="button" class="share-btn" data-copy-link="http://localhost:1315/blog/the-topography-of-south-georgia/" aria-label="Copy link to this post">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h4v2h-4a3 3 0 1 0 0 6h4v2h-4a5 5 0 0 1-5-5zm7-1h6v2h-6v-2zm3-4h4a5 5 0 1 1 0 10h-4v-2h4a3 3 0 1 0 0-6h-4V7z"/></svg>
+      </button>
+    </div>
+
+    <nav class="pager" aria-label="Post navigation">
+      <a href="http://localhost:1315/blog/graveyards-of-the-contiguous-usa/">&larr; Graveyards of The Contiguous USA</a>
+      
+      <a href="http://localhost:1315/blog/tactile-topography/">Tactile Topography &rarr;</a>
+      </nav>
+  </div>
+</div>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+</main>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <strong>Joshua Stevens</strong>
+            Welcome
+          </div>
+
+          <nav aria-label="Footer">
+            <ul class="footer-nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/portfolio/">Work</a></li>
+              <li><a href="/blog/">Blog</a></li>
+              <li><a href="/about/">About</a></li>
+              <li><a href="/contact/">Contact</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer-social">
+            <a href="https://twitter.com/jscarto" aria-label="Joshua Stevens on Twitter / X" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/jscarto/" aria-label="Joshua Stevens on LinkedIn" rel="me noopener" target="_blank">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-meta">
+          <span>&copy; 2026 Joshua Stevens</span>
+          <span>Cartography, data visualization &amp; visual journalism</span>
+        </div>
+      </div>
+    </footer>
+
+    <div id="copy-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+    <script src="/js/main.js"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-39165504-1', 'joshuastevens.net');
+        ga('send', 'pageview');
+    </script>
+  </body>
+</html>
+
