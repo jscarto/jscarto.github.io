@@ -11,6 +11,31 @@
     });
   }
 
+  var yearNav = document.querySelector(".year-nav");
+  var yearNavInner = document.querySelector(".year-nav-inner");
+  if (yearNav && yearNavInner) {
+    var checkYearNavOverflow = function () {
+      yearNav.classList.remove("is-overflowing");
+      var overflowing = yearNavInner.scrollWidth > yearNavInner.clientWidth + 1;
+      yearNav.classList.toggle("is-overflowing", overflowing);
+    };
+    checkYearNavOverflow();
+    var yearNavResizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(yearNavResizeTimer);
+      yearNavResizeTimer = setTimeout(checkYearNavOverflow, 150);
+    });
+  }
+
+  var yearMenu = document.querySelector(".year-menu");
+  if (yearMenu) {
+    yearMenu.querySelectorAll(".year-menu-panel a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        yearMenu.removeAttribute("open");
+      });
+    });
+  }
+
   var copyBtn = document.querySelector("[data-copy-link]");
   if (copyBtn) {
     copyBtn.addEventListener("click", function () {
