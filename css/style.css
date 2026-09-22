@@ -534,7 +534,7 @@ section { padding-block: clamp(3rem, 6vw, 5.5rem); }
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 2.5rem;
-  align-items: center;
+  align-items: start;
 }
 .split-cta h2 { color: var(--white); }
 .split-cta p { color: rgba(255, 255, 255, 0.75); }
