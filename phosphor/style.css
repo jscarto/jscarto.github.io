@@ -10,6 +10,7 @@
   --chart-grid: #e6e6e2;
   --chart-raw: #9a9aa0;
   --chart-target: #d0453a;
+  --amber: #8a5a0a; /* main site --amber-ink (AA on light backgrounds) */
   --code-str: #0f7a4a;
   --code-kw: #7a3fd6;
   --code-fn: #1f5fbf;
@@ -35,6 +36,7 @@
     --chart-grid: #1c2740;
     --chart-raw: #77777f;
     --chart-target: #ff7a6e;
+    --amber: #f4c874; /* main site --amber-bright */
     --code-str: #86dcaa;
     --code-kw: #c6a8ff;
     --code-fn: #86b9ff;
@@ -57,6 +59,7 @@
   --chart-grid: #1c2740;
   --chart-raw: #77777f;
   --chart-target: #ff7a6e;
+  --amber: #f4c874; /* main site --amber-bright */
   --code-str: #86dcaa;
   --code-kw: #c6a8ff;
   --code-fn: #86b9ff;
@@ -172,6 +175,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   .byline { display: block; margin: 6px 0 0; font-size: 0.85rem; }
 }
 .lede { margin: 0 0 24px; color: var(--muted); max-width: 60ch; }
+.lede a { color: var(--amber); font-weight: 600; text-underline-offset: 2px; }
 .page-foot { padding-top: 24px; padding-bottom: 32px; color: var(--muted); font-size: 0.85rem; }
 
 .layout {
