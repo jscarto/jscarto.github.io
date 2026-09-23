@@ -10,6 +10,12 @@
   --chart-grid: #e6e6e2;
   --chart-raw: #9a9aa0;
   --chart-target: #d0453a;
+  --code-str: #0f7a4a;
+  --code-kw: #7a3fd6;
+  --code-fn: #1f5fbf;
+  --code-num: #b3541e;
+  --code-com: #8a8a90;
+  --code-prop: #a3367a;
   --chart-corrected: #1c1c1e;
   color-scheme: light;
 }
@@ -28,6 +34,12 @@
     --chart-grid: #2c2c31;
     --chart-raw: #77777f;
     --chart-target: #ff7a6e;
+    --code-str: #86dcaa;
+    --code-kw: #c6a8ff;
+    --code-fn: #86b9ff;
+    --code-num: #f5ad83;
+    --code-com: #7b7b85;
+    --code-prop: #f292c8;
     --chart-corrected: #ececef;
     color-scheme: dark;
   }
@@ -44,6 +56,12 @@
   --chart-grid: #2c2c31;
   --chart-raw: #77777f;
   --chart-target: #ff7a6e;
+  --code-str: #86dcaa;
+  --code-kw: #c6a8ff;
+  --code-fn: #86b9ff;
+  --code-num: #f5ad83;
+  --code-com: #7b7b85;
+  --code-prop: #f292c8;
   --chart-corrected: #ececef;
   color-scheme: dark;
 }
@@ -181,7 +199,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 }
 .panel h2:first-child, .panel .warning + h2 { margin-top: 4px; }
 
-button, input[type="text"], select, textarea {
+button, input[type="text"], select {
   font: inherit;
   color: var(--text);
   background: var(--bg);
@@ -260,10 +278,35 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 
 .exports { display: grid; gap: 10px; }
 .export-head { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; margin-bottom: 4px; }
-.pro-row { margin-top: 6px; }
-.export textarea {
-  width: 100%;
-  resize: vertical;
-  padding: 8px;
-  font: 0.8rem/1.4 ui-monospace, Menlo, monospace;
+.ramp-name { margin: 0 0 12px; }
+.hint-inline { color: var(--muted); font-size: 0.8rem; }
+.export-head .row { gap: 6px; }
+.code {
+  margin: 0;
+  max-height: 240px;
+  overflow: auto;
+  padding: 10px 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: 0.8rem/1.55 ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
+.code code { font: inherit; }
+.chip {
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.35em;
+  border-radius: 2px;
+  vertical-align: -0.05em;
+  box-shadow: inset 0 0 0 1px rgba(127, 127, 127, 0.35);
+}
+.tok-str { color: var(--code-str); }
+.tok-kw { color: var(--code-kw); }
+.tok-fn { color: var(--code-fn); }
+.tok-num { color: var(--code-num); }
+.tok-com { color: var(--code-com); font-style: italic; }
+.tok-prop { color: var(--code-prop); }
+.tok-hex { color: var(--text); }

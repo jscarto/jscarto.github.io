@@ -16,8 +16,9 @@
     warning: $('warning'), bar: $('bar'), barLabel: $('bar-label'),
     presetsToggle: $('presets-toggle'), presetsPanel: $('presets-panel'), legendResult: $('legend-result'), legendRaw: $('legend-raw'),
     swatches: $('swatches'), chart: $('chart'), stats: $('stats'),
-    outHex: $('out-hex'), outCss: $('out-css'), outJs: $('out-js'),
-    proPreview: $('pro-preview'), proName: $('pro-name'), proDownload: $('pro-download'),
+    outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'),
+    proPreview: $('pro-preview'), rampName: $('ramp-name'), proDownload: $('pro-download'),
+    outQgis: $('out-qgis'), qgisDownload: $('qgis-download'),
   };
 
   // ArcGIS Pro export: this many colors, joined by CIELAB segments.
@@ -26,7 +27,7 @@
 
   let state = readHash() || { ...DEFAULTS, colors: DEFAULTS.colors.slice() };
   let proHexes = [];
-  let proNameEdited = false;
+  let rampNameEdited = false;
 
   // ---------- color math ----------
 
@@ -130,21 +131,23 @@
 
     renderChart(s, hexes);
 
-    // Exports
-    el.outHex.value = hexes.map((h) => `"${h}"`).join(', ');
-    el.outCss.value =
-      hexes.map((h, i) => `--ramp-${i}: ${h};`).join('\n') +
-      `\n\nbackground: ${cssGradient(dense.filter((_, i) => i % 4 === 0 || i === dense.length - 1).map((t) => s.result(t).hex()))};`;
-    el.outJs.value = jsSnippet(colors, s.corrected);
-
     // ArcGIS Pro blends each segment in CIELAB, which is exactly a Lab scale through these stops.
     proHexes = positions(PRO_RAMP_COLORS).map((t) => s.result(t).hex());
     el.proPreview.style.background = cssGradient(chroma.scale(proHexes).mode('lab').colors(64));
     const preset = activePreset();
     markActivePreset(preset);
-    if (!proNameEdited) {
-      el.proName.value = preset ? `Phosphor ${preset.name}` : `Phosphor ${proHexes[0]}–${proHexes[proHexes.length - 1]}`;
+
+    if (!rampNameEdited) {
+      el.rampName.value = preset ? `Phosphor ${preset.name}` : `Phosphor ${proHexes[0]}–${proHexes[proHexes.length - 1]}`;
     }
+
+    // Exports
+    const dense32 = positions(RGB_STOPS).map((t) => s.result(t).hex());
+    setExport(el.outHex, 'list', hexes.map((h) => `"${h}"`).join(', '));
+    setExport(el.outCss, 'css', cssSnippet(positions(CSS_STOPS).map((t) => s.result(t).hex())));
+    setExport(el.outPy, 'python', pythonSnippet(s, hexes, dense32));
+    setExport(el.outQgis, 'xml', qgisXml(rampName(), dense32));
+    el.qgisDownload.disabled = false;
     el.proDownload.disabled = false;
   }
 
@@ -152,12 +155,142 @@
     return `linear-gradient(to right, ${hexes.join(', ')})`;
   }
 
-  function jsSnippet(colors, corrected) {
-    const list = JSON.stringify(colors);
-    const base = state.mode === 'bezier'
-      ? `chroma.bezier(${list}).scale()`
-      : `chroma.scale(${list}).mode('${state.mode}')`;
-    return `${base}${corrected ? '.correctLightness()' : ''}.colors(${state.steps});`;
+  // ---------- code exports ----------
+
+  const CSS_STOPS = 17; // browsers blend CSS gradients in sRGB, so sample densely
+  const RGB_STOPS = 32; // matplotlib and QGIS blend linearly in RGB between these samples
+  const exportText = {};
+
+  const hexRows = (hexes, perRow, indent, quote) => {
+    const rows = [];
+    for (let i = 0; i < hexes.length; i += perRow) {
+      rows.push(indent + hexes.slice(i, i + perRow).map((h) => quote + h + quote).join(', '));
+    }
+    return rows.join(',\n');
+  };
+
+  function cssSnippet(hexes) {
+    return `background: linear-gradient(\n  to right,\n${hexRows(hexes, 4, '  ', '')}\n);`;
+  }
+
+  const rampName = () => el.rampName.value.trim() || 'Phosphor';
+
+  function pythonSnippet(s, hexes, dense) {
+    const name = rampName().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'phosphor';
+    const space = el.mode.options[el.mode.selectedIndex].text;
+    const how = s.corrected
+      ? `${space} interpolation, lightness-corrected (linear L*).`
+      : `${space} interpolation, uncorrected (the colors go up and down in lightness).`;
+    return [
+      'from matplotlib.colors import LinearSegmentedColormap, ListedColormap',
+      '',
+      `# Phosphor gradient: ${hexes[0]} to ${hexes[hexes.length - 1]}, ${how}`,
+      `# ${RGB_STOPS} samples; matplotlib blends between them.`,
+      'colors = [',
+      hexRows(dense, 4, '    ', '"') + ',',
+      ']',
+      `cmap = LinearSegmentedColormap.from_list("${name}", colors)`,
+      '',
+      `# The ${hexes.length} discrete steps, for classed maps and charts.`,
+      `cmap_steps = ListedColormap([`,
+      hexRows(hexes, 4, '    ', '"') + ',',
+      `], name="${name}_steps")`,
+      '',
+      '# Usage: plt.imshow(data, cmap=cmap)',
+    ].join('\n');
+  }
+
+  const xmlAttr = (t) => t.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[c]));
+  const qgisColor = (hex) => chroma(hex).rgb().join(',') + ',255';
+
+  /** A QGIS style file (Style Manager > Import) holding one gradient color ramp. */
+  function qgisXml(name, hexes) {
+    const stops = hexes.slice(1, -1)
+      .map((h, i) => `${+((i + 1) / (hexes.length - 1)).toFixed(6)};${qgisColor(h)}`)
+      .join(':');
+    const opt = (key, value) => `        <Option type="QString" name="${key}" value="${value}"/>`;
+    return [
+      '<!DOCTYPE qgis_style>',
+      '<qgis_style version="2">',
+      '  <symbols/>',
+      '  <colorramps>',
+      `    <colorramp type="gradient" name="${xmlAttr(name)}" tags="Phosphor">`,
+      '      <Option type="Map">',
+      opt('color1', qgisColor(hexes[0])),
+      opt('color2', qgisColor(hexes[hexes.length - 1])),
+      opt('discrete', '0'),
+      opt('rampType', 'gradient'),
+      opt('stops', stops),
+      '      </Option>',
+      '    </colorramp>',
+      '  </colorramps>',
+      '</qgis_style>',
+    ].join('\n');
+  }
+
+  function downloadText(text, filename, type) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type }));
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+
+  const safeFilename = (name) => name.replace(/[\\/:*?"<>|]+/g, '-').replace(/#/g, '');
+
+  // A small highlighter for the export formats. Hex colors get a color chip.
+  const TOKEN_RULES = {
+    list: [['str', /"[^"\n]*"/y]],
+    css: [
+      ['prop', /[a-z-]+(?=\s*:)/y],
+      ['fn', /[a-z-]+(?=\()/y],
+      ['hex', /#[0-9a-f]{6}\b/iy],
+      ['kw', /\bto (?:right|left|top|bottom)\b/y],
+    ],
+    xml: [
+      ['com', /<!DOCTYPE[^>]*>/y],
+      ['kw', /<\/?[\w:-]+|\/?>/y],
+      ['prop', /[\w:-]+(?==)/y],
+      ['str', /"[^"]*"/y],
+    ],
+    python: [
+      ['str', /"[^"\n]*"/y],
+      ['com', /#.*/y],
+      ['kw', /\b(?:from|import|as)\b/y],
+      ['fn', /\b[A-Za-z_]\w*(?=\()/y],
+      ['num', /\b\d+\b/y],
+    ],
+  };
+  const escapeHtml = (t) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  function highlight(code, lang) {
+    const rules = TOKEN_RULES[lang].concat([['', /\w+/y]]);
+    let html = '';
+    let i = 0;
+    while (i < code.length) {
+      let hit = null;
+      for (const [cls, re] of rules) {
+        re.lastIndex = i;
+        const m = re.exec(code);
+        if (m && m[0]) { hit = [cls, m[0]]; break; }
+      }
+      if (!hit) { html += escapeHtml(code[i]); i += 1; continue; }
+      const [cls, text] = hit;
+      const hex = /^"?(#[0-9a-f]{6})"?$/i.exec(text);
+      const rgb = /^"(\d{1,3},\d{1,3},\d{1,3}),255"$/.exec(text);
+      const swatch = cls === 'com' ? null : hex ? hex[1] : rgb ? `rgb(${rgb[1]})` : null;
+      const chip = swatch ? `<i class="chip" style="background:${swatch}"></i>` : '';
+      html += cls ? `${chip}<span class="tok-${cls}">${escapeHtml(text)}</span>` : escapeHtml(text);
+      i += text.length;
+    }
+    return html;
+  }
+
+  function setExport(codeEl, lang, text) {
+    exportText[codeEl.id] = text;
+    codeEl.innerHTML = highlight(text, lang);
   }
 
   function renderChart(s, hexes) {
@@ -267,7 +400,7 @@
   }
 
   async function downloadStylx() {
-    const name = el.proName.value.trim() || 'Phosphor';
+    const name = rampName();
     const label = el.proDownload.textContent;
     el.proDownload.disabled = true;
     el.proDownload.textContent = 'Building…';
@@ -276,7 +409,7 @@
       const blob = new Blob([buildStylx(SQL, name, proHexes)], { type: 'application/octet-stream' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
-      a.download = name.replace(/[\\/:*?"<>|]+/g, '-').replace(/#/g, '') + '.stylx';
+      a.download = safeFilename(name) + '.stylx';
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -352,6 +485,14 @@
   // ColorBrewer sequential schemes (9 classes) ship with chroma.js as chroma.brewer.
   const brewer = (names) => names.map((name) => ({ name, colors: chroma.brewer[name] }));
   const PRESET_GROUPS = [
+    {
+      title: 'Stevens',
+      presets: [
+        { name: 'Tropics', colors: ['#c3f4e9', '#b6e5eb', '#a9d6ec', '#9ac8ee', '#8bbaef', '#7aacf0', '#8898eb', '#9682e5', '#b85fd5', '#c244b4', '#be338e', '#b71f69', '#ad0045'] },
+        { name: 'Frostfire', colors: ['#eff7fa', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fcedc4'] },
+        { name: 'Smoggy Sky', colors: ['#ffffff', '#e2eff9', '#c5dff2', '#e1c794', '#eeac49', '#dd9a3f', '#cd8837', '#bc772e', '#ac6626', '#9c551e', '#8c4416', '#7c340f', '#672709', '#541b01'] },
+      ],
+    },
     { title: 'ColorBrewer: single hue', presets: brewer(['Blues', 'Greens', 'Greys', 'Oranges', 'Purples', 'Reds']) },
     {
       title: 'ColorBrewer: multi-hue',
@@ -396,7 +537,7 @@
       if (!card) return;
       const preset = ALL_PRESETS.find((p) => p.name === card.dataset.name);
       state.colors = preset.colors.slice();
-      proNameEdited = false;
+      rampNameEdited = false;
       buildList();
       render();
     });
@@ -466,8 +607,10 @@
   el.mode.addEventListener('change', () => { state.mode = el.mode.value; render(); });
   el.steps.addEventListener('input', () => { state.steps = +el.steps.value; render(); });
   document.querySelectorAll('[data-copy]').forEach((b) =>
-    b.addEventListener('click', () => copy($(b.dataset.copy).value, b)));
-  el.proName.addEventListener('input', () => { proNameEdited = el.proName.value.trim() !== ''; });
+    b.addEventListener('click', () => copy(exportText[b.dataset.copy], b)));
+  el.rampName.addEventListener('input', () => { rampNameEdited = el.rampName.value.trim() !== ''; render(); });
+  el.qgisDownload.addEventListener('click', () =>
+    downloadText(exportText['out-qgis'], safeFilename(rampName()) + '.xml', 'application/xml'));
   el.proDownload.addEventListener('click', downloadStylx);
 
   // Theme: dark by default; an explicit choice is saved.
