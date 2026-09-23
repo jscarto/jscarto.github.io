@@ -17,7 +17,7 @@ The site opens in dark mode; the button in the header switches themes and rememb
 - **ArcGIS Pro:** *Download .stylx* saves a style file containing one color ramp: a `CIMMultipartColorRamp` of 16 colors joined by 15 `CIMLinearContinuousColorRamp` segments, which Pro blends in CIELAB so L* stays linear. In Pro, open **Catalog → Styles**, right-click and choose **Add → Add Style**. The ramp then appears in the Symbology pane's color scheme list (turn on **Show names** and **Show all**). The file is built in the browser with [sql.js](https://github.com/sql-js/sql.js), and its layout matches a style saved by ArcGIS Pro 3.1.
 - **Color vision simulation:** the header toggles preview the page as seen with protanopia, deuteranopia, tritanopia or achromatopsia. They use SVG color-matrix filters from Machado, Oliveira & Fernandes (2009) at full severity, applied in linear RGB; achromatopsia maps each color to its luminance. Click the active toggle again to turn it off.
 
-All settings are stored in the URL hash, so a gradient can be bookmarked or shared.
+**Copy share link** (under the gradient) writes the colors, interpolation space and step count to the URL hash and copies the link, so a palette can be bookmarked or shared. The URL changes only then; the next edit clears the link again, so reloading never restores a palette you've since changed. Dragging the Steps slider redraws only what depends on the step count, at most once per animation frame.
 
 ## Files
 

@@ -19,6 +19,7 @@
     outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'),
     proPreview: $('pro-preview'), rampName: $('ramp-name'), proDownload: $('pro-download'),
     outQgis: $('out-qgis'), qgisDownload: $('qgis-download'),
+    share: $('share'), shareBtnLabel: $('share-label'), shareStatus: $('share-status'),
   };
 
   // ArcGIS Pro export: this many colors, joined by CIELAB segments.
@@ -28,6 +29,7 @@
   let state = readHash() || { ...DEFAULTS, colors: DEFAULTS.colors.slice() };
   let proHexes = [];
   let rampNameEdited = false;
+  const SHARE_PROMPT = 'Like this palette? Get a link to bookmark it or share it.';
 
   // ---------- color math ----------
 
@@ -71,12 +73,18 @@
 
   // ---------- rendering ----------
 
+  // Rendering happens in two layers. render() rebuilds everything that depends on the colors,
+  // interpolation space or theme, and caches it in `gradient`. renderSteps() redraws only what
+  // depends on the step count, so dragging the Steps slider stays cheap.
+  let gradient = null;
+
   function render() {
     const colors = state.colors.filter((c) => chroma.valid(c)).map((c) => chroma(c).hex());
-    el.stepsOut.textContent = state.steps;
     renderLValues();
+    clearStaleShareLink();
+    gradient = null;
     el.proDownload.disabled = true;
-    writeHash();
+    el.qgisDownload.disabled = true;
 
     if (colors.length < 2) {
       showWarning('Add at least two valid hex colors.');
@@ -91,25 +99,48 @@
       return;
     }
 
-    const warnings = [];
-    if (state.mode === 'bezier' && colors.length > 5) {
-      warnings.push('Bezier interpolation works best with 2–5 colors.');
+    // Bar
+    el.bar.style.background = cssGradient(positions(64).map((t) => s.result(t).hex()));
+    el.barLabel.textContent = s.corrected
+      ? 'Corrected'
+      : 'Uncorrected - Your colors go up and down in lightness. Try Sort by lightness.';
+    el.barLabel.classList.toggle('bar-label-warn', !s.corrected);
+
+    // ArcGIS Pro blends each segment in CIELAB, which is exactly a Lab scale through these stops.
+    proHexes = positions(PRO_RAMP_COLORS).map((t) => s.result(t).hex());
+    el.proPreview.style.background = cssGradient(chroma.scale(proHexes).mode('lab').colors(64));
+    const preset = activePreset();
+    markActivePreset(preset);
+    if (!rampNameEdited) {
+      el.rampName.value = preset ? `Phosphor ${preset.name}` : `Phosphor ${proHexes[0]}–${proHexes[proHexes.length - 1]}`;
     }
 
+    gradient = {
+      s,
+      bezierWarning: state.mode === 'bezier' && colors.length > 5,
+      chartBase: chartBase(s),
+      dense32: positions(RGB_STOPS).map((t) => s.result(t).hex()),
+    };
+    setExport(el.outCss, 'css', cssSnippet(positions(CSS_STOPS).map((t) => s.result(t).hex())));
+    el.proDownload.disabled = false;
+    el.qgisDownload.disabled = false;
+    renderSteps();
+  }
+
+  function renderSteps() {
+    el.stepsOut.textContent = state.steps;
+    clearStaleShareLink();
+    if (!gradient) return;
+    const { s } = gradient;
+
     const stepColors = positions(state.steps).map((t) => s.result(t));
+    const warnings = [];
+    if (gradient.bezierWarning) warnings.push('Bezier interpolation works best with 2–5 colors.');
     const clippedCount = stepColors.filter((c) => c.clipped && c.clipped()).length;
     if (clippedCount) {
       warnings.push(`${clippedCount} step${clippedCount > 1 ? 's' : ''} fell outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped (marked “clipped”), which moves L* slightly.`);
     }
     if (warnings.length) showWarning(warnings.join('<br>')); else hideWarning();
-
-    // Bars
-    const dense = positions(64);
-    el.bar.style.background = cssGradient(dense.map((t) => s.result(t).hex()));
-    el.barLabel.textContent = s.corrected
-      ? 'Corrected'
-      : 'Uncorrected - Your colors go up and down in lightness. Try Sort by lightness.';
-    el.barLabel.classList.toggle('bar-label-warn', !s.corrected);
 
     // Swatches
     const hexes = stepColors.map((c) => c.hex());
@@ -129,26 +160,24 @@
       el.swatches.appendChild(d);
     });
 
-    renderChart(s, hexes);
-
-    // ArcGIS Pro blends each segment in CIELAB, which is exactly a Lab scale through these stops.
-    proHexes = positions(PRO_RAMP_COLORS).map((t) => s.result(t).hex());
-    el.proPreview.style.background = cssGradient(chroma.scale(proHexes).mode('lab').colors(64));
-    const preset = activePreset();
-    markActivePreset(preset);
-
-    if (!rampNameEdited) {
-      el.rampName.value = preset ? `Phosphor ${preset.name}` : `Phosphor ${proHexes[0]}–${proHexes[proHexes.length - 1]}`;
-    }
-
-    // Exports
-    const dense32 = positions(RGB_STOPS).map((t) => s.result(t).hex());
+    el.chart.innerHTML = gradient.chartBase + chartDots(hexes);
     setExport(el.outHex, 'list', hexes.map((h) => `"${h}"`).join(', '));
-    setExport(el.outCss, 'css', cssSnippet(positions(CSS_STOPS).map((t) => s.result(t).hex())));
-    setExport(el.outPy, 'python', pythonSnippet(s, hexes, dense32));
-    setExport(el.outQgis, 'xml', qgisXml(rampName(), dense32));
-    el.qgisDownload.disabled = false;
-    el.proDownload.disabled = false;
+    renderNamedExports(hexes);
+  }
+
+  /** Exports that include the ramp name: redrawn when the name or the steps change. */
+  function renderNamedExports(hexes = gradient && gradient.stepHexes) {
+    if (!gradient) return;
+    gradient.stepHexes = hexes;
+    setExport(el.outPy, 'python', pythonSnippet(gradient.s, hexes, gradient.dense32));
+    setExport(el.outQgis, 'xml', qgisXml(rampName(), gradient.dense32));
+  }
+
+  // Coalesce Steps slider input to at most one redraw per animation frame.
+  let stepsFrame = 0;
+  function scheduleSteps() {
+    if (stepsFrame) return;
+    stepsFrame = requestAnimationFrame(() => { stepsFrame = 0; renderSteps(); });
   }
 
   function cssGradient(hexes) {
@@ -293,12 +322,21 @@
     codeEl.innerHTML = highlight(text, lang);
   }
 
-  function renderChart(s, hexes) {
-    const W = 600, H = 260, pad = { l: 36, r: 12, t: 12, b: 28 };
-    const x = (t) => pad.l + t * (W - pad.l - pad.r);
-    const y = (L) => pad.t + (1 - L / 100) * (H - pad.t - pad.b);
-    const css = getComputedStyle(document.documentElement);
-    const col = (name) => css.getPropertyValue(name).trim();
+  const CHART = { W: 600, H: 260, pad: { l: 36, r: 12, t: 12, b: 28 } };
+  const chartX = (t) => CHART.pad.l + t * (CHART.W - CHART.pad.l - CHART.pad.r);
+  const chartY = (L) => CHART.pad.t + (1 - L / 100) * (CHART.H - CHART.pad.t - CHART.pad.b);
+  const themeColor = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  function chartDots(hexes) {
+    const stroke = themeColor('--chart-corrected');
+    return positions(hexes.length).map((t, i) =>
+      `<circle cx="${chartX(t)}" cy="${chartY(lstar(hexes[i]))}" r="5" fill="${hexes[i]}" stroke="${stroke}" stroke-width="1.5"/>`).join('');
+  }
+
+  /** Grid, curves, legend and stats: everything on the chart except the step dots. */
+  function chartBase(s) {
+    const { W, H, pad } = CHART;
+    const x = chartX, y = chartY, col = themeColor;
 
     const line = (fn, n = 120) =>
       positions(n).map((t, i) => `${i ? 'L' : 'M'}${x(t).toFixed(1)},${y(fn(t)).toFixed(1)}`).join('');
@@ -317,17 +355,13 @@
     }
     out += `<path d="${line((t) => lstar(s.result(t).hex()))}" fill="none" stroke="${col('--chart-corrected')}" stroke-width="2"/>`;
 
-    positions(hexes.length).forEach((t, i) => {
-      out += `<circle cx="${x(t)}" cy="${y(lstar(hexes[i]))}" r="5" fill="${hexes[i]}" stroke="${col('--chart-corrected')}" stroke-width="1.5"/>`;
-    });
-    el.chart.innerHTML = out;
-
     const maxDev = (fn) => Math.max(...positions(200).map((t) => Math.abs(lstar(fn(t).hex()) - s.target(t))));
     el.legendResult.textContent = s.corrected ? 'Corrected' : 'Uncorrected';
     el.legendRaw.hidden = !s.corrected;
     el.stats.textContent = s.corrected
       ? `Largest gap from the linear target: corrected ${maxDev(s.result).toFixed(2)} L*, uncorrected ${maxDev(s.raw).toFixed(2)} L*.`
       : `Largest gap from the linear target: ${maxDev(s.result).toFixed(2)} L* (uncorrected).`;
+    return out;
   }
 
   // ---------- ArcGIS Pro .stylx export ----------
@@ -545,12 +579,32 @@
 
   // ---------- URL state ----------
 
-  function writeHash() {
-    const p = new URLSearchParams({
-      c: state.colors.map((c) => c.replace('#', '')).join(','),
-      m: state.mode, n: String(state.steps),
-    });
-    history.replaceState(null, '', '#' + p.toString());
+  // The URL only changes when someone clicks Share. A shared (or opened) link is cleared on the
+  // next edit, so reloading never brings back a palette the visitor has since changed.
+  const stateHash = () => '#' + new URLSearchParams({
+    c: state.colors.map((c) => c.replace('#', '')).join(','),
+    m: state.mode, n: String(state.steps),
+  }).toString();
+
+  function clearStaleShareLink() {
+    if (location.hash && location.hash !== stateHash()) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+
+  async function sharePalette() {
+    history.replaceState(null, '', stateHash());
+    let copied = false;
+    try { await navigator.clipboard.writeText(location.href); copied = true; } catch (e) { /* show the link instead */ }
+    el.shareStatus.textContent = copied
+      ? 'Link copied. Paste it anywhere, or bookmark this page to come back to this palette.'
+      : 'Your link is in the address bar. Copy it, or bookmark this page to come back to this palette.';
+    el.shareBtnLabel.textContent = copied ? 'Link copied' : 'Link ready';
+    clearTimeout(sharePalette.timer);
+    sharePalette.timer = setTimeout(() => {
+      el.shareStatus.textContent = SHARE_PROMPT;
+      el.shareBtnLabel.textContent = 'Copy share link';
+    }, 4000);
   }
 
   function readHash() {
@@ -605,10 +659,11 @@
   el.paste.addEventListener('keydown', (e) => { if (e.key === 'Enter') applyPaste(); });
 
   el.mode.addEventListener('change', () => { state.mode = el.mode.value; render(); });
-  el.steps.addEventListener('input', () => { state.steps = +el.steps.value; render(); });
+  el.steps.addEventListener('input', () => { state.steps = +el.steps.value; scheduleSteps(); });
+  el.share.addEventListener('click', sharePalette);
   document.querySelectorAll('[data-copy]').forEach((b) =>
     b.addEventListener('click', () => copy(exportText[b.dataset.copy], b)));
-  el.rampName.addEventListener('input', () => { rampNameEdited = el.rampName.value.trim() !== ''; render(); });
+  el.rampName.addEventListener('input', () => { rampNameEdited = el.rampName.value.trim() !== ''; renderNamedExports(); });
   el.qgisDownload.addEventListener('click', () =>
     downloadText(exportText['out-qgis'], safeFilename(rampName()) + '.xml', 'application/xml'));
   el.proDownload.addEventListener('click', downloadStylx);

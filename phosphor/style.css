@@ -229,9 +229,13 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
   margin-bottom: 6px;
 }
 .color-item input[type="color"] {
-  width: 34px; height: 32px; padding: 0; border: 1px solid var(--border);
-  border-radius: 6px; background: none; cursor: pointer;
+  width: 34px; height: 32px; padding: 0; border: 0;
+  border-radius: 6px; background: none; cursor: pointer; overflow: hidden;
 }
+/* Drop the browser's own frame around the swatch so only the color shows. */
+.color-item input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.color-item input[type="color"]::-webkit-color-swatch { border: 0; border-radius: 6px; }
+.color-item input[type="color"]::-moz-color-swatch { border: 0; border-radius: 6px; }
 .color-item input[type="text"] { font-family: ui-monospace, Menlo, monospace; }
 .color-item input.invalid { border-color: var(--chart-target); }
 .color-item .lval { font-size: 0.75rem; color: var(--muted); width: 3.4em; text-align: right; font-variant-numeric: tabular-nums; }
@@ -247,6 +251,27 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 }
 
 .bar-label { font-size: 0.75rem; color: var(--muted); margin: 8px 0 3px; }
+.share-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.share-status { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border: 1px solid var(--muted);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--muted);
+}
+.share-btn:hover { border-color: var(--text); color: var(--text); }
+.share-btn svg { width: 16px; height: 16px; }
 .bar-label-warn { color: var(--warn-text); background: var(--warn-bg); border-radius: 4px; padding: 3px 8px; display: inline-block; }
 .bar { height: 72px; border-radius: 6px; border: 1px solid var(--border); }
 .bar-thin { height: 28px; }
