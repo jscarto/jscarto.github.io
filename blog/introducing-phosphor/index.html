@@ -3,7 +3,7 @@
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Ebb and Flow of Polar Sea Ice — Joshua Stevens
+    <title>Introducing Phosphor — Joshua Stevens
     </title>
     <meta name="description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
     <meta name="theme-color" content="#0b1220">
@@ -19,14 +19,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
-    <meta property="og:title" content="The Ebb and Flow of Polar Sea Ice — Joshua Stevens">
+    <meta property="og:title" content="Introducing Phosphor — Joshua Stevens">
     <meta property="og:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
-    <meta property="og:image" content="https://www.joshuastevens.net/images/social-card.jpg">
+    <meta property="og:image" content="https://www.joshuastevens.net/images/phosphor-hero.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@jscarto">
-    <meta name="twitter:title" content="The Ebb and Flow of Polar Sea Ice — Joshua Stevens">
+    <meta name="twitter:title" content="Introducing Phosphor — Joshua Stevens">
     <meta name="twitter:description" content="I am a visual communicator with a background in geovisual analytics, data science, and cartography. I combine journalism and design to communicate about our planet.">
-    <meta name="twitter:image" content="https://www.joshuastevens.net/images/social-card.jpg">
+    <meta name="twitter:image" content="https://www.joshuastevens.net/images/phosphor-hero.png">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ocean.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
@@ -60,51 +60,44 @@
   
 
 <div class="article-mast">
+  <div class="article-mast-media" aria-hidden="true">
+    <img src="/images/phosphor-hero.png" alt="">
+  </div>
+  <div class="article-mast-scrim" aria-hidden="true"></div>
   <div class="container">
     <p class="kicker kicker-light kicker-center">Blog</p>
-    <h1>The Ebb and Flow of Polar Sea Ice</h1><p class="post-date">February 8, 2015</p>
+    <h1>Introducing Phosphor</h1>
+    <h3>Smarter color ramps for data visualization.</h3>
+    <p class="post-date">September 23, 2026</p>
   </div>
 </div>
 
 <div class="container">
   <div class="article">
 
-    <div class="fullImage">
-<img src="/images/sea_ice_slices_th.png" />
-</div>
-<p>In some very real ways, polar sea ice is the backbone of our planet&rsquo;s climate. When more ice is present, its bright surface tends to reflect sunlight, cooling things down. When there is less white, snow-covered ice, the ocean&rsquo;s surface becomes a bit darker. A darker ocean surface absorbs more sunlight, causing it to warm. The relationships between climate and ice are much more complicated than that, as the thickness of the ice also influences a variety of subsurface feedback loops that have long-term effects.</p>
-<p>But one thing is clear: the expansion and retreat of polar sea ice is cyclic. In the winter months, arctic sea ice grows. During the same time, antarctic ice in the south pole shrinks. In the summer, these trends reverse. This ebb and flow, like the <a href="http://uxblog.idvsolutions.com/2013/07/a-breathing-earth.html">breathing of a living planet</a>, happens every single year.</p>
-<p>Scientists have been monitoring that &lsquo;breathing&rsquo; pattern for decades, looking for changes in cycles that occur over many, many years. By measuring the rate of the &lsquo;inhales&rsquo; (ice growth in the north pole/loss of ice in the south pole) and &rsquo;exhales&rsquo; (ice loss in the north pole/growth in the south pole), we can track the long-term health of the climate.</p>
-<p>For the past few days, I&rsquo;ve been creating maps and charts of polar sea ice using data from instruments aboard <a href="http://nssdc.gsfc.nasa.gov/nmc/spacecraftDisplay.do?id=1978-098A">NASA&rsquo;s Nimbus 7</a> satellite. In total, these data feature 19,710 daily records of geographic ice extents - 9,855 for each of the two poles. That&rsquo;s far too many maps to fit in your browser. Even if the maps were an animated sequence - at the standard 24 frames-per-second, the animation would be almost 7 minutes long.</p>
-<p>Instead, I wanted to show <em>all</em> of the data at once.</p>
-<p>To make that happen, I first generated all 19,710 daily maps. I then smooshed each map horizontally, simplifying the maps to a 1-pixel-wide snapshot of the poles&rsquo; maximum north-south sea ice extent for that day. Each pixel strip was then stitched together, side-by-side.</p>
-<p>This was the result:</p>
-<div class="fullImage">
-<img src="/images/sea_ice_slices_800w.png" />
-<p>The image above has been scaled down significantly. The super mega wide original depicts each day as a 1-pixel wide slice, making it 9,855 pixels long. For a hi-res version that is still reasonably sized for your browser, click <a href="../../images/sea_ice_slices_hi.png"> here</a>.</p>
-</div>
-<p>The cyclic pattern of each pole is evident - as is the alignment of each pole&rsquo;s individual cycle. The waxing of one pole almost perfectly pairs with the waning of the other. A climatic system that looks like breathing when viewed annually appears as interlocked, vertebrae-like structures in the long view.</p>
-<p>It&rsquo;s as if Earth had bones.</p>
+    <p>I am proud to release <a href="www.joshuastevens.net/phosphor">Phosphor</a>, a new tool to make color for data visualization even easier.</p>
+<h3 id="why-we-need-this">Why We Need This</h3>
+<p>We see and make use of color every day, to the extent we often take it for granted. But color is actually a hard problem, and even <a href="https://www.youtube.com/watch?v=LKnqECcg6Gw">computers are bad at color</a>.</p>
+<p>Our eyes are incredibly sophisticated and the way we perceive color is much different from the way screens display color.</p>
+
 
     <hr>
 
     <div class="share">
       <span>Share this</span>
-      <a class="share-btn" href="https://twitter.com/intent/tweet?text=The%20Ebb%20and%20Flow%20of%20Polar%20Sea%20Ice&url=http%3a%2f%2flocalhost%3a1313%2fvisualization%2fsea-ice-ebb-flow-visualized%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
+      <a class="share-btn" href="https://twitter.com/intent/tweet?text=Introducing%20Phosphor&url=http%3a%2f%2flocalhost%3a1313%2fblog%2fintroducing-phosphor%2f&via=jscarto" target="_blank" rel="noopener" aria-label="Share on Twitter / X">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.2-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.9L7.5 4H5.4l12.2 16z"/></svg>
       </a>
-      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2flocalhost%3a1313%2fvisualization%2fsea-ice-ebb-flow-visualized%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+      <a class="share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url=http%3a%2f%2flocalhost%3a1313%2fblog%2fintroducing-phosphor%2f" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.6c0-1.34-.02-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97V21h-4V9z"/></svg>
       </a>
-      <button type="button" class="share-btn" data-copy-link="http://localhost:1313/visualization/sea-ice-ebb-flow-visualized/" aria-label="Copy link to this post">
+      <button type="button" class="share-btn" data-copy-link="http://localhost:1313/blog/introducing-phosphor/" aria-label="Copy link to this post">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.9 12a5 5 0 0 1 5-5h4v2h-4a3 3 0 1 0 0 6h4v2h-4a5 5 0 0 1-5-5zm7-1h6v2h-6v-2zm3-4h4a5 5 0 1 1 0 10h-4v-2h4a3 3 0 1 0 0-6h-4V7z"/></svg>
       </button>
     </div>
 
     <nav class="pager" aria-label="Post navigation">
-      <a href="http://localhost:1313/cartography/hdri-lighting-for-shaded-relief-maps/">&larr; HDRI Lighting for Shaded Relief Maps</a>
-      
-      <a href="http://localhost:1313/cartography/make-a-bivariate-choropleth-map/">Bivariate Choropleth Maps: A How-to Guide &rarr;</a>
+      <a href="http://localhost:1313/blog/formatting-gratitude/">&larr; Formatting Gratitude</a>
       </nav>
   </div>
 </div>

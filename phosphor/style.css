@@ -20,18 +20,19 @@
   color-scheme: light;
 }
 
-/* Dark theme: follows the system unless the visitor picks a theme with the toggle (data-theme on <html>). */
+/* Dark theme: follows the system unless the visitor picks a theme with the toggle (data-theme on <html>).
+   Background, panel, border and grid colors come from the main site's navy scale. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #141416;
-    --panel: #1d1d20;
+    --bg: #0b1220;
+    --panel: #131b2e;
     --text: #ececef;
     --muted: #9a9aa2;
-    --border: #34343a;
+    --border: #2c3a5c;
     --accent: #7ea0ff;
     --warn-bg: #3a2f10;
     --warn-text: #f3d68a;
-    --chart-grid: #2c2c31;
+    --chart-grid: #1c2740;
     --chart-raw: #77777f;
     --chart-target: #ff7a6e;
     --code-str: #86dcaa;
@@ -45,15 +46,15 @@
   }
 }
 :root[data-theme="dark"] {
-  --bg: #141416;
-  --panel: #1d1d20;
+  --bg: #0b1220;
+  --panel: #131b2e;
   --text: #ececef;
   --muted: #9a9aa2;
-  --border: #34343a;
+  --border: #2c3a5c;
   --accent: #7ea0ff;
   --warn-bg: #3a2f10;
   --warn-text: #f3d68a;
-  --chart-grid: #2c2c31;
+  --chart-grid: #1c2740;
   --chart-raw: #77777f;
   --chart-target: #ff7a6e;
   --code-str: #86dcaa;

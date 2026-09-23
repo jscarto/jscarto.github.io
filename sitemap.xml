@@ -2,109 +2,121 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.joshuastevens.net/blog/</loc>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2026-09-23T15:05:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/introducing-phosphor/</loc>
+    <lastmod>2026-09-23T15:05:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-09-23T15:05:57-04:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/formatting-gratitude/</loc>
     <lastmod>2026-09-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/formatting-gratitude/</loc>
-    <lastmod>2026-09-21T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/blog/making-image-grids-small-multiples/</loc>
+    <lastmod>2022-11-05T09:39:22-04:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/</loc>
-    <lastmod>2026-09-21T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/blog/tutorial-lets-make-an-animated-map/</loc>
+    <lastmod>2022-08-26T13:46:32-04:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/behind-the-scenes-earthobservatory/</loc>
+    <loc>http://localhost:1313/blog/behind-the-scenes-earthobservatory/</loc>
     <lastmod>2022-03-07T00:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/mapping-ukraines-refugees/</loc>
+    <loc>http://localhost:1313/blog/mapping-ukraines-refugees/</loc>
     <lastmod>2022-03-07T00:00:00-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/2020-best-visualization-stories/</loc>
+    <loc>http://localhost:1313/blog/2020-best-visualization-stories/</loc>
     <lastmod>2021-01-04T08:47:22-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/the-red-planet/</loc>
+    <loc>http://localhost:1313/blog/the-red-planet/</loc>
     <lastmod>2020-04-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/pinewood-nerdy-statistics/</loc>
+    <loc>http://localhost:1313/blog/pinewood-nerdy-statistics/</loc>
     <lastmod>2020-01-23T06:31:26-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/turning-on-the-lights/</loc>
+    <loc>http://localhost:1313/blog/turning-on-the-lights/</loc>
     <lastmod>2019-04-01T09:55:02-04:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/topographic-diversity-of-the-contiguous-usa/</loc>
+    <loc>http://localhost:1313/blog/topographic-diversity-of-the-contiguous-usa/</loc>
     <lastmod>2019-03-21T12:19:38-04:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/3d-models-from-nasa/</loc>
+    <loc>http://localhost:1313/blog/3d-models-from-nasa/</loc>
     <lastmod>2019-03-03T09:24:03-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/mapping-the-distance-to-the-nearest-coastline/</loc>
+    <loc>http://localhost:1313/blog/mapping-the-distance-to-the-nearest-coastline/</loc>
     <lastmod>2019-02-12T19:50:03-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/glen-canyon-national-recreation-area/</loc>
+    <loc>http://localhost:1313/blog/glen-canyon-national-recreation-area/</loc>
     <lastmod>2019-01-27T09:41:58-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/tactile-topography/</loc>
+    <loc>http://localhost:1313/blog/tactile-topography/</loc>
     <lastmod>2019-01-23T12:33:53-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/graveyards-of-the-contiguous-usa/</loc>
+    <loc>http://localhost:1313/blog/the-topography-of-south-georgia/</loc>
+    <lastmod>2019-01-01T11:56:51-05:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/graveyards-of-the-contiguous-usa/</loc>
     <lastmod>2018-10-28T18:24:44-04:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/NACIS2018/</loc>
+    <loc>http://localhost:1313/blog/NACIS2018/</loc>
     <lastmod>2018-10-17T13:03:32-04:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/landsat-fact-meets-fiction-in-kong-skull-island/</loc>
+    <loc>http://localhost:1313/blog/landsat-fact-meets-fiction-in-kong-skull-island/</loc>
     <lastmod>2018-02-04T08:08:46-05:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/now-on-hugo/</loc>
+    <loc>http://localhost:1313/blog/now-on-hugo/</loc>
     <lastmod>2017-10-16T20:50:23-04:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/cartography/make-a-bivariate-choropleth-map/</loc>
+    <loc>http://localhost:1313/cartography/make-a-bivariate-choropleth-map/</loc>
     <lastmod>2015-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/visualization/sea-ice-ebb-flow-visualized/</loc>
+    <loc>http://localhost:1313/visualization/sea-ice-ebb-flow-visualized/</loc>
     <lastmod>2015-02-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/cartography/hdri-lighting-for-shaded-relief-maps/</loc>
+    <loc>http://localhost:1313/cartography/hdri-lighting-for-shaded-relief-maps/</loc>
     <lastmod>2014-08-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/visualization/open-source-copyright-infringement/</loc>
+    <loc>http://localhost:1313/visualization/open-source-copyright-infringement/</loc>
     <lastmod>2014-07-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/visualization/visual-guide-to-painful-insect-stings/</loc>
+    <loc>http://localhost:1313/visualization/visual-guide-to-painful-insect-stings/</loc>
     <lastmod>2014-06-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/moving-from-wordpress-to-middleman/</loc>
+    <loc>http://localhost:1313/blog/moving-from-wordpress-to-middleman/</loc>
     <lastmod>2014-06-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/the-many-birthplaces-of-memorial-day/</loc>
+    <loc>http://localhost:1313/blog/the-many-birthplaces-of-memorial-day/</loc>
     <lastmod>2014-05-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</loc>
+    <loc>http://localhost:1313/blog/the-map-of-gdelt-predictions-in-afghanistan-as-you-should-have-seen-it/</loc>
     <lastmod>2013-10-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</loc>
+    <loc>http://localhost:1313/visualization/squatch-watch-92-years-of-bigfoot-sightings-in-us-and-canada/</loc>
     <lastmod>2013-09-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/design/your-favorite-traffic-map-is-lying-to-you/</loc>
+    <loc>http://localhost:1313/design/your-favorite-traffic-map-is-lying-to-you/</loc>
     <lastmod>2013-06-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/big-data-social-science-video-demo-senseplace2/</loc>
+    <loc>http://localhost:1313/blog/big-data-social-science-video-demo-senseplace2/</loc>
     <lastmod>2013-05-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/big-data-week-geographic-visualization-and-a-demo-of-cartodb/</loc>
+    <loc>http://localhost:1313/blog/big-data-week-geographic-visualization-and-a-demo-of-cartodb/</loc>
     <lastmod>2013-04-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/accommodating-big-data-in-visual-analytics/</loc>
+    <loc>http://localhost:1313/blog/accommodating-big-data-in-visual-analytics/</loc>
     <lastmod>2013-04-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/big-data-social-science-poster-session/</loc>
+    <loc>http://localhost:1313/blog/big-data-social-science-poster-session/</loc>
     <lastmod>2013-02-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/blog/mapping-tools-analysis-and-visualization-of-spatial-data/</loc>
+    <loc>http://localhost:1313/blog/mapping-tools-analysis-and-visualization-of-spatial-data/</loc>
     <lastmod>2013-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.joshuastevens.net/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
   </url><url>
-    <loc>https://www.joshuastevens.net/contact/</loc>
+    <loc>http://localhost:1313/contact/</loc>
   </url><url>
-    <loc>https://www.joshuastevens.net/portfolio/</loc>
+    <loc>http://localhost:1313/portfolio/</loc>
   </url>
 </urlset>
