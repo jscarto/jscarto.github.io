@@ -53,7 +53,7 @@
         </button>
       </div>
     </div>
-    <p class="lede">Enter hex colors and get a gradient through them with perceptual lightness (CIE L*) that changes at a steady rate from one end to the other. <a href="https://www.joshuastevens.net/blog/introducing-phosphor/">Learn more</a>.</p>
+    <p class="lede">Enter hex colors and get a gradient through them with perceptual lightness (OKLab L) that changes at a steady rate from one end to the other. <a href="https://www.joshuastevens.net/blog/introducing-phosphor/">Learn more</a>.</p>
   </header>
 
   <main class="layout">
@@ -83,10 +83,10 @@
       <label class="field">
         <span>Interpolation space</span>
         <select id="mode">
-          <option value="lab">Lab</option>
-          <option value="lch">LCh</option>
           <option value="oklab">OKLab</option>
           <option value="oklch">OKLCh</option>
+          <option value="lab">Lab</option>
+          <option value="lch">LCh</option>
           <option value="hsl">HSL</option>
           <option value="rgb">RGB</option>
           <option value="lrgb">Linear RGB</option>
@@ -117,7 +117,7 @@
       <h2>Steps</h2>
       <div id="swatches" class="swatches"></div>
 
-      <h2>Lightness (L*) by position</h2>
+      <h2>Lightness (OKLab L) by position</h2>
       <div class="chart-wrap">
         <svg id="chart" viewBox="0 0 600 260" role="img" aria-label="Lightness by position"></svg>
         <div class="legend">
@@ -149,7 +149,7 @@
         <div class="export">
           <div class="export-head"><span>ArcGIS Pro style (.stylx)</span><button id="pro-download" type="button">Download .stylx</button></div>
           <div id="pro-preview" class="bar bar-thin"></div>
-          <p class="hint">A continuous ramp made of 16 colors joined by CIELAB segments, so L* stays linear in ArcGIS Pro. To use it in Pro, open <b>Catalog → Styles</b>, right-click and choose <b>Add → Add Style</b>, then pick this file. The ramp then appears in the Symbology pane's color scheme list (turn on <b>Show names</b> and <b>Show all</b>).</p>
+          <p class="hint">A continuous ramp made of 16 colors joined by CIELAB segments, so lightness stays linear in ArcGIS Pro. To use it in Pro, open <b>Catalog → Styles</b>, right-click and choose <b>Add → Add Style</b>, then pick this file. The ramp then appears in the Symbology pane's color scheme list (turn on <b>Show names</b> and <b>Show all</b>).</p>
         </div>
         <div class="export">
           <div class="export-head">

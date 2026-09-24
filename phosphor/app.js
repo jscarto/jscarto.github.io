@@ -1,10 +1,10 @@
-/* Phosphor — builds multi-hue gradients whose CIE L* changes linearly. */
+/* Phosphor — builds multi-hue gradients whose OKLab lightness changes linearly. */
 (function () {
   'use strict';
 
   const DEFAULTS = {
     colors: ['#1b2a49', '#c23b5c', '#f7d154'],
-    mode: 'lab',
+    mode: 'oklab',
     steps: 9,
   };
 
@@ -33,7 +33,8 @@
 
   // ---------- color math ----------
 
-  const lstar = (c) => chroma(c).get('lab.l');
+  // Lightness everywhere is OKLab L, shown on a 0–100 scale (as in CSS oklch()).
+  const lightness = (c) => chroma(c).oklab()[0] * 100;
 
   function makeScale(colors, mode) {
     if (mode === 'bezier') return chroma.bezier(colors).scale();
@@ -51,21 +52,44 @@
 
   /**
    * Returns { raw(t), result(t), target(t), corrected }. `result` is the gradient shown and
-   * exported: the scale after chroma.js correctLightness() when the colors' lightness only rises
-   * or only falls, otherwise the uncorrected scale (correctLightness() can't handle that case).
+   * exported: the scale with OKLab lightness corrected when the colors' lightness only rises
+   * or only falls, otherwise the uncorrected scale (the correction can't handle that case).
    * `raw` is always the uncorrected scale, kept for comparison.
    */
   function buildSamplers(colors, mode) {
-    const L0 = lstar(colors[0]);
-    const L1 = lstar(colors[colors.length - 1]);
-    const corrected = isMonotonic(colors.map(lstar));
+    const L0 = lightness(colors[0]);
+    const L1 = lightness(colors[colors.length - 1]);
+    const corrected = isMonotonic(colors.map(lightness));
     const raw = makeScale(colors, mode);
-    const result = corrected ? makeScale(colors, mode).correctLightness() : raw;
+    const result = corrected ? correctOklabLightness(raw) : raw;
     return {
       raw: (t) => raw(t),
       result: (t) => result(t),
       target: (t) => L0 + t * (L1 - L0),
       corrected,
+    };
+  }
+
+  /**
+   * Moves each sample along `scale` until its OKLab L lands on the straight line between the two
+   * ends. This is the same bisection chroma.js's correctLightness() runs, but on OKLab L rather
+   * than CIE L*. It needs lightness that only rises or only falls along the scale.
+   */
+  function correctOklabLightness(scale) {
+    const L = (t) => scale(t).oklab()[0];
+    const L0 = L(0);
+    const L1 = L(1);
+    const sign = L1 >= L0 ? 1 : -1;
+    return (t) => {
+      const target = L0 + (L1 - L0) * t;
+      let lo = 0, hi = 1, u = t;
+      for (let i = 0; i < 24; i++) {
+        const diff = (L(u) - target) * sign;
+        if (Math.abs(diff) < 1e-4) break;
+        if (diff < 0) lo = u; else hi = u;
+        u = (lo + hi) / 2;
+      }
+      return scale(u);
     };
   }
 
@@ -138,7 +162,7 @@
     if (gradient.bezierWarning) warnings.push('Bezier interpolation works best with 2–5 colors.');
     const clippedCount = stepColors.filter((c) => c.clipped && c.clipped()).length;
     if (clippedCount) {
-      warnings.push(`${clippedCount} step${clippedCount > 1 ? 's' : ''} fell outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped (marked “clipped”), which moves L* slightly.`);
+      warnings.push(`${clippedCount} step${clippedCount > 1 ? 's' : ''} fell outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped (marked “clipped”), which moves lightness slightly.`);
     }
     if (warnings.length) showWarning(warnings.join('<br>')); else hideWarning();
 
@@ -147,14 +171,14 @@
     el.swatches.innerHTML = '';
     stepColors.forEach((c, i) => {
       const hex = hexes[i];
-      const L = lstar(hex);
+      const L = lightness(hex);
       const d = document.createElement('button');
       d.type = 'button';
       d.className = 'swatch';
       d.style.background = hex;
       d.style.color = L > 60 ? '#111' : '#fff';
       d.title = 'Click to copy';
-      d.innerHTML = `<span>${hex}</span><span>L* ${L.toFixed(1)}</span>` +
+      d.innerHTML = `<span>${hex}</span><span>L ${L.toFixed(1)}</span>` +
         (c.clipped && c.clipped() ? '<span class="clip">clipped</span>' : '');
       d.addEventListener('click', () => copy(hex, d.firstChild));
       el.swatches.appendChild(d);
@@ -208,7 +232,7 @@
     const name = rampName().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'phosphor';
     const space = el.mode.options[el.mode.selectedIndex].text;
     const how = s.corrected
-      ? `${space} interpolation, lightness-corrected (linear L*).`
+      ? `${space} interpolation, lightness-corrected (linear OKLab L).`
       : `${space} interpolation, uncorrected (the colors go up and down in lightness).`;
     return [
       'from matplotlib.colors import LinearSegmentedColormap, ListedColormap',
@@ -330,7 +354,7 @@
   function chartDots(hexes) {
     const stroke = themeColor('--chart-corrected');
     return positions(hexes.length).map((t, i) =>
-      `<circle cx="${chartX(t)}" cy="${chartY(lstar(hexes[i]))}" r="5" fill="${hexes[i]}" stroke="${stroke}" stroke-width="1.5"/>`).join('');
+      `<circle cx="${chartX(t)}" cy="${chartY(lightness(hexes[i]))}" r="5" fill="${hexes[i]}" stroke="${stroke}" stroke-width="1.5"/>`).join('');
   }
 
   /** Grid, curves, legend and stats: everything on the chart except the step dots. */
@@ -348,19 +372,19 @@
     }
     out += `<text x="${pad.l}" y="${H - 8}">start</text><text x="${W - pad.r}" y="${H - 8}" text-anchor="end">end</text>`;
 
-    // Actual L* is measured from the displayed (gamut-clipped) hex.
+    // Actual OKLab L is measured from the displayed (gamut-clipped) hex.
     out += `<path d="${line(s.target, 2)}" fill="none" stroke="${col('--chart-target')}" stroke-width="1.5" stroke-dasharray="2 4"/>`;
     if (s.corrected) {
-      out += `<path d="${line((t) => lstar(s.raw(t).hex()))}" fill="none" stroke="${col('--chart-raw')}" stroke-width="1.5" stroke-dasharray="6 4"/>`;
+      out += `<path d="${line((t) => lightness(s.raw(t).hex()))}" fill="none" stroke="${col('--chart-raw')}" stroke-width="1.5" stroke-dasharray="6 4"/>`;
     }
-    out += `<path d="${line((t) => lstar(s.result(t).hex()))}" fill="none" stroke="${col('--chart-corrected')}" stroke-width="2"/>`;
+    out += `<path d="${line((t) => lightness(s.result(t).hex()))}" fill="none" stroke="${col('--chart-corrected')}" stroke-width="2"/>`;
 
-    const maxDev = (fn) => Math.max(...positions(200).map((t) => Math.abs(lstar(fn(t).hex()) - s.target(t))));
+    const maxDev = (fn) => Math.max(...positions(200).map((t) => Math.abs(lightness(fn(t).hex()) - s.target(t))));
     el.legendResult.textContent = s.corrected ? 'Corrected' : 'Uncorrected';
     el.legendRaw.hidden = !s.corrected;
     el.stats.textContent = s.corrected
-      ? `Largest gap from the linear target: corrected ${maxDev(s.result).toFixed(2)} L*, uncorrected ${maxDev(s.raw).toFixed(2)} L*.`
-      : `Largest gap from the linear target: ${maxDev(s.result).toFixed(2)} L* (uncorrected).`;
+      ? `Largest gap from the linear target: corrected ${maxDev(s.result).toFixed(2)}, uncorrected ${maxDev(s.raw).toFixed(2)} (OKLab L, 0–100).`
+      : `Largest gap from the linear target: ${maxDev(s.result).toFixed(2)} (OKLab L, 0–100; uncorrected).`;
     return out;
   }
 
@@ -506,7 +530,7 @@
   function renderLValues() {
     el.list.querySelectorAll('.color-item').forEach((li, i) => {
       const c = state.colors[i];
-      li.querySelector('.lval').textContent = chroma.valid(c) ? 'L* ' + Math.round(lstar(c)) : '';
+      li.querySelector('.lval').textContent = chroma.valid(c) ? 'L ' + Math.round(lightness(c)) : '';
     });
   }
 
@@ -647,7 +671,7 @@
   });
   el.reverse.addEventListener('click', () => { state.colors.reverse(); buildList(); render(); });
   el.sortL.addEventListener('click', () => {
-    state.colors.sort((a, b) => (chroma.valid(a) ? lstar(a) : 0) - (chroma.valid(b) ? lstar(b) : 0));
+    state.colors.sort((a, b) => (chroma.valid(a) ? lightness(a) : 0) - (chroma.valid(b) ? lightness(b) : 0));
     buildList(); render();
   });
   const applyPaste = () => {
