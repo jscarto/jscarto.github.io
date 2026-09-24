@@ -16,6 +16,7 @@
     warning: $('warning'), bar: $('bar'), barLabel: $('bar-label'),
     presetsToggle: $('presets-toggle'), presetsPanel: $('presets-panel'), legendResult: $('legend-result'), legendRaw: $('legend-raw'),
     swatches: $('swatches'), chart: $('chart'), stats: $('stats'),
+    resetLightness: $('reset-lightness'), chartHint: $('chart-hint'), clipNote: $('clip-note'),
     outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'),
     proPreview: $('pro-preview'), rampName: $('ramp-name'), proDownload: $('pro-download'),
     outQgis: $('out-qgis'), qgisDownload: $('qgis-download'),
@@ -62,13 +63,43 @@
     const corrected = isMonotonic(colors.map(lightness));
     const raw = makeScale(colors, mode);
     const result = corrected ? correctOklabLightness(raw) : raw;
+    let okSamples = null;
     return {
       raw: (t) => raw(t),
       result: (t) => result(t),
       target: (t) => L0 + t * (L1 - L0),
       corrected,
+      // The corrected gradient in OKLab at 257 points, built once on first use, so hand-adjusted
+      // lightness can be applied while dragging without re-running the correction's search.
+      oklabSamples: () => (okSamples = okSamples || positions(257).map((t) => result(t).oklab())),
     };
   }
+
+  /**
+   * The gradient as shown and exported. Without hand adjustments it is the corrected gradient.
+   * With them, each color keeps the corrected gradient's hue and chroma (OKLab a and b) and takes
+   * its lightness from a line through the adjusted step values.
+   */
+  function adjustedSampler(s) {
+    const pts = state.lightness;
+    if (!s.corrected || !pts) return s.result;
+    const samples = s.oklabSamples();
+    const lerp = (arr, t) => {
+      const x = t * (arr.length - 1);
+      const i = Math.min(arr.length - 2, Math.floor(x));
+      const f = x - i;
+      return [arr[i], arr[i + 1], f];
+    };
+    return (t) => {
+      const [p0, p1, f] = lerp(pts, t);
+      const [c0, c1, g] = lerp(samples, t);
+      const L = (p0 + (p1 - p0) * f) / 100;
+      return chroma.oklab(L, c0[1] + (c1[1] - c0[1]) * g, c0[2] + (c1[2] - c0[2]) * g);
+    };
+  }
+
+  /** Hand-adjusted lightness belongs to one set of colors and interpolation space. */
+  const gradientKey = () => state.mode + '|' + state.colors.join(',').toLowerCase();
 
   /**
    * Moves each sample along `scale` until its OKLab L lands on the straight line between the two
@@ -97,20 +128,22 @@
 
   // ---------- rendering ----------
 
-  // Rendering happens in two layers. render() rebuilds everything that depends on the colors,
-  // interpolation space or theme, and caches it in `gradient`. renderSteps() redraws only what
-  // depends on the step count, so dragging the Steps slider stays cheap.
+  // Rendering happens in three layers:
+  //   render()        rebuilds the samplers when the colors, interpolation space or theme change;
+  //   renderOutputs() redraws everything built from the gradient (used while dragging chart dots);
+  //   renderSteps()   redraws only what depends on the step count (used by the Steps slider).
   let gradient = null;
 
   function render() {
     const colors = state.colors.filter((c) => chroma.valid(c)).map((c) => chroma(c).hex());
     renderLValues();
-    clearStaleShareLink();
+    if (state.lightness && state.lightnessKey !== gradientKey()) state.lightness = null;
     gradient = null;
     el.proDownload.disabled = true;
     el.qgisDownload.disabled = true;
 
     if (colors.length < 2) {
+      clearStaleShareLink();
       showWarning('Add at least two valid hex colors.');
       return;
     }
@@ -119,19 +152,32 @@
     try {
       s = buildSamplers(colors, state.mode);
     } catch (err) {
+      clearStaleShareLink();
       showWarning('Could not build this gradient: ' + err.message);
       return;
     }
+    gradient = { s, bezierWarning: state.mode === 'bezier' && colors.length > 5 };
+    renderOutputs();
+  }
+
+  function renderOutputs() {
+    if (!gradient) return;
+    const { s } = gradient;
+    const result = adjustedSampler(s);
+    const adjusted = result !== s.result;
+    Object.assign(gradient, { result, adjusted });
 
     // Bar
-    el.bar.style.background = cssGradient(positions(64).map((t) => s.result(t).hex()));
-    el.barLabel.textContent = s.corrected
-      ? 'Corrected'
-      : 'Uncorrected - Your colors go up and down in lightness. Try Sort by lightness.';
+    el.bar.style.background = cssGradient(positions(64).map((t) => result(t).hex()));
+    el.barLabel.textContent = !s.corrected
+      ? 'Uncorrected - Your colors go up and down in lightness. Try Sort by lightness.'
+      : adjusted ? 'Corrected, adjusted by hand' : 'Corrected';
     el.barLabel.classList.toggle('bar-label-warn', !s.corrected);
+    el.resetLightness.disabled = !adjusted;
+    el.chartHint.hidden = !s.corrected;
 
     // ArcGIS Pro blends each segment in CIELAB, which is exactly a Lab scale through these stops.
-    proHexes = positions(PRO_RAMP_COLORS).map((t) => s.result(t).hex());
+    proHexes = positions(PRO_RAMP_COLORS).map((t) => result(t).hex());
     el.proPreview.style.background = cssGradient(chroma.scale(proHexes).mode('lab').colors(64));
     const preset = activePreset();
     markActivePreset(preset);
@@ -139,13 +185,9 @@
       el.rampName.value = preset ? `Phosphor ${preset.name}` : `Phosphor ${proHexes[0]}–${proHexes[proHexes.length - 1]}`;
     }
 
-    gradient = {
-      s,
-      bezierWarning: state.mode === 'bezier' && colors.length > 5,
-      chartBase: chartBase(s),
-      dense32: positions(RGB_STOPS).map((t) => s.result(t).hex()),
-    };
-    setExport(el.outCss, 'css', cssSnippet(positions(CSS_STOPS).map((t) => s.result(t).hex())));
+    gradient.chartBase = chartBase(s, result, adjusted);
+    gradient.dense32 = positions(RGB_STOPS).map((t) => result(t).hex());
+    setExport(el.outCss, 'css', cssSnippet(positions(CSS_STOPS).map((t) => result(t).hex())));
     el.proDownload.disabled = false;
     el.qgisDownload.disabled = false;
     renderSteps();
@@ -155,16 +197,16 @@
     el.stepsOut.textContent = state.steps;
     clearStaleShareLink();
     if (!gradient) return;
-    const { s } = gradient;
 
-    const stepColors = positions(state.steps).map((t) => s.result(t));
-    const warnings = [];
-    if (gradient.bezierWarning) warnings.push('Bezier interpolation works best with 2–5 colors.');
+    const stepColors = positions(state.steps).map((t) => gradient.result(t));
+    // Only the Bezier note uses the banner above the gradient; it can't change mid-drag. The
+    // clipping note can, so it sits below the chart where it never shifts the dots being dragged.
+    if (gradient.bezierWarning) showWarning('Bezier interpolation works best with 2–5 colors.'); else hideWarning();
     const clippedCount = stepColors.filter((c) => c.clipped && c.clipped()).length;
-    if (clippedCount) {
-      warnings.push(`${clippedCount} step${clippedCount > 1 ? 's' : ''} fell outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped (marked “clipped”), which moves lightness slightly.`);
-    }
-    if (warnings.length) showWarning(warnings.join('<br>')); else hideWarning();
+    el.clipNote.hidden = !clippedCount;
+    el.clipNote.textContent = clippedCount
+      ? `${clippedCount} step${clippedCount > 1 ? 's' : ''} fell outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped (marked “clipped”), which moves lightness slightly.`
+      : '';
 
     // Swatches
     const hexes = stepColors.map((c) => c.hex());
@@ -184,7 +226,7 @@
       el.swatches.appendChild(d);
     });
 
-    el.chart.innerHTML = gradient.chartBase + chartDots(hexes);
+    el.chart.innerHTML = gradient.chartBase + chartDots(hexes, gradient.s.corrected);
     setExport(el.outHex, 'list', hexes.map((h) => `"${h}"`).join(', '));
     renderNamedExports(hexes);
   }
@@ -193,16 +235,92 @@
   function renderNamedExports(hexes = gradient && gradient.stepHexes) {
     if (!gradient) return;
     gradient.stepHexes = hexes;
-    setExport(el.outPy, 'python', pythonSnippet(gradient.s, hexes, gradient.dense32));
+    setExport(el.outPy, 'python', pythonSnippet(gradient, hexes, gradient.dense32));
     setExport(el.outQgis, 'xml', qgisXml(rampName(), gradient.dense32));
   }
 
-  // Coalesce Steps slider input to at most one redraw per animation frame.
-  let stepsFrame = 0;
-  function scheduleSteps() {
-    if (stepsFrame) return;
-    stepsFrame = requestAnimationFrame(() => { stepsFrame = 0; renderSteps(); });
+  // Coalesce slider and drag input to at most one redraw per animation frame. A pending full
+  // redraw (renderOutputs) also covers the steps.
+  let frame = 0;
+  let frameNeedsOutputs = false;
+  function schedule(outputs) {
+    frameNeedsOutputs = frameNeedsOutputs || outputs;
+    if (frame) return;
+    frame = requestAnimationFrame(() => {
+      frame = 0;
+      const full = frameNeedsOutputs;
+      frameNeedsOutputs = false;
+      if (full) renderOutputs(); else renderSteps();
+    });
   }
+  const scheduleSteps = () => schedule(false);
+  const scheduleOutputs = () => schedule(true);
+
+  // ---------- hand-adjusted lightness (draggable chart dots) ----------
+
+  /** Lightness at t from a line through the step values `pts` (0–100). */
+  function profileAt(pts, t) {
+    const x = t * (pts.length - 1);
+    const i = Math.min(pts.length - 2, Math.floor(x));
+    return pts[i] + (pts[i + 1] - pts[i]) * (x - i);
+  }
+
+  function setStepLightness(i, L) {
+    if (!gradient || !gradient.s.corrected) return;
+    if (!state.lightness) {
+      state.lightness = positions(state.steps).map((t) => gradient.s.target(t));
+      state.lightnessKey = gradientKey();
+    }
+    state.lightness[i] = Math.max(0, Math.min(100, L));
+    scheduleOutputs();
+  }
+
+  function resetLightness() {
+    state.lightness = null;
+    renderOutputs();
+  }
+
+  const stepLightness = (i) => (state.lightness ? state.lightness[i] : gradient.s.target(positions(state.steps)[i]));
+
+  // Drags are relative: the new value is the starting value plus how far the pointer has moved.
+  // That keeps the dot from jumping to the pointer on press, and means any layout change during
+  // the drag can't feed back into the value being set.
+  let drag = null;
+  el.chart.addEventListener('pointerdown', (e) => {
+    const dot = e.target.closest('.dot');
+    if (!dot) return;
+    e.preventDefault();
+    const i = +dot.dataset.i;
+    const plotPx = el.chart.getScreenCTM().d * (CHART.H - CHART.pad.t - CHART.pad.b);
+    drag = { i, startY: e.clientY, startL: stepLightness(i), pxPerL: plotPx / 100 };
+    el.chart.setPointerCapture(e.pointerId);
+    el.chart.classList.add('dragging');
+  });
+  el.chart.addEventListener('pointermove', (e) => {
+    if (drag) setStepLightness(drag.i, drag.startL + (drag.startY - e.clientY) / drag.pxPerL);
+  });
+  const endDrag = (e) => {
+    if (!drag) return;
+    drag = null;
+    el.chart.classList.remove('dragging');
+    if (el.chart.hasPointerCapture(e.pointerId)) el.chart.releasePointerCapture(e.pointerId);
+  };
+  el.chart.addEventListener('pointerup', endDrag);
+  el.chart.addEventListener('pointercancel', endDrag);
+
+  // Keyboard: focus a dot, then Up/Down moves it by 1 (Shift: 5).
+  el.chart.addEventListener('keydown', (e) => {
+    const dot = e.target.closest('.dot');
+    if (!dot || (e.key !== 'ArrowUp' && e.key !== 'ArrowDown')) return;
+    e.preventDefault();
+    const i = +dot.dataset.i;
+    const step = (e.key === 'ArrowUp' ? 1 : -1) * (e.shiftKey ? 5 : 1);
+    setStepLightness(i, stepLightness(i) + step);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const again = el.chart.querySelector(`.dot[data-i="${i}"]`);
+      if (again) again.focus();
+    }));
+  });
 
   function cssGradient(hexes) {
     return `linear-gradient(to right, ${hexes.join(', ')})`;
@@ -228,10 +346,12 @@
 
   const rampName = () => el.rampName.value.trim() || 'Phosphor';
 
-  function pythonSnippet(s, hexes, dense) {
+  function pythonSnippet(g, hexes, dense) {
     const name = rampName().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'phosphor';
     const space = el.mode.options[el.mode.selectedIndex].text;
-    const how = s.corrected
+    const how = g.adjusted
+      ? `${space} interpolation, lightness-corrected, then OKLab L adjusted by hand.`
+      : g.s.corrected
       ? `${space} interpolation, lightness-corrected (linear OKLab L).`
       : `${space} interpolation, uncorrected (the colors go up and down in lightness).`;
     return [
@@ -351,14 +471,22 @@
   const chartY = (L) => CHART.pad.t + (1 - L / 100) * (CHART.H - CHART.pad.t - CHART.pad.b);
   const themeColor = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
-  function chartDots(hexes) {
+  function chartDots(hexes, draggable) {
     const stroke = themeColor('--chart-corrected');
-    return positions(hexes.length).map((t, i) =>
-      `<circle cx="${chartX(t)}" cy="${chartY(lightness(hexes[i]))}" r="5" fill="${hexes[i]}" stroke="${stroke}" stroke-width="1.5"/>`).join('');
+    // 10 px dots, shrunk only when many steps would make neighbors overlap.
+    const spacing = (CHART.W - CHART.pad.l - CHART.pad.r) / Math.max(1, hexes.length - 1);
+    const r = Math.min(10, Math.max(5, spacing / 2 - 1));
+    return positions(hexes.length).map((t, i) => {
+      const L = lightness(hexes[i]);
+      const attrs = draggable
+        ? ` class="dot" data-i="${i}" tabindex="0" role="slider" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${L.toFixed(1)}" aria-label="Step ${i + 1} lightness"`
+        : '';
+      return `<circle${attrs} cx="${chartX(t)}" cy="${chartY(L)}" r="${r}" fill="${hexes[i]}" stroke="${stroke}" stroke-width="1.5"/>`;
+    }).join('');
   }
 
   /** Grid, curves, legend and stats: everything on the chart except the step dots. */
-  function chartBase(s) {
+  function chartBase(s, result, adjusted) {
     const { W, H, pad } = CHART;
     const x = chartX, y = chartY, col = themeColor;
 
@@ -377,12 +505,14 @@
     if (s.corrected) {
       out += `<path d="${line((t) => lightness(s.raw(t).hex()))}" fill="none" stroke="${col('--chart-raw')}" stroke-width="1.5" stroke-dasharray="6 4"/>`;
     }
-    out += `<path d="${line((t) => lightness(s.result(t).hex()))}" fill="none" stroke="${col('--chart-corrected')}" stroke-width="2"/>`;
+    out += `<path d="${line((t) => lightness(result(t).hex()))}" fill="none" stroke="${col('--chart-corrected')}" stroke-width="2"/>`;
 
     const maxDev = (fn) => Math.max(...positions(200).map((t) => Math.abs(lightness(fn(t).hex()) - s.target(t))));
-    el.legendResult.textContent = s.corrected ? 'Corrected' : 'Uncorrected';
+    el.legendResult.textContent = !s.corrected ? 'Uncorrected' : adjusted ? 'Adjusted' : 'Corrected';
     el.legendRaw.hidden = !s.corrected;
-    el.stats.textContent = s.corrected
+    el.stats.textContent = adjusted
+      ? `Lightness adjusted by hand: up to ${maxDev(result).toFixed(2)} from the linear target (OKLab L, 0–100).`
+      : s.corrected
       ? `Largest gap from the linear target: corrected ${maxDev(s.result).toFixed(2)}, uncorrected ${maxDev(s.raw).toFixed(2)} (OKLab L, 0–100).`
       : `Largest gap from the linear target: ${maxDev(s.result).toFixed(2)} (OKLab L, 0–100; uncorrected).`;
     return out;
@@ -605,10 +735,14 @@
 
   // The URL only changes when someone clicks Share. A shared (or opened) link is cleared on the
   // next edit, so reloading never brings back a palette the visitor has since changed.
-  const stateHash = () => '#' + new URLSearchParams({
-    c: state.colors.map((c) => c.replace('#', '')).join(','),
-    m: state.mode, n: String(state.steps),
-  }).toString();
+  const stateHash = () => {
+    const p = new URLSearchParams({
+      c: state.colors.map((c) => c.replace('#', '')).join(','),
+      m: state.mode, n: String(state.steps),
+    });
+    if (state.lightness) p.set('l', state.lightness.map((L) => +L.toFixed(1)).join(','));
+    return '#' + p.toString();
+  };
 
   function clearStaleShareLink() {
     if (location.hash && location.hash !== stateHash()) {
@@ -637,11 +771,18 @@
     const colors = (p.get('c') || '').split(',').filter(Boolean).map((c) => '#' + c);
     if (colors.length < 2) return null;
     const modes = Array.from(document.querySelectorAll('#mode option')).map((o) => o.value);
-    return {
+    const parsed = {
       colors,
       mode: modes.includes(p.get('m')) ? p.get('m') : DEFAULTS.mode,
       steps: Math.min(32, Math.max(2, parseInt(p.get('n'), 10) || DEFAULTS.steps)),
+      lightness: null,
     };
+    const l = (p.get('l') || '').split(',').filter(Boolean).map(Number);
+    if (l.length === parsed.steps && l.every((v) => Number.isFinite(v) && v >= 0 && v <= 100)) {
+      parsed.lightness = l;
+      parsed.lightnessKey = parsed.mode + '|' + parsed.colors.join(',').toLowerCase();
+    }
+    return parsed;
   }
 
   // ---------- misc ----------
@@ -683,7 +824,20 @@
   el.paste.addEventListener('keydown', (e) => { if (e.key === 'Enter') applyPaste(); });
 
   el.mode.addEventListener('change', () => { state.mode = el.mode.value; render(); });
-  el.steps.addEventListener('input', () => { state.steps = +el.steps.value; scheduleSteps(); });
+  el.steps.addEventListener('input', () => {
+    const steps = +el.steps.value;
+    if (state.lightness) {
+      // Keep the adjusted curve's shape by sampling it at the new step positions.
+      const old = state.lightness;
+      state.lightness = positions(steps).map((t) => profileAt(old, t));
+      state.steps = steps;
+      scheduleOutputs();
+    } else {
+      state.steps = steps;
+      scheduleSteps();
+    }
+  });
+  el.resetLightness.addEventListener('click', resetLightness);
   el.share.addEventListener('click', sharePalette);
   document.querySelectorAll('[data-copy]').forEach((b) =>
     b.addEventListener('click', () => copy(exportText[b.dataset.copy], b)));

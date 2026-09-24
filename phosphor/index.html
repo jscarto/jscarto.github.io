@@ -117,7 +117,10 @@
       <h2>Steps</h2>
       <div id="swatches" class="swatches"></div>
 
-      <h2>Lightness (OKLab L) by position</h2>
+      <div class="chart-head">
+        <h2>Lightness (OKLab L) by position</h2>
+        <button id="reset-lightness" class="mini-btn" type="button" disabled>Reset lightness</button>
+      </div>
       <div class="chart-wrap">
         <svg id="chart" viewBox="0 0 600 260" role="img" aria-label="Lightness by position"></svg>
         <div class="legend">
@@ -126,6 +129,8 @@
           <span><i class="key key-target"></i>Linear target</span>
         </div>
         <p id="stats" class="hint"></p>
+        <p id="clip-note" class="hint clip-note" hidden></p>
+        <p id="chart-hint" class="hint">Drag the dots up or down (or focus one and use the arrow keys) to adjust each step's lightness.</p>
       </div>
 
       <h2>Export</h2>

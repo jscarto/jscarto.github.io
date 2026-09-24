@@ -298,7 +298,15 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 }
 .swatch .clip { font-size: 0.65rem; opacity: 0.8; }
 
-.chart-wrap svg { width: 100%; height: auto; display: block; }
+.chart-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 20px 0 10px; }
+.chart-head h2 { margin: 0; }
+.mini-btn { padding: 3px 10px; font-size: 0.75rem; border-radius: 14px; color: var(--muted); background: transparent; }
+.mini-btn:not(:disabled):hover { color: var(--text); border-color: var(--text); }
+.chart-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+.clip-note { color: var(--warn-text); }
+.chart-wrap .dot { cursor: ns-resize; touch-action: none; outline: none; }
+.chart-wrap .dot:hover, .chart-wrap .dot:focus-visible { stroke-width: 3; }
+.chart-wrap svg.dragging, .chart-wrap svg.dragging .dot { cursor: grabbing; }
 .chart-wrap text { fill: var(--muted); font-size: 11px; font-family: system-ui, sans-serif; }
 .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
 .key { display: inline-block; width: 18px; height: 0; border-top: 2px solid; vertical-align: middle; margin-right: 6px; }
