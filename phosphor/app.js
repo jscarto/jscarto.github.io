@@ -326,8 +326,8 @@
     const plural = (n, one, many) => `${n} step${n > 1 ? 's' : ''} ${n > 1 ? many : one}`;
     el.clipNote.hidden = !clippedCount && !reducedCount;
     el.clipNote.textContent = [
-      clippedCount ? `${plural(clippedCount, 'fell', 'fell')} outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped (marked “clipped”), which moves lightness slightly.` : '',
-      reducedCount ? `${plural(reducedCount, 'was', 'were')} outside sRGB at ${reducedCount > 1 ? 'their' : 'its'} new lightness, so ${reducedCount > 1 ? 'their' : 'its'} chroma was lowered to fit (marked “muted”). Lightness and hue are unchanged.` : '',
+      clippedCount ? `${plural(clippedCount, 'fell', 'fell')} outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped, which moves lightness slightly.` : '',
+      reducedCount ? `${plural(reducedCount, 'was', 'were')} outside sRGB at ${reducedCount > 1 ? 'their' : 'its'} new lightness, so ${reducedCount > 1 ? 'their' : 'its'} chroma was lowered to fit. Lightness and hue are unchanged.` : '',
     ].filter(Boolean).join(' ');
 
     // Swatches
@@ -336,15 +336,14 @@
     stepColors.forEach((c, i) => {
       const hex = hexes[i];
       const L = lightness(hex);
+      const gamut = c.clipped && c.clipped() ? ', clipped' : c.reduced ? ', muted to fit sRGB' : '';
       const d = document.createElement('button');
       d.type = 'button';
       d.className = 'swatch';
       d.style.background = hex;
-      d.style.color = L > 60 ? '#111' : '#fff';
-      d.title = 'Click to copy';
-      d.innerHTML = `<span>${hex}</span><span>L ${L.toFixed(1)}</span>` +
-        (c.clipped && c.clipped() ? '<span class="clip">clipped</span>' : c.reduced ? '<span class="clip">muted</span>' : '');
-      d.addEventListener('click', () => copy(hex, d.firstChild));
+      d.title = `${hex} · L ${L.toFixed(1)}${gamut}. Click to copy.`;
+      d.setAttribute('aria-label', `Step ${i + 1}: ${hex}, lightness ${L.toFixed(1)}${gamut}. Copy`);
+      d.addEventListener('click', () => copy(hex));
       el.swatches.appendChild(d);
     });
 
@@ -1068,6 +1067,9 @@
     const preset = currentPresets().find((p) => p.name === card.dataset.name);
     state.colors = preset.colors.slice();
     if (preset.mid !== undefined) state.mid = preset.mid;
+    // A preset starts fresh: linear lightness, no curve or hand adjustments carried over.
+    state.curve = 'linear';
+    state.lightness = null;
     rampNameEdited = false;
     buildList();
     render();

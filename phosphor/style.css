@@ -210,7 +210,9 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 }
 .lede { margin: 0 0 24px; color: var(--muted); max-width: 60ch; }
 .lede a { color: var(--amber); font-weight: 600; text-underline-offset: 2px; }
-.page-foot { padding-top: 24px; padding-bottom: 32px; color: var(--muted); font-size: 0.85rem; }
+.page-foot { padding-top: 24px; padding-bottom: 32px; color: var(--muted); font-size: 0.85rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.kofi { margin-left: auto; }
+.kofi .btn-container { min-width: 0; } /* Ko-fi's 160px minimum leaves a gap right of its 150px button */
 
 .layout {
   display: grid;
@@ -315,34 +317,21 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 .bar { height: 72px; border-radius: 6px; border: 1px solid var(--border); }
 .bar-thin { height: 28px; }
 
-/* One row: swatches share the width, down to a sliver each at 32 steps on a phone. Nothing fixed
-   adds up across swatches: the gap scales with the row, side padding lives on the labels, and
-   labels drop once a swatch is narrower than 48px. */
+/* One row of plain color: swatches share the width, down to a sliver each at 32 steps on a
+   phone, with a gap that scales with the row. */
 .swatches {
   display: flex;
   gap: clamp(1px, 0.6%, 4px);
 }
 .swatch {
-  border-radius: min(6px, 20%);
   flex: 1 1 0;
   min-width: 0;
-  container-type: inline-size;
   height: 45px;
-  padding: 3px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  overflow: hidden;
-  font: 0.6rem/1.2 ui-monospace, Menlo, monospace;
+  padding: 0;
+  border: 0;
+  border-radius: min(6px, 20%);
   cursor: pointer;
-  border: 1px solid var(--border);
 }
-.swatch .clip { font-size: 0.55rem; line-height: 1.1; opacity: 0.8; }
-/* Labels shrink to fit narrow swatches (7 monospace characters take about 4.3em inside the
-   labels' 5px side padding), then hide below 48px overall: 46px inside the 1px borders. */
-.swatch > span { padding: 0 5px; white-space: nowrap; font-size: min(1em, calc((100cqi - 10px) / 4.3)); }
-.swatch > .clip { font-size: min(0.55rem, calc((100cqi - 10px) / 4.7)); }
-@container (max-width: 45.98px) { .swatch > span { display: none; } }
 
 .chart-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin: 20px 0 10px; container-type: inline-size; }
 .chart-head h2 { margin: 0; }
