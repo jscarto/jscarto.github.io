@@ -2,10 +2,13 @@
 (function () {
   'use strict';
 
+  // Frostfire is both a diverging preset and the diverging tab's starting palette.
+  const FROSTFIRE = { name: 'Frostfire', mid: 6, colors: ['#eff6ff', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fff5da'] };
+
   // Each tab keeps its own settings; `state` always points at the active tab's.
   const DEFAULTS = {
     sequential: { type: 'sequential', colors: ['#1b2a49', '#c23b5c', '#f7d154'], mid: 1, mode: 'oklab', steps: 9, curve: 'linear' },
-    diverging: { type: 'diverging', colors: ['#1d4f91', '#7ea6d8', '#f4f1ea', '#e39a78', '#931824'], mid: 2, mode: 'oklab', steps: 11, curve: 'linear' },
+    diverging: { type: 'diverging', colors: FROSTFIRE.colors, mid: FROSTFIRE.mid, mode: 'oklab', steps: 11, curve: 'linear' },
   };
   const freshState = (type) => ({ ...DEFAULTS[type], colors: DEFAULTS[type].colors.slice(), lightness: null });
 
@@ -940,7 +943,7 @@
       title: 'Stevens',
       presets: [
         { name: 'Chlorophyll', mid: 3, colors: ['#0c2777', '#25468d', '#638bab', '#a2c2ba', '#8ebd89', '#45893e', '#002f0e'] },
-        { name: 'Frostfire', mid: 6, colors: ['#eff6ff', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fff5da'] },
+        FROSTFIRE,
       ],
     },
     {
