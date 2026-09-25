@@ -322,6 +322,14 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 .chart-head h2 { margin: 0; }
 .mini-btn { padding: 3px 10px; font-size: 0.75rem; border-radius: 14px; color: var(--muted); background: transparent; }
 .mini-btn:not(:disabled):hover { color: var(--text); border-color: var(--text); }
+.curve-group { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.curve-btn { display: inline-flex; align-items: center; gap: 5px; }
+.curve-btn.icon-only { padding: 3px 7px; }
+.curve-btn[hidden], .curve-btn svg[hidden] { display: none; }
+.curve-btn svg { display: block; width: 18px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.curve-btn[aria-pressed="true"] { color: var(--text); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.curve-group.falling .mirror { transform: scaleX(-1); }
+.curve-group.valley .flip { transform: scaleY(-1); }
 .chart-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
 .clip-note { color: var(--warn-text); }
 .chart-wrap .dot { cursor: ns-resize; touch-action: none; outline: none; }

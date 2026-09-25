@@ -4,8 +4,8 @@
 
   // Each tab keeps its own settings; `state` always points at the active tab's.
   const DEFAULTS = {
-    sequential: { type: 'sequential', colors: ['#1b2a49', '#c23b5c', '#f7d154'], mid: 1, mode: 'oklab', steps: 9 },
-    diverging: { type: 'diverging', colors: ['#1d4f91', '#7ea6d8', '#f4f1ea', '#e39a78', '#931824'], mid: 2, mode: 'oklab', steps: 11 },
+    sequential: { type: 'sequential', colors: ['#1b2a49', '#c23b5c', '#f7d154'], mid: 1, mode: 'oklab', steps: 9, curve: 'linear' },
+    diverging: { type: 'diverging', colors: ['#1d4f91', '#7ea6d8', '#f4f1ea', '#e39a78', '#931824'], mid: 2, mode: 'oklab', steps: 11, curve: 'linear' },
   };
   const freshState = (type) => ({ ...DEFAULTS[type], colors: DEFAULTS[type].colors.slice(), lightness: null });
 
@@ -17,7 +17,7 @@
     warning: $('warning'), bar: $('bar'), barLabel: $('bar-label'),
     presetsToggle: $('presets-toggle'), presetsPanel: $('presets-panel'), legendResult: $('legend-result'), legendRaw: $('legend-raw'),
     swatches: $('swatches'), chart: $('chart'), stats: $('stats'),
-    resetLightness: $('reset-lightness'), chartHint: $('chart-hint'), clipNote: $('clip-note'),
+    curveGroup: $('curve-group'), curveBtns: [...document.querySelectorAll('.curve-btn')], chartHint: $('chart-hint'), clipNote: $('clip-note'),
     divHint: $('div-hint'), divNote: $('div-note'), tabPanel: $('tab-panel'),
     outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'),
     proPreview: $('pro-preview'), rampName: $('ramp-name'), proDownload: $('pro-download'),
@@ -123,14 +123,43 @@
     };
   }
 
+  // How far the curve buttons bend lightness away from linear, as a share of each run's lightness
+  // range. At 1, the most that keeps lightness moving one way, each curve is a full parabola with
+  // zero slope at one end; in a diverging gradient the curve that suits the palette's shape then
+  // meets the midpoint smoothly: one parabola, no kink.
+  const CURVE_STRENGTH = 1;
+  const CURVE_LABELS = {
+    sequential: { linear: 'linear', up: 'concave up', down: 'concave down' },
+    diverging: { linear: 'linear', up: 'parabolic up', down: 'parabolic down' },
+  };
+  const curveLabel = () => CURVE_LABELS[state.type][state.curve];
+
   /**
-   * The gradient as shown and exported. Without hand adjustments it is the corrected gradient.
-   * With them, each color keeps the corrected gradient's hue and chroma (OKLab a and b) and takes
-   * its lightness from a line through the adjusted step values.
+   * Lightness at t for the chosen curve: the linear target plus a parabola, so the bend is smooth
+   * and even (a constant second derivative). "Up" opens upward on the chart and "down" downward,
+   * whichever way the lightness runs. Diverging gradients bend each half on its own.
+   */
+  function curveTarget(s, curve) {
+    if (curve !== 'up' && curve !== 'down') return s.target;
+    const k = (curve === 'up' ? 1 : -1) * CURVE_STRENGTH;
+    const bend = (t, from, to, u) => s.target(t) + k * Math.abs(s.target(to) - s.target(from)) * u * (u - 1);
+    return s.diverging
+      ? (t) => (t <= 0.5 ? bend(t, 0, 0.5, t * 2) : bend(t, 0.5, 1, t * 2 - 1))
+      : (t) => bend(t, 0, 1, t);
+  }
+
+  /** The lightness the gradient follows before any hand adjustment: linear or a curve. */
+  const shapeTarget = (s) => curveTarget(s, state.curve);
+
+  /**
+   * The gradient as shown and exported. Without hand adjustments or a curve it is the corrected
+   * gradient. Otherwise each color keeps the corrected gradient's hue and chroma (OKLab a and b)
+   * and takes its lightness from the curve, or from a line through the hand-adjusted step values.
    */
   function adjustedSampler(s) {
     const pts = state.lightness;
-    if (!s.corrected || !pts) return s.result;
+    const profile = pts ? (t) => profileAt(pts, t) : state.curve !== 'linear' ? shapeTarget(s) : null;
+    if (!s.corrected || !profile) return s.result;
     const samples = s.oklabSamples();
     const lerp = (arr, t) => {
       const x = t * (arr.length - 1);
@@ -139,11 +168,28 @@
       return [arr[i], arr[i + 1], f];
     };
     return (t) => {
-      const [p0, p1, f] = lerp(pts, t);
       const [c0, c1, g] = lerp(samples, t);
-      const L = (p0 + (p1 - p0) * f) / 100;
-      return chroma.oklab(L, c0[1] + (c1[1] - c0[1]) * g, c0[2] + (c1[2] - c0[2]) * g);
+      return inGamutOklab(profile(t) / 100, c0[1] + (c1[1] - c0[1]) * g, c0[2] + (c1[2] - c0[2]) * g);
     };
+  }
+
+  /**
+   * An OKLab color, brought inside sRGB by lowering its chroma (a and b scaled toward gray) rather
+   * than by clipping RGB, so its lightness and hue stay exactly as asked. Clipping would pull
+   * lightness off a curve or hand-set value wherever a bend pushes a color out of gamut. Colors
+   * that needed it are marked `reduced`.
+   */
+  function inGamutOklab(L, a, b) {
+    const c = chroma.oklab(L, a, b);
+    if (!c.clipped()) return c;
+    let lo = 0, hi = 1;
+    for (let i = 0; i < 14; i++) {
+      const k = (lo + hi) / 2;
+      if (chroma.oklab(L, a * k, b * k).clipped()) hi = k; else lo = k;
+    }
+    const out = chroma.oklab(L, a * lo, b * lo);
+    out.reduced = true;
+    return out;
   }
 
   /**
@@ -241,9 +287,10 @@
       ? (s.diverging
         ? 'Uncorrected - One side of your colors goes up and down in lightness. Try Sort by lightness.'
         : 'Uncorrected - Your colors go up and down in lightness. Try Sort by lightness.')
-      : adjusted ? 'Corrected, adjusted by hand' : 'Corrected';
+      : state.lightness && adjusted ? 'Corrected, adjusted by hand'
+      : adjusted ? `Corrected, ${curveLabel()}` : 'Corrected';
     el.barLabel.classList.toggle('bar-label-warn', !s.corrected);
-    el.resetLightness.disabled = !adjusted;
+    renderCurveButtons(s);
     el.chartHint.hidden = !s.corrected;
 
     // ArcGIS Pro blends each segment in CIELAB, which is exactly a Lab scale through these stops.
@@ -273,10 +320,13 @@
     // clipping note can, so it sits below the chart where it never shifts the dots being dragged.
     if (gradient.bezierWarning) showWarning('Bezier interpolation works best with 2–5 colors.'); else hideWarning();
     const clippedCount = stepColors.filter((c) => c.clipped && c.clipped()).length;
-    el.clipNote.hidden = !clippedCount;
-    el.clipNote.textContent = clippedCount
-      ? `${clippedCount} step${clippedCount > 1 ? 's' : ''} fell outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped (marked “clipped”), which moves lightness slightly.`
-      : '';
+    const reducedCount = stepColors.filter((c) => c.reduced).length;
+    const plural = (n, one, many) => `${n} step${n > 1 ? 's' : ''} ${n > 1 ? many : one}`;
+    el.clipNote.hidden = !clippedCount && !reducedCount;
+    el.clipNote.textContent = [
+      clippedCount ? `${plural(clippedCount, 'fell', 'fell')} outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped (marked “clipped”), which moves lightness slightly.` : '',
+      reducedCount ? `${plural(reducedCount, 'was', 'were')} outside sRGB at ${reducedCount > 1 ? 'their' : 'its'} new lightness, so ${reducedCount > 1 ? 'their' : 'its'} chroma was lowered to fit (marked “muted”). Lightness and hue are unchanged.` : '',
+    ].filter(Boolean).join(' ');
 
     // Swatches
     const hexes = stepColors.map((c) => c.hex());
@@ -291,7 +341,7 @@
       d.style.color = L > 60 ? '#111' : '#fff';
       d.title = 'Click to copy';
       d.innerHTML = `<span>${hex}</span><span>L ${L.toFixed(1)}</span>` +
-        (c.clipped && c.clipped() ? '<span class="clip">clipped</span>' : '');
+        (c.clipped && c.clipped() ? '<span class="clip">clipped</span>' : c.reduced ? '<span class="clip">muted</span>' : '');
       d.addEventListener('click', () => copy(hex, d.firstChild));
       el.swatches.appendChild(d);
     });
@@ -353,19 +403,36 @@
   function setStepLightness(i, L) {
     if (!gradient || !gradient.s.corrected) return;
     if (!state.lightness) {
-      state.lightness = positions(state.steps).map((t) => gradient.s.target(t));
+      state.lightness = positions(state.steps).map(shapeTarget(gradient.s));
       state.lightnessKey = gradientKey();
     }
     state.lightness[i] = Math.max(0, Math.min(100, L));
     scheduleOutputs();
   }
 
-  function resetLightness() {
+  /** Applies a whole-curve shape ('linear', 'up' or 'down'), replacing any hand adjustments. */
+  function setCurve(curve) {
+    state.curve = curve;
     state.lightness = null;
     renderOutputs();
   }
 
-  const stepLightness = (i) => (state.lightness ? state.lightness[i] : gradient.s.target(positions(state.steps)[i]));
+  /**
+   * Shows the curve buttons for this tab, marks the active one (none while hand-adjusted) and
+   * mirrors the sequential icons when lightness falls, so each icon matches the chart.
+   */
+  function renderCurveButtons(s) {
+    el.curveGroup.classList.toggle('falling', s.target(1) < s.target(0));
+    el.curveGroup.classList.toggle('valley', !!s.diverging && s.target(0.5) < s.target(0));
+    el.curveBtns.forEach((b) => {
+      b.hidden = b.dataset.for && b.dataset.for !== state.type;
+      b.disabled = !s.corrected;
+      b.setAttribute('aria-pressed', String(!state.lightness && state.curve === b.dataset.curve));
+    });
+    el.curveGroup.querySelectorAll('[data-icon-for]').forEach((svg) => { svg.hidden = svg.dataset.iconFor !== state.type; });
+  }
+
+  const stepLightness = (i) => (state.lightness ? state.lightness[i] : shapeTarget(gradient.s)(positions(state.steps)[i]));
 
   // Drags are relative: the new value is the starting value plus how far the pointer has moved.
   // That keeps the dot from jumping to the pointer on press, and means any layout change during
@@ -435,8 +502,10 @@
     const name = rampName().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'phosphor';
     const space = el.mode.options[el.mode.selectedIndex].text;
     const kind = g.s.diverging ? 'diverging, ' : '';
-    const how = g.adjusted
+    const how = g.adjusted && state.lightness
       ? `${kind}${space} interpolation, lightness-corrected, then OKLab L adjusted by hand.`
+      : g.adjusted
+      ? `${kind}${space} interpolation, lightness-corrected to a ${curveLabel()} OKLab L curve.`
       : g.s.corrected && g.s.diverging
       ? `diverging, ${space} interpolation, lightness-corrected (OKLab L linear to the midpoint and back).`
       : g.s.corrected
@@ -613,17 +682,21 @@
     }
     out += `<text x="${pad.l}" y="${H - 8}">start</text><text x="${W - pad.r}" y="${H - 8}" text-anchor="end">end</text>`;
 
-    // Actual OKLab L is measured from the displayed (gamut-clipped) hex.
+    // Actual OKLab L is measured from each color after any gamut clipping, but before rounding to
+    // an 8-bit hex: rounding adds up to ±0.2 L of noise that would make the lines look jagged.
     out += `<path d="${line(s.target, 3)}" fill="none" stroke="${col('--chart-target')}" stroke-width="1.5" stroke-dasharray="2 4"/>`;
     if (s.corrected) {
-      out += `<path d="${line((t) => lightness(s.raw(t).hex()))}" fill="none" stroke="${col('--chart-raw')}" stroke-width="1.5" stroke-dasharray="6 4"/>`;
+      out += `<path d="${line((t) => lightness(s.raw(t)))}" fill="none" stroke="${col('--chart-raw')}" stroke-width="1.5" stroke-dasharray="6 4"/>`;
     }
-    out += `<path d="${line((t) => lightness(result(t).hex()))}" fill="none" stroke="${col('--chart-corrected')}" stroke-width="2"/>`;
+    out += `<path d="${line((t) => lightness(result(t)))}" fill="none" stroke="${col('--chart-corrected')}" stroke-width="2"/>`;
 
     const maxDev = (fn) => Math.max(...positions(201).map((t) => Math.abs(lightness(fn(t).hex()) - s.target(t))));
-    el.legendResult.textContent = !s.corrected ? 'Uncorrected' : adjusted ? 'Adjusted' : 'Corrected';
+    const byHand = adjusted && !!state.lightness;
+    el.legendResult.textContent = !s.corrected ? 'Uncorrected' : byHand ? 'Adjusted' : adjusted ? 'Curved' : 'Corrected';
     el.legendRaw.hidden = !s.corrected;
-    el.stats.textContent = adjusted
+    el.stats.textContent = adjusted && !byHand
+      ? `Lightness follows a ${curveLabel()} curve: up to ${maxDev(result).toFixed(2)} from the linear target (OKLab L, 0–100).`
+      : adjusted
       ? `Lightness adjusted by hand: up to ${maxDev(result).toFixed(2)} from the linear target (OKLab L, 0–100).`
       : s.corrected
       ? `Largest gap from the linear target: corrected ${maxDev(s.result).toFixed(2)}, uncorrected ${maxDev(s.raw).toFixed(2)} (OKLab L, 0–100).`
@@ -922,6 +995,7 @@
       m: state.mode, n: String(state.steps),
     });
     if (state.type === 'diverging') p.set('mid', String(state.mid));
+    if (state.curve !== 'linear') p.set('k', state.curve);
     if (state.lightness) p.set('l', state.lightness.map((L) => +L.toFixed(1)).join(','));
     return '#' + p.toString();
   };
@@ -960,6 +1034,7 @@
       mid: Math.max(1, Math.min(colors.length - 2, parseInt(p.get('mid'), 10) || Math.floor(colors.length / 2))),
       mode: modes.includes(p.get('m')) ? p.get('m') : DEFAULTS[type].mode,
       steps: Math.min(32, Math.max(2, parseInt(p.get('n'), 10) || DEFAULTS[type].steps)),
+      curve: ['up', 'down'].includes(p.get('k')) ? p.get('k') : 'linear',
       lightness: null,
     };
     const l = (p.get('l') || '').split(',').filter(Boolean).map(Number);
@@ -1030,7 +1105,7 @@
       scheduleSteps();
     }
   });
-  el.resetLightness.addEventListener('click', resetLightness);
+  el.curveBtns.forEach((b) => b.addEventListener('click', () => setCurve(b.dataset.curve)));
   el.share.addEventListener('click', sharePalette);
   document.querySelectorAll('[data-copy]').forEach((b) =>
     b.addEventListener('click', () => copy(exportText[b.dataset.copy], b)));
