@@ -2,11 +2,12 @@
 (function () {
   'use strict';
 
+  // Each tab keeps its own settings; `state` always points at the active tab's.
   const DEFAULTS = {
-    colors: ['#1b2a49', '#c23b5c', '#f7d154'],
-    mode: 'oklab',
-    steps: 9,
+    sequential: { type: 'sequential', colors: ['#1b2a49', '#c23b5c', '#f7d154'], mid: 1, mode: 'oklab', steps: 9 },
+    diverging: { type: 'diverging', colors: ['#1d4f91', '#7ea6d8', '#f4f1ea', '#e39a78', '#931824'], mid: 2, mode: 'oklab', steps: 11 },
   };
+  const freshState = (type) => ({ ...DEFAULTS[type], colors: DEFAULTS[type].colors.slice(), lightness: null });
 
   const $ = (id) => document.getElementById(id);
   const el = {
@@ -17,17 +18,24 @@
     presetsToggle: $('presets-toggle'), presetsPanel: $('presets-panel'), legendResult: $('legend-result'), legendRaw: $('legend-raw'),
     swatches: $('swatches'), chart: $('chart'), stats: $('stats'),
     resetLightness: $('reset-lightness'), chartHint: $('chart-hint'), clipNote: $('clip-note'),
+    divHint: $('div-hint'), divNote: $('div-note'), tabPanel: $('tab-panel'),
     outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'),
     proPreview: $('pro-preview'), rampName: $('ramp-name'), proDownload: $('pro-download'),
     outQgis: $('out-qgis'), qgisDownload: $('qgis-download'),
+    outGdal: $('out-gdal'), gdalDownload: $('gdal-download'),
+    gdalMin: $('gdal-min'), gdalMax: $('gdal-max'), gdalNodata: $('gdal-nodata'),
     share: $('share'), shareBtnLabel: $('share-label'), shareStatus: $('share-status'),
   };
 
   // ArcGIS Pro export: this many colors, joined by CIELAB segments.
-  const PRO_RAMP_COLORS = 16;
+  const PRO_RAMP_COLORS = 17; // odd, so a diverging midpoint lands exactly on a stop
   const SQLJS_BASE = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.14.2/';
 
-  let state = readHash() || { ...DEFAULTS, colors: DEFAULTS.colors.slice() };
+  const tabStates = { sequential: freshState('sequential'), diverging: freshState('diverging') };
+  const fromLink = readHash();
+  if (fromLink) tabStates[fromLink.type] = fromLink;
+  let state = tabStates[fromLink ? fromLink.type : 'sequential'];
+  const isDiverging = () => state.type === 'diverging';
   let proHexes = [];
   let rampNameEdited = false;
   const SHARE_PROMPT = 'Like this palette? Get a link to bookmark it or share it.';
@@ -76,6 +84,46 @@
   }
 
   /**
+   * Diverging gradients are two sequential gradients joined at the midpoint color: start → mid
+   * over the first half, mid → end over the second. Each side is corrected to linear OKLab L,
+   * running from the start's lightness to the midpoint's and back to the start's, so the two sides
+   * mirror each other. If the end color's own lightness differs from the start's, it keeps its hue
+   * and chroma and takes the start's lightness (`endShift` reports by how much).
+   */
+  function buildDivergingSamplers(colors, mid, mode) {
+    const left = colors.slice(0, mid + 1);
+    const right = colors.slice(mid);
+    const L0 = lightness(colors[0]);
+    const Lm = lightness(colors[mid]);
+    const Lend = lightness(colors[colors.length - 1]);
+    const corrected = isMonotonic(left.map(lightness)) && isMonotonic(right.map(lightness));
+    const rawL = makeScale(left, mode);
+    const rawR = makeScale(right, mode);
+    const raw = (t) => (t <= 0.5 ? rawL(t * 2) : rawR(t * 2 - 1));
+    const target = (t) => (t <= 0.5 ? L0 + (Lm - L0) * t * 2 : Lm + (L0 - Lm) * (t * 2 - 1));
+
+    let result = raw;
+    if (corrected) {
+      const corrL = correctOklabLightness(rawL);
+      const corrR = correctOklabLightness(rawR);
+      const matchEnd = Math.abs(Lend - L0) >= 0.05;
+      result = (t) => {
+        if (t <= 0.5) return corrL(t * 2);
+        const c = corrR(t * 2 - 1);
+        if (!matchEnd) return c;
+        const [, a, b] = c.oklab();
+        return chroma.oklab(target(t) / 100, a, b);
+      };
+    }
+    let okSamples = null;
+    return {
+      raw, result, target, corrected, diverging: true,
+      endShift: corrected ? L0 - Lend : 0,
+      oklabSamples: () => (okSamples = okSamples || positions(257).map((t) => result(t).oklab())),
+    };
+  }
+
+  /**
    * The gradient as shown and exported. Without hand adjustments it is the corrected gradient.
    * With them, each color keeps the corrected gradient's hue and chroma (OKLab a and b) and takes
    * its lightness from a line through the adjusted step values.
@@ -98,8 +146,13 @@
     };
   }
 
-  /** Hand-adjusted lightness belongs to one set of colors and interpolation space. */
-  const gradientKey = () => state.mode + '|' + state.colors.join(',').toLowerCase();
+  /**
+   * Hand-adjusted lightness belongs to one set of colors, midpoint and interpolation space.
+   * A function declaration, because readHash() needs it before the rest of the setup runs.
+   */
+  function gradientKey(st = state) {
+    return [st.type, st.type === 'diverging' ? st.mid : '', st.mode, st.colors.join(',').toLowerCase()].join('|');
+  }
 
   /**
    * Moves each sample along `scale` until its OKLab L lands on the straight line between the two
@@ -141,22 +194,37 @@
     gradient = null;
     el.proDownload.disabled = true;
     el.qgisDownload.disabled = true;
+    el.gdalDownload.disabled = true;
 
-    if (colors.length < 2) {
+    el.divHint.hidden = !isDiverging();
+    el.divNote.hidden = true;
+    const needed = isDiverging() ? 3 : 2;
+    // Sequential gradients skip invalid entries (e.g. while a hex is being typed); diverging ones
+    // can't, because the midpoint is a position in the list.
+    const invalid = isDiverging() && colors.length !== state.colors.length;
+    if (colors.length < needed || invalid) {
       clearStaleShareLink();
-      showWarning('Add at least two valid hex colors.');
+      showWarning(invalid
+        ? 'Finish or remove the invalid hex color to see the diverging gradient.'
+        : isDiverging()
+        ? 'Diverging gradients need at least three colors: a start, a midpoint and an end.'
+        : 'Add at least two valid hex colors.');
       return;
     }
 
     let s;
     try {
-      s = buildSamplers(colors, state.mode);
+      s = isDiverging() ? buildDivergingSamplers(colors, state.mid, state.mode) : buildSamplers(colors, state.mode);
     } catch (err) {
       clearStaleShareLink();
       showWarning('Could not build this gradient: ' + err.message);
       return;
     }
     gradient = { s, bezierWarning: state.mode === 'bezier' && colors.length > 5 };
+    if (s.diverging && Math.abs(s.endShift) >= 0.5) {
+      el.divNote.hidden = false;
+      el.divNote.textContent = `The end color's lightness moves from L ${(lightness(colors[colors.length - 1])).toFixed(1)} to L ${lightness(colors[0]).toFixed(1)} to match the start, so both sides mirror each other.`;
+    }
     renderOutputs();
   }
 
@@ -168,9 +236,11 @@
     Object.assign(gradient, { result, adjusted });
 
     // Bar
-    el.bar.style.background = cssGradient(positions(64).map((t) => result(t).hex()));
+    el.bar.style.background = cssGradient(positions(65).map((t) => result(t).hex()));
     el.barLabel.textContent = !s.corrected
-      ? 'Uncorrected - Your colors go up and down in lightness. Try Sort by lightness.'
+      ? (s.diverging
+        ? 'Uncorrected - One side of your colors goes up and down in lightness. Try Sort by lightness.'
+        : 'Uncorrected - Your colors go up and down in lightness. Try Sort by lightness.')
       : adjusted ? 'Corrected, adjusted by hand' : 'Corrected';
     el.barLabel.classList.toggle('bar-label-warn', !s.corrected);
     el.resetLightness.disabled = !adjusted;
@@ -237,6 +307,21 @@
     gradient.stepHexes = hexes;
     setExport(el.outPy, 'python', pythonSnippet(gradient, hexes, gradient.dense32));
     setExport(el.outQgis, 'xml', qgisXml(rampName(), gradient.dense32));
+    renderGdal();
+  }
+
+  /** The GDAL color file: depends on the steps and on the min, max and no-data inputs. */
+  function renderGdal() {
+    if (!gradient || !gradient.stepHexes) return;
+    const min = parseNumber(el.gdalMin.value);
+    const max = parseNumber(el.gdalMax.value);
+    const valid = min !== null && max !== null && min !== max;
+    el.gdalMin.setAttribute('aria-invalid', String(min === null));
+    el.gdalMax.setAttribute('aria-invalid', String(max === null));
+    el.gdalDownload.disabled = !valid;
+    setExport(el.outGdal, 'gdal', valid
+      ? gdalColorFile(gradient.stepHexes, min, max, el.gdalNodata.checked)
+      : '# Enter a numeric min and max that differ.');
   }
 
   // Coalesce slider and drag input to at most one redraw per animation frame. A pending full
@@ -329,7 +414,7 @@
   // ---------- code exports ----------
 
   const CSS_STOPS = 17; // browsers blend CSS gradients in sRGB, so sample densely
-  const RGB_STOPS = 32; // matplotlib and QGIS blend linearly in RGB between these samples
+  const RGB_STOPS = 33; // matplotlib and QGIS blend linearly in RGB between these samples (odd: see PRO_RAMP_COLORS)
   const exportText = {};
 
   const hexRows = (hexes, perRow, indent, quote) => {
@@ -349,8 +434,11 @@
   function pythonSnippet(g, hexes, dense) {
     const name = rampName().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'phosphor';
     const space = el.mode.options[el.mode.selectedIndex].text;
+    const kind = g.s.diverging ? 'diverging, ' : '';
     const how = g.adjusted
-      ? `${space} interpolation, lightness-corrected, then OKLab L adjusted by hand.`
+      ? `${kind}${space} interpolation, lightness-corrected, then OKLab L adjusted by hand.`
+      : g.s.corrected && g.s.diverging
+      ? `diverging, ${space} interpolation, lightness-corrected (OKLab L linear to the midpoint and back).`
       : g.s.corrected
       ? `${space} interpolation, lightness-corrected (linear OKLab L).`
       : `${space} interpolation, uncorrected (the colors go up and down in lightness).`;
@@ -401,6 +489,25 @@
     ].join('\n');
   }
 
+  const parseNumber = (text) => {
+    const t = text.trim();
+    return t !== '' && Number.isFinite(+t) ? +t : null;
+  };
+
+  // Enough digits to tell neighbors apart, without float noise like 0.30000000000000004.
+  const gdalValue = (v) => String(+v.toPrecision(12));
+  const gdalColor = (hex) => chroma(hex).rgb().join(', ') + ', 255';
+
+  /**
+   * A color file for `gdaldem color-relief`: one `value, R, G, B, A` row per step, with values
+   * spaced evenly from min to max. The optional `nv` row colors no-data pixels (the min color).
+   */
+  function gdalColorFile(hexes, min, max, nodata) {
+    const rows = hexes.map((h, i) => `${gdalValue(min + (max - min) * i / (hexes.length - 1))}, ${gdalColor(h)}`);
+    if (nodata) rows.push(`nv, ${gdalColor(hexes[0])}`);
+    return rows.join('\n');
+  }
+
   function downloadText(text, filename, type) {
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([text], { type }));
@@ -428,6 +535,12 @@
       ['prop', /[\w:-]+(?==)/y],
       ['str', /"[^"]*"/y],
     ],
+    gdal: [
+      ['com', /#.*/y],
+      ['rgba', /\d{1,3}, \d{1,3}, \d{1,3}, \d{1,3}(?=\n|$)/y],
+      ['kw', /\bnv\b/y],
+      ['num', /-?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?/iy],
+    ],
     python: [
       ['str', /"[^"\n]*"/y],
       ['com', /#.*/y],
@@ -452,8 +565,8 @@
       if (!hit) { html += escapeHtml(code[i]); i += 1; continue; }
       const [cls, text] = hit;
       const hex = /^"?(#[0-9a-f]{6})"?$/i.exec(text);
-      const rgb = /^"(\d{1,3},\d{1,3},\d{1,3}),255"$/.exec(text);
-      const swatch = cls === 'com' ? null : hex ? hex[1] : rgb ? `rgb(${rgb[1]})` : null;
+      const rgb = /^"(\d{1,3},\d{1,3},\d{1,3}),255"$|^(\d{1,3}, \d{1,3}, \d{1,3}), \d{1,3}$/.exec(text);
+      const swatch = cls === 'com' ? null : hex ? hex[1] : rgb ? `rgb(${rgb[1] || rgb[2]})` : null;
       const chip = swatch ? `<i class="chip" style="background:${swatch}"></i>` : '';
       html += cls ? `${chip}<span class="tok-${cls}">${escapeHtml(text)}</span>` : escapeHtml(text);
       i += text.length;
@@ -490,7 +603,7 @@
     const { W, H, pad } = CHART;
     const x = chartX, y = chartY, col = themeColor;
 
-    const line = (fn, n = 120) =>
+    const line = (fn, n = 121) =>
       positions(n).map((t, i) => `${i ? 'L' : 'M'}${x(t).toFixed(1)},${y(fn(t)).toFixed(1)}`).join('');
 
     let out = '';
@@ -501,13 +614,13 @@
     out += `<text x="${pad.l}" y="${H - 8}">start</text><text x="${W - pad.r}" y="${H - 8}" text-anchor="end">end</text>`;
 
     // Actual OKLab L is measured from the displayed (gamut-clipped) hex.
-    out += `<path d="${line(s.target, 2)}" fill="none" stroke="${col('--chart-target')}" stroke-width="1.5" stroke-dasharray="2 4"/>`;
+    out += `<path d="${line(s.target, 3)}" fill="none" stroke="${col('--chart-target')}" stroke-width="1.5" stroke-dasharray="2 4"/>`;
     if (s.corrected) {
       out += `<path d="${line((t) => lightness(s.raw(t).hex()))}" fill="none" stroke="${col('--chart-raw')}" stroke-width="1.5" stroke-dasharray="6 4"/>`;
     }
     out += `<path d="${line((t) => lightness(result(t).hex()))}" fill="none" stroke="${col('--chart-corrected')}" stroke-width="2"/>`;
 
-    const maxDev = (fn) => Math.max(...positions(200).map((t) => Math.abs(lightness(fn(t).hex()) - s.target(t))));
+    const maxDev = (fn) => Math.max(...positions(201).map((t) => Math.abs(lightness(fn(t).hex()) - s.target(t))));
     el.legendResult.textContent = !s.corrected ? 'Uncorrected' : adjusted ? 'Adjusted' : 'Corrected';
     el.legendRaw.hidden = !s.corrected;
     el.stats.textContent = adjusted
@@ -615,19 +728,38 @@
 
   // ---------- color list UI ----------
 
+  /** Keeps a diverging midpoint strictly between the first and last colors. */
+  function clampMid() {
+    state.mid = Math.max(1, Math.min(state.colors.length - 2, state.mid));
+  }
+
   function buildList() {
+    const div = isDiverging();
+    if (div) clampMid();
     el.list.innerHTML = '';
+    el.list.classList.toggle('diverging', div);
+    const minColors = div ? 3 : 2;
+    const last = state.colors.length - 1;
+    // A move is blocked if it would push the midpoint into the first or last slot.
+    const canMove = (from, to) => to >= 0 && to <= last && !(div && (
+      (from === state.mid && (to === 0 || to === last)) || (to === state.mid && (from === 0 || from === last))));
     state.colors.forEach((c, i) => {
       const li = document.createElement('li');
-      li.className = 'color-item';
+      const isMid = div && i === state.mid;
+      li.className = 'color-item' + (isMid ? ' is-mid' : '');
       const valid = chroma.valid(c);
+      const canBeMid = i > 0 && i < state.colors.length - 1;
+      const midBtn = div
+        ? `<button type="button" class="mid-btn" data-act="mid" aria-pressed="${isMid}" aria-label="Use as midpoint" title="${canBeMid ? 'Use as midpoint' : 'The first and last colors can’t be the midpoint'}" ${canBeMid ? '' : 'disabled'}>◆</button>`
+        : '';
       li.innerHTML = `
         <input type="color" aria-label="Pick color ${i + 1}" value="${valid ? chroma(c).hex('rgb') : '#000000'}">
-        <input type="text" aria-label="Hex color ${i + 1}" value="${c}" spellcheck="false" autocomplete="off" class="${valid ? '' : 'invalid'}">
+        <input type="text" aria-label="Hex color ${i + 1}${isMid ? ' (midpoint)' : ''}" value="${c}" spellcheck="false" autocomplete="off" class="${valid ? '' : 'invalid'}">
         <span class="lval"></span>
-        <button type="button" data-act="up" aria-label="Move up" ${i === 0 ? 'disabled' : ''}>↑</button>
-        <button type="button" data-act="down" aria-label="Move down" ${i === state.colors.length - 1 ? 'disabled' : ''}>↓</button>
-        <button type="button" data-act="del" aria-label="Remove" ${state.colors.length <= 2 ? 'disabled' : ''}>×</button>`;
+        ${midBtn}
+        <button type="button" data-act="up" aria-label="Move up" ${canMove(i, i - 1) ? '' : 'disabled'}>↑</button>
+        <button type="button" data-act="down" aria-label="Move down" ${canMove(i, i + 1) ? '' : 'disabled'}>↓</button>
+        <button type="button" data-act="del" aria-label="Remove" ${state.colors.length <= minColors ? 'disabled' : ''}>×</button>`;
       const [picker, text] = li.querySelectorAll('input');
 
       picker.addEventListener('input', () => {
@@ -645,9 +777,14 @@
         render();
       });
       li.addEventListener('click', (e) => {
-        const act = e.target.dataset && e.target.dataset.act;
+        const btn = e.target.closest('button');
+        const act = btn && btn.dataset.act;
         if (!act) return;
-        if (act === 'del') state.colors.splice(i, 1);
+        if (act === 'mid') state.mid = i;
+        if (act === 'del') {
+          state.colors.splice(i, 1);
+          if (i < state.mid) state.mid -= 1;
+        }
         if (act === 'up') swap(i, i - 1);
         if (act === 'down') swap(i, i + 1);
         buildList();
@@ -664,8 +801,33 @@
     });
   }
 
+  /** Swaps two colors; a diverging midpoint travels with its color. */
   function swap(a, b) {
     [state.colors[a], state.colors[b]] = [state.colors[b], state.colors[a]];
+    if (state.mid === a) state.mid = b;
+    else if (state.mid === b) state.mid = a;
+  }
+
+  const byLightness = (a, b) => (chroma.valid(a) ? lightness(a) : 0) - (chroma.valid(b) ? lightness(b) : 0);
+
+  /**
+   * Sequential: dark to light. Diverging: the midpoint stays put and each side is ordered so its
+   * lightness moves steadily toward the midpoint (lighter or darker, whichever the midpoint is).
+   */
+  function sortByLightness() {
+    if (!isDiverging()) {
+      state.colors.sort(byLightness);
+      return;
+    }
+    const mid = state.colors[state.mid];
+    const left = state.colors.slice(0, state.mid);
+    const right = state.colors.slice(state.mid + 1);
+    const others = left.concat(right).filter((c) => chroma.valid(c));
+    const midIsLight = chroma.valid(mid) && others.length
+      && lightness(mid) >= others.reduce((sum, c) => sum + lightness(c), 0) / others.length;
+    left.sort(midIsLight ? byLightness : (a, b) => byLightness(b, a));
+    right.sort(midIsLight ? (a, b) => byLightness(b, a) : byLightness);
+    state.colors = left.concat([mid], right);
   }
 
   // ---------- preset palettes ----------
@@ -677,7 +839,7 @@
       title: 'Stevens',
       presets: [
         { name: 'Tropics', colors: ['#c3f4e9', '#b6e5eb', '#a9d6ec', '#9ac8ee', '#8bbaef', '#7aacf0', '#8898eb', '#9682e5', '#b85fd5', '#c244b4', '#be338e', '#b71f69', '#ad0045'] },
-        { name: 'Frostfire', colors: ['#eff7fa', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fcedc4'] },
+        { name: 'Frostfire', colors: ['#eff7fa', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fff5da'] },
         { name: 'Smoggy Sky', colors: ['#ffffff', '#e2eff9', '#c5dff2', '#e1c794', '#eeac49', '#dd9a3f', '#cd8837', '#bc772e', '#ac6626', '#9c551e', '#8c4416', '#7c340f', '#672709', '#541b01'] },
       ],
     },
@@ -697,12 +859,28 @@
       ],
     },
   ];
-  const ALL_PRESETS = PRESET_GROUPS.flatMap((g) => g.presets);
+  // Diverging presets: 11-class ColorBrewer diverging schemes (midpoint in the center) and
+  // Frostfire, whose lightness bottoms out at its seventh color.
+  const DIVERGING_GROUPS = [
+    {
+      title: 'Stevens',
+      presets: [
+        { name: 'Frostfire', mid: 6, colors: ['#eff7fa', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fff5da'] },
+      ],
+    },
+    {
+      title: 'ColorBrewer: diverging',
+      presets: ['BrBG', 'PiYG', 'PRGn', 'PuOr', 'RdBu', 'RdGy', 'RdYlBu', 'RdYlGn', 'Spectral']
+        .map((name) => ({ name, colors: chroma.brewer[name], mid: Math.floor(chroma.brewer[name].length / 2) })),
+    },
+  ];
+  const presetGroups = () => (isDiverging() ? DIVERGING_GROUPS : PRESET_GROUPS);
+  const currentPresets = () => presetGroups().flatMap((g) => g.presets);
 
-  /** The preset whose colors exactly match the current colors, if any. */
+  /** The preset (for the active tab) whose colors and midpoint match the current ones, if any. */
   function activePreset() {
     const key = state.colors.map((c) => c.toLowerCase()).join(',');
-    return ALL_PRESETS.find((p) => p.colors.join(',') === key) || null;
+    return currentPresets().find((p) => p.colors.join(',') === key && (!isDiverging() || p.mid === state.mid)) || null;
   }
 
   function markActivePreset(preset) {
@@ -711,7 +889,7 @@
   }
 
   function buildPresets() {
-    el.presetsPanel.innerHTML = PRESET_GROUPS.map((g) => `
+    el.presetsPanel.innerHTML = presetGroups().map((g) => `
       <h2>${g.title}</h2>
       <div class="preset-grid">
         ${g.presets.map((p) => `
@@ -720,16 +898,18 @@
             <span class="preset-name">${p.name}</span>
           </button>`).join('')}
       </div>`).join('');
-    el.presetsPanel.addEventListener('click', (e) => {
-      const card = e.target.closest('.preset-card');
-      if (!card) return;
-      const preset = ALL_PRESETS.find((p) => p.name === card.dataset.name);
-      state.colors = preset.colors.slice();
-      rampNameEdited = false;
-      buildList();
-      render();
-    });
   }
+
+  el.presetsPanel.addEventListener('click', (e) => {
+    const card = e.target.closest('.preset-card');
+    if (!card) return;
+    const preset = currentPresets().find((p) => p.name === card.dataset.name);
+    state.colors = preset.colors.slice();
+    if (preset.mid !== undefined) state.mid = preset.mid;
+    rampNameEdited = false;
+    buildList();
+    render();
+  });
 
   // ---------- URL state ----------
 
@@ -737,9 +917,11 @@
   // next edit, so reloading never brings back a palette the visitor has since changed.
   const stateHash = () => {
     const p = new URLSearchParams({
+      t: state.type === 'diverging' ? 'd' : 's',
       c: state.colors.map((c) => c.replace('#', '')).join(','),
       m: state.mode, n: String(state.steps),
     });
+    if (state.type === 'diverging') p.set('mid', String(state.mid));
     if (state.lightness) p.set('l', state.lightness.map((L) => +L.toFixed(1)).join(','));
     return '#' + p.toString();
   };
@@ -769,18 +951,21 @@
     if (!location.hash) return null;
     const p = new URLSearchParams(location.hash.slice(1));
     const colors = (p.get('c') || '').split(',').filter(Boolean).map((c) => '#' + c);
-    if (colors.length < 2) return null;
+    const type = p.get('t') === 'd' ? 'diverging' : 'sequential';
+    if (colors.length < (type === 'diverging' ? 3 : 2)) return null;
     const modes = Array.from(document.querySelectorAll('#mode option')).map((o) => o.value);
     const parsed = {
+      type,
       colors,
-      mode: modes.includes(p.get('m')) ? p.get('m') : DEFAULTS.mode,
-      steps: Math.min(32, Math.max(2, parseInt(p.get('n'), 10) || DEFAULTS.steps)),
+      mid: Math.max(1, Math.min(colors.length - 2, parseInt(p.get('mid'), 10) || Math.floor(colors.length / 2))),
+      mode: modes.includes(p.get('m')) ? p.get('m') : DEFAULTS[type].mode,
+      steps: Math.min(32, Math.max(2, parseInt(p.get('n'), 10) || DEFAULTS[type].steps)),
       lightness: null,
     };
     const l = (p.get('l') || '').split(',').filter(Boolean).map(Number);
     if (l.length === parsed.steps && l.every((v) => Number.isFinite(v) && v >= 0 && v <= 100)) {
       parsed.lightness = l;
-      parsed.lightnessKey = parsed.mode + '|' + parsed.colors.join(',').toLowerCase();
+      parsed.lightnessKey = gradientKey(parsed);
     }
     return parsed;
   }
@@ -810,15 +995,23 @@
     state.colors.push(chroma.valid(last) ? chroma(last).darken(1).hex() : '#888888');
     buildList(); render();
   });
-  el.reverse.addEventListener('click', () => { state.colors.reverse(); buildList(); render(); });
-  el.sortL.addEventListener('click', () => {
-    state.colors.sort((a, b) => (chroma.valid(a) ? lightness(a) : 0) - (chroma.valid(b) ? lightness(b) : 0));
+  el.reverse.addEventListener('click', () => {
+    state.colors.reverse();
+    state.mid = state.colors.length - 1 - state.mid;
     buildList(); render();
   });
+  el.sortL.addEventListener('click', () => { sortByLightness(); buildList(); render(); });
   const applyPaste = () => {
     const list = parseList(el.paste.value);
-    if (list.length >= 2) { state.colors = list; el.paste.value = ''; buildList(); render(); }
-    else showWarning('Paste at least two hex colors, separated by spaces or commas.');
+    const needed = isDiverging() ? 3 : 2;
+    if (list.length >= needed) {
+      state.colors = list;
+      state.mid = Math.floor(list.length / 2);
+      el.paste.value = '';
+      buildList(); render();
+    } else {
+      showWarning(`Paste at least ${needed === 3 ? 'three' : 'two'} hex colors, separated by spaces or commas.`);
+    }
   };
   el.applyPaste.addEventListener('click', applyPaste);
   el.paste.addEventListener('keydown', (e) => { if (e.key === 'Enter') applyPaste(); });
@@ -845,6 +1038,9 @@
   el.qgisDownload.addEventListener('click', () =>
     downloadText(exportText['out-qgis'], safeFilename(rampName()) + '.xml', 'application/xml'));
   el.proDownload.addEventListener('click', downloadStylx);
+  [el.gdalMin, el.gdalMax, el.gdalNodata].forEach((input) => input.addEventListener('input', renderGdal));
+  el.gdalDownload.addEventListener('click', () =>
+    downloadText(exportText['out-gdal'] + '\n', safeFilename(rampName()) + '.txt', 'text/plain'));
 
   // Theme: dark by default; an explicit choice is saved.
   const THEME_KEY = 'phosphor-theme';
@@ -864,6 +1060,34 @@
     applyTheme(next);
   });
 
+  // ---------- tabs ----------
+
+  const tabs = [...document.querySelectorAll('.tabs [role="tab"]')];
+  function selectTab(type, focus) {
+    if (state.type === type && gradient) return;
+    state = tabStates[type];
+    tabs.forEach((t) => {
+      const on = t.dataset.type === type;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on && focus) t.focus();
+    });
+    el.tabPanel.setAttribute('aria-labelledby', 'tab-' + type);
+    el.mode.value = state.mode;
+    el.steps.value = state.steps;
+    rampNameEdited = false;
+    buildList();
+    buildPresets();
+    render();
+  }
+  tabs.forEach((t) => t.addEventListener('click', () => selectTab(t.dataset.type)));
+  el.tabPanel.parentElement.querySelector('.tabs').addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const i = tabs.findIndex((t) => t.dataset.type === state.type);
+    const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+    selectTab(next.dataset.type, true);
+  });
+
   el.presetsToggle.addEventListener('click', () => {
     const open = el.presetsPanel.hidden;
     el.presetsPanel.hidden = !open;
@@ -880,7 +1104,13 @@
     cvdButtons.forEach((o) => o.setAttribute('aria-pressed', String(o.dataset.cvd === next)));
   }));
 
-  // initial UI sync
+  // initial UI sync (a shared link can open on either tab)
+  tabs.forEach((t) => {
+    const on = t.dataset.type === state.type;
+    t.setAttribute('aria-selected', String(on));
+    t.tabIndex = on ? 0 : -1;
+  });
+  el.tabPanel.setAttribute('aria-labelledby', 'tab-' + state.type);
   el.mode.value = state.mode;
   el.steps.value = state.steps;
   buildList();

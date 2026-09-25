@@ -82,7 +82,7 @@ body {
 a { color: var(--accent); }
 code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
 
-.page-head, .page-foot, .layout {
+.page-head, .page-foot, .app {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
@@ -106,6 +106,26 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 }
 
 .presets { grid-column: 1 / -1; }
+
+.tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 1px solid var(--border); }
+.tabs [role="tab"] {
+  padding: 8px 16px;
+  margin-bottom: -1px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+}
+.tabs [role="tab"]:hover { color: var(--text); border-color: transparent; border-bottom-color: var(--border); }
+.tabs [role="tab"][aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+
+.div-hint { margin: 0 0 10px; }
+.color-list.diverging .color-item { grid-template-columns: 34px 1fr auto auto auto auto auto; }
+.mid-btn { color: var(--muted); }
+.mid-btn[aria-pressed="true"] { color: var(--bg); background: var(--accent); border-color: var(--accent); }
+.color-item.is-mid input[type="text"] { border-color: var(--accent); }
 .presets-toggle { padding: 7px 14px; border-radius: 20px; background: var(--panel); }
 .presets-panel { margin-top: 10px; }
 .preset-grid {
@@ -319,6 +339,12 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 .ramp-name { margin: 0 0 12px; }
 .hint-inline { color: var(--muted); font-size: 0.8rem; }
 .export-head .row { gap: 6px; }
+.gdal-options { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px; align-items: end; margin-bottom: 8px; }
+.gdal-options .field { margin: 0; }
+.gdal-options input[type="text"] { font-family: ui-monospace, Menlo, monospace; }
+.gdal-options input[aria-invalid="true"] { border-color: var(--warn-text); }
+.check { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; padding-bottom: 7px; white-space: nowrap; cursor: pointer; }
+@media (max-width: 480px) { .gdal-options { grid-template-columns: 1fr 1fr; } .check { grid-column: 1 / -1; padding-bottom: 0; } }
 .code {
   margin: 0;
   max-height: 240px;
@@ -347,4 +373,4 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 .tok-num { color: var(--code-num); }
 .tok-com { color: var(--code-com); font-style: italic; }
 .tok-prop { color: var(--code-prop); }
-.tok-hex { color: var(--text); }
+.tok-hex, .tok-rgba { color: var(--text); }

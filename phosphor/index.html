@@ -9,7 +9,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Joshua Stevens">
   <meta property="og:title" content="Phosphor">
-  <meta property="og:description" content="Multi-hue color gradients with perceptually linear lightness. Export to CSS, Python, QGIS or ArcGIS Pro.">
+  <meta property="og:description" content="Multi-hue color gradients with perceptually linear lightness. Export to CSS, Python, QGIS, ArcGIS Pro or GDAL.">
   <meta property="og:url" content="https://www.joshuastevens.net/phosphor/">
   <meta property="og:image" content="https://www.joshuastevens.net/phosphor/assets/social-card.jpg">
   <meta property="og:image:width" content="1200">
@@ -56,7 +56,12 @@
     <p class="lede">Enter hex colors and get a gradient through them with perceptual lightness (OKLab L) that changes at a steady rate from one end to the other. <a href="https://www.joshuastevens.net/blog/introducing-phosphor/">Learn more</a>.</p>
   </header>
 
-  <main class="layout">
+  <main class="app">
+    <div class="tabs" role="tablist" aria-label="Gradient type">
+      <button type="button" role="tab" id="tab-sequential" data-type="sequential" aria-selected="true" aria-controls="tab-panel">Sequential</button>
+      <button type="button" role="tab" id="tab-diverging" data-type="diverging" aria-selected="false" aria-controls="tab-panel" tabindex="-1">Diverging</button>
+    </div>
+    <div id="tab-panel" class="layout" role="tabpanel" aria-labelledby="tab-sequential">
     <section class="presets" aria-label="Preset palettes">
       <button id="presets-toggle" class="presets-toggle" type="button" aria-expanded="false" aria-controls="presets-panel">Show preset palettes</button>
       <div id="presets-panel" class="panel presets-panel" hidden></div>
@@ -64,7 +69,9 @@
 
     <section class="panel controls" aria-label="Controls">
       <h2>Colors</h2>
+      <p id="div-hint" class="hint div-hint" hidden>Mark one color as the midpoint (<span aria-hidden="true">◆</span>). Lightness changes linearly from the start to the midpoint, then back to the start's lightness at the end.</p>
       <ol id="color-list" class="color-list"></ol>
+      <p id="div-note" class="hint clip-note" hidden></p>
       <div class="row">
         <button id="add-color" type="button">+ Add color</button>
         <button id="reverse" type="button">Reverse</button>
@@ -135,7 +142,7 @@
 
       <h2>Export</h2>
       <label class="field ramp-name">
-        <span>Ramp name <span class="hint-inline">(used by the Python, QGIS and ArcGIS Pro exports)</span></span>
+        <span>Ramp name <span class="hint-inline">(used by the Python, QGIS, ArcGIS Pro and GDAL exports)</span></span>
         <input id="ramp-name" type="text" placeholder="Ramp name" spellcheck="false" autocomplete="off">
       </label>
       <div class="exports">
@@ -154,7 +161,7 @@
         <div class="export">
           <div class="export-head"><span>ArcGIS Pro style (.stylx)</span><button id="pro-download" type="button">Download .stylx</button></div>
           <div id="pro-preview" class="bar bar-thin"></div>
-          <p class="hint">A continuous ramp made of 16 colors joined by CIELAB segments, so lightness stays linear in ArcGIS Pro. To use it in Pro, open <b>Catalog → Styles</b>, right-click and choose <b>Add → Add Style</b>, then pick this file. The ramp then appears in the Symbology pane's color scheme list (turn on <b>Show names</b> and <b>Show all</b>).</p>
+          <p class="hint">A continuous ramp made of 17 colors joined by CIELAB segments, so lightness stays linear in ArcGIS Pro. To use it in Pro, open <b>Catalog → Styles</b>, right-click and choose <b>Add → Add Style</b>, then pick this file. The ramp then appears in the Symbology pane's color scheme list (turn on <b>Show names</b> and <b>Show all</b>).</p>
         </div>
         <div class="export">
           <div class="export-head">
@@ -162,10 +169,24 @@
             <span class="row"><button type="button" data-copy="out-qgis">Copy</button><button id="qgis-download" type="button">Download .xml</button></span>
           </div>
           <pre class="code"><code id="out-qgis"></code></pre>
-          <p class="hint">A gradient color ramp with 32 stops. In QGIS, open <b>Settings → Style Manager</b>, choose <b>Import/Export → Import Item(s)</b>, pick this file, select the ramp and click <b>Import</b>. It then appears in every color ramp menu.</p>
+          <p class="hint">A gradient color ramp with 33 stops. In QGIS, open <b>Settings → Style Manager</b>, choose <b>Import/Export → Import Item(s)</b>, pick this file, select the ramp and click <b>Import</b>. It then appears in every color ramp menu.</p>
+        </div>
+        <div class="export">
+          <div class="export-head">
+            <span>GDAL color relief (.txt)</span>
+            <span class="row"><button type="button" data-copy="out-gdal">Copy</button><button id="gdal-download" type="button">Download .txt</button></span>
+          </div>
+          <div class="gdal-options">
+            <label class="field"><span>Min value</span><input id="gdal-min" type="text" inputmode="decimal" value="0" spellcheck="false" autocomplete="off"></label>
+            <label class="field"><span>Max value</span><input id="gdal-max" type="text" inputmode="decimal" value="100" spellcheck="false" autocomplete="off"></label>
+            <label class="check"><input id="gdal-nodata" type="checkbox" checked> Account for no-data</label>
+          </div>
+          <pre class="code"><code id="out-gdal"></code></pre>
+          <p class="hint">One row per step (<code>value, R, G, B, A</code>), with data values spaced evenly from min to max. No-data pixels (<code>nv</code>) get the min color. Use it with <code>gdaldem color-relief input.tif ramp.txt output.tif -alpha</code>. GDAL blends between rows; add <code>-exact_color_entry</code> or <code>-nearest_color_entry</code> for classed colors.</p>
         </div>
       </div>
     </section>
+    </div>
   </main>
 
   <footer class="page-foot">
