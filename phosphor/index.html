@@ -111,7 +111,10 @@
       <div id="warning" class="warning" hidden></div>
 
       <h2>Gradient</h2>
-      <div id="bar-label" class="bar-label">Corrected</div>
+      <div class="bar-head">
+        <div id="bar-label" class="bar-label">Corrected</div>
+        <span id="cvd-badge" class="cvd-badge" hidden></span>
+      </div>
       <div id="bar" class="bar"></div>
       <div class="share-cta">
         <p id="share-status" class="share-status" aria-live="polite">Like this palette? Get a link to bookmark it or share it.</p>
@@ -127,7 +130,7 @@
       <div class="chart-head">
         <h2>Lightness (OKLab L) by position</h2>
         <div id="curve-group" class="curve-group" role="group" aria-label="Lightness curve">
-          <button class="mini-btn curve-btn" data-curve="linear" type="button" aria-pressed="true" title="Linear lightness (also resets hand adjustments)"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true" class="mirror" data-icon-for="sequential"><path d="M2 12L18 2"/></svg><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true" class="flip" data-icon-for="diverging" hidden><path d="M2 12L10 2L18 12"/></svg>Linear</button>
+          <button class="mini-btn curve-btn" data-curve="linear" type="button" aria-pressed="true" title="Linear lightness (also resets hand adjustments)" aria-label="Linear"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true" class="mirror" data-icon-for="sequential"><path d="M2 12L18 2"/></svg><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true" class="flip" data-icon-for="diverging" hidden><path d="M2 12L10 2L18 12"/></svg><span class="curve-label">Linear</span></button>
           <button class="mini-btn curve-btn icon-only" data-curve="up" data-for="sequential" type="button" aria-pressed="false" title="Concave up" aria-label="Concave up"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true" class="mirror"><path d="M2 12Q14 12 18 2"/></svg></button>
           <button class="mini-btn curve-btn icon-only" data-curve="down" data-for="sequential" type="button" aria-pressed="false" title="Concave down" aria-label="Concave down"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true" class="mirror"><path d="M2 12Q6 2 18 2"/></svg></button>
           <button class="mini-btn curve-btn icon-only" data-curve="up" data-for="diverging" type="button" aria-pressed="false" title="Parabolic up" aria-label="Parabolic up" hidden><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true"><path d="M2 2Q10 22 18 2"/></svg></button>

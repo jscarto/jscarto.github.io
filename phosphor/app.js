@@ -14,7 +14,7 @@
     list: $('color-list'), add: $('add-color'), reverse: $('reverse'), sortL: $('sort-l'),
     paste: $('paste'), applyPaste: $('apply-paste'),
     mode: $('mode'), steps: $('steps'), stepsOut: $('steps-out'),
-    warning: $('warning'), bar: $('bar'), barLabel: $('bar-label'),
+    warning: $('warning'), bar: $('bar'), barLabel: $('bar-label'), cvdBadge: $('cvd-badge'),
     presetsToggle: $('presets-toggle'), presetsPanel: $('presets-panel'), legendResult: $('legend-result'), legendRaw: $('legend-raw'),
     swatches: $('swatches'), chart: $('chart'), stats: $('stats'),
     curveGroup: $('curve-group'), curveBtns: [...document.querySelectorAll('.curve-btn')], chartHint: $('chart-hint'), clipNote: $('clip-note'),
@@ -238,6 +238,7 @@
     renderLValues();
     if (state.lightness && state.lightnessKey !== gradientKey()) state.lightness = null;
     gradient = null;
+    el.cvdBadge.hidden = true;
     el.proDownload.disabled = true;
     el.qgisDownload.disabled = true;
     el.gdalDownload.disabled = true;
@@ -290,6 +291,7 @@
       : state.lightness && adjusted ? 'Corrected, adjusted by hand'
       : adjusted ? `Corrected, ${curveLabel()}` : 'Corrected';
     el.barLabel.classList.toggle('bar-label-warn', !s.corrected);
+    renderCvdBadge(isColorblindSafe(result, !!s.diverging));
     renderCurveButtons(s);
     el.chartHint.hidden = !s.corrected;
 
@@ -912,7 +914,6 @@
       title: 'Stevens',
       presets: [
         { name: 'Tropics', colors: ['#c3f4e9', '#b6e5eb', '#a9d6ec', '#9ac8ee', '#8bbaef', '#7aacf0', '#8898eb', '#9682e5', '#b85fd5', '#c244b4', '#be338e', '#b71f69', '#ad0045'] },
-        { name: 'Frostfire', colors: ['#eff7fa', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fff5da'] },
         { name: 'Smoggy Sky', colors: ['#ffffff', '#e2eff9', '#c5dff2', '#e1c794', '#eeac49', '#dd9a3f', '#cd8837', '#bc772e', '#ac6626', '#9c551e', '#8c4416', '#7c340f', '#672709', '#541b01'] },
       ],
     },
@@ -933,12 +934,14 @@
     },
   ];
   // Diverging presets: 11-class ColorBrewer diverging schemes (midpoint in the center) and
-  // Frostfire, whose lightness bottoms out at its seventh color.
+  // Stevens ramps: Frostfire, whose lightness bottoms out at its seventh color, and Chlorophyll,
+  // which peaks at its fourth.
   const DIVERGING_GROUPS = [
     {
       title: 'Stevens',
       presets: [
-        { name: 'Frostfire', mid: 6, colors: ['#eff7fa', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fff5da'] },
+        { name: 'Chlorophyll', mid: 3, colors: ['#0c2777', '#25468d', '#638bab', '#a2c2ba', '#8ebd89', '#45893e', '#002f0e'] },
+        { name: 'Frostfire', mid: 6, colors: ['#eff6ff', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fff5da'] },
       ],
     },
     {
@@ -961,6 +964,89 @@
       card.setAttribute('aria-pressed', String(!!preset && card.dataset.name === preset.name)));
   }
 
+  // ---------- red-green colorblind check ----------
+  // Simulates protanopia and deuteranopia with the Machado et al. (2009) matrices behind the
+  // Simulate buttons (read from their SVG filters, so there's one source), applied in linear RGB,
+  // on 33 evenly spaced samples. Under both, a gradient must keep at least CVD_MIN_DE apart
+  // (OKLab distance × 100):
+  //   - any two samples at least a quarter of the ramp apart, and
+  //   - for diverging gradients, each pair mirrored about the midpoint down to an eighth of the
+  //     ramp apart. Mirrored colors share a lightness, so only hue tells the two sides apart,
+  //     and that is where red-green palettes fail: Spectral's inner colors merge under
+  //     protanopia and deuteranopia even though its ends stay distinct.
+  // With the lightness correction applied, this passes every ColorBrewer sequential scheme and the
+  // six diverging ones ColorBrewer rates colorblind-safe (lowest 5.5), and fails RdGy, RdYlGn and
+  // Spectral (highest 2.5).
+  const CVD_MIN_DE = 4.5;
+  const CVD_SAMPLES = 33;
+  const CVD_GAP = 8; // samples apart: a quarter of the ramp
+  const CVD_MIRROR_GAP = 4; // samples apart: an eighth of the ramp
+  let cvdMatrices = null;
+
+  const readCvdMatrix = (id) => {
+    const v = document.querySelector(`#${id} feColorMatrix`).getAttribute('values').trim().split(/\s+/).map(Number);
+    return [0, 1, 2].map((r) => v.slice(r * 5, r * 5 + 3));
+  };
+  const toLinear = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+  const fromLinear = (c) => {
+    const v = Math.min(1, Math.max(0, c));
+    return v <= 0.0031308 ? 12.92 * v : 1.055 * v ** (1 / 2.4) - 0.055;
+  };
+
+  function simulatedOklab(color, m) {
+    const lin = chroma(color).rgb(false).map((c) => toLinear(c / 255));
+    return chroma(m.map((r) => fromLinear(r[0] * lin[0] + r[1] * lin[1] + r[2] * lin[2]) * 255)).oklab();
+  }
+
+  /** Whether the gradient `sample(t)` stays readable with protanopia and deuteranopia. */
+  function isColorblindSafe(sample, diverging) {
+    cvdMatrices = cvdMatrices || ['cvd-protanopia', 'cvd-deuteranopia'].map(readCvdMatrix);
+    const ts = positions(CVD_SAMPLES);
+    const last = CVD_SAMPLES - 1;
+    return cvdMatrices.every((m) => {
+      const lab = ts.map((t) => simulatedOklab(sample(t), m));
+      const apart = (i, j) => {
+        const [a, b] = [lab[i], lab[j]];
+        return 100 * Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]) >= CVD_MIN_DE;
+      };
+      for (let i = 0; i < lab.length; i++) {
+        for (let j = i + CVD_GAP; j < lab.length; j++) if (!apart(i, j)) return false;
+      }
+      if (diverging) {
+        for (let i = 0; last - 2 * i >= CVD_MIRROR_GAP; i++) if (!apart(i, last - i)) return false;
+      }
+      return true;
+    });
+  }
+
+  const CVD_TITLE = {
+    true: 'Red-green colorblind-safe: colors stay distinguishable with simulated protanopia and deuteranopia.',
+    false: 'Not red-green colorblind-safe: with simulated protanopia or deuteranopia, some colors far apart in the ramp look alike.',
+  };
+  const cvdIcon = (safe) =>
+    `<svg class="cvd-icon ${safe ? 'cvd-ok' : 'cvd-bad'}" viewBox="0 0 22 14" aria-hidden="true">` +
+    '<path d="M1.5 7C4 2.8 7.3 1 11 1s7 1.8 9.5 6c-2.5 4.2-5.8 6-9.5 6S4 11.2 1.5 7Z"/>' +
+    (safe ? '<path d="M7.2 7.4l2.6 2.6 5-5.4"/>' : '<path d="M8.4 4.4l5.2 5.2M13.6 4.4l-5.2 5.2"/>') +
+    '</svg>';
+
+  function renderCvdBadge(safe) {
+    el.cvdBadge.hidden = false;
+    el.cvdBadge.className = 'cvd-badge ' + (safe ? 'is-safe' : 'is-unsafe');
+    el.cvdBadge.title = CVD_TITLE[safe];
+    el.cvdBadge.innerHTML = cvdIcon(safe) + (safe ? 'colorblind-safe' : 'not colorblind-safe');
+  }
+
+  // Presets are judged as they load: corrected, in OKLab. Each is checked once.
+  const presetSafety = new Map();
+  function presetIsSafe(p) {
+    const key = (p.mid !== undefined ? 'd:' : 's:') + p.name;
+    if (!presetSafety.has(key)) {
+      const s = p.mid !== undefined ? buildDivergingSamplers(p.colors, p.mid, 'oklab') : buildSamplers(p.colors, 'oklab');
+      presetSafety.set(key, isColorblindSafe(s.result, !!s.diverging));
+    }
+    return presetSafety.get(key);
+  }
+
   function buildPresets() {
     el.presetsPanel.innerHTML = presetGroups().map((g) => `
       <h2>${g.title}</h2>
@@ -968,7 +1054,10 @@
         ${g.presets.map((p) => `
           <button type="button" class="preset-card" data-name="${p.name}" aria-pressed="false">
             <span class="preset-preview" style="background: ${cssGradient(p.colors)}"></span>
-            <span class="preset-name">${p.name}</span>
+            <span class="preset-meta">
+              <span class="preset-name">${p.name}</span>
+              <span class="cvd-mark" role="img" aria-label="${presetIsSafe(p) ? 'Colorblind-safe' : 'Not colorblind-safe'}" title="${CVD_TITLE[presetIsSafe(p)]}">${cvdIcon(presetIsSafe(p))}</span>
+            </span>
           </button>`).join('')}
       </div>`).join('');
   }
