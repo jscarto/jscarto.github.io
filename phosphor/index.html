@@ -57,9 +57,10 @@
   </header>
 
   <main class="app">
-    <div class="tabs" role="tablist" aria-label="Gradient type">
-      <button type="button" role="tab" id="tab-sequential" data-type="sequential" aria-selected="true" aria-controls="tab-panel">Sequential</button>
-      <button type="button" role="tab" id="tab-diverging" data-type="diverging" aria-selected="false" aria-controls="tab-panel" tabindex="-1">Diverging</button>
+    <div class="tabs" role="tablist" aria-label="Views">
+      <button type="button" role="tab" id="tab-sequential" data-type="sequential" aria-selected="true" aria-controls="tab-panel"><svg class="tab-icon" viewBox="0 0 20 16" aria-hidden="true"><circle cx="4" cy="12" r="2.4"/><circle cx="10" cy="8" r="2.4"/><circle cx="16" cy="4" r="2.4"/></svg>Sequential</button>
+      <button type="button" role="tab" id="tab-diverging" data-type="diverging" aria-selected="false" aria-controls="tab-panel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 20 16" aria-hidden="true"><circle cx="4" cy="11" r="2.4"/><circle cx="10" cy="5" r="2.4"/><circle cx="16" cy="11" r="2.4"/></svg>Diverging</button>
+      <button type="button" role="tab" id="tab-legend" data-type="legend" aria-selected="false" aria-controls="legend-panel" tabindex="-1"><svg class="tab-icon tab-icon-line" viewBox="0 0 20 16" aria-hidden="true"><path d="M7.5 1.5h5M8.5 1.5v4.2L3.6 13.2a.9.9 0 0 0 .8 1.3h11.2a.9.9 0 0 0 .8-1.3L11.5 5.7V1.5"/><path d="M5.6 10.2h8.8"/></svg>Legend Lab</button>
     </div>
     <div id="tab-panel" class="layout" role="tabpanel" aria-labelledby="tab-sequential">
     <section class="presets" aria-label="Preset palettes">
@@ -138,7 +139,17 @@
         </div>
       </div>
       <div class="chart-wrap">
-        <svg id="chart" viewBox="0 0 600 260" role="img" aria-label="Lightness by position"></svg>
+        <div class="chart-row">
+          <svg id="chart" viewBox="0 0 300 260" role="img" aria-label="Lightness by position"></svg>
+          <figure class="specimen">
+            <canvas id="specimen" width="400" height="400" role="img" aria-label="Choropleth map of counties, recolored with the current palette"></canvas>
+            <div class="seg" role="radiogroup" aria-label="Preview picture">
+              <label><input type="radio" name="specimen" value="map" checked><span>Map</span></label>
+              <label><input type="radio" name="specimen" value="contour"><span>Plot</span></label>
+              <label><input type="radio" name="specimen" value="newton"><span>Newton</span></label>
+            </div>
+          </figure>
+        </div>
         <div class="legend">
           <span><i class="key key-corrected"></i><span id="legend-result">Corrected</span></span>
           <span id="legend-raw"><i class="key key-raw"></i>Uncorrected</span>
@@ -195,6 +206,71 @@
         </div>
       </div>
     </section>
+    </div>
+
+    <div id="legend-panel" class="layout legend-lab" role="tabpanel" aria-labelledby="tab-legend" hidden>
+      <section class="panel controls" aria-label="Legend options">
+        <h2>Options</h2>
+        <div class="legend-options">
+          <label class="field legend-title-field"><span>Title</span><input id="legend-title" type="text" value="Title" spellcheck="false" autocomplete="off"></label>
+          <label class="field legend-title-field"><span>Subtitle</span><input id="legend-subtitle" type="text" placeholder="Enter a subtitle and/or units" spellcheck="false" autocomplete="off"></label>
+          <div class="field">
+            <span id="legend-min-label">Min</span>
+            <div class="bound-row">
+              <label class="bound-toggle" title="Show ≤ before the min"><input id="legend-lte" type="checkbox" aria-label="Show ≤ before the min"><span aria-hidden="true">≤</span></label>
+              <input id="legend-min" type="text" inputmode="decimal" value="0" spellcheck="false" autocomplete="off" aria-labelledby="legend-min-label">
+            </div>
+          </div>
+          <div class="field">
+            <span id="legend-max-label">Max</span>
+            <div class="bound-row">
+              <input id="legend-max" type="text" inputmode="decimal" value="100" spellcheck="false" autocomplete="off" aria-labelledby="legend-max-label">
+              <label class="bound-toggle" title="Show ≥ before the max"><input id="legend-gte" type="checkbox" aria-label="Show ≥ before the max"><span aria-hidden="true">≥</span></label>
+            </div>
+          </div>
+          <label class="field"><span>Label every</span><input id="legend-step" type="text" inputmode="decimal" value="20" spellcheck="false" autocomplete="off"></label>
+          <label class="field" title="Unlabeled ticks between each pair of labels"><span>Minor ticks</span>
+            <select id="legend-minor">
+              <option value="0">None</option>
+              <option value="1" selected>1</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="9">9</option>
+            </select>
+          </label>
+          <fieldset class="field legend-scale-field">
+            <span>Tick placement</span>
+            <div class="seg">
+              <label><input type="radio" name="legend-scale" value="linear" checked><span>Linear</span></label>
+              <label><input type="radio" name="legend-scale" value="sqrt"><span>Square root</span></label>
+              <label><input type="radio" name="legend-scale" value="log"><span>Logarithmic</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field legend-colors-field">
+            <span>Colors</span>
+            <div class="seg">
+              <label><input type="radio" name="legend-colors" value="continuous" checked><span>Continuous</span></label>
+              <label><input type="radio" name="legend-colors" value="classed"><span>Classed</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <p id="legend-scale-hint" class="hint"></p>
+      </section>
+
+      <section class="panel output" aria-label="Legend preview">
+        <h2>Legend</h2>
+        <div id="legend-stage" class="legend-stage">
+          <svg id="legend-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Legend preview"></svg>
+        </div>
+        <p id="legend-warning" class="hint clip-note" hidden></p>
+
+        <h2>Export</h2>
+        <div class="row">
+          <button id="legend-png" type="button">Download PNG</button>
+          <button id="legend-svg-download" type="button">Download SVG</button>
+        </div>
+        <p class="hint">Both have a transparent background. Text and ticks follow the site theme: light in dark mode, dark in light mode. The PNG is drawn at 3× (1800 px wide).</p>
+      </section>
     </div>
   </main>
 

@@ -19,7 +19,7 @@
     mode: $('mode'), steps: $('steps'), stepsOut: $('steps-out'),
     warning: $('warning'), bar: $('bar'), barLabel: $('bar-label'), cvdBadge: $('cvd-badge'),
     presetsToggle: $('presets-toggle'), presetsPanel: $('presets-panel'), legendResult: $('legend-result'), legendRaw: $('legend-raw'),
-    swatches: $('swatches'), chart: $('chart'), stats: $('stats'),
+    swatches: $('swatches'), chart: $('chart'), specimen: $('specimen'), stats: $('stats'),
     curveGroup: $('curve-group'), curveBtns: [...document.querySelectorAll('.curve-btn')], chartHint: $('chart-hint'), clipNote: $('clip-note'),
     divHint: $('div-hint'), divNote: $('div-note'), tabPanel: $('tab-panel'),
     outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'),
@@ -308,6 +308,7 @@
     }
 
     gradient.chartBase = chartBase(s, result, adjusted);
+    renderSpecimen();
     gradient.dense32 = positions(RGB_STOPS).map((t) => result(t).hex());
     setExport(el.outCss, 'css', cssSnippet(positions(CSS_STOPS).map((t) => result(t).hex())));
     el.proDownload.disabled = false;
@@ -652,15 +653,120 @@
     codeEl.innerHTML = highlight(text, lang);
   }
 
-  const CHART = { W: 600, H: 260, pad: { l: 36, r: 12, t: 12, b: 28 } };
-  const chartX = (t) => CHART.pad.l + t * (CHART.W - CHART.pad.l - CHART.pad.r);
+  // ---------- specimens: Newton, a map and a contour plot, recolored ----------
+  // A gradient map: each pixel's value is a position along the palette, 0 at the start and 255 at
+  // the end, so reversing the palette reverses the picture's colors. For a diverging palette that
+  // reads the value as signed: 0 is -100, 50% is 0 (the midpoint) and 255 is +100.
+  // Newton is a grayscale engraving, so his gray level is the value. The map and contour plot are
+  // baked by assets/phosphor/make_specimens.py: R is the value, G is line coverage (county borders,
+  // contour lines) and B marks empty areas; lines and empty areas take the panel color.
+
+  const SPECIMENS = {
+    newton: { src: 'assets/newton.png', label: 'Portrait of Isaac Newton', coded: false },
+    map: { src: 'assets/map.png', label: 'Choropleth map of counties', coded: true, line: 0.85 },
+    contour: { src: 'assets/contour.png', label: 'Filled contour plot', coded: true, line: 0.6 },
+  };
+  const specimenData = {};
+  let specimen = 'map';
+
+  function loadSpecimen(name) {
+    const spec = SPECIMENS[name];
+    if (spec.loading) return;
+    spec.loading = true;
+    const img = new Image();
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = img.width;
+      c.height = img.height;
+      const ctx = c.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const d = ctx.getImageData(0, 0, c.width, c.height).data;
+      const n = c.width * c.height;
+      const data = { w: c.width, h: c.height, v: new Uint8Array(n), line: new Uint8Array(n), empty: new Uint8Array(n) };
+      for (let i = 0; i < n; i++) {
+        if (spec.coded) {
+          data.v[i] = d[i * 4];
+          data.line[i] = d[i * 4 + 1];
+          data.empty[i] = d[i * 4 + 2] > 127 ? 1 : 0;
+        } else {
+          data.v[i] = Math.round(0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]);
+        }
+      }
+      specimenData[name] = data;
+      if (name === specimen) renderSpecimen();
+    };
+    img.src = spec.src;
+  }
+
+  function renderSpecimen() {
+    const data = specimenData[specimen];
+    if (!data) { loadSpecimen(specimen); return; }
+    if (!gradient || !el.specimen.offsetParent) return; // hidden on small screens
+    const { w, h, v, line, empty } = data;
+    const spec = SPECIMENS[specimen];
+    const table = Array.from({ length: 256 }, (_, i) => gradient.result(i / 255).rgb());
+    const bg = chroma(themeColor('--panel')).rgb();
+    const ctx = el.specimen.getContext('2d');
+    if (el.specimen.width !== w || el.specimen.height !== h) { el.specimen.width = w; el.specimen.height = h; }
+    const img = ctx.createImageData(w, h);
+    const px = img.data;
+    for (let i = 0; i < v.length; i++) {
+      let c = empty[i] ? bg : table[v[i]];
+      if (line[i]) {
+        const a = (line[i] / 255) * spec.line;
+        c = [c[0] + (bg[0] - c[0]) * a, c[1] + (bg[1] - c[1]) * a, c[2] + (bg[2] - c[2]) * a];
+      }
+      px[i * 4] = c[0];
+      px[i * 4 + 1] = c[1];
+      px[i * 4 + 2] = c[2];
+      px[i * 4 + 3] = 255;
+    }
+    ctx.putImageData(img, 0, 0);
+    el.specimen.setAttribute('aria-label', `${spec.label}, recolored with the current palette`);
+  }
+
+  document.querySelectorAll('input[name="specimen"]').forEach((input) => input.addEventListener('change', () => {
+    specimen = input.value;
+    renderSpecimen();
+  }));
+
+  const CHART = { W: 300, H: 260, pad: { l: 36, r: 12, t: 12, b: 28 } };
+
+  // The chart's drawing is as many units wide as it has room for at 1.25 px per unit, so its text
+  // and height stay the same size whether it shares the row with the specimen or fills the panel.
+  // The specimen beside it spans the plot area, from the 100 gridline down to the 0 axis.
+  const CHART_PX_PER_UNIT = 1.25;
+  function fitChart() {
+    const px = el.chart.getBoundingClientRect().width;
+    if (!px) return false;
+    const W = Math.max(240, Math.round(px / CHART_PX_PER_UNIT));
+    const changed = W !== CHART.W;
+    if (changed) {
+      CHART.W = W;
+      el.chart.setAttribute('viewBox', `0 0 ${W} ${CHART.H}`);
+    }
+    // The specimen matches the plot area as drawn at the new width.
+    const scale = px / W;
+    const row = el.chart.parentElement.style;
+    row.setProperty('--plot-top', `${(CHART.pad.t * scale).toFixed(1)}px`);
+    row.setProperty('--plot-h', `${((CHART.H - CHART.pad.t - CHART.pad.b) * scale).toFixed(1)}px`);
+    return changed;
+  }
+  new ResizeObserver(() => {
+    if (fitChart() && gradient) renderOutputs();
+    else renderSpecimen(); // it may have just been shown again
+  }).observe(el.chart);
+  // Data sits one dot's width in from the gridlines' ends, so the first and last dots (up to 10
+  // units across the radius) never cover the y-axis labels or run off the right edge.
+  const CHART_INSET = 12;
+  const chartX = (t) => CHART.pad.l + CHART_INSET + t * (CHART.W - CHART.pad.l - CHART.pad.r - 2 * CHART_INSET);
   const chartY = (L) => CHART.pad.t + (1 - L / 100) * (CHART.H - CHART.pad.t - CHART.pad.b);
   const themeColor = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
   function chartDots(hexes, draggable) {
     const stroke = themeColor('--chart-corrected');
     // 10 px dots, shrunk only when many steps would make neighbors overlap.
-    const spacing = (CHART.W - CHART.pad.l - CHART.pad.r) / Math.max(1, hexes.length - 1);
+    const spacing = (CHART.W - CHART.pad.l - CHART.pad.r - 2 * CHART_INSET) / Math.max(1, hexes.length - 1);
     const r = Math.min(10, Math.max(5, spacing / 2 - 1));
     return positions(hexes.length).map((t, i) => {
       const L = lightness(hexes[i]);
@@ -1221,6 +1327,7 @@
     themeToggle.setAttribute('aria-label', label);
     themeToggle.title = label;
     render(); // the chart reads theme colors when it draws
+    if (!legendEl.panel.hidden) renderLegend(); // legend text and ticks follow the theme
   }
 
   themeToggle.addEventListener('click', () => {
@@ -1231,16 +1338,278 @@
 
   // ---------- tabs ----------
 
+  // ---------- Legend Lab ----------
+  // A labeled legend for the last palette shown on the Sequential or Diverging tab (`gradient`
+  // still holds it while this tab is open). The preview SVG is exactly what the exports save, and
+  // its text and ticks follow the site theme: light in dark mode, dark in light mode.
+
+  const LEGEND = {
+    W: 600, barH: 26, majorLen: 8, minorLen: 4, labelGap: 5,
+    font: 'Helvetica Neue, Helvetica, Arial, sans-serif', labelSize: 13, titleSize: 15, subtitleSize: 12.5, titleGap: 8,
+    ink: { dark: '#1c1c1e', light: '#f4f4f5' },
+    maxTicks: 400,
+  };
+  const legendEl = {
+    panel: $('legend-panel'), stage: $('legend-stage'), svg: $('legend-svg'),
+    warning: $('legend-warning'), title: $('legend-title'), subtitle: $('legend-subtitle'), min: $('legend-min'), max: $('legend-max'),
+    step: $('legend-step'), minor: $('legend-minor'), lte: $('legend-lte'), gte: $('legend-gte'), scaleHint: $('legend-scale-hint'),
+    png: $('legend-png'), svgDownload: $('legend-svg-download'),
+  };
+  const radioValue = (name) => document.querySelector(`input[name="${name}"]:checked`).value;
+
+  let measureCtx = null;
+  function textWidth(text, size, weight = 'normal') {
+    measureCtx = measureCtx || document.createElement('canvas').getContext('2d');
+    measureCtx.font = `${weight} ${size}px ${LEGEND.font}`;
+    return measureCtx.measureText(text).width;
+  }
+
+  const decimalsOf = (v) => {
+    const m = String(v).match(/\.(\d+)$/) || String(v).match(/e-(\d+)$/);
+    return m ? Math.min(10, m[1].length) : 0;
+  };
+
+  /** Position along the bar (0–1) of `v`, for the chosen scale. */
+  function legendScale(kind, min, max) {
+    const f = kind === 'log' ? Math.log : kind === 'sqrt' ? Math.sqrt : (v) => v;
+    const f0 = f(min), f1 = f(max);
+    return (v) => (f(v) - f0) / (f1 - f0);
+  }
+
+  // Logarithmic label sets, densest first: the legend uses the first whose labels don't overlap.
+  const LOG_LABELS = [[1, 2, 5], [1, 3], [1]];
+
+  /**
+   * Tick values: labeled (major) and unlabeled (minor). Linear and square-root scales label every
+   * multiple of the interval; logarithmic labels `logSet` × each power of ten, with minor ticks at
+   * the other whole multiples. The min and max are always labeled.
+   */
+  function legendTicks(kind, min, max, step, minorCount, logSet = LOG_LABELS[0]) {
+    const eps = 1e-9 * Math.max(1, Math.abs(max - min));
+    const inRange = (v) => v >= min - eps && v <= max + eps;
+    const major = [];
+    const minor = [];
+    if (kind === 'log') {
+      for (let e = Math.floor(Math.log10(min)) - 1; e <= Math.ceil(Math.log10(max)); e++) {
+        for (let m = 1; m <= 9; m++) {
+          const v = +(m * 10 ** e).toPrecision(12);
+          if (!inRange(v)) continue;
+          if (logSet.includes(m)) major.push(v);
+          else if (minorCount > 0) minor.push(v);
+        }
+      }
+    } else {
+      const dec = decimalsOf(step) + 2;
+      const sub = step / (minorCount + 1);
+      for (let k = Math.ceil((min - eps) / sub); k * sub <= max + eps; k++) {
+        const v = +(k * sub).toFixed(dec);
+        if (!inRange(v)) continue;
+        if (k % (minorCount + 1) === 0) major.push(v); else minor.push(v);
+        if (major.length + minor.length > LEGEND.maxTicks) return null;
+      }
+    }
+    if (!major.some((v) => Math.abs(v - min) <= eps)) major.unshift(min);
+    if (!major.some((v) => Math.abs(v - max) <= eps)) major.push(max);
+    return { major, minor };
+  }
+
+  function legendSettings() {
+    const num = (input) => {
+      const t = input.value.trim();
+      return t !== '' && Number.isFinite(+t) ? +t : null;
+    };
+    return {
+      title: legendEl.title.value.trim(), subtitle: legendEl.subtitle.value.trim(), min: num(legendEl.min), max: num(legendEl.max), step: num(legendEl.step),
+      minor: +legendEl.minor.value, scale: radioValue('legend-scale'), classed: radioValue('legend-colors') === 'classed',
+      ink: document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark',
+      lte: legendEl.lte.checked, gte: legendEl.gte.checked,
+    };
+  }
+
+  /** Why these settings can't draw a legend, or '' if they can. */
+  function legendProblem(o) {
+    if (o.min === null || o.max === null) return 'Enter a number for both the min and the max.';
+    if (o.min >= o.max) return 'The max must be greater than the min.';
+    if (o.scale === 'sqrt' && o.min < 0) return 'Square-root placement needs a min of 0 or more.';
+    if (o.scale === 'log' && o.min <= 0) return 'Logarithmic placement needs a min greater than 0.';
+    if (o.scale !== 'log' && (o.step === null || o.step <= 0)) return 'Enter a label interval greater than 0.';
+    return '';
+  }
+
+  function renderLegend() {
+    const o = legendSettings();
+    const problem = gradient ? legendProblem(o) : 'Build a valid palette on the Sequential or Diverging tab first.';
+    let ticks = problem ? null : legendTicks(o.scale, o.min, o.max, o.step, o.minor);
+    legendEl.min.setAttribute('aria-invalid', String(o.min === null || (o.min !== null && o.max !== null && o.min >= o.max)));
+    legendEl.max.setAttribute('aria-invalid', String(o.max === null));
+    legendEl.step.disabled = o.scale === 'log';
+    legendEl.step.setAttribute('aria-invalid', String(o.scale !== 'log' && (o.step === null || o.step <= 0)));
+    legendEl.scaleHint.textContent = o.scale === 'log'
+      ? 'Logarithmic placement labels 1, 2 and 5 × each power of ten (fewer when they would crowd), so Label every doesn’t apply.'
+      : o.scale === 'sqrt' ? 'Square-root placement spreads out low values and compresses high ones.' : '';
+
+    const message = problem || (ticks ? '' : 'Too many ticks to draw. Label less often or use fewer minor ticks.');
+    legendEl.png.disabled = legendEl.svgDownload.disabled = !!message;
+    if (message) {
+      legendEl.warning.hidden = false;
+      legendEl.warning.textContent = message;
+      legendEl.svg.innerHTML = '';
+      legendEl.svg.removeAttribute('viewBox');
+      return;
+    }
+    let overlap = drawLegend(o, ticks);
+    for (let i = 1; overlap && o.scale === 'log' && i < LOG_LABELS.length; i++) {
+      ticks = legendTicks(o.scale, o.min, o.max, o.step, o.minor, LOG_LABELS[i]);
+      overlap = drawLegend(o, ticks);
+    }
+    legendEl.warning.hidden = !overlap;
+    legendEl.warning.textContent = overlap ? 'Some labels overlap. Label less often, or widen the range.' : '';
+  }
+
+  /** Draws the legend into the preview SVG; returns whether any labels overlap. */
+  function drawLegend(o, ticks) {
+    const L = LEGEND;
+    const ink = L.ink[o.ink];
+    const dec = o.scale === 'log'
+      ? Math.max(decimalsOf(o.min), ...ticks.major.map(decimalsOf))
+      : Math.max(decimalsOf(o.step), decimalsOf(o.min), decimalsOf(o.max));
+    const fmt = new Intl.NumberFormat('en-US', { maximumFractionDigits: Math.min(10, dec) });
+    const label = (v, i) => {
+      const text = fmt.format(v);
+      if (i === 0 && o.lte) return '≤' + text;
+      if (i === ticks.major.length - 1 && o.gte) return '≥' + text;
+      return text;
+    };
+    const labels = ticks.major.map(label);
+    const widths = labels.map((t) => textWidth(t, L.labelSize));
+
+    // Room at the sides for the end labels, which are centered on the bar's ends.
+    const pad = Math.ceil(Math.max(widths[0], widths[widths.length - 1]) / 2) + 1;
+    const barX = pad, barW = L.W - pad * 2;
+    // Title, then subtitle, then the bar; each line only when it has text.
+    const titleLine = o.title ? L.titleSize * 1.2 : 0;
+    const subtitleLine = o.subtitle ? L.subtitleSize * 1.35 : 0;
+    const titleH = titleLine || subtitleLine ? Math.ceil(titleLine + subtitleLine) + L.titleGap : 0;
+    const barY = titleH;
+    const barBottom = barY + L.barH;
+    const labelY = barBottom + L.majorLen + L.labelGap + L.labelSize * 0.8;
+    const H = Math.ceil(labelY + L.labelSize * 0.3);
+    const pos = legendScale(o.scale, o.min, o.max);
+    const x = (v) => +(barX + pos(v) * barW).toFixed(2);
+
+    // The min and max are always labeled. When one isn't a multiple of the interval, the label next
+    // to it can crowd it: closer than half the usual spacing (the gap on its other side) or touching.
+    // That neighbor keeps its tick but loses its label.
+    const xs = ticks.major.map(x);
+    const last = xs.length - 1;
+    const roomy = (end, i, other) => {
+      const gap = Math.abs(xs[i] - xs[end]);
+      const usual = other >= 0 && other <= last && other !== end ? Math.abs(xs[other] - xs[i]) : gap;
+      return gap >= usual / 2 && gap >= (widths[i] + widths[end]) / 2 + 4;
+    };
+    const shown = xs.map((_, i) => i === 0 || i === last ||
+      ((i !== 1 || roomy(0, 1, 2)) && (i !== last - 1 || roomy(last, last - 1, last - 2))));
+
+    // Continuous: the gradient itself. Classed: one box per labeled interval, colored by sampling the
+    // gradient evenly from end to end (what the Steps slider gives for that many steps).
+    const classes = ticks.major.length - 1;
+    const classColors = positions(classes).map((t) => gradient.result(t).hex());
+    const bar = o.classed
+      ? `<g shape-rendering="crispEdges">${classColors.map((c, k) => {
+        const x0 = x(ticks.major[k]);
+        const x1 = x(ticks.major[k + 1]);
+        return `<rect x="${x0}" y="${barY}" width="${+(x1 - x0 + (k < classes - 1 ? 0.5 : 0)).toFixed(2)}" height="${L.barH}" fill="${c}"/>`;
+      }).join('')}</g>`
+      : `<defs><linearGradient id="legend-ramp" x1="0" x2="1" y1="0" y2="0">${
+        positions(65).map((t) => `<stop offset="${+(t * 100).toFixed(3)}%" stop-color="${gradient.result(t).hex()}"/>`).join('')
+      }</linearGradient></defs><rect x="${barX}" y="${barY}" width="${barW}" height="${L.barH}" fill="url(#legend-ramp)"/>`;
+    const esc = (t) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const tick = (v, len) => `<line x1="${x(v)}" x2="${x(v)}" y1="${barBottom}" y2="${barBottom + len}"/>`;
+
+    legendEl.svg.setAttribute('viewBox', `0 0 ${L.W} ${H}`);
+    legendEl.svg.setAttribute('width', L.W);
+    legendEl.svg.setAttribute('height', H);
+    legendEl.svg.innerHTML =
+      (o.title ? `<text x="${barX}" y="${L.titleSize}" font-family="${L.font}" font-size="${L.titleSize}" font-weight="bold" fill="${ink}">${esc(o.title)}</text>` : '') +
+      (o.subtitle ? `<text x="${barX}" y="${+(titleLine + L.subtitleSize).toFixed(1)}" font-family="${L.font}" font-size="${L.subtitleSize}" fill="${ink}">${esc(o.subtitle)}</text>` : '') +
+      bar +
+      `<g stroke="${ink}" stroke-width="1" shape-rendering="crispEdges">${ticks.minor.map((v) => tick(v, L.minorLen)).join('')}${ticks.major.map((v) => tick(v, L.majorLen)).join('')}</g>` +
+      `<g font-family="${L.font}" font-size="${L.labelSize}" fill="${ink}" text-anchor="middle">` +
+      ticks.major.map((v, i) => (shown[i] ? `<text x="${xs[i]}" y="${labelY.toFixed(1)}">${esc(labels[i])}</text>` : '')).join('') + '</g>';
+
+    const idx = xs.map((_, i) => i).filter((i) => shown[i]);
+    return idx.some((i, k) => k > 0 && xs[i] - xs[idx[k - 1]] < (widths[i] + widths[idx[k - 1]]) / 2 + 4);
+  }
+
+  function legendFilename(ext) {
+    return safeFilename(legendSettings().title || rampName()) + ' legend.' + ext;
+  }
+
+  function legendSvgText() {
+    const clone = legendEl.svg.cloneNode(true);
+    clone.removeAttribute('role');
+    clone.removeAttribute('aria-label');
+    clone.removeAttribute('id');
+    return '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone);
+  }
+
+  function downloadLegendPng() {
+    const scale = 3;
+    const w = +legendEl.svg.getAttribute('width');
+    const h = +legendEl.svg.getAttribute('height');
+    const img = new Image();
+    const url = URL.createObjectURL(new Blob([legendSvgText()], { type: 'image/svg+xml' }));
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = w * scale;
+      canvas.height = h * scale;
+      canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((blob) => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = legendFilename('png');
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      }, 'image/png');
+    };
+    img.src = url;
+  }
+
+  [legendEl.title, legendEl.subtitle, legendEl.min, legendEl.max, legendEl.step, legendEl.minor, legendEl.lte, legendEl.gte]
+    .forEach((input) => input.addEventListener('input', renderLegend));
+  document.querySelectorAll('input[name="legend-scale"], input[name="legend-colors"]')
+    .forEach((input) => input.addEventListener('change', renderLegend));
+  legendEl.svgDownload.addEventListener('click', () => downloadText(legendSvgText(), legendFilename('svg'), 'image/svg+xml'));
+  legendEl.png.addEventListener('click', downloadLegendPng);
+
+  // ---------- tabs ----------
+
   const tabs = [...document.querySelectorAll('.tabs [role="tab"]')];
-  function selectTab(type, focus) {
-    if (state.type === type && gradient) return;
-    state = tabStates[type];
+  let activeTab = state.type;
+
+  function markTab(type, focus) {
+    activeTab = type;
     tabs.forEach((t) => {
       const on = t.dataset.type === type;
       t.setAttribute('aria-selected', String(on));
       t.tabIndex = on ? 0 : -1;
       if (on && focus) t.focus();
     });
+  }
+
+  function selectTab(type, focus) {
+    if (activeTab === type) return;
+    const fromLegend = activeTab === 'legend';
+    markTab(type, focus);
+    el.tabPanel.hidden = type === 'legend';
+    legendEl.panel.hidden = type !== 'legend';
+    if (type === 'legend') { renderLegend(); return; }
+    // Back from the lab to the palette it was showing: nothing to rebuild.
+    if (fromLegend && state.type === type && gradient) return;
+    state = tabStates[type];
     el.tabPanel.setAttribute('aria-labelledby', 'tab-' + type);
     el.mode.value = state.mode;
     el.steps.value = state.steps;
@@ -1252,7 +1621,7 @@
   tabs.forEach((t) => t.addEventListener('click', () => selectTab(t.dataset.type)));
   el.tabPanel.parentElement.querySelector('.tabs').addEventListener('keydown', (e) => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
-    const i = tabs.findIndex((t) => t.dataset.type === state.type);
+    const i = tabs.findIndex((t) => t.dataset.type === activeTab);
     const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
     selectTab(next.dataset.type, true);
   });
@@ -1274,11 +1643,7 @@
   }));
 
   // initial UI sync (a shared link can open on either tab)
-  tabs.forEach((t) => {
-    const on = t.dataset.type === state.type;
-    t.setAttribute('aria-selected', String(on));
-    t.tabIndex = on ? 0 : -1;
-  });
+  markTab(state.type);
   el.tabPanel.setAttribute('aria-labelledby', 'tab-' + state.type);
   el.mode.value = state.mode;
   el.steps.value = state.steps;

@@ -123,6 +123,47 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 }
 .tabs [role="tab"]:hover { color: var(--text); border-color: transparent; border-bottom-color: var(--border); }
 .tabs [role="tab"][aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+.tabs [role="tab"] { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.tab-icon { width: 18px; height: 14px; flex-shrink: 0; fill: currentColor; }
+.tab-icon-line { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 480px) {
+  .tabs { gap: 0; }
+  .tabs [role="tab"] { padding: 8px 10px; font-size: 0.85rem; gap: 5px; }
+  }
+.layout[hidden], .legend-lab[hidden] { display: none; }
+
+/* Legend Laboratory */
+.legend-stage { padding: 8px 0; }
+#legend-svg { display: block; width: 100%; max-width: 600px; height: auto; margin: 0 auto; }
+.legend-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; align-items: end; }
+.legend-options .field { margin: 0; min-width: 0; }
+.legend-options input[type="text"] { font-variant-numeric: tabular-nums; }
+.legend-title-field, .legend-scale-field, .legend-colors-field { grid-column: 1 / -1; }
+.legend-options input[aria-invalid="true"] { border-color: var(--warn-text); }
+/* ≤ and ≥ toggles sit on the outside of the min and max inputs. */
+.bound-row { display: flex; gap: 4px; }
+.bound-row input[type="text"] { flex: 1; width: auto; min-width: 0; }
+.bound-toggle { position: relative; flex-shrink: 0; }
+.bound-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+.bound-toggle span {
+  display: grid; place-items: center; width: 32px; height: 100%; min-height: 32px;
+  border: 1px solid var(--border); border-radius: 6px; background: var(--bg);
+  color: var(--muted); font-size: 1rem; line-height: 1; cursor: pointer;
+}
+.bound-toggle span:hover { color: var(--text); border-color: var(--accent); }
+.bound-toggle input:checked + span { color: var(--text); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 18%, var(--bg)); }
+.bound-toggle input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 1px; }
+/* Stacked on narrow screens, the preview comes first so option changes show right above them. */
+@media (max-width: 800px) { .legend-lab .output { order: -1; } }
+
+/* Segmented radio group */
+.seg { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; border: 1px solid var(--border); border-radius: 20px; background: var(--bg); }
+.seg label { position: relative; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg span { display: block; padding: 4px 12px; border-radius: 16px; font-size: 0.8rem; color: var(--muted); cursor: pointer; white-space: nowrap; }
+.seg span:hover { color: var(--text); }
+.seg input:checked + span { color: var(--text); background: var(--panel); box-shadow: inset 0 0 0 1px var(--accent); }
+.seg input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 .div-hint { margin: 0 0 10px; }
 .color-list.diverging .color-item { grid-template-columns: 34px 1fr auto auto auto auto auto; }
@@ -333,7 +374,7 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
   cursor: pointer;
 }
 
-.chart-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin: 20px 0 10px; container-type: inline-size; }
+.chart-head { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin: 20px 0 10px; }
 .chart-head h2 { margin: 0; }
 .mini-btn { padding: 3px 10px; font-size: 0.75rem; border-radius: 14px; color: var(--muted); background: transparent; }
 .mini-btn:not(:disabled):hover { color: var(--text); border-color: var(--text); }
@@ -345,13 +386,22 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 .curve-btn[aria-pressed="true"] { color: var(--text); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); }
 .curve-group.falling .mirror { transform: scaleX(-1); }
 .curve-group.valley .flip { transform: scaleY(-1); }
-/* The buttons always stay together on one row. Beside the title (about 255px) they fit with the
-   Linear label above 420px and as icons only above 380px; narrower, the header wraps them onto
-   their own row under the title, where the label fits again. */
-@container (max-width: 420px) { .curve-label { display: none; } }
-@container (max-width: 380px) { .curve-label { display: inline; } }
-@container (max-width: 160px) { .curve-label { display: none; } }
 .chart-wrap svg { width: 100%; height: auto; display: block; overflow: visible; }
+/* The specimen spans the plot area, from the 100 gridline to the 0 axis (fitChart sets --plot-top
+   and --plot-h), with its picker below; the chart takes the rest of the row, never less than half.
+   The chart's drawing keeps its text the same size at any width. */
+.chart-row { display: flex; align-items: flex-start; gap: 12px; }
+.chart-row #chart { flex: 1 1 0; min-width: 50%; width: auto; }
+.specimen { flex: 0 1 auto; min-width: 0; margin: var(--plot-top, 15px) 0 0; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.specimen canvas { display: block; height: var(--plot-h, 275px); width: auto; max-width: 100%; aspect-ratio: 1; object-fit: contain; border-radius: 4px; }
+/* When the row can't fit the specimen (275px), the gap and a chart wide enough for full-size text
+   (240 units at 1.25px, 300px), the specimen hides and the chart takes the full width. This is the
+   row's width, not the screen's, so it also covers the narrow right column of mid-size windows. */
+.chart-wrap { container-type: inline-size; }
+@container (max-width: 590px) {
+  .specimen { display: none; }
+  .chart-row #chart { flex-basis: 100%; width: 100%; min-width: 0; }
+}
 .clip-note { color: var(--warn-text); }
 .chart-wrap .dot { cursor: ns-resize; touch-action: none; outline: none; }
 .chart-wrap .dot:hover, .chart-wrap .dot:focus-visible { stroke-width: 3; }
