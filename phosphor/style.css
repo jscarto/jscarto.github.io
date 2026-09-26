@@ -172,24 +172,26 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .color-item.is-mid input[type="text"] { border-color: var(--accent); }
 .presets-toggle { padding: 7px 14px; border-radius: 20px; background: var(--panel); }
 .presets-panel { margin-top: 10px; }
+/* Preset cards: compact, so the longer lists stay scannable. */
 .preset-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); /* fits the longest name, Cubehelix Classic, on one line */
+  gap: 6px;
 }
 .preset-card {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 6px 6px 8px;
+  gap: 4px;
+  padding: 4px 4px 6px;
   text-align: left;
-  border-radius: 8px;
+  border-radius: 6px;
   background: var(--bg);
 }
 .preset-card[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-.preset-preview { display: block; height: 28px; border-radius: 4px; }
-.preset-meta { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 0 2px; }
-.preset-name { font-size: 0.8rem; }
+.preset-preview { display: block; height: 17px; border-radius: 3px; }
+.preset-meta { display: flex; align-items: center; justify-content: space-between; gap: 4px; padding: 0 1px; }
+.preset-name { font-size: 0.875rem; line-height: 1.25; min-width: 0; overflow-wrap: anywhere; }
+.preset-card .cvd-icon { width: 15px; height: 10px; }
 
 /* Red-green colorblind cue: a green eye with a check, or a gray eye with an X. */
 .cvd-icon { width: 20px; height: 13px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
@@ -220,7 +222,6 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 :root[data-cvd="protanopia"] main { filter: url(#cvd-protanopia); }
 :root[data-cvd="deuteranopia"] main { filter: url(#cvd-deuteranopia); }
 :root[data-cvd="tritanopia"] main { filter: url(#cvd-tritanopia); }
-:root[data-cvd="achromatopsia"] main { filter: url(#cvd-achromatopsia); }
 .theme-toggle {
   display: inline-flex;
   align-items: center;

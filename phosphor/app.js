@@ -1032,12 +1032,52 @@
     },
     {
       // 11 evenly spaced stops from matplotlib's 256-entry colormaps.
-      title: 'Perceptually uniform (matplotlib)',
+      title: 'Matplotlib',
       presets: [
         { name: 'Viridis', colors: ['#440154', '#482576', '#414487', '#355f8d', '#2a788e', '#21918c', '#22a884', '#42be71', '#7ad151', '#bddf26', '#fde725'] },
         { name: 'Plasma', colors: ['#0d0887', '#43039e', '#6a00a8', '#8f0da4', '#b12a90', '#cc4778', '#e16462', '#f1834c', '#fca636', '#fcce25', '#f0f921'] },
         { name: 'Magma', colors: ['#000004', '#150e38', '#3b0f70', '#641a80', '#8c2981', '#b73779', '#de4968', '#f66e5c', '#fe9f6d', '#fecf92', '#fcfdbf'] },
         { name: 'Inferno', colors: ['#000004', '#180c3c', '#420a68', '#6a176e', '#932667', '#bc3754', '#dd513a', '#f3761b', '#fca50a', '#f6d746', '#fcffa4'] },
+      ],
+    },
+    {
+      // Google's Turbo (2019), an improved rainbow, from matplotlib. Its lightness rises and falls,
+      // so it loads uncorrected; 14 stops follow it to within 2 (OKLab distance x 100).
+      title: 'Google',
+      presets: [
+        { name: 'Turbo', colors: ['#30123b', '#4249b1', '#467df4', '#31aff5', '#18d9c8', '#38f491', '#84ff51', '#bcf534', '#e9d539', '#fea933', '#f8721c', '#df3f08', '#b41b01', '#7a0403'] },
+      ],
+    },
+    {
+      // Dave Green's cubehelix (2011) with its default parameters, from matplotlib.
+      title: 'Cubehelix',
+      presets: [
+        { name: 'Cubehelix Classic', colors: ['#000000', '#1a142f', '#163d4e', '#1e6542', '#54792f', '#a1794a', '#d07e93', '#cf9ddb', '#c1caf3', '#d3eeef', '#ffffff'] },
+      ],
+    },
+    {
+      // cmocean 3.0 (Thyng et al., 2016, MIT license): 11 stops where the lightness is corrected,
+      // which follow each map's hue and chroma to within 2 (OKLab distance x 100). Phase (cyclic)
+      // and Topo (sea and land joined at a sharp break) load uncorrected; Topo's 22 stops put the
+      // break between two of them, since a gradient can only blend across it.
+      title: 'CMOcean',
+      presets: [
+        { name: 'Thermal', colors: ['#042333', '#0f326a', '#40349f', '#674396', '#8b538d', '#b15f82', '#d66c6c', '#f3824d', '#fca63c', '#f7d045', '#e8fa5b'] },
+        { name: 'Haline', colors: ['#2a186c', '#2927a2', '#0d4e96', '#18668c', '#2d7c89', '#3c9387', '#4aaa81', '#65c172', '#94d35d', '#d0e06d', '#fdef9a'] },
+        { name: 'Solar', colors: ['#331418', '#521e22', '#732724', '#8f341f', '#a54a17', '#b66413', '#c47f15', '#cf9c1d', '#d8ba2a', '#dedb3a', '#e1fd4b'] },
+        { name: 'Ice', colors: ['#040613', '#1b1b37', '#302f5f', '#3d4389', '#3e5ea9', '#427bb7', '#5296c1', '#6bb1cb', '#8ccbd6', '#bce4e7', '#eafdfd'] },
+        { name: 'Gray', colors: ['#000000', '#131212', '#2b2b2b', '#424241', '#5a5959', '#727171', '#8a8989', '#a4a4a3', '#c0bfbe', '#dededd', '#fffffd'] },
+        { name: 'Deep', colors: ['#fdfecc', '#caebb2', '#92d8a4', '#66c2a4', '#52a8a3', '#488e9e', '#407598', '#3e5a92', '#41407b', '#382d51', '#281a2c'] },
+        { name: 'Dense', colors: ['#e6f1f1', '#bcdce5', '#96c5e2', '#7bade4', '#7390e3', '#7871d5', '#7954bb', '#743a98', '#682471', '#531546', '#360e24'] },
+        { name: 'Algae', colors: ['#d7f9d0', '#b8e3ac', '#96cd8a', '#72bb6c', '#44a855', '#129450', '#097d4b', '#156641', '#1a5034', '#183a25', '#122414'] },
+        { name: 'Matter', colors: ['#feedb0', '#faca90', '#f5a773', '#ee855e', '#e26253', '#ce4356', '#b32e5f', '#932063', '#721a60', '#4f1652', '#2f0f3e'] },
+        { name: 'Turbid', colors: ['#e9f6ab', '#dbd987', '#cfbc66', '#c4a14d', '#b58740', '#a1703b', '#8a5e3a', '#704d37', '#563e30', '#3b2f27', '#221f1b'] },
+        { name: 'Speed', colors: ['#fffdcd', '#eedf98', '#d8c55f', '#b8b22f', '#8ea20b', '#5f920c', '#32801f', '#0f6b2b', '#10542c', '#193b23', '#172313'] },
+        { name: 'Amp', colors: ['#f1edec', '#e5cfc9', '#dcb1a3', '#d3957f', '#ca775b', '#c0583b', '#b33826', '#9d1926', '#7f0e29', '#5c0e21', '#3c0912'] },
+        { name: 'Tempo', colors: ['#fff6f4', '#dcdfd0', '#b6cbaf', '#8db997', '#5da786', '#2a937f', '#117d79', '#18656e', '#1c4d61', '#1a3651', '#151d44'] },
+        { name: 'Rain', colors: ['#eeedf3', '#ded3c9', '#cbba98', '#a1ac82', '#739d75', '#3d8e6e', '#0c7b6e', '#08636b', '#1e4b5f', '#25334b', '#221b38'] },
+        { name: 'Phase', colors: ['#a8780d', '#c66033', '#d94361', '#dd26a3', '#c53ce1', '#9a62f4', '#6080e4', '#2891b8', '#109788', '#279a4f', '#778d12', '#a8780d'] },
+        { name: 'Topo', colors: ['#281a2c', '#372c4f', '#413e76', '#3e5691', '#3f6f97', '#46879c', '#4fa1a2', '#5dbaa4', '#7dd0a3', '#b0e2a9', '#e3f4bd', '#133018', '#1d451d', '#365723', '#566635', '#76753e', '#998540', '#bc943e', '#cdab65', '#dac68f', '#e8e1b9', '#f9fde4'] },
       ],
     },
   ];
@@ -1057,6 +1097,18 @@
       presets: ['BrBG', 'PiYG', 'PRGn', 'PuOr', 'RdBu', 'RdGy', 'RdYlBu', 'RdYlGn', 'Spectral']
         .map((name) => ({ name, colors: chroma.brewer[name], mid: Math.floor(chroma.brewer[name].length / 2) })),
     },
+    {
+      // cmocean 3.0's diverging maps, centered on their middle stop. Delta has a slight step at
+      // its center, so it takes 21 stops; the others follow the original within 2 in 11 to 15.
+      title: 'CMOcean',
+      presets: [
+        { name: 'Balance', mid: 7, colors: ['#181c43', '#27347d', '#1c50ba', '#1e76bb', '#5197ba', '#88b2c1', '#bfcdd3', '#f1eceb', '#e1c2b8', '#d49984', '#c76f53', '#b74029', '#991627', '#6b0f25', '#3c0912'] },
+        { name: 'Delta', mid: 10, colors: ['#112040', '#203067', '#244297', '#1b5e9f', '#2378a3', '#3391a9', '#4da7af', '#7dbbb6', '#accec6', '#d7e4d9', '#fffccc', '#eee099', '#d9c560', '#b7b12e', '#8ca10a', '#5e910d', '#33801f', '#0f6b2b', '#10532c', '#193a23', '#172313'] },
+        { name: 'Curl', mid: 5, colors: ['#151d44', '#1c4d60', '#117d79', '#5ca786', '#b6cbb0', '#fdf5f4', '#e6b8a2', '#d37669', '#ae4060', '#75195d', '#340d35'] },
+        { name: 'Diff', mid: 5, colors: ['#082340', '#214d6a', '#5a7487', '#8d9ca7', '#c6cacf', '#f6f1f0', '#cec7b8', '#a19679', '#7a6d41', '#4b471c', '#1c2207'] },
+        { name: 'Tarn', mid: 5, colors: ['#17230e', '#3c4d0d', '#846a25', '#cb8448', '#e3bfa3', '#fcf7f6', '#cbccaa', '#7ca490', '#2e7e7e', '#154f6a', '#101e4f'] },
+      ],
+    },
   ];
   const presetGroups = () => (isDiverging() ? DIVERGING_GROUPS : PRESET_GROUPS);
   const currentPresets = () => presetGroups().flatMap((g) => g.presets);
@@ -1075,21 +1127,26 @@
   // ---------- red-green colorblind check ----------
   // Simulates protanopia and deuteranopia with the Machado et al. (2009) matrices behind the
   // Simulate buttons (read from their SVG filters, so there's one source), applied in linear RGB,
-  // on 33 evenly spaced samples. Under both, a gradient must keep at least CVD_MIN_DE apart
-  // (OKLab distance × 100):
+  // on 33 evenly spaced samples. These pairs are checked under both:
   //   - any two samples at least a quarter of the ramp apart, and
   //   - for diverging gradients, each pair mirrored about the midpoint down to an eighth of the
   //     ramp apart. Mirrored colors share a lightness, so only hue tells the two sides apart,
   //     and that is where red-green palettes fail: Spectral's inner colors merge under
   //     protanopia and deuteranopia even though its ends stay distinct.
+  // A pair fails when it is under CVD_MIN_DE apart (OKLab distance × 100) as simulated AND the
+  // simulation has lost more than half the contrast normal vision sees (CVD_KEEP). So colors that
+  // are close for everyone, like the near-neutral middles of cmocean's Balance and Diff (which keep
+  // 65% and 97%), don't count against a palette; only what color vision deficiency takes away does.
   // With the lightness correction applied, this passes every ColorBrewer sequential scheme and the
-  // six diverging ones ColorBrewer rates colorblind-safe (lowest 5.5), and fails RdGy, RdYlGn and
-  // Spectral (highest 2.5).
+  // six diverging ones ColorBrewer rates colorblind-safe, and fails RdGy, RdYlGn and Spectral; the
+  // red-green failures keep at most 29% of their contrast (Spectral), Curl and Tarn 4% and 15%.
   const CVD_MIN_DE = 4.5;
+  const CVD_KEEP = 0.5;
   const CVD_SAMPLES = 33;
   const CVD_GAP = 8; // samples apart: a quarter of the ramp
   const CVD_MIRROR_GAP = 4; // samples apart: an eighth of the ramp
   let cvdMatrices = null;
+  const IDENTITY = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
 
   const readCvdMatrix = (id) => {
     const v = document.querySelector(`#${id} feColorMatrix`).getAttribute('values').trim().split(/\s+/).map(Number);
@@ -1111,11 +1168,13 @@
     cvdMatrices = cvdMatrices || ['cvd-protanopia', 'cvd-deuteranopia'].map(readCvdMatrix);
     const ts = positions(CVD_SAMPLES);
     const last = CVD_SAMPLES - 1;
+    const normal = ts.map((t) => simulatedOklab(sample(t), IDENTITY)); // same clipping as simulated
     return cvdMatrices.every((m) => {
       const lab = ts.map((t) => simulatedOklab(sample(t), m));
+      const dist = (p, i, j) => 100 * Math.hypot(p[i][0] - p[j][0], p[i][1] - p[j][1], p[i][2] - p[j][2]);
       const apart = (i, j) => {
-        const [a, b] = [lab[i], lab[j]];
-        return 100 * Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]) >= CVD_MIN_DE;
+        const seen = dist(lab, i, j);
+        return seen >= CVD_MIN_DE || seen >= CVD_KEEP * dist(normal, i, j);
       };
       for (let i = 0; i < lab.length; i++) {
         for (let j = i + CVD_GAP; j < lab.length; j++) if (!apart(i, j)) return false;
@@ -1129,7 +1188,7 @@
 
   const CVD_TITLE = {
     true: 'Red-green colorblind-safe: colors stay distinguishable with simulated protanopia and deuteranopia.',
-    false: 'Not red-green colorblind-safe: with simulated protanopia or deuteranopia, some colors far apart in the ramp look alike.',
+    false: 'Not red-green colorblind-safe: with simulated protanopia or deuteranopia, some colors that normally look different look alike.',
   };
   const cvdIcon = (safe) =>
     `<svg class="cvd-icon ${safe ? 'cvd-ok' : 'cvd-bad'}" viewBox="0 0 22 14" aria-hidden="true">` +
