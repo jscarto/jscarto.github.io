@@ -22,7 +22,7 @@
     swatches: $('swatches'), chart: $('chart'), specimen: $('specimen'), stats: $('stats'),
     curveGroup: $('curve-group'), curveBtns: [...document.querySelectorAll('.curve-btn')], chartHint: $('chart-hint'), clipNote: $('clip-note'),
     divHint: $('div-hint'), divNote: $('div-note'), tabPanel: $('tab-panel'),
-    outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'),
+    outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'), outR: $('out-r'),
     proPreview: $('pro-preview'), rampName: $('ramp-name'), proDownload: $('pro-download'),
     outQgis: $('out-qgis'), qgisDownload: $('qgis-download'),
     outGdal: $('out-gdal'), gdalDownload: $('gdal-download'),
@@ -361,6 +361,7 @@
     if (!gradient) return;
     gradient.stepHexes = hexes;
     setExport(el.outPy, 'python', pythonSnippet(gradient, hexes, gradient.dense32));
+    setExport(el.outR, 'r', rSnippet(gradient, hexes, gradient.dense32));
     setExport(el.outQgis, 'xml', qgisXml(rampName(), gradient.dense32));
     renderGdal();
   }
@@ -503,8 +504,11 @@
 
   const rampName = () => el.rampName.value.trim() || 'Phosphor';
 
-  function pythonSnippet(g, hexes, dense) {
-    const name = rampName().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'phosphor';
+  /** The ramp name as a code identifier, e.g. "Phosphor Frostfire" -> phosphor_frostfire. */
+  const codeName = () => rampName().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '').replace(/^(?=\d)/, 'p_') || 'phosphor';
+
+  /** One line on how the gradient was built, for the code exports' comments. */
+  function howBuilt(g) {
     const space = el.mode.options[el.mode.selectedIndex].text;
     const kind = g.s.diverging ? 'diverging, ' : '';
     const how = g.adjusted && state.lightness
@@ -516,10 +520,15 @@
       : g.s.corrected
       ? `${space} interpolation, lightness-corrected (linear OKLab L).`
       : `${space} interpolation, uncorrected (the colors go up and down in lightness).`;
+    return how;
+  }
+
+  function pythonSnippet(g, hexes, dense) {
+    const name = codeName();
     return [
       'from matplotlib.colors import LinearSegmentedColormap, ListedColormap',
       '',
-      `# Phosphor gradient: ${hexes[0]} to ${hexes[hexes.length - 1]}, ${how}`,
+      `# Phosphor gradient: ${hexes[0]} to ${hexes[hexes.length - 1]}, ${howBuilt(g)}`,
       `# ${RGB_STOPS} samples; matplotlib blends between them.`,
       'colors = [',
       hexRows(dense, 4, '    ', '"') + ',',
@@ -532,6 +541,29 @@
       `], name="${name}_steps")`,
       '',
       '# Usage: plt.imshow(data, cmap=cmap)',
+    ].join('\n');
+  }
+
+  function rSnippet(g, hexes, dense) {
+    const name = codeName();
+    return [
+      'library(ggplot2)',
+      '',
+      `# Phosphor gradient: ${hexes[0]} to ${hexes[hexes.length - 1]}, ${howBuilt(g)}`,
+      `# ${RGB_STOPS} samples; ggplot2 blends between them.`,
+      `${name} <- c(`,
+      hexRows(dense, 4, '  ', '"'),
+      ')',
+      '',
+      `# The ${hexes.length} discrete steps, for classed maps and charts.`,
+      `${name}_steps <- c(`,
+      hexRows(hexes, 4, '  ', '"'),
+      ')',
+      '',
+      '# Usage:',
+      `#   ggplot(df, aes(x, y, colour = value)) + geom_point() + scale_color_gradientn(colours = ${name})`,
+      `#   Fills: scale_fill_gradientn(colours = ${name})`,
+      `#   Classed: scale_fill_stepsn(colours = ${name}_steps)`,
     ].join('\n');
   }
 
@@ -620,6 +652,13 @@
       ['com', /#.*/y],
       ['kw', /\b(?:from|import|as)\b/y],
       ['fn', /\b[A-Za-z_]\w*(?=\()/y],
+      ['num', /\b\d+\b/y],
+    ],
+    r: [
+      ['str', /"[^"\n]*"/y],
+      ['com', /#.*/y],
+      ['kw', /<-|\b(?:library|function|TRUE|FALSE|NULL)\b/y],
+      ['fn', /\b[A-Za-z_.][\w.]*(?=\()/y],
       ['num', /\b\d+\b/y],
     ],
   };

@@ -129,7 +129,12 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 @media (max-width: 480px) {
   .tabs { gap: 0; }
   .tabs [role="tab"] { padding: 8px 10px; font-size: 0.85rem; gap: 5px; }
-  }
+}
+/* The narrowest phones (320px): tighter tabs, so the three still fit on one row. */
+@media (max-width: 400px) {
+  .tabs [role="tab"] { padding: 8px 5px; font-size: 0.78rem; gap: 3px; }
+  .tab-icon { width: 14px; height: 11px; }
+}
 .layout[hidden], .legend-lab[hidden] { display: none; }
 
 /* Legend Laboratory */
@@ -241,13 +246,13 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   .wordmark { font-size: 1.9rem; gap: 10px; }
   .wordmark img { width: 44px; height: 44px; }
 }
-/* Narrow screens: theme toggle stays beside the wordmark; CVD toggles take their own row with short labels. */
+/* Narrow screens: theme toggle stays beside the wordmark; CVD toggles take their own row, sharing it evenly. */
 @media (max-width: 640px) {
   .head-tools { display: contents; }
   .theme-toggle { order: 2; margin-top: 6px; }
   .cvd { order: 3; width: 100%; flex-wrap: nowrap; margin-bottom: 4px; }
   .cvd button { flex: 1; padding: 6px 4px; }
-  .cvd-label, .cvd-long { display: none; }
+  .cvd-label { display: none; }
   .byline { display: block; margin: 6px 0 0; font-size: 0.85rem; }
 }
 .lede { margin: 0 0 24px; color: var(--muted); max-width: 60ch; }
@@ -322,6 +327,14 @@ input[type="text"], select { padding: 6px 8px; width: 100%; min-width: 0; }
 .color-item input.invalid { border-color: var(--chart-target); }
 .color-item .lval { font-size: 0.75rem; color: var(--muted); width: 3.4em; text-align: right; font-variant-numeric: tabular-nums; }
 .color-item button { padding: 4px 7px; line-height: 1; }
+/* The narrowest phones: the hex field needs its room, so the L readout (also on the lightness
+   chart) steps aside and the row's buttons tighten. */
+@media (max-width: 360px) {
+  .color-item .lval { display: none; }
+  .color-list .color-item { grid-template-columns: 34px 1fr auto auto auto; }
+  .color-list.diverging .color-item { grid-template-columns: 34px 1fr auto auto auto auto; }
+  .color-item button { padding: 4px 5px; }
+}
 
 .warning {
   background: var(--warn-bg);

@@ -9,7 +9,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Joshua Stevens">
   <meta property="og:title" content="Phosphor">
-  <meta property="og:description" content="Multi-hue color gradients with perceptually linear lightness. Export to CSS, Python, QGIS, ArcGIS Pro or GDAL.">
+  <meta property="og:description" content="Multi-hue color gradients with perceptually linear lightness. Export to CSS, Python, R, QGIS, ArcGIS Pro or GDAL.">
   <meta property="og:url" content="https://www.joshuastevens.net/phosphor/">
   <meta property="og:image" content="https://www.joshuastevens.net/phosphor/assets/social-card.jpg">
   <meta property="og:image:width" content="1200">
@@ -42,9 +42,9 @@
       <div class="head-tools">
         <div class="cvd" role="group" aria-label="Simulate color vision deficiency">
           <span class="cvd-label">Simulate</span>
-          <button type="button" data-cvd="protanopia" aria-pressed="false" title="Protanopia: no red cones">Protan<span class="cvd-long">opia</span></button>
-          <button type="button" data-cvd="deuteranopia" aria-pressed="false" title="Deuteranopia: no green cones">Deutan<span class="cvd-long">opia</span></button>
-          <button type="button" data-cvd="tritanopia" aria-pressed="false" title="Tritanopia: no blue cones">Tritan<span class="cvd-long">opia</span></button>
+          <button type="button" data-cvd="protanopia" aria-pressed="false" title="Protanopia: no red cones">Protanopia</button>
+          <button type="button" data-cvd="deuteranopia" aria-pressed="false" title="Deuteranopia: no green cones">Deuteranopia</button>
+          <button type="button" data-cvd="tritanopia" aria-pressed="false" title="Tritanopia: no blue cones">Tritanopia</button>
         </div>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark mode" title="Switch to dark mode">
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -161,7 +161,7 @@
 
       <h2>Export</h2>
       <label class="field ramp-name">
-        <span>Ramp name <span class="hint-inline">(used by the Python, QGIS, ArcGIS Pro and GDAL exports)</span></span>
+        <span>Ramp name <span class="hint-inline">(used by the Python, R, QGIS, ArcGIS Pro and GDAL exports)</span></span>
         <input id="ramp-name" type="text" placeholder="Ramp name" spellcheck="false" autocomplete="off">
       </label>
       <div class="exports">
@@ -176,6 +176,10 @@
         <div class="export">
           <div class="export-head"><span>Python (matplotlib)</span><button type="button" data-copy="out-py">Copy</button></div>
           <pre class="code"><code id="out-py"></code></pre>
+        </div>
+        <div class="export">
+          <div class="export-head"><span>R (ggplot2)</span><button type="button" data-copy="out-r">Copy</button></div>
+          <pre class="code"><code id="out-r"></code></pre>
         </div>
         <div class="export">
           <div class="export-head"><span>ArcGIS Pro style (.stylx)</span><button id="pro-download" type="button">Download .stylx</button></div>
