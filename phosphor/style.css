@@ -107,6 +107,17 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   color: var(--muted);
   white-space: nowrap;
 }
+/* A quiet link: the byline's gray with a faint underline, turning amber (the site's link color)
+   on hover or focus. */
+.byline a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.byline a:hover, .byline a:focus-visible { color: var(--amber); text-decoration-color: currentColor; }
 
 .presets { grid-column: 1 / -1; }
 
