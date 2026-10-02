@@ -161,12 +161,20 @@
   /**
    * Whether the grid holds up under protanopia and deuteranopia, by the ramps' rule with the grid
    * cutoff: a pair of cells fails if it drops below CVD_GRID_MIN_DE and loses more than half its
-   * normal contrast.
+   * normal contrast. A pair that's already that close with normal vision (say, High X and High Y
+   * set to the same color) fails too: it looks alike to everyone, colorblind or not.
    */
   function assess(g) {
     const cells = allCells(g);
     const normal = cells.map((c) => P.simulatedOklab(c.hex, P.IDENTITY));
     const d = (p, i, j) => 100 * Math.hypot(p[i][0] - p[j][0], p[i][1] - p[j][1], p[i][2] - p[j][2]);
+    let alike = false;
+    for (let i = 0; i < cells.length && !alike; i++) {
+      for (let j = i + 1; j < cells.length; j++) {
+        if (d(normal, i, j) < CVD_GRID_MIN_DE) { alike = true; break; }
+      }
+    }
+    if (alike) return { safe: false, alike };
     const matrices = ['cvd-protanopia', 'cvd-deuteranopia'].map(P.readCvdMatrix);
     const safe = matrices.every((m) => {
       const sim = cells.map((c) => P.simulatedOklab(c.hex, m));
@@ -178,7 +186,7 @@
       }
       return true;
     });
-    return { safe };
+    return { safe, alike };
   }
 
   // ---------- rendering ----------
@@ -201,10 +209,12 @@
       el.grid.appendChild(b);
     }));
 
-    const { safe } = assess(grid);
+    const { safe, alike } = assess(grid);
     el.cvd.hidden = false;
     el.cvd.className = 'cvd-badge ' + (safe ? 'is-safe' : 'is-unsafe');
-    el.cvd.title = P.CVD_TITLE[safe];
+    el.cvd.title = alike
+      ? 'Not colorblind-safe: some cells look alike even with normal vision, so no one can tell them apart.'
+      : P.CVD_TITLE[safe];
     el.cvd.innerHTML = P.cvdIcon(safe) + (safe ? 'colorblind-safe' : 'not colorblind-safe');
 
     const notes = [];
