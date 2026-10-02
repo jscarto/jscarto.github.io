@@ -909,14 +909,15 @@
     return sqlJsPromise;
   }
 
-  function buildStylx(SQL, name, hexes) {
+  // bivariate: `content` (a CIM color scheme) and `tags` let bivariate.js write its grid schemes.
+  function buildStylx(SQL, name, hexes, content = cimMultipartRamp(hexes), tags = 'Phosphor;linear lightness') {
     const db = new SQL.Database();
     db.exec(STYLX_SCHEMA);
     STYLX_META.forEach((row) => db.run('INSERT INTO meta (key, value) VALUES (?, ?)', row));
     STYLX_CLASSES.forEach((cls, i) => db.run('INSERT INTO CLASSES (ID, NAME) VALUES (?, ?)', [i + 1, cls]));
     db.run('INSERT INTO BINARY_CLASSES (ID, NAME) VALUES (1, ?)', ['GLB']);
     db.run('INSERT INTO ITEMS (ID, CLASS, CATEGORY, NAME, TAGS, CONTENT, KEY) VALUES (1, ?, ?, ?, ?, ?, ?)',
-      [CLASS_COLOR_SCHEME, 'Phosphor', name, 'Phosphor;linear lightness', JSON.stringify(cimMultipartRamp(hexes)), name]);
+      [CLASS_COLOR_SCHEME, 'Phosphor', name, tags, JSON.stringify(content), name]);
     const bytes = db.export();
     db.close();
     return bytes;
@@ -1341,7 +1342,8 @@
   };
 
   function clearStaleShareLink() {
-    if (location.hash && location.hash !== stateHash()) {
+    const bivariateLink = /^#(?:.*&)?t=b(?:&|$)/.test(location.hash); // bivariate: bivariate.js manages its own links
+    if (location.hash && !bivariateLink && location.hash !== stateHash()) {
       history.replaceState(null, '', location.pathname + location.search);
     }
   }
@@ -1577,6 +1579,7 @@
   }
 
   function renderLegend() {
+    if (window.PhosphorBivariate && window.PhosphorBivariate.renderLegend(lastPaletteTab)) return; // bivariate
     const o = legendSettings();
     const problem = gradient ? legendProblem(o) : 'Build a valid palette on the Sequential or Diverging tab first.';
     let ticks = problem ? null : legendTicks(o.scale, o.min, o.max, o.step, o.minor);
@@ -1682,7 +1685,8 @@
   }
 
   function legendFilename(ext) {
-    return safeFilename(legendSettings().title || rampName()) + ' legend.' + ext;
+    const bivariateName = lastPaletteTab === 'bivariate' && window.PhosphorBivariate && window.PhosphorBivariate.name(); // bivariate
+    return safeFilename(legendSettings().title || bivariateName || rampName()) + ' legend.' + ext;
   }
 
   function legendSvgText() {
@@ -1729,6 +1733,8 @@
 
   const tabs = [...document.querySelectorAll('.tabs [role="tab"]')];
   let activeTab = state.type;
+  let lastPaletteTab = state.type; // bivariate: 'sequential', 'diverging' or 'bivariate', for the Legend Lab
+  const bivariatePanel = $('bivariate-panel'); // bivariate
 
   function markTab(type, focus) {
     activeTab = type;
@@ -1742,13 +1748,16 @@
 
   function selectTab(type, focus) {
     if (activeTab === type) return;
-    const fromLegend = activeTab === 'legend';
+    const fromOther = activeTab === 'legend' || activeTab === 'bivariate'; // bivariate: was fromLegend
     markTab(type, focus);
-    el.tabPanel.hidden = type === 'legend';
+    el.tabPanel.hidden = type === 'legend' || type === 'bivariate';
     legendEl.panel.hidden = type !== 'legend';
+    if (bivariatePanel) bivariatePanel.hidden = type !== 'bivariate'; // bivariate
+    if (type !== 'legend') lastPaletteTab = type;
     if (type === 'legend') { renderLegend(); return; }
-    // Back from the lab to the palette it was showing: nothing to rebuild.
-    if (fromLegend && state.type === type && gradient) return;
+    if (type === 'bivariate') { if (window.PhosphorBivariate) window.PhosphorBivariate.show(); return; } // bivariate
+    // Back from another tab to the palette it was showing: nothing to rebuild.
+    if (fromOther && state.type === type && gradient) return;
     state = tabStates[type];
     el.tabPanel.setAttribute('aria-labelledby', 'tab-' + type);
     el.mode.value = state.mode;
@@ -1790,4 +1799,11 @@
   buildList();
   buildPresets();
   applyTheme(document.documentElement.getAttribute('data-theme') || 'light');
+
+  // bivariate: helpers shared with bivariate.js. Removing that file leaves this unused.
+  window.Phosphor = {
+    positions, lightness, inGamutOklab, simulatedOklab, readCvdMatrix, IDENTITY, CVD_MIN_DE, CVD_KEEP,
+    cvdIcon, CVD_TITLE, setExport, copy, downloadText, safeFilename, loadSqlJs, buildStylx,
+    legendEl, LEGEND, textWidth, legendSettings, renderLegend, makeScale, buildSamplers,
+  };
 })();

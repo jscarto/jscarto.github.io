@@ -1,0 +1,53 @@
+/* Phosphor — the Bivariate tab and bivariate legends. Remove with bivariate.js. */
+
+.layout.bivariate[hidden] { display: none; }
+/* Legend Lab fields swap between univariate and bivariate options; their display rules would
+   otherwise override the hidden attribute. */
+.legend-lab [hidden] { display: none !important; }
+
+/* Preset cards (the shared .preset-card style) with a small grid in place of the ramp strip. */
+.biv-card-preview { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); height: 34px; overflow: hidden; }
+.biv-card-preview i, .biv-pro-preview i { display: block; }
+
+/* Anchor colors: a swatch picker beside each hex field. */
+.biv-anchor { display: grid; grid-template-columns: 34px 1fr; gap: 8px; align-items: end; margin-top: 10px; }
+.biv-anchor .field { margin: 0; }
+.biv-anchor input[type="color"] { width: 34px; height: 34px; padding: 0; border: 0; border-radius: 6px; background: none; cursor: pointer; }
+.biv-anchor input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.biv-anchor input[type="color"]::-webkit-color-swatch { border: 0; border-radius: 6px; }
+.biv-anchor input[type="color"]::-moz-color-swatch { border: 0; border-radius: 6px; }
+.biv-anchor input[type="text"] { font-family: ui-monospace, Menlo, monospace; }
+.biv-anchor input.invalid { border-color: var(--chart-target); }
+/* Both high, while mixed automatically from the other three: shown muted, with an Auto button
+   (to return to mixing) only once a color is chosen. */
+.biv-anchor input.is-auto { color: var(--muted); font-style: italic; }
+.biv-auto { margin-left: 8px; padding: 1px 8px; vertical-align: 1px; }
+.biv-actions { margin-top: 12px; }
+/* Lightness curve buttons, styled like the charts' .curve-btn (a separate class, since app.js
+   manages every .curve-btn). */
+.biv-curves { display: flex; gap: 4px; }
+.biv-curve-btn { display: inline-flex; align-items: center; gap: 5px; }
+.biv-curve-btn:not(:has(span)) { padding: 3px 7px; }
+.biv-curve-btn svg { display: block; width: 18px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.biv-curve-btn[aria-pressed="true"] { color: var(--text); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, transparent); }
+
+/* The grid (low/low at the bottom left, axis labels outside) and the map beside it, both the
+   size of the Map preview on the other tabs. Where the row can't fit both, the map steps aside. */
+.bivariate .biv-title { margin: 0; }
+.biv-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 12px 0 8px; container-type: inline-size; }
+.biv-stage { display: grid; grid-template-columns: auto minmax(0, 275px); gap: 6px; align-items: center; flex: 0 1 auto; min-width: 0; }
+.biv-grid { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); width: 275px; max-width: 100%; aspect-ratio: 1; border-radius: 4px; overflow: hidden; }
+.biv-cell { border: 0; border-radius: 0; padding: 0; min-width: 0; cursor: pointer; }
+.biv-cell:hover, .biv-cell:focus-visible { outline: 2px solid var(--text); outline-offset: -2px; position: relative; }
+.biv-ylabel { writing-mode: vertical-rl; transform: rotate(180deg); color: var(--muted); font-size: 0.8rem; }
+.biv-xlabel { grid-column: 2; text-align: center; color: var(--muted); font-size: 0.8rem; }
+.biv-map { display: block; width: 275px; height: 275px; border-radius: 4px; flex: none; margin-bottom: 22px; }
+@container (max-width: 600px) { .biv-map { display: none; } }
+
+/* A small grid under the ArcGIS Pro export, like the ramp preview on the other tabs. */
+.biv-pro-preview { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); width: 56px; height: 56px; border-radius: 4px; overflow: hidden; margin-bottom: 4px; }
+
+/* Four tabs on the narrowest phones: drop the tab icons so the labels fit. */
+@media (max-width: 400px) {
+  .tabs .tab-icon { display: none; }
+}

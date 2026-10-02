@@ -33,6 +33,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@600&display=swap">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bivariate.css"><!-- bivariate -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js"></script>
 </head>
 <body>
@@ -59,6 +60,8 @@
     <div class="tabs" role="tablist" aria-label="Views">
       <button type="button" role="tab" id="tab-sequential" data-type="sequential" aria-selected="true" aria-controls="tab-panel"><svg class="tab-icon" viewBox="0 0 20 16" aria-hidden="true"><circle cx="4" cy="12" r="2.4"/><circle cx="10" cy="8" r="2.4"/><circle cx="16" cy="4" r="2.4"/></svg>Sequential</button>
       <button type="button" role="tab" id="tab-diverging" data-type="diverging" aria-selected="false" aria-controls="tab-panel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 20 16" aria-hidden="true"><circle cx="4" cy="11" r="2.4"/><circle cx="10" cy="5" r="2.4"/><circle cx="16" cy="11" r="2.4"/></svg>Diverging</button>
+      <!-- bivariate -->
+      <button type="button" role="tab" id="tab-bivariate" data-type="bivariate" aria-selected="false" aria-controls="bivariate-panel" tabindex="-1"><svg class="tab-icon" viewBox="0 0 20 16" aria-hidden="true"><rect x="10.8" y="1" width="6.2" height="6.2" rx="1"/><rect x="3" y="1" width="6.2" height="6.2" rx="1" opacity=".6"/><rect x="10.8" y="8.8" width="6.2" height="6.2" rx="1" opacity=".35"/><rect x="3" y="8.8" width="6.2" height="6.2" rx="1" opacity=".75"/></svg>Bivariate</button>
       <button type="button" role="tab" id="tab-legend" data-type="legend" aria-selected="false" aria-controls="legend-panel" tabindex="-1"><svg class="tab-icon tab-icon-line" viewBox="0 0 20 16" aria-hidden="true"><path d="M7.5 1.5h5M8.5 1.5v4.2L3.6 13.2a.9.9 0 0 0 .8 1.3h11.2a.9.9 0 0 0 .8-1.3L11.5 5.7V1.5"/><path d="M5.6 10.2h8.8"/></svg>Legend Lab</button>
     </div>
     <div id="tab-panel" class="layout" role="tabpanel" aria-labelledby="tab-sequential">
@@ -211,6 +214,122 @@
     </section>
     </div>
 
+    <!-- bivariate: the Bivariate tab (bivariate.js, bivariate.css) -->
+    <div id="bivariate-panel" class="layout bivariate" role="tabpanel" aria-labelledby="tab-bivariate" hidden>
+      <section class="presets" aria-label="Bivariate preset palettes">
+        <button id="biv-presets-toggle" class="presets-toggle" type="button" aria-expanded="false" aria-controls="biv-presets">Show preset palettes</button>
+        <div id="biv-presets" class="panel presets-panel" hidden></div>
+      </section>
+
+      <section class="panel controls" aria-label="Bivariate controls">
+        <h2>Grid</h2>
+        <div class="field">
+          <span>Classes per variable</span>
+          <div class="seg" role="radiogroup" aria-label="Classes per variable">
+            <label><input type="radio" name="biv-size" value="2"><span>2×2</span></label>
+            <label><input type="radio" name="biv-size" value="3" checked><span>3×3</span></label>
+            <label><input type="radio" name="biv-size" value="4"><span>4×4</span></label>
+          </div>
+        </div>
+
+        <h2>Colors</h2>
+        <div class="biv-anchor">
+          <input type="color" id="biv-xy-picker" aria-label="Both-high color picker">
+          <label class="field"><span>Both high <span class="hint-inline">(top right)</span><button id="biv-xy-auto" class="mini-btn biv-auto" type="button" title="Mix the top-right color from the other three" hidden>Auto</button></span><input id="biv-xy" type="text" spellcheck="false" autocomplete="off"></label>
+        </div>
+        <div class="biv-anchor">
+          <input type="color" id="biv-y-picker" aria-label="High Y color picker">
+          <label class="field"><span>High Y <span class="hint-inline">(top left)</span></span><input id="biv-y" type="text" spellcheck="false" autocomplete="off"></label>
+        </div>
+        <div class="biv-anchor">
+          <input type="color" id="biv-x-picker" aria-label="High X color picker">
+          <label class="field"><span>High X <span class="hint-inline">(bottom right)</span></span><input id="biv-x" type="text" spellcheck="false" autocomplete="off"></label>
+        </div>
+        <div class="biv-anchor">
+          <input type="color" id="biv-base-picker" aria-label="Both-low color picker">
+          <label class="field"><span>Both low <span class="hint-inline">(bottom left)</span></span><input id="biv-base" type="text" spellcheck="false" autocomplete="off"></label>
+        </div>
+        <div class="row biv-actions"><button id="biv-swap" type="button">Swap X and Y</button></div>
+        <p class="hint">Each axis runs from the both-low color to its high color in the chosen interpolation space, with its lightness corrected to change evenly. Every other cell combines the two axes' offsets from the both-low color in OKLab: the top-right cell carries both. Set Both high to choose that corner yourself; the grid then blends between all four corners.</p>
+
+        <h2>Settings</h2>
+        <label class="field">
+          <span>Interpolation space</span>
+          <select id="biv-mode">
+            <option value="oklab">OKLab</option>
+            <option value="oklch">OKLCh</option>
+            <option value="lab">Lab</option>
+            <option value="lch">LCh</option>
+            <option value="hsl">HSL</option>
+            <option value="rgb">RGB</option>
+            <option value="lrgb">Linear RGB</option>
+            <option value="bezier">Bezier (Lab)</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="panel output" aria-label="Bivariate result">
+        <div class="bar-head">
+          <h2 class="biv-title">Grid</h2>
+          <span id="biv-cvd" class="cvd-badge" hidden></span>
+        </div>
+        <div class="biv-row">
+          <div class="biv-stage">
+            <div class="biv-ylabel" aria-hidden="true">Y →</div>
+            <div id="biv-grid" class="biv-grid" role="img" aria-label="Bivariate color grid"></div>
+            <div class="biv-xlabel" aria-hidden="true">X →</div>
+          </div>
+          <canvas id="biv-map" class="biv-map" width="400" height="400" role="img" aria-label="Map of counties colored by two variables with the current grid"></canvas>
+        </div>
+        <div class="chart-head">
+          <h2>Lightness (OKLab L) by position</h2>
+          <div class="biv-curves" role="group" aria-label="Lightness curve">
+            <button class="mini-btn biv-curve-btn" data-curve="linear" type="button" aria-pressed="true" title="Linear lightness along each axis" aria-label="Linear"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true"><path d="M2 2L18 12"/></svg><span>Linear</span></button>
+            <button class="mini-btn biv-curve-btn" data-curve="up" type="button" aria-pressed="false" title="Parabolic up" aria-label="Parabolic up"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true"><path d="M2 2Q10 22 18 2"/></svg></button>
+            <button class="mini-btn biv-curve-btn" data-curve="down" type="button" aria-pressed="false" title="Parabolic down" aria-label="Parabolic down"><svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true"><path d="M2 12Q10 -8 18 12"/></svg></button>
+          </div>
+        </div>
+        <p id="biv-note" class="hint clip-note" hidden></p>
+        <div class="share-cta">
+          <p id="biv-share-status" class="share-status" aria-live="polite">Like this palette? Get a link to bookmark it or share it.</p>
+          <button id="biv-share" class="share-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
+            <span id="biv-share-label">Copy share link</span>
+          </button>
+        </div>
+
+        <h2>Export</h2>
+        <label class="field ramp-name">
+          <span>Scheme name <span class="hint-inline">(used by the Python, R and ArcGIS Pro exports)</span></span>
+          <input id="biv-name" type="text" placeholder="Scheme name" spellcheck="false" autocomplete="off">
+        </label>
+        <div class="exports">
+          <div class="export">
+            <div class="export-head"><span>Hex grid <span class="hint-inline">(top row is high Y)</span></span><button type="button" data-copy="biv-out-hex">Copy</button></div>
+            <pre class="code"><code id="biv-out-hex"></code></pre>
+          </div>
+          <div class="export">
+            <div class="export-head"><span>Python</span><button type="button" data-copy="biv-out-py">Copy</button></div>
+            <pre class="code"><code id="biv-out-py"></code></pre>
+          </div>
+          <div class="export">
+            <div class="export-head"><span>R (biscale)</span><button type="button" data-copy="biv-out-r">Copy</button></div>
+            <pre class="code"><code id="biv-out-r"></code></pre>
+          </div>
+          <div class="export">
+            <div class="export-head"><span>ArcGIS Pro style (.stylx)</span><button id="biv-pro-download" type="button">Download .stylx</button></div>
+            <div id="biv-pro-preview" class="biv-pro-preview" aria-hidden="true"></div>
+            <p id="biv-pro-hint" class="hint">A bivariate color scheme for ArcGIS Pro's Bivariate Colors symbology. Add the file under <b>Catalog → Styles → Add Style</b>, choose Bivariate Colors with the same grid size, and pick the scheme from the color scheme menu.</p>
+          </div>
+          <div class="export">
+            <div class="export-head"><span>QGIS Bivariate plugin</span><button type="button" data-copy="biv-out-qgis">Copy</button></div>
+            <pre class="code"><code id="biv-out-qgis"></code></pre>
+            <p class="hint">For the <a href="https://github.com/Heed725/Bivariate-Qgis-Plugin">Bivariate QGIS Plugin</a>: in its tools, choose <b>Custom / Staridas import</b> as the palette, set the same grid size, and paste these lines. Letters are X classes (A is low) and numbers are Y classes (1 is low).</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <div id="legend-panel" class="layout legend-lab" role="tabpanel" aria-labelledby="tab-legend" hidden>
       <section class="panel controls" aria-label="Legend options">
         <h2>Options</h2>
@@ -258,6 +377,30 @@
           </fieldset>
         </div>
         <p id="legend-scale-hint" class="hint"></p>
+
+        <!-- bivariate: legend options for a bivariate grid (shown by bivariate.js) -->
+        <div id="biv-legend-options" class="legend-options" hidden>
+          <fieldset class="field legend-scale-field">
+            <span>Shape</span>
+            <div class="seg">
+              <label><input type="radio" name="biv-legend-shape" value="square" checked><span>Square</span></label>
+              <label><input type="radio" name="biv-legend-shape" value="diamond"><span>Diamond</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="field legend-scale-field">
+            <span>Labels</span>
+            <div class="seg">
+              <label><input type="radio" name="biv-legend-labels" value="axes" checked><span>Axes</span></label>
+              <label><input type="radio" name="biv-legend-labels" value="corners"><span>Corners</span></label>
+            </div>
+          </fieldset>
+          <label class="field biv-axes-only"><span>X axis</span><input id="biv-legend-x" type="text" value="Variable X" spellcheck="false" autocomplete="off"></label>
+          <label class="field biv-axes-only"><span>Y axis</span><input id="biv-legend-y" type="text" value="Variable Y" spellcheck="false" autocomplete="off"></label>
+          <label class="field biv-corners-only" hidden><span>Top left</span><input id="biv-legend-tl" type="text" value="High Y" spellcheck="false" autocomplete="off"></label>
+          <label class="field biv-corners-only" hidden><span>Top right</span><input id="biv-legend-tr" type="text" value="Both high" spellcheck="false" autocomplete="off"></label>
+          <label class="field biv-corners-only" hidden><span>Bottom left</span><input id="biv-legend-bl" type="text" value="Both low" spellcheck="false" autocomplete="off"></label>
+          <label class="field biv-corners-only" hidden><span>Bottom right</span><input id="biv-legend-br" type="text" value="High X" spellcheck="false" autocomplete="off"></label>
+        </div>
       </section>
 
       <section class="panel output" aria-label="Legend preview">
@@ -272,7 +415,7 @@
           <button id="legend-png" type="button">Download PNG</button>
           <button id="legend-svg-download" type="button">Download SVG</button>
         </div>
-        <p class="hint">Both have a transparent background. Text and ticks follow the site theme: light in dark mode, dark in light mode. The PNG is drawn at 3× (1800 px wide).</p>
+        <p class="hint">Both have a transparent background. Text and ticks follow the site theme: light in dark mode, dark in light mode. The PNG is drawn at 3× the preview’s size.</p>
       </section>
     </div>
   </main>
@@ -298,5 +441,6 @@
   </svg>
 
   <script src="app.js"></script>
+  <script src="bivariate.js"></script><!-- bivariate -->
 </body>
 </html>
