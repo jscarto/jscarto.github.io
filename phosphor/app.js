@@ -23,7 +23,7 @@
     warning: $('warning'), bar: $('bar'), barLabel: $('bar-label'), cvdBadge: $('cvd-badge'),
     presetsToggle: $('presets-toggle'), presetsPanel: $('presets-panel'), legendResult: $('legend-result'), legendRaw: $('legend-raw'),
     swatches: $('swatches'), chart: $('chart'), specimen: $('specimen'), stats: $('stats'),
-    curveGroup: $('curve-group'), curveBtns: [...document.querySelectorAll('.curve-btn')], chartHint: $('chart-hint'), clipNote: $('clip-note'),
+    curveGroup: $('curve-group'), curveBtns: [...document.querySelectorAll('.curve-btn')], chartHint: $('chart-hint'),
     divHint: $('div-hint'), divNote: $('div-note'), tabPanel: $('tab-panel'),
     outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'), outR: $('out-r'),
     proPreview: $('pro-preview'), rampName: $('ramp-name'), proDownload: $('pro-download'),
@@ -325,17 +325,9 @@
     if (!gradient) return;
 
     const stepColors = positions(state.steps).map((t) => gradient.result(t));
-    // Only the Bezier note uses the banner above the gradient; it can't change mid-drag. The
-    // clipping note can, so it sits below the chart where it never shifts the dots being dragged.
+    // Bezier's note is the only one. Steps pushed outside sRGB aren't announced here (a count
+    // names no color to fix); each step's tooltip says when it was clipped or muted to fit.
     if (gradient.bezierWarning) showWarning('Bezier interpolation works best with 2–5 colors.'); else hideWarning();
-    const clippedCount = stepColors.filter((c) => c.clipped && c.clipped()).length;
-    const reducedCount = stepColors.filter((c) => c.reduced).length;
-    const plural = (n, one, many) => `${n} step${n > 1 ? 's' : ''} ${n > 1 ? many : one}`;
-    el.clipNote.hidden = !clippedCount && !reducedCount;
-    el.clipNote.textContent = [
-      clippedCount ? `${plural(clippedCount, 'fell', 'fell')} outside sRGB and ${clippedCount > 1 ? 'were' : 'was'} clipped, which moves lightness slightly.` : '',
-      reducedCount ? `${plural(reducedCount, 'was', 'were')} outside sRGB at ${reducedCount > 1 ? 'their' : 'its'} new lightness, so ${reducedCount > 1 ? 'their' : 'its'} chroma was lowered to fit. Lightness and hue are unchanged.` : '',
-    ].filter(Boolean).join(' ');
 
     // Swatches
     const hexes = stepColors.map((c) => c.hex());

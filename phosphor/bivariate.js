@@ -208,7 +208,6 @@
     el.cvd.innerHTML = P.cvdIcon(safe) + (safe ? 'colorblind-safe' : 'not colorblind-safe');
 
     const notes = [];
-    if (grid.reduced) notes.push(`${grid.reduced} cell${grid.reduced > 1 ? 's were' : ' was'} outside sRGB, so ${grid.reduced > 1 ? 'their' : 'its'} chroma was lowered to fit.`);
     if (grid.clamped) notes.push(`${grid.clamped} cell${grid.clamped > 1 ? 's' : ''} ran past black or white; try lighter high colors.`);
     el.note.hidden = !notes.length;
     el.note.textContent = notes.join(' ');
