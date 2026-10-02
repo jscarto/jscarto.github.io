@@ -266,8 +266,9 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
   .cvd-label { display: none; }
   .byline { display: block; margin: 6px 0 0; font-size: 0.85rem; }
 }
-.lede { margin: 0 0 24px; color: var(--muted); max-width: 60ch; }
-.lede a { color: var(--amber); font-weight: 600; text-underline-offset: 2px; }
+/* About as wide as the logo, wordmark and byline above it. */
+.lede { margin: 0 0 24px; color: var(--muted); max-width: 25em; }
+.lede a { color: var(--amber); font-weight: 600; text-underline-offset: 2px; white-space: nowrap; }
 .page-foot { padding-top: 24px; padding-bottom: 32px; color: var(--muted); font-size: 0.85rem; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .kofi { margin-left: auto; }
 .kofi .btn-container { min-width: 0; } /* Ko-fi's 160px minimum leaves a gap right of its 150px button */
