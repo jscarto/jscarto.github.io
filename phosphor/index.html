@@ -127,7 +127,10 @@
         </button>
       </div>
 
-      <h2>Steps</h2>
+      <div class="steps-head">
+        <h2>Steps</h2>
+        <span id="contrast-min" class="contrast-min" hidden></span>
+      </div>
       <div id="swatches" class="swatches"></div>
 
       <div class="chart-head">
@@ -270,7 +273,10 @@
       <section class="panel output" aria-label="Bivariate result">
         <div class="bar-head">
           <h2 class="biv-title">Grid</h2>
-          <span id="biv-cvd" class="cvd-badge" hidden></span>
+          <div class="biv-badges"><!-- bivariate -->
+            <span id="biv-cvd" class="cvd-badge" hidden></span>
+            <span id="biv-contrast" class="contrast-min" hidden></span>
+          </div>
         </div>
         <div class="biv-row">
           <div class="biv-stage">

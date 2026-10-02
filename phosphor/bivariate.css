@@ -34,6 +34,9 @@
 /* The grid (low/low at the bottom left, axis labels outside) and the map beside it, both the
    size of the Map preview on the other tabs. Where the row can't fit both, the map steps aside. */
 .bivariate .biv-title { margin: 0; }
+.biv-badges { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+/* The colorblind badge lines up with the Grid heading; the contrast readout hangs below. */
+.bivariate .bar-head { align-items: baseline; }
 .biv-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 12px 0 8px; container-type: inline-size; }
 .biv-stage { display: grid; grid-template-columns: auto minmax(0, 275px); gap: 6px; align-items: center; flex: 0 1 auto; min-width: 0; }
 .biv-grid { display: grid; grid-template-columns: repeat(var(--n, 3), 1fr); width: 275px; max-width: 100%; aspect-ratio: 1; border-radius: 4px; overflow: hidden; }

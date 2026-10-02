@@ -24,7 +24,7 @@
     presetsToggle: $('presets-toggle'), presetsPanel: $('presets-panel'), legendResult: $('legend-result'), legendRaw: $('legend-raw'),
     swatches: $('swatches'), chart: $('chart'), specimen: $('specimen'), stats: $('stats'),
     curveGroup: $('curve-group'), curveBtns: [...document.querySelectorAll('.curve-btn')], chartHint: $('chart-hint'),
-    divHint: $('div-hint'), divNote: $('div-note'), tabPanel: $('tab-panel'),
+    contrastMin: $('contrast-min'), divHint: $('div-hint'), divNote: $('div-note'), tabPanel: $('tab-panel'),
     outHex: $('out-hex'), outCss: $('out-css'), outPy: $('out-py'), outR: $('out-r'),
     proPreview: $('pro-preview'), rampName: $('ramp-name'), proDownload: $('pro-download'),
     outQgis: $('out-qgis'), qgisDownload: $('qgis-download'),
@@ -245,6 +245,7 @@
     if (state.lightness && state.lightnessKey !== gradientKey()) state.lightness = null;
     gradient = null;
     el.cvdBadge.hidden = true;
+    el.contrastMin.hidden = true;
     el.proDownload.disabled = true;
     el.qgisDownload.disabled = true;
     el.gdalDownload.disabled = true;
@@ -311,7 +312,6 @@
     }
 
     gradient.chartBase = chartBase(s, result, adjusted);
-    renderSpecimen();
     gradient.dense32 = positions(RGB_STOPS).map((t) => result(t).hex());
     setExport(el.outCss, 'css', cssSnippet(positions(CSS_STOPS).map((t) => result(t).hex())));
     el.proDownload.disabled = false;
@@ -345,8 +345,10 @@
       d.addEventListener('click', () => copy(hex));
       el.swatches.appendChild(d);
     });
+    renderContrast(el.contrastMin, minContrast(hexes.slice(1).map((h, i) => [hexes[i], h, `steps ${i + 1} and ${i + 2}`])));
 
     el.chart.innerHTML = gradient.chartBase + chartDots(hexes, gradient.s.corrected);
+    renderSpecimen();
     setExport(el.outHex, 'list', hexes.map((h) => `"${h}"`).join(', '));
     renderNamedExports(hexes);
   }
@@ -690,7 +692,9 @@
   // ---------- specimens: Newton, a map and a contour plot, recolored ----------
   // A gradient map: each pixel's value is a position along the palette, 0 at the start and 255 at
   // the end, so reversing the palette reverses the picture's colors. For a diverging palette that
-  // reads the value as signed: 0 is -100, 50% is 0 (the midpoint) and 255 is +100.
+  // reads the value as signed: 0 is -100, 50% is 0 (the midpoint) and 255 is +100. Values fall
+  // into as many equal ranges as there are steps, each drawn in its step's color, so the picture
+  // matches the Steps swatches and changes with the slider.
   // Newton is a grayscale engraving, so his gray level is the value. The map and contour plot are
   // baked by assets/phosphor/make_specimens.py: R is the value, G is line coverage (county borders,
   // contour lines) and B marks empty areas; lines and empty areas take the panel color.
@@ -738,7 +742,8 @@
     if (!gradient || !el.specimen.offsetParent) return; // hidden on small screens
     const { w, h, v, line, empty } = data;
     const spec = SPECIMENS[specimen];
-    const table = Array.from({ length: 256 }, (_, i) => gradient.result(i / 255).rgb());
+    const steps = positions(state.steps).map((t) => gradient.result(t).rgb());
+    const table = Array.from({ length: 256 }, (_, i) => steps[Math.min(steps.length - 1, Math.floor((i * steps.length) / 256))]);
     const bg = chroma(themeColor('--panel')).rgb();
     const ctx = el.specimen.getContext('2d');
     if (el.specimen.width !== w || el.specimen.height !== h) { el.specimen.width = w; el.specimen.height = h; }
@@ -1321,6 +1326,29 @@
     el.cvdBadge.innerHTML = cvdIcon(safe) + (safe ? 'colorblind-safe' : 'not colorblind-safe');
   }
 
+  /**
+   * The smallest WCAG contrast ratio among pairs of neighboring colors ([hexA, hexB, label]), by
+   * relative luminance. Ratios multiply along a ramp and white to black is only 21:1, so WCAG
+   * 1.4.11's 3:1 between neighbors is out of reach past 3 classes; this reports the figure rather
+   * than a pass or fail.
+   */
+  function minContrast(pairs) {
+    let min = null;
+    for (const [a, b, label] of pairs) {
+      const ratio = chroma.contrast(a, b);
+      if (!min || ratio < min.ratio) min = { ratio, label };
+    }
+    return min;
+  }
+
+  function renderContrast(node, min) {
+    node.hidden = !min;
+    if (!min) return;
+    node.textContent = `Min. Contrast: ~${min.ratio.toFixed(1)}:1`;
+    node.title = `Smallest WCAG contrast ratio between neighboring colors (${min.label}). WCAG 1.4.11 asks for 3:1 ` +
+      'where color alone tells shapes apart; past 3 classes no ramp can reach it, so borders or labels help.';
+  }
+
   // Presets are judged as they load: corrected, in OKLab. Each is checked once.
   const presetSafety = new Map();
   function presetIsSafe(p) {
@@ -1839,7 +1867,7 @@
   // bivariate: helpers shared with bivariate.js. Removing that file leaves this unused.
   window.Phosphor = {
     positions, lightness, inGamutOklab, simulatedOklab, readCvdMatrix, IDENTITY, CVD_MIN_DE, CVD_KEEP,
-    cvdIcon, CVD_TITLE, setExport, copy, downloadText, safeFilename, loadSqlJs, buildStylx,
+    cvdIcon, CVD_TITLE, minContrast, renderContrast, setExport, copy, downloadText, safeFilename, loadSqlJs, buildStylx,
     legendEl, LEGEND, textWidth, legendSettings, renderLegend, makeScale, buildSamplers, buildDivergingSamplers,
   };
 })();

@@ -59,7 +59,7 @@
   let grid = null;
 
   const el = {
-    presets: $('biv-presets'), presetsToggle: $('biv-presets-toggle'), map: $('biv-map'), proPreview: $('biv-pro-preview'), grid: $('biv-grid'), note: $('biv-note'), cvd: $('biv-cvd'),
+    presets: $('biv-presets'), presetsToggle: $('biv-presets-toggle'), map: $('biv-map'), proPreview: $('biv-pro-preview'), grid: $('biv-grid'), note: $('biv-note'), cvd: $('biv-cvd'), contrast: $('biv-contrast'),
     name: $('biv-name'), outHex: $('biv-out-hex'), outPy: $('biv-out-py'), outR: $('biv-out-r'), outQgis: $('biv-out-qgis'),
     qgisCopy: document.querySelector('[data-copy="biv-out-qgis"]'),
     pro: $('biv-pro-download'), proHint: $('biv-pro-hint'), swap: $('biv-swap'),
@@ -239,6 +239,15 @@
       : P.CVD_TITLE[safe];
     el.cvd.innerHTML = P.cvdIcon(safe) + (safe ? 'colorblind-safe' : 'not colorblind-safe');
 
+    // Neighbors share an edge: each cell against the one to its right and the one above.
+    const at = (x, y) => grid.cells.flat().find((c) => c.x === x && c.y === y);
+    const cellName = (c) => `X ${c.x + 1}, Y ${c.y + 1}`;
+    const pairs = [];
+    grid.cells.flat().forEach((c) => [at(c.x + 1, c.y), at(c.x, c.y + 1)].forEach((d) => {
+      if (d) pairs.push([c.hex, d.hex, `${cellName(c)} and ${cellName(d)}`]);
+    }));
+    P.renderContrast(el.contrast, P.minContrast(pairs));
+
     const notes = [];
     if (grid.clamped) notes.push(`${grid.clamped} cell${grid.clamped > 1 ? 's' : ''} ran past black or white; try lighter high colors.`);
     el.note.hidden = !notes.length;
@@ -257,7 +266,11 @@
     el.presets.querySelectorAll('.preset-card').forEach((b) => b.setAttribute('aria-pressed', String(!!preset && b.dataset.name === preset.name)));
     if (!nameEdited) el.name.value = `Phosphor ${preset ? preset.name : 'bivariate'} ${n}×${n}`;
 
-    el.curveBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.curve === state.curve)));
+    el.curveBtns.forEach((b) => {
+      b.setAttribute('aria-pressed', String(b.dataset.curve === state.curve));
+      // A 2×2 grid is just its four corners, which no curve moves.
+      b.disabled = n === 2;
+    });
     el.proPreview.style.setProperty('--n', n);
     el.proPreview.innerHTML = miniCells(grid);
     renderExports();

@@ -218,6 +218,11 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0
 .cvd-badge[hidden] { display: none; }
 .cvd-badge.is-safe { color: var(--cvd-ok); }
 .cvd-badge.is-unsafe { color: var(--muted); }
+/* Smallest WCAG contrast between neighboring colors: the badge's size, in gray. */
+.steps-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 20px 0 10px; }
+.steps-head h2 { margin: 0; }
+.contrast-min { font-size: 0.75rem; color: var(--muted); white-space: nowrap; cursor: help; }
+.contrast-min[hidden] { display: none; }
 .head-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
 .head-tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
 .cvd {
