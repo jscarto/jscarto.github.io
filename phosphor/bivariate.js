@@ -157,15 +157,35 @@
   // noticeable. It clears Red–Blue, whose closest pair under protanopia is 3.7 apart, and still
   // flags grids whose cells truly merge (Teal–Pink at 2.0, Blue–Pink at 0.7).
   const CVD_GRID_MIN_DE = 3.5;
+  // High X and High Y count as one hue when their OKLCh hues sit closer than this (chroma, 0–100
+  // scale, below SAME_HUE_MIN_C has no hue to speak of).
+  const SAME_HUE_MAX_DEG = 45;
+  const SAME_HUE_MIN_C = 1;
 
   /**
    * Whether the grid holds up under protanopia and deuteranopia, by the ramps' rule with the grid
    * cutoff: a pair of cells fails if it drops below CVD_GRID_MIN_DE and loses more than half its
    * normal contrast. A pair that's already that close with normal vision (say, High X and High Y
    * set to the same color) fails too: it looks alike to everyone, colorblind or not.
+   *
+   * So does a grid whose High X and High Y corners share a hue, with normal vision or simulated:
+   * the two variables then differ only in lightness, whatever that lightness is. (Blue–Pink and
+   * Teal–Pink's corners sit 2–6° apart under simulation; every preset's sit 115° or more apart
+   * with normal vision, and the rest stay that far apart simulated.)
    */
   function assess(g) {
     const cells = allCells(g);
+    const hiX = cells.find((c) => c.x === g.n - 1 && c.y === 0);
+    const hiY = cells.find((c) => c.x === 0 && c.y === g.n - 1);
+    const sameHue = (m) => {
+      const [a, b] = [hiX, hiY].map((c) => P.simulatedOklab(c.hex, m));
+      const chroma = (p) => 100 * Math.hypot(p[1], p[2]);
+      // Two near-grays share "no hue"; one gray beside a color still tells the axes apart.
+      if (chroma(a) < SAME_HUE_MIN_C || chroma(b) < SAME_HUE_MIN_C) return chroma(a) < SAME_HUE_MIN_C && chroma(b) < SAME_HUE_MIN_C;
+      const dh = Math.abs(Math.atan2(a[2], a[1]) - Math.atan2(b[2], b[1])) * 180 / Math.PI;
+      return Math.min(dh, 360 - dh) < SAME_HUE_MAX_DEG;
+    };
+    if (sameHue(P.IDENTITY)) return { safe: false, hue: 'normal' };
     const normal = cells.map((c) => P.simulatedOklab(c.hex, P.IDENTITY));
     const d = (p, i, j) => 100 * Math.hypot(p[i][0] - p[j][0], p[i][1] - p[j][1], p[i][2] - p[j][2]);
     let alike = false;
@@ -176,6 +196,7 @@
     }
     if (alike) return { safe: false, alike };
     const matrices = ['cvd-protanopia', 'cvd-deuteranopia'].map(P.readCvdMatrix);
+    if (matrices.some(sameHue)) return { safe: false, hue: 'cvd' };
     const safe = matrices.every((m) => {
       const sim = cells.map((c) => P.simulatedOklab(c.hex, m));
       for (let i = 0; i < cells.length; i++) {
@@ -209,11 +230,12 @@
       el.grid.appendChild(b);
     }));
 
-    const { safe, alike } = assess(grid);
+    const { safe, alike, hue } = assess(grid);
     el.cvd.hidden = false;
     el.cvd.className = 'cvd-badge ' + (safe ? 'is-safe' : 'is-unsafe');
-    el.cvd.title = alike
-      ? 'Not colorblind-safe: some cells look alike even with normal vision, so no one can tell them apart.'
+    el.cvd.title = hue === 'normal' ? 'Not colorblind-safe: High X and High Y share a hue, so the two variables differ only in lightness.'
+      : hue === 'cvd' ? 'Not red-green colorblind-safe: with simulated protanopia or deuteranopia, High X and High Y look like the same hue, so the two variables differ only in lightness.'
+      : alike ? 'Not colorblind-safe: some cells look alike even with normal vision, so no one can tell them apart.'
       : P.CVD_TITLE[safe];
     el.cvd.innerHTML = P.cvdIcon(safe) + (safe ? 'colorblind-safe' : 'not colorblind-safe');
 
