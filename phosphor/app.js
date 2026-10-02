@@ -2,8 +2,11 @@
 (function () {
   'use strict';
 
-  // Frostfire is both a diverging preset and the diverging tab's starting palette.
-  const FROSTFIRE = { name: 'Frostfire', mid: 6, colors: ['#eff6ff', '#cfdff2', '#b0c7ea', '#90b0e0', '#8695cf', '#8178ba', '#7b5ca6', '#895899', '#a96b92', '#c8808a', '#e29786', '#f2b290', '#facfa6', '#fff5da'] };
+  // Frostfire is both a diverging preset and the diverging tab's starting palette. Its 7 stops
+  // reproduce the original 14-stop ramp's corrected gradient to within 2 (OKLab distance x 100,
+  // about the smallest visible difference): the ends and the purple midpoint are unchanged, and
+  // the four stops between were fitted to the old gradient.
+  const FROSTFIRE = { name: 'Frostfire', mid: 3, colors: ['#eff6ff', '#abc5e8', '#87a0d7', '#7b5ca6', '#ca7482', '#f5b88e', '#fff5da'] };
 
   // Each tab keeps its own settings; `state` always points at the active tab's.
   const DEFAULTS = {
@@ -1055,63 +1058,85 @@
 
   // ---------- preset palettes ----------
 
-  // ColorBrewer sequential schemes (9 classes) ship with chroma.js as chroma.brewer.
-  const brewer = (names) => names.map((name) => ({ name, colors: chroma.brewer[name] }));
+  // ColorBrewer's schemes come from chroma.js's copy (chroma.brewer), fitted to 7 stops below.
+  // Preset stops. To keep the color list short, presets use at most 7 colors, fitted so the
+  // gradient Phosphor draws from them matches the original map's (as drawn from its full set of
+  // stops) to within about 2 (OKLab distance x 100, roughly the smallest visible difference), or
+  // within about 4 at worst for a few busy maps (Rainbow, Cubehelix, Seismic, Bwr, Turbo on the
+  // Diverging tab, Spectral, Gist earth, CMRmap, Delta). Diverging presets have 7 with the
+  // midpoint 4th. Maps whose sharp or busy features 7 can't follow keep more: Topo, Gist stern,
+  // Gnuplot, Gnuplot2, Terrain, Afmhot, Turbo (Sequential), Rainbow (Diverging) and Winter (7
+  // would lose its slight lightness dip, so it would load corrected and look different).
   const PRESET_GROUPS = [
     {
       title: 'Stevens',
       presets: [
-        { name: 'Tropics', colors: ['#c3f4e9', '#b6e5eb', '#a9d6ec', '#9ac8ee', '#8bbaef', '#7aacf0', '#8898eb', '#9682e5', '#b85fd5', '#c244b4', '#be338e', '#b71f69', '#ad0045'] },
-        { name: 'Smoggy Sky', colors: ['#ffffff', '#e2eff9', '#c5dff2', '#e1c794', '#eeac49', '#dd9a3f', '#cd8837', '#bc772e', '#ac6626', '#9c551e', '#8c4416', '#7c340f', '#672709', '#541b01'] },
+        { name: 'Tropics', colors: ['#c3f4e9', '#aad6ec', '#7cadf0', '#898feb', '#bc57d0', '#c1308f', '#ad0045'] },
+        { name: 'Smoggy Sky', colors: ['#ffffff', '#c5e0ed', '#f0af48', '#c68134', '#a05a20', '#803712', '#541b01'] },
       ],
     },
     {
       // Single-hue schemes, then multi-hue.
       title: 'ColorBrewer',
-      presets: brewer(['Blues', 'Greens', 'Greys', 'Oranges', 'Purples', 'Reds',
-        'BuGn', 'BuPu', 'GnBu', 'OrRd', 'PuBu', 'PuBuGn', 'PuRd', 'RdPu', 'YlGn', 'YlGnBu', 'YlOrBr', 'YlOrRd']),
+      presets: [
+        { name: 'Blues', colors: ['#f7fbff', '#bfd9ed', '#80bbda', '#4b99ca', '#2374b7', '#09509b', '#08306b'] },
+        { name: 'Greens', colors: ['#f7fcf5', '#bde5b5', '#83cc82', '#43ad5e', '#1a833f', '#006d2c', '#00441b'] },
+        { name: 'Greys', colors: ['#ffffff', '#dbdbdb', '#929292', '#636363', '#363636', '#131313', '#000000'] },
+        { name: 'Oranges', colors: ['#fff5eb', '#fccfa0', '#fea55c', '#f7721a', '#d94800', '#ab3804', '#7f2704'] },
+        { name: 'Purples', colors: ['#fcfbfd', '#d5d6e9', '#aeadd3', '#8784bd', '#7261ab', '#5e3999', '#3f007d'] },
+        { name: 'Reds', colors: ['#fff5f0', '#fcc6ae', '#fc8e6d', '#f95138', '#d41a1e', '#980b13', '#67000d'] },
+        { name: 'BuGn', colors: ['#f7fcfd', '#a8ddd5', '#6fc7ad', '#3eab71', '#228a44', '#006d2c', '#00441b'] },
+        { name: 'BuPu', colors: ['#f7fcfd', '#c4d9ec', '#94afd2', '#8a81bc', '#8a4da4', '#800e7b', '#4d004b'] },
+        { name: 'GnBu', colors: ['#f7fcf0', '#ace0b3', '#75c9c6', '#4aafd1', '#2382b9', '#0067ab', '#084081'] },
+        { name: 'OrRd', colors: ['#fff7ec', '#fcd59f', '#fe9a63', '#f16747', '#d73120', '#b40000', '#7f0000'] },
+        { name: 'PuBu', colors: ['#fff7fb', '#d2d2e6', '#96b6d7', '#519dc8', '#0071ae', '#045687', '#023858'] },
+        { name: 'PuBuGn', colors: ['#fff7fb', '#dad4e8', '#9dbcd9', '#3b95c7', '#00808d', '#006d5a', '#014636'] },
+        { name: 'PuRd', colors: ['#f7f4f9', '#d8c8e1', '#cb96ca', '#e83796', '#d00055', '#980043', '#67001f'] },
+        { name: 'RdPu', colors: ['#fff7f3', '#fac4c1', '#fd89aa', '#ec4d9f', '#bb0085', '#850079', '#49006a'] },
+        { name: 'YlGn', colors: ['#ffffe5', '#e6f59a', '#8ace82', '#42ad5f', '#278946', '#006837', '#004529'] },
+        { name: 'YlGnBu', colors: ['#ffffd9', '#e8f6ad', '#54bec0', '#0096c2', '#2564ab', '#253494', '#081d58'] },
+        { name: 'YlOrBr', colors: ['#ffffe5', '#fde07c', '#ffa02b', '#ed7015', '#c64902', '#973304', '#662506'] },
+        { name: 'YlOrRd', colors: ['#ffffcc', '#fcda75', '#fda040', '#fb4c2b', '#e31a1c', '#bd0026', '#800026'] },
+      ],
     },
     {
       // matplotlib's sequential maps beyond ColorBrewer's: the perceptually uniform ones, then the
       // older sequential ones, then a selection of the miscellaneous ones (Cubehelix and Turbo are
-      // listed below). Each uses the fewest evenly spaced stops (11 or more) that follow the map to
-      // within 2 (OKLab distance x 100), up to 33 to keep the color list usable; Gist earth, Gist
-      // stern, Gnuplot and Gnuplot2 change sharply near their start, so 33 miss the first few
-      // percent. Spring, Winter, Cool and most of the miscellaneous maps load uncorrected: their
-      // lightness rises and falls (matplotlib blends Spring and Winter in sRGB, so even they dip).
+      // listed below). Winter and most of the miscellaneous maps load uncorrected: their lightness
+      // rises and falls (matplotlib blends Winter in sRGB, so even it dips slightly).
       title: 'Matplotlib',
       presets: [
-        { name: 'Viridis', colors: ['#440154', '#482576', '#414487', '#355f8d', '#2a788e', '#21918c', '#22a884', '#42be71', '#7ad151', '#bddf26', '#fde725'] },
-        { name: 'Plasma', colors: ['#0d0887', '#43039e', '#6a00a8', '#8f0da4', '#b12a90', '#cc4778', '#e16462', '#f1834c', '#fca636', '#fcce25', '#f0f921'] },
-        { name: 'Magma', colors: ['#000004', '#150e38', '#3b0f70', '#641a80', '#8c2981', '#b73779', '#de4968', '#f66e5c', '#fe9f6d', '#fecf92', '#fcfdbf'] },
-        { name: 'Inferno', colors: ['#000004', '#180c3c', '#420a68', '#6a176e', '#932667', '#bc3754', '#dd513a', '#f3761b', '#fca50a', '#f6d746', '#fcffa4'] },
-        { name: 'Cividis', colors: ['#00224e', '#083370', '#35456c', '#4f576c', '#666970', '#7d7c78', '#948e77', '#aea371', '#c8b866', '#e5cf52', '#fee838'] },
-        { name: 'Bone', colors: ['#000000', '#16161e', '#2d2d3e', '#42425d', '#595c79', '#707b90', '#869aa6', '#9db9bc', '#b9d2d2', '#dde9e9', '#ffffff'] },
-        { name: 'Pink', colors: ['#1e0000', '#523232', '#714747', '#885757', '#9c6565', '#ae7171', '#be7c7c', '#c78f86', '#cda28f', '#d3b497', '#d9c3a0', '#dfd2a7', '#e5e0af', '#eaeaba', '#f0f0ce', '#f5f5df', '#fafaf0', '#ffffff'] },
-        { name: 'Spring', colors: ['#ff00ff', '#ff19e6', '#ff33cc', '#ff4cb3', '#ff6699', '#ff807f', '#ff9966', '#ffb34c', '#ffcc33', '#ffe619', '#ffff00'] },
-        { name: 'Summer', colors: ['#008066', '#198c66', '#339966', '#4ca666', '#66b266', '#80c066', '#99cc66', '#b3d966', '#cce666', '#e6f266', '#ffff66'] },
-        { name: 'Autumn', colors: ['#ff0000', '#ff1900', '#ff3300', '#ff4c00', '#ff6600', '#ff8000', '#ff9900', '#ffb300', '#ffcc00', '#ffe600', '#ffff00'] },
+        { name: 'Viridis', colors: ['#440154', '#463382', '#30668e', '#1d928d', '#39bd73', '#98d93a', '#fde725'] },
+        { name: 'Plasma', colors: ['#0d0887', '#6b00ac', '#a71998', '#d8516b', '#f2864a', '#ffae2c', '#f0f921'] },
+        { name: 'Magma', colors: ['#000004', '#171039', '#521083', '#a92e7d', '#ee555e', '#ff9c67', '#fcfdbf'] },
+        { name: 'Inferno', colors: ['#000004', '#170c3b', '#4d0770', '#ad2a5d', '#ef611d', '#f8c519', '#fcffa4'] },
+        { name: 'Cividis', colors: ['#00224e', '#1a3f75', '#535869', '#807f79', '#aaa073', '#d5c25e', '#fee838'] },
+        { name: 'Bone', colors: ['#000000', '#13131a', '#303044', '#585978', '#8295a2', '#adcaca', '#ffffff'] },
+        { name: 'Pink', colors: ['#1e0000', '#3e1f1e', '#704849', '#c07d7d', '#c79588', '#e7e7b2', '#ffffff'] },
+        { name: 'Spring', colors: ['#ff00ff', '#ff29d6', '#ff53a9', '#ff7f7e', '#ffaa52', '#ffd527', '#ffff00'] },
+        { name: 'Summer', colors: ['#008066', '#2e9866', '#5dae66', '#86c366', '#afd766', '#d7eb66', '#ffff66'] },
+        { name: 'Autumn', colors: ['#ff0000', '#ff6100', '#ff7e00', '#ffa800', '#ffc700', '#ffde00', '#ffff00'] },
         { name: 'Winter', colors: ['#0000ff', '#0019f2', '#0033e6', '#004cd9', '#0066cc', '#0080bf', '#0099b2', '#00b3a6', '#00cc99', '#00e68c', '#00ff80'] },
-        { name: 'Cool', colors: ['#00ffff', '#19e6ff', '#33ccff', '#4cb3ff', '#6699ff', '#807fff', '#9966ff', '#b34cff', '#cc33ff', '#e619ff', '#ff00ff'] },
-        { name: 'Wistia', colors: ['#e4ff7a', '#eff654', '#faed2d', '#ffe015', '#ffce0a', '#ffbd00', '#ffb100', '#ffa600', '#fe9900', '#fd8c00', '#fc7f00'] },
-        { name: 'Hot', colors: ['#0b0000', '#470000', '#830000', '#c00000', '#ff0000', '#ff3c00', '#ff7900', '#ffb500', '#fff400', '#ffff4a', '#ffffa4', '#ffffff'] },
+        { name: 'Cool', colors: ['#00ffff', '#26d5ff', '#52aaff', '#7f7eff', '#aa54ff', '#d528ff', '#ff00ff'] },
+        { name: 'Wistia', colors: ['#e4ff7a', '#ffe803', '#fedf1d', '#ffcc05', '#ffaa00', '#fe9500', '#fc7f00'] },
+        { name: 'Hot', colors: ['#0b0000', '#4d0000', '#7f0000', '#ff0000', '#ff4400', '#ffff00', '#ffffff'] },
         { name: 'Afmhot', colors: ['#000000', '#200000', '#400000', '#600000', '#800000', '#a02000', '#c04000', '#e06000', '#ff8001', '#ffa021', '#ffc041', '#ffe061', '#ffff81', '#ffffa1', '#ffffc1', '#ffffe1', '#ffffff'] },
-        { name: 'Gist heat', colors: ['#000000', '#200000', '#3f0000', '#600000', '#800000', '#9f0000', '#c00100', '#e02b00', '#ff5500', '#ff8103', '#ffab57', '#ffd5ab', '#ffffff'] },
-        { name: 'Copper', colors: ['#000000', '#1f140c', '#3f2819', '#5e3b26', '#7e5033', '#9e6440', '#bd784c', '#dd8c59', '#fc9f65', '#ffb472', '#ffc77f'] },
-        { name: 'Ocean', colors: ['#008000', '#006015', '#00402a', '#002040', '#000055', '#00206a', '#004080', '#006095', '#0080aa', '#42a0c0', '#81c0d5', '#c0e0ea', '#ffffff'] },
-        { name: 'Gist earth', colors: ['#000000', '#0e2076', '#1c4d7a', '#2b737e', '#368770', '#409456', '#5ea04b', '#87aa55', '#aab35c', '#bdab62', '#ceab85', '#e6c7bc', '#fdfbfb'] },
+        { name: 'Gist heat', colors: ['#000000', '#260000', '#890000', '#d80000', '#ff6000', '#ffa84a', '#ffffff'] },
+        { name: 'Copper', colors: ['#000000', '#120b06', '#3c2618', '#6f462d', '#a56943', '#fda065', '#ffc77f'] },
+        { name: 'Ocean', colors: ['#008000', '#003b2b', '#020050', '#004080', '#0080aa', '#7fc0d5', '#ffffff'] },
+        { name: 'Gist earth', colors: ['#000000', '#020830', '#0e1f73', '#1b7087', '#729d24', '#dbbba7', '#fdfbfb'] },
         { name: 'Terrain', colors: ['#333399', '#2353b9', '#1276dc', '#0098fe', '#00b2b2', '#01cc66', '#31d670', '#65e07a', '#99eb85', '#cdf58f', '#fefe98', '#e6df8b', '#ccbe7d', '#b29c6f', '#987b61', '#815e56', '#997c76', '#b39e99', '#cdbfbc', '#e7e0df', '#ffffff'] },
         { name: 'Gist stern', colors: ['#000000', '#920810', '#f51020', '#cd1830', '#a52040', '#7d2850', '#553060', '#2d3870', '#404080', '#484890', '#5050a0', '#5858b0', '#6060c0', '#6868d0', '#7070e0', '#7878f0', '#8080fd', '#8888db', '#9090b9', '#989897', '#a0a075', '#a8a853', '#b0b031', '#b8b80f', '#c0c011', '#c8c82f', '#d0d04e', '#d8d86c', '#e0e08a', '#e8e8a8', '#f0f0c6', '#f8f8e5', '#ffffff'] },
         { name: 'Gnuplot', colors: ['#000000', '#2d0032', '#400062', '#4e008e', '#5a01b5', '#6501d5', '#6f02ec', '#7703fa', '#8004ff', '#8706fa', '#8f08eb', '#960ad3', '#9c0eb3', '#a3118c', '#a9165f', '#af1b2f', '#b52000', '#ba2700', '#c02e00', '#c53600', '#ca3f00', '#cf4900', '#d45400', '#d96000', '#dd6d00', '#e27b00', '#e68a00', '#eb9b00', '#efad00', '#f3c000', '#f7d500', '#fbeb00', '#ffff00'] },
         { name: 'Gnuplot2', colors: ['#000000', '#000020', '#000040', '#000060', '#000080', '#0000a0', '#0000c0', '#0000e0', '#0100ff', '#1a00ff', '#3300ff', '#4c00ff', '#6500ff', '#7e00ff', '#970af5', '#b01ae5', '#c92ad5', '#e23ac5', '#fb4ab5', '#ff5aa5', '#ff6a95', '#ff7a85', '#ff8a75', '#ff9a65', '#ffaa55', '#ffba45', '#ffca35', '#ffda25', '#ffea15', '#fffa05', '#ffff43', '#ffffa7', '#ffffff'] },
-        { name: 'CMRmap', colors: ['#000000', '#191954', '#322694', '#4d26bf', '#802f95', '#ba3762', '#ff4126', '#ee6b0c', '#e69508', '#e6c01c', '#e6d95f', '#eeeeab', '#ffffff'] },
-        { name: 'Brg', colors: ['#0000ff', '#3200cd', '#660099', '#980067', '#cc0033', '#fe0100', '#cc3300', '#986700', '#669900', '#32cd00', '#00ff00'] },
-        { name: 'Rainbow', colors: ['#8000ff', '#4e4dfc', '#1996f3', '#18cde4', '#4df3ce', '#80ffb4', '#b2f396', '#e6cd73', '#ff964f', '#ff4d27', '#ff0000'] },
+        { name: 'CMRmap', colors: ['#000000', '#090a2c', '#4430bc', '#7d2d95', '#f52d26', '#ddcd00', '#ffffff'] },
+        { name: 'Brg', colors: ['#0000ff', '#4f00a7', '#ab0053', '#fd000d', '#a85000', '#43ab00', '#00ff00'] },
+        { name: 'Rainbow', colors: ['#8000ff', '#1a77ff', '#26e2db', '#7cffb3', '#d9e180', '#ff7b40', '#ff0000'] },
       ],
     },
     {
       // Google's Turbo (2019), an improved rainbow, from matplotlib. Its lightness rises and falls,
-      // so it loads uncorrected; 14 stops follow it to within 2 (OKLab distance x 100).
+      // so it loads uncorrected; it keeps 14 stops, which follow it to within 2.
       title: 'Google',
       presets: [
         { name: 'Turbo', colors: ['#30123b', '#4249b1', '#467df4', '#31aff5', '#18d9c8', '#38f491', '#84ff51', '#bcf534', '#e9d539', '#fea933', '#f8721c', '#df3f08', '#b41b01', '#7a0403'] },
@@ -1121,37 +1146,36 @@
       // Dave Green's cubehelix (2011) with its default parameters, from matplotlib.
       title: 'Cubehelix',
       presets: [
-        { name: 'Cubehelix Classic', colors: ['#000000', '#1a142f', '#163d4e', '#1e6542', '#54792f', '#a1794a', '#d07e93', '#cf9ddb', '#c1caf3', '#d3eeef', '#ffffff'] },
+        { name: 'Cubehelix Classic', colors: ['#000000', '#17112a', '#143e4f', '#477826', '#d67a89', '#bcaada', '#ffffff'] },
       ],
     },
     {
-      // cmocean 3.0 (Thyng et al., 2016, MIT license): 11 stops where the lightness is corrected,
-      // which follow each map's hue and chroma to within 2 (OKLab distance x 100). Phase (cyclic)
-      // and Topo (sea and land joined at a sharp break) load uncorrected; Topo's 22 stops put the
-      // break between two of them, since a gradient can only blend across it.
+      // cmocean 3.0 (Thyng et al., 2016, MIT license). Phase (cyclic) and Topo (sea and land joined
+      // at a sharp break) load uncorrected; Topo keeps 22 stops, which put the break between two of
+      // them, since a gradient can only blend across it.
       title: 'CMOcean',
       presets: [
-        { name: 'Thermal', colors: ['#042333', '#0f326a', '#40349f', '#674396', '#8b538d', '#b15f82', '#d66c6c', '#f3824d', '#fca63c', '#f7d045', '#e8fa5b'] },
-        { name: 'Haline', colors: ['#2a186c', '#2927a2', '#0d4e96', '#18668c', '#2d7c89', '#3c9387', '#4aaa81', '#65c172', '#94d35d', '#d0e06d', '#fdef9a'] },
-        { name: 'Solar', colors: ['#331418', '#521e22', '#732724', '#8f341f', '#a54a17', '#b66413', '#c47f15', '#cf9c1d', '#d8ba2a', '#dedb3a', '#e1fd4b'] },
-        { name: 'Ice', colors: ['#040613', '#1b1b37', '#302f5f', '#3d4389', '#3e5ea9', '#427bb7', '#5296c1', '#6bb1cb', '#8ccbd6', '#bce4e7', '#eafdfd'] },
-        { name: 'Gray', colors: ['#000000', '#131212', '#2b2b2b', '#424241', '#5a5959', '#727171', '#8a8989', '#a4a4a3', '#c0bfbe', '#dededd', '#fffffd'] },
-        { name: 'Deep', colors: ['#fdfecc', '#caebb2', '#92d8a4', '#66c2a4', '#52a8a3', '#488e9e', '#407598', '#3e5a92', '#41407b', '#382d51', '#281a2c'] },
-        { name: 'Dense', colors: ['#e6f1f1', '#bcdce5', '#96c5e2', '#7bade4', '#7390e3', '#7871d5', '#7954bb', '#743a98', '#682471', '#531546', '#360e24'] },
-        { name: 'Algae', colors: ['#d7f9d0', '#b8e3ac', '#96cd8a', '#72bb6c', '#44a855', '#129450', '#097d4b', '#156641', '#1a5034', '#183a25', '#122414'] },
-        { name: 'Matter', colors: ['#feedb0', '#faca90', '#f5a773', '#ee855e', '#e26253', '#ce4356', '#b32e5f', '#932063', '#721a60', '#4f1652', '#2f0f3e'] },
-        { name: 'Turbid', colors: ['#e9f6ab', '#dbd987', '#cfbc66', '#c4a14d', '#b58740', '#a1703b', '#8a5e3a', '#704d37', '#563e30', '#3b2f27', '#221f1b'] },
-        { name: 'Speed', colors: ['#fffdcd', '#eedf98', '#d8c55f', '#b8b22f', '#8ea20b', '#5f920c', '#32801f', '#0f6b2b', '#10542c', '#193b23', '#172313'] },
-        { name: 'Amp', colors: ['#f1edec', '#e5cfc9', '#dcb1a3', '#d3957f', '#ca775b', '#c0583b', '#b33826', '#9d1926', '#7f0e29', '#5c0e21', '#3c0912'] },
-        { name: 'Tempo', colors: ['#fff6f4', '#dcdfd0', '#b6cbaf', '#8db997', '#5da786', '#2a937f', '#117d79', '#18656e', '#1c4d61', '#1a3651', '#151d44'] },
-        { name: 'Rain', colors: ['#eeedf3', '#ded3c9', '#cbba98', '#a1ac82', '#739d75', '#3d8e6e', '#0c7b6e', '#08636b', '#1e4b5f', '#25334b', '#221b38'] },
-        { name: 'Phase', colors: ['#a8780d', '#c66033', '#d94361', '#dd26a3', '#c53ce1', '#9a62f4', '#6080e4', '#2891b8', '#109788', '#279a4f', '#778d12', '#a8780d'] },
+        { name: 'Thermal', colors: ['#042333', '#3836a4', '#6e4694', '#b46081', '#f37d4d', '#fcb938', '#e8fa5b'] },
+        { name: 'Haline', colors: ['#2a186c', '#262aa0', '#0b688a', '#429886', '#5ec173', '#aad759', '#fdef9a'] },
+        { name: 'Solar', colors: ['#331418', '#682426', '#98391b', '#b86611', '#cd961b', '#dbc931', '#e1fd4b'] },
+        { name: 'Ice', colors: ['#040613', '#252346', '#3f4993', '#3e75b8', '#5ea6c6', '#93cfd7', '#eafdfd'] },
+        { name: 'Gray', colors: ['#000000', '#141313', '#3f3f3e', '#767575', '#a7a7a6', '#bfbebd', '#fffffd'] },
+        { name: 'Deep', colors: ['#fdfecc', '#9adba3', '#62c1a5', '#48909e', '#3b6195', '#44417c', '#281a2c'] },
+        { name: 'Dense', colors: ['#e6f1f1', '#9fcce1', '#75a8e7', '#766fd6', '#7740a4', '#5f1a5a', '#360e24'] },
+        { name: 'Algae', colors: ['#d7f9d0', '#a7d799', '#62b35f', '#009851', '#127047', '#1a482f', '#122414'] },
+        { name: 'Matter', colors: ['#feedb0', '#f8b880', '#ea7b58', '#d54854', '#9d2163', '#64195d', '#2f0f3e'] },
+        { name: 'Turbid', colors: ['#e9f6ab', '#d3c670', '#c19a47', '#a4733c', '#7a5238', '#4d3a2f', '#221f1b'] },
+        { name: 'Speed', colors: ['#fffdcd', '#e5d17d', '#bcb22c', '#619400', '#137428', '#124f2c', '#172313'] },
+        { name: 'Amp', colors: ['#f1edec', '#e0bfb5', '#d18f77', '#c35a3a', '#a11721', '#7a0f2b', '#3c0912'] },
+        { name: 'Tempo', colors: ['#fff6f4', '#c8d2bd', '#87b791', '#2c967f', '#127476', '#1c445b', '#151d44'] },
+        { name: 'Rain', colors: ['#eeedf3', '#cdbb9d', '#9fab7e', '#3c8e6d', '#007470', '#1f4159', '#221b38'] },
+        { name: 'Phase', colors: ['#a8780d', '#db3d4c', '#d426d2', '#7a73f7', '#0094a9', '#319940', '#a8780d'] },
         { name: 'Topo', colors: ['#281a2c', '#372c4f', '#413e76', '#3e5691', '#3f6f97', '#46879c', '#4fa1a2', '#5dbaa4', '#7dd0a3', '#b0e2a9', '#e3f4bd', '#133018', '#1d451d', '#365723', '#566635', '#76753e', '#998540', '#bc943e', '#cdab65', '#dac68f', '#e8e1b9', '#f9fde4'] },
       ],
     },
   ];
   // Diverging presets: 11-class ColorBrewer diverging schemes (midpoint in the center) and
-  // Stevens ramps: Frostfire, whose lightness bottoms out at its seventh color, and Chlorophyll,
+  // Stevens ramps: Frostfire, whose lightness bottoms out at its fourth color, and Chlorophyll,
   // which peaks at its fourth.
   const DIVERGING_GROUPS = [
     {
@@ -1163,32 +1187,52 @@
     },
     {
       title: 'ColorBrewer',
-      presets: ['BrBG', 'PiYG', 'PRGn', 'PuOr', 'RdBu', 'RdGy', 'RdYlBu', 'RdYlGn', 'Spectral']
-        .map((name) => ({ name, colors: chroma.brewer[name], mid: Math.floor(chroma.brewer[name].length / 2) })),
-    },
-    {
-      // matplotlib's diverging maps beyond ColorBrewer's: coolwarm, bwr and seismic, and berlin,
-      // managua and vanimo from matplotlib 3.10. Centered on their middle stop; 11 to 13 stops.
-      title: 'Matplotlib',
       presets: [
-        { name: 'Coolwarm', mid: 5, colors: ['#3b4cc0', '#5977e3', '#7b9ff9', '#9ebeff', '#c0d4f5', '#dddcdc', '#f2cbb7', '#f7ac8e', '#ee8468', '#d65244', '#b40426'] },
-        { name: 'Bwr', mid: 5, colors: ['#0000ff', '#3232ff', '#6666ff', '#9898ff', '#ccccff', '#fffefe', '#ffcccc', '#ff9898', '#ff6666', '#ff3232', '#ff0000'] },
-        { name: 'Seismic', mid: 6, colors: ['#00004c', '#000087', '#0000c2', '#0101ff', '#5555ff', '#a9a9ff', '#fffdfd', '#ffa9a9', '#ff5555', '#fe0000', '#d30000', '#aa0000', '#800000'] },
-        { name: 'Berlin', mid: 5, colors: ['#9eb0ff', '#62a6e0', '#3280a6', '#20526a', '#112732', '#190c09', '#371000', '#61200b', '#964a36', '#ca7b71', '#ffadad'] },
-        { name: 'Managua', mid: 5, colors: ['#ffcf67', '#e09f57', '#c17449', '#a0513e', '#773339', '#572949', '#4c3d73', '#5163a2', '#5f89c3', '#6fb6e2', '#81e7ff'] },
-        { name: 'Vanimo', mid: 5, colors: ['#ffcdfd', '#d889ca', '#ad539a', '#742e64', '#33172c', '#1a1513', '#232c14', '#415a1f', '#62872f', '#8abc53', '#befda5'] },
+        { name: 'BrBG', mid: 3, colors: ['#543005', '#934a00', '#e5c269', '#f5f5f5', '#80d2c6', '#117972', '#0b4437'] },
+        { name: 'PiYG', mid: 3, colors: ['#8e0152', '#c41a7c', '#eca3ce', '#f7f7f7', '#a4d65b', '#4b911a', '#205d10'] },
+        { name: 'PRGn', mid: 3, colors: ['#40004b', '#71267e', '#bc9fcb', '#f7f7f7', '#8fd18d', '#00742f', '#003209'] },
+        { name: 'PuOr', mid: 3, colors: ['#7f3b08', '#c96600', '#ffb958', '#f7f7f7', '#bab5e0', '#7d54b5', '#613c86'] },
+        { name: 'RdBu', mid: 3, colors: ['#67001f', '#b51a2a', '#f9aa83', '#f7f7f7', '#7cbcda', '#1f6ab0', '#093465'] },
+        { name: 'RdGy', mid: 3, colors: ['#67001f', '#b61b2a', '#f7ab87', '#ffffff', '#b6b6b6', '#727272', '#343434'] },
+        { name: 'RdYlBu', mid: 3, colors: ['#a50026', '#e8482d', '#ffc06e', '#ffffbf', '#daf6f9', '#5493cc', '#404aaa'] },
+        { name: 'RdYlGn', mid: 3, colors: ['#a50026', '#f05432', '#ffdc83', '#ffffbf', '#b3e06e', '#24a558', '#026938'] },
+        { name: 'Spectral', mid: 3, colors: ['#9e0142', '#ee5948', '#ffc064', '#ffffbf', '#99d88d', '#148ab6', '#544597'] },
       ],
     },
     {
-      // cmocean 3.0's diverging maps, centered on their middle stop. Delta has a slight step at
-      // its center, so it takes 21 stops; the others follow the original within 2 in 11 to 15.
+      // matplotlib's diverging maps beyond ColorBrewer's: coolwarm, bwr and seismic, and berlin,
+      // managua and vanimo from matplotlib 3.10. Rainbow, also on the Sequential tab, works here
+      // too: its lightness peaks near the middle (it keeps 11 stops).
+      title: 'Matplotlib',
+      presets: [
+        { name: 'Coolwarm', mid: 3, colors: ['#3b4cc0', '#6485ef', '#aeccff', '#dddcdc', '#fbb38d', '#db5a49', '#b00022'] },
+        { name: 'Bwr', mid: 3, colors: ['#0000ff', '#6662ff', '#bab9ff', '#fffefe', '#efb6b6', '#e26d6f', '#bd0000'] },
+        { name: 'Seismic', mid: 3, colors: ['#00004c', '#0000ff', '#776ffe', '#fffdfd', '#e87678', '#e20000', '#420000'] },
+        { name: 'Berlin', mid: 3, colors: ['#9eb0ff', '#2b91bb', '#133e51', '#190c09', '#591800', '#ad6052', '#ed9c9d'] },
+        { name: 'Managua', mid: 3, colors: ['#ffcf67', '#d58e51', '#9a483a', '#572949', '#455ba5', '#6ca7d8', '#82e8ff'] },
+        { name: 'Vanimo', mid: 3, colors: ['#ffcdfd', '#cf79bc', '#732a6c', '#1a1513', '#3c5619', '#7aa73d', '#b6f59d'] },
+        { name: 'Rainbow', mid: 5, colors: ['#8000ff', '#4e4dfc', '#1996f3', '#18cde4', '#4df3ce', '#80ffb4', '#b2f396', '#e6cd73', '#ff964f', '#ff4d27', '#ff0000'] },
+      ],
+    },
+    {
+      // Turbo, as on the Sequential tab; its lightness peaks at the center.
+      title: 'Google',
+      presets: [
+        { name: 'Turbo', mid: 3, colors: ['#30123b', '#424bb7', '#00b0fc', '#a4fc3c', '#ffb52d', '#ce0000', '#540000'] },
+      ],
+    },
+    {
+      // cmocean 3.0's diverging maps. Topo, also on the Sequential tab, joins sea and land at its
+      // center: it keeps 33 stops, which put one at the break (the darkest land color) and follow
+      // the original within 2 elsewhere.
       title: 'CMOcean',
       presets: [
-        { name: 'Balance', mid: 7, colors: ['#181c43', '#27347d', '#1c50ba', '#1e76bb', '#5197ba', '#88b2c1', '#bfcdd3', '#f1eceb', '#e1c2b8', '#d49984', '#c76f53', '#b74029', '#991627', '#6b0f25', '#3c0912'] },
-        { name: 'Delta', mid: 10, colors: ['#112040', '#203067', '#244297', '#1b5e9f', '#2378a3', '#3391a9', '#4da7af', '#7dbbb6', '#accec6', '#d7e4d9', '#fffccc', '#eee099', '#d9c560', '#b7b12e', '#8ca10a', '#5e910d', '#33801f', '#0f6b2b', '#10532c', '#193a23', '#172313'] },
-        { name: 'Curl', mid: 5, colors: ['#151d44', '#1c4d60', '#117d79', '#5ca786', '#b6cbb0', '#fdf5f4', '#e6b8a2', '#d37669', '#ae4060', '#75195d', '#340d35'] },
-        { name: 'Diff', mid: 5, colors: ['#082340', '#214d6a', '#5a7487', '#8d9ca7', '#c6cacf', '#f6f1f0', '#cec7b8', '#a19679', '#7a6d41', '#4b471c', '#1c2207'] },
-        { name: 'Tarn', mid: 5, colors: ['#17230e', '#3c4d0d', '#846a25', '#cb8448', '#e3bfa3', '#fcf7f6', '#cbccaa', '#7ca490', '#2e7e7e', '#154f6a', '#101e4f'] },
+        { name: 'Balance', mid: 3, colors: ['#181c43', '#1d51bc', '#589bb5', '#f1eceb', '#d3967d', '#ad2428', '#3e0b14'] },
+        { name: 'Delta', mid: 3, colors: ['#112040', '#0f4594', '#7dbfbd', '#fffccc', '#beae00', '#008432', '#192615'] },
+        { name: 'Curl', mid: 3, colors: ['#151d44', '#00857e', '#72ac86', '#fdf5f4', '#d78869', '#a12b67', '#350e36'] },
+        { name: 'Diff', mid: 3, colors: ['#082340', '#3a647b', '#989faa', '#f6f1f0', '#b0a68d', '#6b5f2e', '#1f260b'] },
+        { name: 'Tarn', mid: 3, colors: ['#17230e', '#6e6600', '#c88246', '#fcf7f6', '#c3c8a4', '#1f7779', '#0c194a'] },
+        { name: 'Topo', mid: 16, colors: ['#281a2c', '#322643', '#3b325c', '#413e76', '#404d8c', '#3e5f93', '#3f6f97', '#437f9a', '#488f9e', '#4e9fa1', '#56afa4', '#63c0a4', '#7acea3', '#9adba5', '#bde7ad', '#dff2bb', '#0d2514', '#153319', '#1b411d', '#254f1e', '#3c5a26', '#516333', '#666d3a', '#7b773e', '#918140', '#a78c3f', '#bf953f', '#caa55a', '#d2b676', '#dbc892', '#e4daae', '#eeedcb', '#f9fde4'] },
       ],
     },
   ];
@@ -1804,6 +1848,6 @@
   window.Phosphor = {
     positions, lightness, inGamutOklab, simulatedOklab, readCvdMatrix, IDENTITY, CVD_MIN_DE, CVD_KEEP,
     cvdIcon, CVD_TITLE, setExport, copy, downloadText, safeFilename, loadSqlJs, buildStylx,
-    legendEl, LEGEND, textWidth, legendSettings, renderLegend, makeScale, buildSamplers,
+    legendEl, LEGEND, textWidth, legendSettings, renderLegend, makeScale, buildSamplers, buildDivergingSamplers,
   };
 })();

@@ -45,13 +45,13 @@
   ];
   const PRESETS = PRESET_GROUPS.flatMap((g) => g.presets);
 
-  const TEAL_PINK = PRESETS.find((p) => p.name === 'Teal–Pink');
+  const DEFAULT_PRESET = PRESETS.find((p) => p.name === 'Red–Blue');
   // `published` holds a preset's 3 × 3 grid (cells[y][x], low first) until an anchor is edited.
   // `preset` and `swapped` record where a published grid came from, for share links. `xy` is a
   // chosen both-high (top-right) color, or null to mix it from the other three.
   const state = {
-    size: 3, curve: 'linear', mode: 'oklab', xy: null, base: TEAL_PINK.base, x: TEAL_PINK.x, y: TEAL_PINK.y,
-    published: presetCells(TEAL_PINK), preset: TEAL_PINK.name, swapped: false,
+    size: 3, curve: 'linear', mode: 'oklab', xy: null, base: DEFAULT_PRESET.base, x: DEFAULT_PRESET.x, y: DEFAULT_PRESET.y,
+    published: presetCells(DEFAULT_PRESET), preset: DEFAULT_PRESET.name, swapped: false,
   };
   /** A preset's published grid, mirrored across its diagonal when X and Y are swapped. */
   const transpose = (cells) => cells.map((row, y) => row.map((_, x) => cells[x][y]));
